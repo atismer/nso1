@@ -1,0 +1,296 @@
+[
+  {
+    "objectID": "index.html#organisation",
+    "href": "index.html#organisation",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Organisation",
+    "text": "Organisation\n\n\n\nVorlesung\n\nAlexander Tismer\n\nÜbung\n\nMarco Zorn\n\nSprechstunde\n\nTermine nach Vereinbarung\n\nPrüfung mündlich 40 Minuten\n\nTermine nach Vereinbarung"
+  },
+  {
+    "objectID": "index.html#zeitplan",
+    "href": "index.html#zeitplan",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Zeitplan",
+    "text": "Zeitplan\n\n\n\n\n\nThema\n\n\n\n\n\nEinführung\n1\n\n\nGrundgleichungen\n2\n\n\nOrtsdiskretisierung FDM\n3/4\n\n\nTurbulenz\n5/6\n\n\nZeitdiskretisierung FDM\n7\n\n\nFVM\n8/9\n\n\nTurbomaschinen\n10\n\n\nGeometrie\n11\n\n\nVernetzung\n12\n\n\nOptimierung\n13/14\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nOrtsdiskretisierung (H)\n1\n\n\nZeitdiskretisierung (H)\n2\n\n\nEinführung (CFX)\n3\n\n\nBackward-Facing-Step (CFX)\n4\n\n\nRechnerübungen\n5/6\n\n\nSimulation Turbine (CFX)\n7\n\n\nRechnerübungen\n8/9\n\n\nVernetzung (H)\n10\n\n\nOptimierung\n11/12\n\n\n\n\n10 Vorlesungen in 14 x 90 Minuten und 9 Übungen in 12 x 90 Minuten 1 x Institutsbesichtigung und 2 x Offene Sprechstunde"
+  },
+  {
+    "objectID": "index.html#literatur",
+    "href": "index.html#literatur",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Literatur",
+    "text": "Literatur\n\nFerziger, J. H.; Peric, M.; “Numerische Strömungsmechanik”; Springer-Verlag, 2008\nLaurien, E.; Örtel, H.; “Numerische Strömungsmechanik”; Vieweg-Verlag, 2010\nPope, S. B.; “Turbulent Flows”; Cambridge Univ. Pr., 2006\nMoukalled, F.; Mangani, L.; Darwish, M.; “The Finite Volume Method in Computational Fluid Dynamics”; Springer, 2016\nWeicker, K.; “Evolutionäre Algorithmen”; Springer Vieweg, 2015"
+  },
+  {
+    "objectID": "index.html#hydraulische-maschine",
+    "href": "index.html#hydraulische-maschine",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Hydraulische Maschine",
+    "text": "Hydraulische Maschine\nAuslegung\nRahmenbedingungen\n\nBestehende Anlage\nSaugrohr fix (Änderung sehr teuer)\nKontour von Nabe und Kranz fix\n\nZiel\n\nMöglichst hoher Wirkungsgrad unter Einhaltung der Auslegungsdaten\n\n\n\n\n[1]"
+  },
+  {
+    "objectID": "index.html#hydraulische-maschine-1",
+    "href": "index.html#hydraulische-maschine-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Hydraulische Maschine",
+    "text": "Hydraulische Maschine\nSimulation und Eigenschaften\n\n\n\n\n\n\n\n\n\n\n\n\nInkompressible Wasserströmung mit kinematischer Viskosität \\(\\nu = 10^{-6}\\)\nRohrturbine mit z.B. \\(D = 4m\\) Durchmesser und einer Zuströmgeschwindigkeit von \\(v=1\\frac{m}{s}\\) und damit hohen \\(Re\\)-Zahlen bzw. turbulenter Strömung\nSteigender Druckgradient\nVernetzung des Strömungsgebiets\nStehende und rotierende Gebiete müssen berechnet und gekoppelt werden"
+  },
+  {
+    "objectID": "index.html#hydraulische-maschine-2",
+    "href": "index.html#hydraulische-maschine-2",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Hydraulische Maschine",
+    "text": "Hydraulische Maschine\nGeometrische Beschreibung\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAuslegung der Maschine auf Blattschnitten\nDefinition von Freiheitsgraden zur Veränderung der Geometrie\nErzeugung der dreidimensionalen Geometrie durch Verbinden von Kurven\nVerwendung von nicht-uniformen, rationalen B-Splines (NURBS)"
+  },
+  {
+    "objectID": "index.html#grundgleichungen",
+    "href": "index.html#grundgleichungen",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\nBeschreibung von Strömungen durch Navier-Stokes-Gleichungen:\n\n\n\\[\n\\begin{aligned}\n  \\frac{\\partial{}}{\\partial{t}} \\underline{u} +\n  \\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)\n  & =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\\[\n\\begin{aligned}\n  \\color{blue}{\\frac{\\partial{}}{\\partial{t}} \\underline{u}} +\n  \\color{orange}{\\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)}\n  & =\n  \\color{magenta}{\\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)} -\n  \\color{green}{\\frac{1}{\\rho} \\nabla p}\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\nUnbekannte \\(\\phi\\) bzw. \\(\\underline{u}\\) und \\(\\underline{p}\\) sind kontinuierliche Felder (Kontinuumsmechanik)\nNumerik löst partielle Differentialgleichungen an diskreten Stellen (Gitter)"
+  },
+  {
+    "objectID": "index.html#finite-volumen-methode",
+    "href": "index.html#finite-volumen-methode",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Volumen-Methode",
+    "text": "Finite-Volumen-Methode\nOrtsdiskretisierung\nEindimensionales Konvektions-Diffusions-Problem \\(u \\frac{\\partial \\phi}{\\partial x}  = \\Gamma  \\frac{\\partial }{\\partial x}  \\frac{\\partial \\phi}{\\partial x} \\) mit \\(u,\\Gamma=\\mathrm{const}\\)\n\n\n\\[\n{\\small\\begin{aligned}\nu  \\frac{\\partial \\phi}{\\partial x}\n  &\n   \\color{lightgray}{\n    \\rightarrow\n       \\int_\\mathcal{V} u \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{V}\n    \\rightarrow\n       \\int_\\mathcal{S} u \\phi \\, d\\mathcal{S}\n    \\rightarrow\n      -  \\left[ u \\phi \\right]_{k}\n      +  \\left[ u \\phi \\right]_{k+1}  \n  }\n  \\\\\n  &\n   \\color{lightgray}{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u \\frac{{\\phi}_{m+1}-{\\phi}_{m-1}}{2}\n  }\n  \\\\\n\\Gamma  \\frac{\\partial }{\\partial x}   \\frac{\\partial \\phi}{\\partial x}\n  &\n   \\color{lightgray}{\n    \\rightarrow\n       \\int_\\mathcal{V} \\Gamma  \\frac{\\partial }{\\partial x}  \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{V}\n    \\rightarrow\n       \\int_\\mathcal{S} \\Gamma  \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{S}\n    \\rightarrow\n      -  \\left[ \\Gamma \\frac{\\partial  \\phi}{\\partial x}  \\right]_{k}\n      +  \\left[ \\Gamma  \\frac{\\partial \\phi}{\\partial x}  \\right]_{k+1}  \n  }\n  \\\\\n  &\n   \\color{lightgray}{\n    \\rightarrow\n      - \\Gamma  \\frac{{\\phi}_{m}-{\\phi}_{m-1}}{\\delta x}\n      + \\Gamma  \\frac{{\\phi}_{m+1}-{\\phi}_{m}}{\\delta x}\n    \\rightarrow\n    \\Gamma  \\frac{{\\phi}_{m+1}-{2\\phi}_{m}+{\\phi}_{m-1}}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu  \\frac{\\partial \\phi}{\\partial x}\n  &\n    \\rightarrow\n       \\int_\\mathcal{V} u \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{V}\n    \\rightarrow\n       \\int_\\mathcal{S} u \\phi \\, d\\mathcal{S}\n   \\color{lightgray}{\n    \\rightarrow\n      -  \\left[ u \\phi \\right]_{k}\n      +  \\left[ u \\phi \\right]_{k+1}  \n  }\n  \\\\\n  &\n   \\color{lightgray}{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u \\frac{{\\phi}_{m+1}-{\\phi}_{m-1}}{2}\n  }\n  \\\\\n\\Gamma  \\frac{\\partial }{\\partial x}   \\frac{\\partial \\phi}{\\partial x}\n  &\n    \\rightarrow\n       \\int_\\mathcal{V} \\Gamma  \\frac{\\partial }{\\partial x}  \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{V}\n    \\rightarrow\n       \\int_\\mathcal{S} \\Gamma  \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{S}\n   \\color{lightgray}{\n    \\rightarrow\n      -  \\left[ \\Gamma \\frac{\\partial  \\phi}{\\partial x}  \\right]_{k}\n      +  \\left[ \\Gamma  \\frac{\\partial \\phi}{\\partial x}  \\right]_{k+1}  \n  }\n  \\\\\n  &\n   \\color{lightgray}{\n    \\rightarrow\n      - \\Gamma  \\frac{{\\phi}_{m}-{\\phi}_{m-1}}{\\delta x}\n      + \\Gamma  \\frac{{\\phi}_{m+1}-{\\phi}_{m}}{\\delta x}\n    \\rightarrow\n    \\Gamma  \\frac{{\\phi}_{m+1}-{2\\phi}_{m}+{\\phi}_{m-1}}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu  \\frac{\\partial \\phi}{\\partial x}\n  &\n    \\rightarrow\n       \\int_\\mathcal{V} u \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{V}\n    \\rightarrow\n       \\int_\\mathcal{S} u \\phi \\, d\\mathcal{S}\n    \\rightarrow\n      -  \\left[ u \\phi \\right]_{k}\n      +  \\left[ u \\phi \\right]_{k+1}  \n  \\\\\n  &\n   \\color{lightgray}{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u \\frac{{\\phi}_{m+1}-{\\phi}_{m-1}}{2}\n  }\n  \\\\\n\\Gamma  \\frac{\\partial }{\\partial x}   \\frac{\\partial \\phi}{\\partial x}\n  &\n    \\rightarrow\n       \\int_\\mathcal{V} \\Gamma  \\frac{\\partial }{\\partial x}  \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{V}\n    \\rightarrow\n       \\int_\\mathcal{S} \\Gamma  \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{S}\n    \\rightarrow\n      -  \\left[ \\Gamma \\frac{\\partial  \\phi}{\\partial x}  \\right]_{k}\n      +  \\left[ \\Gamma  \\frac{\\partial \\phi}{\\partial x}  \\right]_{k+1}  \n  \\\\\n  &\n   \\color{lightgray}{\n    \\rightarrow\n      - \\Gamma  \\frac{{\\phi}_{m}-{\\phi}_{m-1}}{\\delta x}\n      + \\Gamma  \\frac{{\\phi}_{m+1}-{\\phi}_{m}}{\\delta x}\n    \\rightarrow\n    \\Gamma  \\frac{{\\phi}_{m+1}-{2\\phi}_{m}+{\\phi}_{m-1}}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu  \\frac{\\partial \\phi}{\\partial x}\n  &\n    \\rightarrow\n       \\int_\\mathcal{V} u \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{V}\n    \\rightarrow\n       \\int_\\mathcal{S} u \\phi \\, d\\mathcal{S}\n    \\rightarrow\n      -  \\left[ u \\phi \\right]_{k}\n      +  \\left[ u \\phi \\right]_{k+1}  \n  \\\\\n  &\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u \\frac{{\\phi}_{m+1}-{\\phi}_{m-1}}{2}\n  \\\\\n\\Gamma  \\frac{\\partial }{\\partial x}   \\frac{\\partial \\phi}{\\partial x}\n  &\n    \\rightarrow\n       \\int_\\mathcal{V} \\Gamma  \\frac{\\partial }{\\partial x}  \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{V}\n    \\rightarrow\n       \\int_\\mathcal{S} \\Gamma  \\frac{\\partial \\phi}{\\partial x}  \\, d\\mathcal{S}\n    \\rightarrow\n      -  \\left[ \\Gamma \\frac{\\partial  \\phi}{\\partial x}  \\right]_{k}\n      +  \\left[ \\Gamma  \\frac{\\partial \\phi}{\\partial x}  \\right]_{k+1}  \n  \\\\\n  &\n    \\rightarrow\n      - \\Gamma  \\frac{{\\phi}_{m}-{\\phi}_{m-1}}{\\delta x}\n      + \\Gamma  \\frac{{\\phi}_{m+1}-{\\phi}_{m}}{\\delta x}\n    \\rightarrow\n    \\Gamma  \\frac{{\\phi}_{m+1}-{2\\phi}_{m}+{\\phi}_{m-1}}{\\delta x}\n\\end{aligned}}\n\\]\n\n\n\n\nDifferential\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem \\(\\rightarrow\\) lineare Approximation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\n\\]"
+  },
+  {
+    "objectID": "index.html#finite-volumen-methode-1",
+    "href": "index.html#finite-volumen-methode-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Volumen-Methode",
+    "text": "Finite-Volumen-Methode\nLineares Gleichungssystem\nFVM liefert \\[{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\\]\n\nKoeffizienten für die \\(m\\)-te Zeile\nAnaloges Aufstellen für alle anderen Auswertestellen liefern das lineare Gleichungssystem\n\n\\[\n{\\scriptsize\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\nMatrix hat für den gezeigten Fall eine Bandstruktur\nMatrix ist fast immer schwachbesetzt und die Besetzungsstruktur ist abhängig vom verwendeten Berechnungsgitter"
+  },
+  {
+    "objectID": "index.html#turbulenzmodellierung",
+    "href": "index.html#turbulenzmodellierung",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Turbulenzmodellierung",
+    "text": "Turbulenzmodellierung\n\n\n\n\n\n[2]\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n   \\frac{\\partial }{\\partial t}   \\underline{u} +\n  \\underbrace{\n     \\underline{u} \\cdot \\left( \\nabla \\cdot  \\underline{u} \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert."
+  },
+  {
+    "objectID": "index.html#evolutionäre-optimierung",
+    "href": "index.html#evolutionäre-optimierung",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Evolutionäre Optimierung",
+    "text": "Evolutionäre Optimierung\nTeilturbine\n\n\n\n\n\n[3]"
+  },
+  {
+    "objectID": "index.html#anwendung",
+    "href": "index.html#anwendung",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nWasserkraftwerk in Nepal [4]\nLeistungsschwankungen der Turbine verursacht durch die Trifurkation"
+  },
+  {
+    "objectID": "index.html#anwendung-1",
+    "href": "index.html#anwendung-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nWasserkraftwerk in Nepal [4]\nInstationärer Wirbel innerhalt der Trifurkation"
+  },
+  {
+    "objectID": "index.html#anwendung-2",
+    "href": "index.html#anwendung-2",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nWasserkraftwerk in Nepal [4]\nLösung: Einbau von Blechen"
+  },
+  {
+    "objectID": "index.html#anwendung-3",
+    "href": "index.html#anwendung-3",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nWasserkraftwerk in Nepal [5]\nAnderes Kraftwerk, aber gleiches Problem?"
+  },
+  {
+    "objectID": "index.html#anwendung-4",
+    "href": "index.html#anwendung-4",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nWasserkraftwerk in Nepal [5]\n\n\nOriginal\n\n\n\n\n\nModifikation\n\n\n\n\n\nDer Einbau von Blechen in der Trifurkation reduziert das instationäre Verhalten des Wirbels [5]"
+  },
+  {
+    "objectID": "index.html#anwendung-5",
+    "href": "index.html#anwendung-5",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nGezeitenströmung [6]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeometriedaten aus geometrischem Informationssystem (GIS)\nKopplung von TPXO für Randbedingungen"
+  },
+  {
+    "objectID": "index.html#anwendung-6",
+    "href": "index.html#anwendung-6",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nGezeitenströmung [6]\n\n\nTheoretisches Potential\n\n\n\n\n\n\nKanalverblockung\n\n\nTechnisches Potential\n\n\n\n\n\n\nVerblockung nutzbare Fläche\n\n\nRealistisches Potential\n\n\n\n\n\n\nPlatzierung einzelner Turbinen\nBerücksichtigung der Hauptströmungsrichtungen\nFernfeldeinfluss mit Nachlaufschatten"
+  },
+  {
+    "objectID": "index.html#anwendung-7",
+    "href": "index.html#anwendung-7",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nGezeitenströmung [6]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeitlicher Verlauf der Strömungsrichtung und zwei Strömungsfelder in unterschiedlichen Zeitschritten"
+  },
+  {
+    "objectID": "index.html#anwendung-8",
+    "href": "index.html#anwendung-8",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Anwendung",
+    "text": "Anwendung\nGezeitenströmung [6]\nBeispiel des Verlaufs der Anströmbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStarke Variation der lokalen Anströmrichtungen\nTurbinenverbund verblockt maßgeblich Kernströmung im Kanal"
+  },
+  {
+    "objectID": "index.html#referenzen",
+    "href": "index.html#referenzen",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Referenzen",
+    "text": "Referenzen\n\n\n[1] B. Junginger, “Investigation of the Influences of Gaps at the Runner Blade for an Axial Turbine Using Hybrid Turbulence Models.” https://www.gauss-centre.eu/results/computational-and-scientific-engineering/investigation-of-the-influences-of-gaps-at-the-runner-blade-for-an-axial-turbine-using-hybrid-turbulence-models, 2016.\n\n\n[2] T. Krappel, “Large eddy simulation of a complete francis turbine.” (https://www.gauss-centre.eu/results/computational-and-scientific-engineering/large-eddy-simulation-of-a-complete-francis-turbine?no_cache=1&sword_list%5B0%5D=krappel&cHash=fd004c0078d48dc042bd56d5bf051285, 2020.\n\n\n[3] A. Tismer, “Entwicklung einer softwareumgebung zur automatischen auslegung von hydraulischen maschinen mit dem inselmodell,” PhD thesis, Universität Stuttgart; Universität Stuttgart, Institut für Strömungsmechanik und Hydraulische Strömungsmaschinen, 2020. Available: https://d-nb.info/1220692778/34\n\n\n[4] H. Hoffmann, R. Roswora, and A. Egger, “Rectification of the marsyangdi trifurcation,” Hydro Vision, p. 2000, 2000.\n\n\n[5] O. Kirschner, J. Wack, B. Junginger, J. Junginger, A. Ruprecht, and S. Riedelbauch, “Experimentelle und numerische strömungsanalyse einer trifurkation eines 150-MW-kraftwerkes,” WASSERWIRTSCHAFT, vol. 109, no. 9, pp. 44–47, Sep. 2019, doi: 10.1007/s35147-019-0223-3.\n\n\n[6] A. Ruopp, “Optimierung von symmetrischen gezeitenströmungsturbinen und deren analyse in großräumigen gezeitenströmungsgebieten,” Mitteilung Nr. 33, Universität Stuttgart, Institut für Strömungsmechanink und Hydraulische Strömungsmaschinen, Pfaffenwaldring 10, 70569 Stuttgart, 2016."
+  },
+  {
+    "objectID": "einfuehrung.html",
+    "href": "einfuehrung.html",
+    "title": "Einführung",
+    "section": "",
+    "text": "Vorlesung\n\nAlexander Tismer\n\nÜbung\n\nMarco Zorn\n\nSprechstunde\n\nTermine nach Vereinbarung\n\nPrüfung mündlich 40 Minuten\n\nTermine nach Vereinbarung\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nEinführung\n1\n\n\nGrundgleichungen\n2\n\n\nOrtsdiskretisierung FDM\n3/4\n\n\nTurbulenz\n5/6\n\n\nZeitdiskretisierung FDM\n7\n\n\nFVM\n8/9\n\n\nTurbomaschinen\n10\n\n\nGeometrie\n11\n\n\nVernetzung\n12\n\n\nOptimierung\n13/14\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nOrtsdiskretisierung (H)\n1\n\n\nZeitdiskretisierung (H)\n2\n\n\nEinführung (CFX)\n3\n\n\nBackward-Facing-Step (CFX)\n4\n\n\nRechnerübungen\n5/6\n\n\nSimulation Turbine (CFX)\n7\n\n\nRechnerübungen\n8/9\n\n\nVernetzung (H)\n10\n\n\nOptimierung\n11/12\n\n\n\n\n\n10 Vorlesungen in 14 x 90 Minuten und 9 Übungen in 12 x 90 Minuten 1 x Institutsbesichtigung und 2 x Offene Sprechstunde\n\n\n\n\nFerziger, J. H.; Peric, M.; “Numerische Strömungsmechanik”; Springer-Verlag, 2008\nLaurien, E.; Örtel, H.; “Numerische Strömungsmechanik”; Vieweg-Verlag, 2010\nPope, S. B.; “Turbulent Flows”; Cambridge Univ. Pr., 2006\nMoukalled, F.; Mangani, L.; Darwish, M.; “The Finite Volume Method in Computational Fluid Dynamics”; Springer, 2016\nWeicker, K.; “Evolutionäre Algorithmen”; Springer Vieweg, 2015\n\n\n\n\n\n\nRahmenbedingungen\n\nBestehende Anlage\nSaugrohr fix (Änderung sehr teuer)\nKontour von Nabe und Kranz fix\n\nZiel\n\nMöglichst hoher Wirkungsgrad unter Einhaltung der Auslegungsdaten\n\n\n\n\n@junginger_2016\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInkompressible Wasserströmung mit kinematischer Viskosität \\(\\nu = 10^{-6}\\)\nRohrturbine mit z.B. \\(D = 4m\\) Durchmesser und einer Zuströmgeschwindigkeit von \\(v=1\\frac{m}{s}\\) und damit hohen \\(Re\\)-Zahlen bzw. turbulenter Strömung\nSteigender Druckgradient\nVernetzung des Strömungsgebiets\nStehende und rotierende Gebiete müssen berechnet und gekoppelt werden\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAuslegung der Maschine auf Blattschnitten\nDefinition von Freiheitsgraden zur Veränderung der Geometrie\nErzeugung der dreidimensionalen Geometrie durch Verbinden von Kurven\nVerwendung von nicht-uniformen, rationalen B-Splines (NURBS)\n\n\n\n\n\nBeschreibung von Strömungen durch Navier-Stokes-Gleichungen:\n\n\n\\[\n\\begin{aligned}\n  \\frac{\\partial{}}{\\partial{t}} \\underline{u} +\n  \\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)\n  & =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\\[\n\\begin{aligned}\n  \\color{blue}{\\frac{\\partial{}}{\\partial{t}} \\underline{u}} +\n  \\color{orange}{\\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)}\n  & =\n  \\color{magenta}{\\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)} -\n  \\color{green}{\\frac{1}{\\rho} \\nabla p}\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\nUnbekannte \\(\\phi\\) bzw. \\(\\underline{u}\\) und \\(\\underline{p}\\) sind kontinuierliche Felder (Kontinuumsmechanik)\nNumerik löst partielle Differentialgleichungen an diskreten Stellen (Gitter)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEindimensionales Konvektions-Diffusions-Problem \\(u\\pp{\\phi}{x} = \\Gamma \\pp{}{x}\\pp{\\phi}{x}\\) mit \\(u,\\Gamma=\\mathrm{const}\\)\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n  \\hide{\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n  \\hide{\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n\\end{aligned}}\n\\]\n\n\n\n\nDifferential\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem \\(\\rightarrow\\) lineare Approximation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\n\\]\n\n\n\n\n\n\n\nFVM liefert \\[{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\\]\n\nKoeffizienten für die \\(m\\)-te Zeile\nAnaloges Aufstellen für alle anderen Auswertestellen liefern das lineare Gleichungssystem\n\n\\[\n{\\scriptsize\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\nMatrix hat für den gezeigten Fall eine Bandstruktur\nMatrix ist fast immer schwachbesetzt und die Besetzungsstruktur ist abhängig vom verwendeten Berechnungsgitter\n\n\n\n\n\n\n\n\n\n\n@krappel_2020\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n  \\pp{}{t} \\uv +\n  \\underbrace{\n    \\uv \\cdot \\left( \\nabla \\cdot \\uv \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert.\n\n\n\n\n\n\n\n\n\n\n@Tismer_2020\n\n\n\n\n\n\n\nLeistungsschwankungen der Turbine verursacht durch die Trifurkation\n\n\n\n\n\n\n\n\n\n\n\nInstationärer Wirbel innerhalt der Trifurkation\n\n\n\n\n\n\n\n\n\n\n\nLösung: Einbau von Blechen\n\n\n\n\n\n\n\n\n\n\n\nAnderes Kraftwerk, aber gleiches Problem?\n\n\n\n\n\n\n\n\n\n\n\n\n\nOriginal\n\n\n\n\n\nModifikation\n\n\n\n\n\n\nDer Einbau von Blechen in der Trifurkation reduziert das instationäre Verhalten des Wirbels @Kirschner_2019\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeometriedaten aus geometrischem Informationssystem (GIS)\nKopplung von TPXO für Randbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTheoretisches Potential\n\n\n\n\n\n\nKanalverblockung\n\n\nTechnisches Potential\n\n\n\n\n\n\nVerblockung nutzbare Fläche\n\n\nRealistisches Potential\n\n\n\n\n\n\nPlatzierung einzelner Turbinen\nBerücksichtigung der Hauptströmungsrichtungen\nFernfeldeinfluss mit Nachlaufschatten\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeitlicher Verlauf der Strömungsrichtung und zwei Strömungsfelder in unterschiedlichen Zeitschritten\n\n\n\n\n\n\n\nBeispiel des Verlaufs der Anströmbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStarke Variation der lokalen Anströmrichtungen\nTurbinenverbund verblockt maßgeblich Kernströmung im Kanal"
+  },
+  {
+    "objectID": "einfuehrung.html#organisation",
+    "href": "einfuehrung.html#organisation",
+    "title": "Einführung",
+    "section": "",
+    "text": "Vorlesung\n\nAlexander Tismer\n\nÜbung\n\nMarco Zorn\n\nSprechstunde\n\nTermine nach Vereinbarung\n\nPrüfung mündlich 40 Minuten\n\nTermine nach Vereinbarung"
+  },
+  {
+    "objectID": "einfuehrung.html#zeitplan",
+    "href": "einfuehrung.html#zeitplan",
+    "title": "Einführung",
+    "section": "",
+    "text": "Thema\n\n\n\n\n\nEinführung\n1\n\n\nGrundgleichungen\n2\n\n\nOrtsdiskretisierung FDM\n3/4\n\n\nTurbulenz\n5/6\n\n\nZeitdiskretisierung FDM\n7\n\n\nFVM\n8/9\n\n\nTurbomaschinen\n10\n\n\nGeometrie\n11\n\n\nVernetzung\n12\n\n\nOptimierung\n13/14\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nOrtsdiskretisierung (H)\n1\n\n\nZeitdiskretisierung (H)\n2\n\n\nEinführung (CFX)\n3\n\n\nBackward-Facing-Step (CFX)\n4\n\n\nRechnerübungen\n5/6\n\n\nSimulation Turbine (CFX)\n7\n\n\nRechnerübungen\n8/9\n\n\nVernetzung (H)\n10\n\n\nOptimierung\n11/12\n\n\n\n\n\n10 Vorlesungen in 14 x 90 Minuten und 9 Übungen in 12 x 90 Minuten 1 x Institutsbesichtigung und 2 x Offene Sprechstunde"
+  },
+  {
+    "objectID": "einfuehrung.html#literatur",
+    "href": "einfuehrung.html#literatur",
+    "title": "Einführung",
+    "section": "",
+    "text": "Ferziger, J. H.; Peric, M.; “Numerische Strömungsmechanik”; Springer-Verlag, 2008\nLaurien, E.; Örtel, H.; “Numerische Strömungsmechanik”; Vieweg-Verlag, 2010\nPope, S. B.; “Turbulent Flows”; Cambridge Univ. Pr., 2006\nMoukalled, F.; Mangani, L.; Darwish, M.; “The Finite Volume Method in Computational Fluid Dynamics”; Springer, 2016\nWeicker, K.; “Evolutionäre Algorithmen”; Springer Vieweg, 2015"
+  },
+  {
+    "objectID": "einfuehrung.html#hydraulische-maschine",
+    "href": "einfuehrung.html#hydraulische-maschine",
+    "title": "Einführung",
+    "section": "",
+    "text": "Rahmenbedingungen\n\nBestehende Anlage\nSaugrohr fix (Änderung sehr teuer)\nKontour von Nabe und Kranz fix\n\nZiel\n\nMöglichst hoher Wirkungsgrad unter Einhaltung der Auslegungsdaten\n\n\n\n\n@junginger_2016"
+  },
+  {
+    "objectID": "einfuehrung.html#hydraulische-maschine-1",
+    "href": "einfuehrung.html#hydraulische-maschine-1",
+    "title": "Einführung",
+    "section": "",
+    "text": "Inkompressible Wasserströmung mit kinematischer Viskosität \\(\\nu = 10^{-6}\\)\nRohrturbine mit z.B. \\(D = 4m\\) Durchmesser und einer Zuströmgeschwindigkeit von \\(v=1\\frac{m}{s}\\) und damit hohen \\(Re\\)-Zahlen bzw. turbulenter Strömung\nSteigender Druckgradient\nVernetzung des Strömungsgebiets\nStehende und rotierende Gebiete müssen berechnet und gekoppelt werden"
+  },
+  {
+    "objectID": "einfuehrung.html#hydraulische-maschine-2",
+    "href": "einfuehrung.html#hydraulische-maschine-2",
+    "title": "Einführung",
+    "section": "",
+    "text": "Auslegung der Maschine auf Blattschnitten\nDefinition von Freiheitsgraden zur Veränderung der Geometrie\nErzeugung der dreidimensionalen Geometrie durch Verbinden von Kurven\nVerwendung von nicht-uniformen, rationalen B-Splines (NURBS)"
+  },
+  {
+    "objectID": "einfuehrung.html#grundgleichungen",
+    "href": "einfuehrung.html#grundgleichungen",
+    "title": "Einführung",
+    "section": "",
+    "text": "Beschreibung von Strömungen durch Navier-Stokes-Gleichungen:\n\n\n\\[\n\\begin{aligned}\n  \\frac{\\partial{}}{\\partial{t}} \\underline{u} +\n  \\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)\n  & =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\\[\n\\begin{aligned}\n  \\color{blue}{\\frac{\\partial{}}{\\partial{t}} \\underline{u}} +\n  \\color{orange}{\\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)}\n  & =\n  \\color{magenta}{\\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)} -\n  \\color{green}{\\frac{1}{\\rho} \\nabla p}\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\nUnbekannte \\(\\phi\\) bzw. \\(\\underline{u}\\) und \\(\\underline{p}\\) sind kontinuierliche Felder (Kontinuumsmechanik)\nNumerik löst partielle Differentialgleichungen an diskreten Stellen (Gitter)"
+  },
+  {
+    "objectID": "einfuehrung.html#finite-volumen-methode",
+    "href": "einfuehrung.html#finite-volumen-methode",
+    "title": "Einführung",
+    "section": "",
+    "text": "Eindimensionales Konvektions-Diffusions-Problem \\(u\\pp{\\phi}{x} = \\Gamma \\pp{}{x}\\pp{\\phi}{x}\\) mit \\(u,\\Gamma=\\mathrm{const}\\)\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n  \\hide{\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n  \\hide{\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n\\end{aligned}}\n\\]\n\n\n\n\nDifferential\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem \\(\\rightarrow\\) lineare Approximation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\n\\]"
+  },
+  {
+    "objectID": "einfuehrung.html#finite-volumen-methode-1",
+    "href": "einfuehrung.html#finite-volumen-methode-1",
+    "title": "Einführung",
+    "section": "",
+    "text": "FVM liefert \\[{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\\]\n\nKoeffizienten für die \\(m\\)-te Zeile\nAnaloges Aufstellen für alle anderen Auswertestellen liefern das lineare Gleichungssystem\n\n\\[\n{\\scriptsize\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\nMatrix hat für den gezeigten Fall eine Bandstruktur\nMatrix ist fast immer schwachbesetzt und die Besetzungsstruktur ist abhängig vom verwendeten Berechnungsgitter"
+  },
+  {
+    "objectID": "einfuehrung.html#turbulenzmodellierung",
+    "href": "einfuehrung.html#turbulenzmodellierung",
+    "title": "Einführung",
+    "section": "",
+    "text": "@krappel_2020\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n  \\pp{}{t} \\uv +\n  \\underbrace{\n    \\uv \\cdot \\left( \\nabla \\cdot \\uv \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert."
+  },
+  {
+    "objectID": "einfuehrung.html#evolutionäre-optimierung",
+    "href": "einfuehrung.html#evolutionäre-optimierung",
+    "title": "Einführung",
+    "section": "",
+    "text": "@Tismer_2020"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung",
+    "href": "einfuehrung.html#anwendung",
+    "title": "Einführung",
+    "section": "",
+    "text": "Leistungsschwankungen der Turbine verursacht durch die Trifurkation"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-1",
+    "href": "einfuehrung.html#anwendung-1",
+    "title": "Einführung",
+    "section": "",
+    "text": "Instationärer Wirbel innerhalt der Trifurkation"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-2",
+    "href": "einfuehrung.html#anwendung-2",
+    "title": "Einführung",
+    "section": "",
+    "text": "Lösung: Einbau von Blechen"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-3",
+    "href": "einfuehrung.html#anwendung-3",
+    "title": "Einführung",
+    "section": "",
+    "text": "Anderes Kraftwerk, aber gleiches Problem?"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-4",
+    "href": "einfuehrung.html#anwendung-4",
+    "title": "Einführung",
+    "section": "",
+    "text": "Original\n\n\n\n\n\nModifikation\n\n\n\n\n\n\nDer Einbau von Blechen in der Trifurkation reduziert das instationäre Verhalten des Wirbels @Kirschner_2019"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-5",
+    "href": "einfuehrung.html#anwendung-5",
+    "title": "Einführung",
+    "section": "",
+    "text": "Geometriedaten aus geometrischem Informationssystem (GIS)\nKopplung von TPXO für Randbedingungen"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-6",
+    "href": "einfuehrung.html#anwendung-6",
+    "title": "Einführung",
+    "section": "",
+    "text": "Theoretisches Potential\n\n\n\n\n\n\nKanalverblockung\n\n\nTechnisches Potential\n\n\n\n\n\n\nVerblockung nutzbare Fläche\n\n\nRealistisches Potential\n\n\n\n\n\n\nPlatzierung einzelner Turbinen\nBerücksichtigung der Hauptströmungsrichtungen\nFernfeldeinfluss mit Nachlaufschatten"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-7",
+    "href": "einfuehrung.html#anwendung-7",
+    "title": "Einführung",
+    "section": "",
+    "text": "Zeitlicher Verlauf der Strömungsrichtung und zwei Strömungsfelder in unterschiedlichen Zeitschritten"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-8",
+    "href": "einfuehrung.html#anwendung-8",
+    "title": "Einführung",
+    "section": "",
+    "text": "Beispiel des Verlaufs der Anströmbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStarke Variation der lokalen Anströmrichtungen\nTurbinenverbund verblockt maßgeblich Kernströmung im Kanal"
+  }
+]
