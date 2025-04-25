@@ -38,6 +38,8 @@ execute:
 jupyter: python3
 ---
 
+## Hidden{visibility="hidden"}
+
 \newcommand{\pp}[2]{ \frac{\partial #1}{\partial #2} }
 \newcommand{\dd}[2]{ \frac{\Delta #1}{\Delta #2} }
 \newcommand{\at}[2]{ \left[ #1 \right]_{#2} }
