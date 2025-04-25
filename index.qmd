@@ -13,6 +13,7 @@ resources:
   - "assets/nepal_opt.mp4"
   - "assets/tidal_sim-measure.mp4"
   - "assets/tidal_cfd.mp4"
+  - "assets/IHSnew_HLRS_reduced.mp4"
 title-slide-attributes:
   data-background-image: assets/titel-ihs-logo.png, assets/titel_la-circ.png, assets/titel-col.png
   data-background-size: 10%, 30%, 100% 60%

@@ -404,13 +404,13 @@ Differential $\rightarrow$ Integral mit Divergenztheorem $\rightarrow$ lineare A
 
 ::: {.r-stack}
 :::: {.fragment .fade-out data-fragment-index="2"}
-![](assets/fdm-fvm0000.png){width="50%" fig-align="center"}
+![](assets/fdm-fvm0000.png){width="45%" fig-align="center"}
 ::::
 :::: {.fragment .fade-in-then-out data-fragment-index="2"}
-![](assets/fdm-fvm0002.png){width="50%" fig-align="center"}
+![](assets/fdm-fvm0002.png){width="45%" fig-align="center"}
 ::::
 :::: {.fragment .fade-in data-fragment-index="3"}
-![](assets/fdm-fvm0003.png){width="50%" fig-align="center"}
+![](assets/fdm-fvm0003.png){width="45%" fig-align="center"}
 ::::
 :::
 
