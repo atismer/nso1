@@ -1,0 +1,50 @@
+---
+title: "Numerische Strömungsmechanik<br> mit Optimierungsanwendung"
+#subtitle: "Licensed under CC BY-SA 4.0"
+institute: "Universität Stuttgart, Institut für Strömungsmechanik und Hydraulische Strömungsmachinen"
+author: "Dr.-Ing. Alexander Tismer"
+resources:
+  - "assets/titel-ihs-logo.png"
+  - "assets/titel_la-circ.png"
+  - "assets/titel-col.png"
+  - "assets/elbow_turbulenz.mp4"
+  - "assets/bs_small_80x10_pareto_fit.mp4"
+  - "assets/nepal_org.mp4"
+  - "assets/nepal_opt.mp4"
+  - "assets/tidal_sim-measure.mp4"
+  - "assets/tidal_cfd.mp4"
+title-slide-attributes:
+  data-background-image: assets/titel-ihs-logo.png, assets/titel_la-circ.png, assets/titel-col.png
+  data-background-size: 10%, 30%, 100% 60%
+  data-background-position: 5% 10%, 90% center, 50% 70%
+format:
+  revealjs:
+    menu: false
+    slide-number: false
+    preview-links: auto
+    logo: assets/sm-logo.png
+    theme: custom.scss
+    footer: "Numerische Strömungsmechanik mit Optimierungsanwendung"
+    code-block-height: 400px
+    width: 1720
+    height: 970
+bibliography: lit.bib
+csl: ieee.csl
+execute:
+  echo: true
+  output: true
+  eval: true
+jupyter: python3
+---
+
+\newcommand{\pp}[2]{ \frac{\partial #1}{\partial #2} }
+\newcommand{\dd}[2]{ \frac{\Delta #1}{\Delta #2} }
+\newcommand{\at}[2]{ \left[ #1 \right]_{#2} }
+\newcommand{\fd}[4]{ \frac{{#1}_{#2}-{#1}_{#3}}{#4} }
+\newcommand{\ffd}[5]{ \frac{{#1}_{#2}-{2#1}_{#3}+{#1}_{#4}}{#5} }
+\newcommand{\hide}[1]{ \color{lightgray}{#1} }
+\newcommand{\intV}[1]{ \int_\mathcal{V} #1 \, d\mathcal{V} }
+\newcommand{\intS}[1]{ \int_\mathcal{S} #1 \, d\mathcal{S} }
+\newcommand{\uv}[0]{ \underline{u} }
+
+{{< include einfuehrung.qmd >}} 
