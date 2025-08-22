@@ -1,0 +1,215 @@
+# Vereinfachte Systeme
+
+## Warum und welche?
+
+- Navier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten 
+  partiellen Differentialgleichungen und damit schwer zu lösen
+- Es ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder
+  einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.
+
+
+::::columns
+:::{.column width="33%"}
+**Lineare Diffusion**
+
+Eine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, 
+diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche
+Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen 
+"treibenden" Gradienten mehr gibt.
+
+$$
+\pp{u}{t} - \beta \pp{^2u}{x^2} = 0
+$$
+:::
+:::{.column width="33%"}
+**Lineare Advektion**
+
+In einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein
+Anstieg der Temperatur, mit der Strömung transportiert. Die Störung "folgt" 
+also einfach der Strömung.
+
+$$
+\pp{u}{t} + \alpha \pp{u}{x} = 0
+$$
+:::
+:::{.column width="33%"}
+**Burgersgleichung**
+
+Zur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in
+der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt.
+Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen
+entfernt.
+
+$$
+\pp{u}{t} + u \pp{u}{x} = 0
+$$
+
+Die Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die 
+Geschwindigkeit $\alpha$ der Lösung $u$ an der jeweiligen Stelle. Das Verhalten
+der Burgersgleichung ist also ähnlich zur linearen Advektion.
+:::
+::::
+
+## Lösungen
+
+Für die drei vereinfachten Systeme wird als 
+Anfangsbedingung $u(x,t=0) = e^{-40 (x-\frac{1}{2})^2}$ und eine periodische
+Randbedingung bei $x=0$ und $x=1$ verwendet.
+
+::::columns
+:::{.column width="33%"}
+**Lineare Diffusion**
+$$
+\pp{u}{t} = \beta \pp{^2u}{x^2} = 0 \; \text{mit} \; \beta = 1 \frac{m^2}{s}
+$$
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+import matplotlib.pyplot as plt
+plt.xkcd()
+plt.rc('font', size=18)
+import finite_difference as fd
+import numpy as np
+import os
+import sys
+f = open(os.devnull, 'w')
+m = fd.Model(
+  {"x": np.linspace(0.0,1.0,101), "t": np.linspace(0.0,1.0,1001)}, 
+  time_axis = "t", 
+  periodic = ["x"]
+)
+phi = fd.Field(m, "Phi", n_time_ders = 1)
+sys.stdout = f # redirect output
+diff_2 = fd.Stencil([-1, 0, 1], der_order = 2)
+phi.set_IC("exp(-40*(x-0.5)**2.0)")
+beta = 0.01
+m.check_IC()
+while not m.finished:
+    phip = beta*diff_2.der(phi.prev, 'x')
+    phi.dot.assign_update(phip)
+    phi.time_integrate_update()
+    m.increment_time()
+fig = plt.figure(figsize=(5.4,5))
+ax = fig.gca()
+ax.set_xlabel(r"x-RICHTUNG [m]")
+ax.set_ylabel(r"ZEITSCHRITT [ms]")
+k = 0
+yticks = []
+yticklabels = []
+xx = np.linspace(0.0,1.0,101)
+for i in [0, 50, 100, 150, 200, 250, 300, 350, 400,450, 500]:
+    plt.plot([0,1], [k,k], 'k-', alpha=0.5, zorder=-100)
+    plt.plot(xx, phi.data[:,i] + k,'k-')
+    yticks.append(k+0.5)
+    k = k + 1
+    yticklabels.append(float(i))
+a = ax.set_yticks(yticks)
+a = ax.set_yticklabels(yticklabels)
+```
+:::
+:::{.column width="33%"}
+**Lineare Advektion**
+
+$$
+\pp{u}{t} + \alpha \pp{u}{x} = 0 \; \text{mit} \; \alpha = 1 \frac{m}{s}
+$$
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+import matplotlib.pyplot as plt
+plt.xkcd()
+plt.rc('font', size=18)
+import finite_difference as fd
+import numpy as np
+import os
+import sys
+f = open(os.devnull, 'w')
+m = fd.Model(
+  {"x": np.linspace(0.0,1.0,101), "t": np.linspace(0.0,1.0,1001)}, 
+  time_axis = "t", 
+  periodic = ["x"]
+)
+phi = fd.Field(m, "Phi", n_time_ders = 1)
+sys.stdout = f # redirect output
+diff_1 = fd.Stencil([-1, 0], der_order = 1)
+phi.set_IC("exp(-40*(x-0.5)**2.0)")
+alpha = 1.0
+m.check_IC()
+while not m.finished:
+    phip = - alpha*diff_1.der(phi.prev, 'x')
+    phi.dot.assign_update(phip)
+    phi.time_integrate_update()
+    m.increment_time()
+fig = plt.figure(figsize=(5.4,5))
+ax = fig.gca()
+ax.set_xlabel(r"x-RICHTUNG [m]")
+ax.set_ylabel(r"ZEITSCHRITT [ms]")
+k = 0
+yticks = []
+yticklabels = []
+xx = np.linspace(0.0,1.0,101)
+for i in [0, 50, 100, 150, 200, 250, 300, 350, 400,450, 500]:
+    plt.plot([0,1], [k,k], 'k-', alpha=0.5, zorder=-100)
+    plt.plot(xx, phi.data[:,i] + k,'k-')
+    yticks.append(k+0.5)
+    k = k + 1
+    yticklabels.append(float(i))
+a = ax.set_yticks(yticks)
+a = ax.set_yticklabels(yticklabels)
+```
+:::
+:::{.column width="33%"}
+**Burgersgleichung**
+
+$$
+\pp{u}{t} + u \pp{u}{x} = 0
+$$
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+import matplotlib.pyplot as plt
+plt.xkcd()
+plt.rc('font', size=18)
+import finite_difference as fd
+import numpy as np
+import os
+import sys
+f = open(os.devnull, 'w')
+m = fd.Model(
+  {"x": np.linspace(0.0,1.0,101), "t": np.linspace(0.0,1.0,1001)}, 
+  time_axis = "t", 
+  periodic = ["x"]
+)
+phi = fd.Field(m, "Phi", n_time_ders = 1)
+sys.stdout = f # redirect output
+diff_1 = fd.Stencil([-2, -1, 0], der_order = 1)
+phi.set_IC("exp(-40*(x-0.5)**2.0)")
+alpha = 1.0
+m.check_IC()
+while not m.finished:
+    phip = - phi.prev*diff_1.der(phi.prev, 'x')
+    phi.dot.assign_update(phip)
+    phi.time_integrate_update()
+    m.increment_time()
+fig = plt.figure(figsize=(5.4,5))
+ax = fig.gca()
+ax.set_xlabel(r"x-RICHTUNG [m]")
+ax.set_ylabel(r"ZEITSCHRITT [ms]")
+k = 0
+yticks = []
+yticklabels = []
+xx = np.linspace(0.0,1.0,101)
+for i in [0, 50, 100, 150, 200, 250, 300, 350, 400,450, 500]:
+    plt.plot([0,1], [k,k], 'k-', alpha=0.5, zorder=-100)
+    plt.plot(xx, phi.data[:,i] + k,'k-')
+    yticks.append(k+0.5)
+    k = k + 1
+    yticklabels.append(float(i))
+a = ax.set_yticks(yticks)
+a = ax.set_yticklabels(yticklabels)
+```
+:::
+::::

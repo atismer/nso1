@@ -1,0 +1,896 @@
+# Grundgleichungen
+
+## Welche Gleichungen beschreiben die Problemstellung?
+
+```{=html}
+<center>
+<video
+  data-autoplay
+  data-src="assets/DNS_cylinder.avi.mp4"
+  loop="loop"
+  width="600"
+>
+</video>
+</center>
+```
+
+**Ziel**
+
+Mathematischen Gleichungen, die das technische Problem hinreichend
+genau beschreiben und gleichzeitig so schnell wie möglich lösbar sind.
+
+**Zunächst**
+
+Herleitung der Grundgleichungen
+
+## Vorgehensweise in der numerischen Strömungsmechanik
+
+1. Technisches Problem
+
+    *Modellierung*
+
+1. Mathematische Beschreibung
+    
+    *Diskretisierung*
+
+    - Index-Schreibweise
+    - Herleitung Kontinuitätsgleichung
+    - Herleitung Impulsgleichung
+    - Kompressibel vs. inkompressibel
+    - Grundprinzipien bei der Modellbildung
+
+1. Numerische Lösung
+
+    *Visualisierung*
+
+1. Auswertung
+
+    *Expertise, Experimente*
+
+1. Validierung der Ergebnisse
+
+## Einstein'sche Summenkonvention
+### Definition und Beispiele
+
+Zur besseren Übersichtlichkeit werden Summenzeichen weggelassen und es wird 
+über doppelt auftretende Indizes aufsummiert.
+
+a) Skalar (kein freier Index und damit eine Gleichung) 
+    i) $$
+       \pp{U_i}{x_j} \delta_{ij}
+       =
+       \sum_{i=1}^3 U_j \pp{U_i}{x_j}
+       =
+       U_1 \pp{U_i}{x_1} + U_2 \pp{U_i}{x_2} + U_3 \pp{U_i}{x_3}
+       $$
+    i) $$
+       \pp{U_i}{x_i}
+       = \sum_{i=1}^3 \pp{U_i}{x_i}
+       = \pp{U_1}{x_1} + \pp{U_2}{x_2} + \pp{U_3}{x_3}
+       $$
+
+a) Vektor (1 freier Index und damit mehrere Gleichungen) 
+    $$
+     U_j \pp{U_i}{x_j}
+     = \sum_{i=1}^3 U_j \pp{U_i}{x_j}
+     = U_1 \pp{U_i}{x_1} + U_2 \pp{U_i}{x_2} + U_3 \pp{U_i}{x_3}
+    $$
+
+::: {.callout-note}
+Die Anzahl der Gleichungen wird über die freien Indizes bestimmt.
+:::
+
+## Einstein'sche Summenkonvention
+### Übung
+
+Wie sieht der Ausdruck $U_j \left( \pp{U_i}{x_j} + \pp{U_j}{x_i} \right)$ ausgeschrieben aus?
+
+::: {.fragment .fade-in}
+$$
+\begin{align}
+U_j \left( \pp{U_i}{x_j} + \pp{U_j}{x_i} \right) 
+&= \sum_{i=1}^3 \hla{U_j} \left( \pp{\hl{U_i}}{\hla{x_j}} + \pp{\hla{U_j}}{\hl{x_i}} \right) \\
+&= U_1 \left( \pp{\hl{U_i}}{x_1} + \pp{U_1}{\hl{x_i}} \right) 
+  + U_2 \left( \pp{\hl{U_i}}{x_2} + \pp{U_2}{\hl{x_i}} \right) 
+  + U_3 \left( \pp{\hl{U_i}}{x_3} + \pp{U_3}{\hl{x_i}} \right) \\
+&= \begin{bmatrix}
+U_1 \left( \pp{U_1}{x_1} + \pp{U_1}{x_1} \right) 
+  + U_2 \left( \pp{U_1}{x_2} + \pp{U_2}{x_1} \right) 
+  + U_3 \left( \pp{U_1}{x_3} + \pp{U_3}{x_1} \right) \; \mathrm{für} \; i=1\\
+U_1 \left( \pp{U_2}{x_1} + \pp{U_1}{x_2} \right) 
+  + U_2 \left( \pp{U_2}{x_2} + \pp{U_2}{x_2} \right) 
+  + U_3 \left( \pp{U_2}{x_3} + \pp{U_3}{x_2} \right) \; \mathrm{für} \; i=2 \\
+U_1 \left( \pp{U_3}{x_1} + \pp{U_1}{x_3} \right) 
+  + U_2 \left( \pp{U_3}{x_2} + \pp{U_2}{x_3} \right) 
+  + U_3 \left( \pp{U_3}{x_3} + \pp{U_3}{x_3} \right) \; \mathrm{für} \; i=3 \\
+\end{bmatrix}
+\end{align}
+$$
+:::
+
+## Grundgleichungen
+### Annahmen und Definitionen
+
+::::columns
+:::{.column}
+
+![](assets/grundgleichungen_finel_0.5-1.0.png){height=830px fig-align="center"}
+
+:::
+:::{.column}
+
+#### Zeitunabhängig
+
+Das Kontrollvolumen hat ein zeitlich konstantes Volumen
+
+$$
+dV = dx \, dy \, dz \neq dx(t) \, dy(t) \, dz(t) = dV(t)
+$$
+
+und ist somit unabhängig von der Zeit.
+
+#### Kontinuum
+
+- Statt einzelner Moleküle (mikroskopisches Modell) wird das Fluid als 
+  Kontinuum (makroskopisches Modell) betrachtet
+- Es bestehen kontinuierliche Felder für die gesuchten Größen
+- Diese Annahme ist gültig bei ausreichend großer Anzahl an Molekülen.
+
+:::{.callout-note}
+Je Raumrichtung gibt es am Kontrollvolumen je ein positives und negatives
+Schnittufer. Die zugehörigen Normal- und Tangentialvektoren sind 
+entgegengesetzt. Das positive Schnittufer hat jeweils positive 
+Normal- und Tangentialvektoren.
+:::
+:::
+::::
+
+## Massenerhaltung
+### Vorüberlegungen
+
+::::columns
+:::{.column}
+
+![](assets/grundgleichungen_finel_genmasse_0.5-1.0.png){height=830px fig-align="center"}
+
+:::
+:::{.column}
+
+:::{.callout-note}
+## Vorüberlegungen am Kontrollvolumen
+
+Verbindung zwischen einströmendem $\dot{m}_{ein}$ und ausströmendem Massenstrom
+$\dot{m}_{aus}$ und Dichte $\rho$:
+
+i) $\dot{m}_{ein} > \dot{m}_{aus} \rightarrow \rho \uparrow$: Zunahme der Masse
+i) $\dot{m}_{ein} < \dot{m}_{aus} \rightarrow \rho \downarrow$: Abnahme der Masse
+i) $\dot{m}_{ein} = \dot{m}_{aus} \rightarrow \rho =$: Konstante Masse
+:::
+
+Die Massenerhaltung setzt die zeitliche Änderung der Masse im Volumen
+$$
+\pp{m}{t} = \ppb{\rho \, dV}{t} = \pp{\rho}{t} dV
+$$
+gleich der Summe der ein- und ausströmenden Massenströme
+$$
+\sum \dot{m}_{ein} - \sum \dot{m}_{aus} \; \text{.}
+$$
+Die Massenerhaltung ergibt sich zu:
+$$
+\pp{\rho}{t} dV = \sum \dot{m}_{ein} - \sum \dot{m}_{aus}
+$$
+
+:::
+::::
+
+
+## Massenerhaltung
+### Massenstrom in $x$-Richtung
+
+::::columns
+:::{.column}
+![](assets/grundgleichungen_finel_masse_x_0.5-1.0.png){height=830px fig-align="center"}
+:::
+:::{.column}
+**Massenstrom linke Seite:** 
+$$
+\underbrace{\rho u}_{
+  \left[ \frac{kg}{m^3} \frac{m}{s} \right]
+} 
+\underbrace{dy \, dz}_{
+  \left[ m^2 \right]
+}
+$$
+
+**Massenstrom rechte Seite:** 
+$$
+\left(
+  \overbrace{
+  \underbrace{\rho u}_{
+    \text{Wert links}
+  } 
+  + 
+  \underbrace{\ppb{\rho u}{x}}_{\text{Ableitung}} 
+  \underbrace{dx}_{\text{Strecke}}
+  }^{\text{Wert rechts}}
+\right) dy \, dz
+$$
+
+:::{.callout-note}
+- Die Massenströme ergeben sich aus der Massenstromdichte (entspricht dem 
+  Produkt aus Dichte und Geschwindigkeit) und der zugehörigen durchströmten 
+  Fläche.
+- Die Massenstromdichte auf der rechten Seite entspricht der Summe aus dem Wert 
+  auf der linken Seite und der Änderung über der Strecke $dx$ (Produkt aus 
+  Ableitung und Strecke).
+- Das Vorzeichen des Massenstroms ergibt sich aus dem Skalarprodukt der 
+  Geschwindigkeit $\uv$ mit dem Normalvektor oder durch Überlegung; ein 
+  ein-/ausströmender Massenstrom erhöht/verringert die Dichte und ist 
+  positiv/negativ auf der rechten Seite der Gleichung.
+- Die $y$- und $z$-Richtung funktioniert analog.
+:::
+:::
+::::
+
+## Massenerhaltung
+### Bilanzierung der Massenströme
+
+Das Gleichsetzen der zeitlichen Änderung mit den Massenströmen über alle 
+Flächen
+$$
+\begin{align}
+\pp{\rho}{t} \underbrace{dx dy dz}_{=dV}
+= 
+& \rho u \; dy dz - \left( \rho u + \ppb{\rho u}{x} dx \right) dy dz &(x\text{-Richtung})\\ 
+& \rho v \; dx dz - \left( \rho v + \ppb{\rho v}{y} dy \right) dx dz &(y\text{-Richtung})\\
+& \rho w \; dx dy - \left( \rho w + \ppb{\rho w}{z} dz \right) dx dy &(z\text{-Richtung})
+\end{align}
+$$
+lässt sich vereinfachen zu:
+$$
+\begin{align}
+\pp{\rho}{t} &+ \ppb{\rho u}{x} + \ppb{\rho v}{y} + \ppb{\rho w}{z} = 0\; &\text{,} \\
+\pp{\rho}{t} &+ \ppb{\rho u_i}{x_i} = 0 \; &\text{(Index-Schreibweise) oder} \\
+\pp{\rho}{t} &+ \nabla \cdot \left( \rho \uv \right) = 0 \; &\text{(Operator-Schreibweise).}
+\end{align}
+$$
+
+:::{.callout-note}
+Die Gleichung wird auch als Kontinuitätsgleichung bezeichnet und gilt in dieser
+Form für kompressible Fluide.
+:::
+
+## Massenerhaltung
+### Vereinfachungen für inkompressible Fluide
+
+Bei **inkompressiblen** Strömungen ist die Dichte konstant. Es gilt 
+$$ \rho = const \; \text{bzw.} \; 
+\rho \neq \rho (t) \; \text{und} \; \rho \neq \rho (x) \neq \rho (y) \neq \rho (z) 
+$$
+oder äquivalent dazu
+$$
+\pp{\rho}{t} = 0 \; \text{und} \; 
+  \pp{\rho}{x} = \pp{\rho}{y} = \pp{\rho}{z} = 0 \; \text{.}
+$$
+Damit vereinfacht sich die Massenerhaltung
+$$
+\pp{\rho}{t} = \ppb{\rho u}{x} + \ppb{\rho v}{y} + \ppb{\rho w}{z}
+$$
+zu
+$$
+\begin{align}
+&\pp{u}{x} + \pp{v}{y} + \pp{w}{z} = 0\; &\text{,} \\
+&\pp{u_i}{x_i} = 0\; &\text{(Index-Schreibweise) oder} \\
+&\nabla \cdot \uv = div(\uv) = 0\; &\text{(Operator-Schreibweise).}
+\end{align}
+$$
+
+## Impulserhaltung
+### Vorüberlegungen
+
+::::columns
+:::{.column}
+![](assets/grundgleichungen_finel_dxdydz_0.5-1.0.png){height=830px fig-align="center"}
+:::
+:::{.column}
+Das zweite Newton'sche Gesetz
+$$
+m \; \av = m \der{\uv}{t} = \sum \Fv
+$$
+verbindet das Produkt aus Masse $m$ und Beschleunigung $\av$ mit den 
+angreifenden Kräften $\Fv$ am Kontrollvolumen. Die angreifenden Kräfte sind:
+
+- Druckkraft
+- Reibungskraft
+- Volumenkraft
+
+Die linke Seite der Gleichung wird üblicherweise auch als Trägheitskraft 
+bezeichnet.
+:::
+::::
+
+## Impulserhaltung
+### Trägheitskräfte
+
+::::columns
+:::{.column}
+![](assets/grundgleichungen_finel_dxdydz_0.5-1.0.png){height=830px fig-align="center"}
+:::
+:::{.column}
+Die Beschleunigung $\av$ des zweiten Newton'schen Gesetzes wird durch das 
+totale Differential
+$$
+du_i 
+= 
+\underbrace{
+  \pp{u_i}{t}
+}_{\text{Änderung in $t$-Richtung}} 
+\underbrace{
+  dt
+}_{\text{Strecke}}
++ 
+\underbrace{
+  \pp{u_i}{x_j}
+}_{\text{Änderung in $x_j$-Richtung}} 
+\underbrace{
+  dx_j
+}_{\text{Strecke}}
+$$
+zu
+$$
+\der{u_i}{t} 
+= 
+a_i 
+= 
+\pp{u_i}{t} + \pp{u_i}{x_j} \underbrace{\der{x_j}{t}}_{=u_j}
+$$
+umgeschrieben und in die beiden Anteile lokal und kovektiv entsprechend
+$$
+\der{u_i}{t}
+=
+\underbrace{
+  \pp{u_i}{t} 
+}_{\text{lokal}}
++
+\underbrace{
+  \pp{u_i}{x_j} u_j
+}_{\text{konvektiv}}
+$$
+aufgeteilt.
+:::
+::::
+
+## Impulserhaltung
+### Druckkräfte
+
+::::columns
+:::{.column}
+
+![](assets/grundgleichungen_finel_druck_x_0.5-1.0.png){height=830px fig-align="center"}
+
+:::
+:::{.column}
+
+Die Summe der Druckkraft auf die linke und rechte Seite
+$$
+p \; dy \, dz
+\; \text{und} \;
+\left( p + \pp{p}{x} dx \right) dy \, dz
+$$
+ergeben die Gesamtkraft in $x$-Richtung
+$$
+F_{p,x} = p \; dy \, dz - \left( p + \pp{p}{x} dx \right) dy \, dz \; \text{.}
+$$
+Daraus ergibt sich die jeweilige Kraft in $x_i$-Richtung zu:
+$$
+F_{p,i} = - \pp{p}{x_i} \; dx \, dy \, dz \; \text{.}
+$$
+
+:::{.callout-note}
+- Das Vorzeichen der Druckkraft ergibt sich aus dem Normalvektor; sie zeigt 
+  in entgegengesetzte Richtung. 
+- Die $y$- und $z$-Richtung funktioniert analog.
+:::
+:::
+::::
+
+## Impulserhaltung
+### Volumenkräfte
+
+::::columns
+:::{.column}
+
+![](assets/grundgleichungen_finel_gravi_z_0.5-1.0.png){height=830px fig-align="center"}
+
+:::
+:::{.column}
+
+Eine wichtige Volumenkraft ist die Gravitationskraft. Im Gegensatz zu den 
+vorherigen Kräften greift diese im Volumen und nicht auf den Flächen an. Die
+Gravitationskraft in Abhängigkeit der Gravitationskonstante in $z$-Richtung 
+entspricht
+$$
+F_{V,z} = -\rho g \; dx \, dy \, dz \; \text{.}
+$$
+Allgemein werden Volumenkräfte meist über eine Potentialfunktion $\Psi(x,y,z)$
+entsprechend
+$$
+F_{V,i} = - \pp{\Psi}{x_i} \rho \; dx \, dy \, dz
+$$
+beschrieben.
+
+Für den Fall der Gravitationskraft im entsprechenden Koordinatensystem lautet 
+das zugehörige Potential:
+$$
+\Psi(z) = gz \; \text{.}
+$$
+:::
+::::
+
+## Impulserhaltung
+### Reibungskräfte
+
+::::columns
+:::{.column}
+
+![](assets/grundgleichungen_finel_reib_x_0.5-1.0.png){height=830px fig-align="center"}
+
+:::
+:::{.column}
+
+Die Summe der Spannungen der Oberfläche in $x$-Richtung sind: 
+
+i) Normalspannung in $x$-Richtung 
+   $- \tau_{xx} \; dy \, dz + \left( \tau_{xx} + \pp{\tau_{xx}}{x} \; dx \right) dy \, dz$
+i) Schubspannungen in $y$-Richtung
+   $- \tau_{xy} \; dy \, dz + \left( \tau_{xy} + \pp{\tau_{xy}}{x} \; dx \right) dy \, dz$
+i) Schubspannungen in $z$-Richtung
+   $- \tau_{xz} \; dy \, dz + \left( \tau_{xz} + \pp{\tau_{xz}}{x} \; dx \right) dy \, dz$
+
+:::{.callout-note}
+Die Spannungen werden mit zwei Indizes bezeichnet: der erste legt die 
+Normalenrichtung des zugehörigen Schnittufers fest, der zweite die 
+Richtung der Spannung. Einander zugeordnete Spannungen am positiven und 
+negativen Schnittufer entsprechen einander in ihren Indizes; unterscheiden 
+sich jedoch in der Wirkrichtung (Vorzeichen).
+:::
+:::
+::::
+
+## Impulserhaltung
+### Reibungskräfte
+
+Das Aufsummieren aller Reibungskräfte aus den einzelnen Spannungskomponenten 
+in alle drei Raumrichtungen ergibt:
+
+$$
+\begin{align}
+F_{R,x} 
+&= 
+  \left( \pp{\tau_{xx}}{x} \; dx \right) dy \, dz
++ \left( \pp{\tau_{yx}}{y} \; dy \right) dx \, dz
++ \left( \pp{\tau_{zx}}{z} \; dz \right) dx \, dy \\
+F_{R,y} 
+&= 
+  \left( \pp{\tau_{xy}}{x} \; dx \right) dy \, dz
++ \left( \pp{\tau_{yy}}{y} \; dy \right) dx \, dz
++ \left( \pp{\tau_{zy}}{z} \; dz \right) dx \, dy \\
+F_{R,z} 
+&= 
+  \left( \pp{\tau_{xz}}{x} \; dx \right) dy \, dz
++ \left( \pp{\tau_{yz}}{y} \; dy \right) dx \, dz
++ \left( \pp{\tau_{zz}}{z} \; dz \right) dx \, dy
+\end{align}
+$$
+
+Es ergibt sich in Index-Schreibweise:
+$$
+F_{R,i} = \pp{\tau_{ji}}{x_j} \; dV
+$$
+
+Die übliche Notation der Spannungen
+$$
+\sigma_x = \tau_{xx}, \;
+\sigma_y = \tau_{yy} \; \text{und} \;
+\sigma_z = \tau_{zz}
+$$
+fasst die Normalspannungen mit nur einem Index zusammen.
+
+## Impulserhaltung
+### Bilanzierung der Kräfte
+
+Das Einsetzen der Trägheitskräfte und angreifenden Kräfte in
+$$
+m \; \av = m \der{\uv}{t} = \sum \Fv
+$$
+ergibt
+$$
+\rho \; dV \left( 
+  \pp{u_i}{t} + u_j \pp{u_i}{x_j} 
+\right)
+=
+- \pp{p}{x_i} \; dV 
+- \pp{\Psi}{x_i} \, \rho \; dV 
++ \pp{\tau_{ji}}{x_j} \; dV
+$$
+bzw. durch Entfernung von $dV$
+$$
+\rho \left( 
+  \underbrace{\pp{u_i}{t}}_{\text{lokale Beschleunigung}}
+  + 
+  \underbrace{u_j \pp{u_i}{x_j}}_{\text{Konvektion}}
+\right)
+=
+- \underbrace{\pp{p}{x_i}}_{\text{Druckkraft}}
+- \underbrace{\pp{\Psi}{x_i} \, \rho}_{\text{Volumenkraft}}
++ \underbrace{\pp{\tau_{ji}}{x_j}}_{\text{Reibungskraft}}
+$$
+mit den unbekannten Größen $u_i$, $p$, $\rho$ und $\tau_{ji}$.
+
+:::{.callout-note}
+Die Reibungskraft ist hier noch eine beliebige Oberflächenkraft und wird
+erst durch das Einsetzen der Viskosität und Schergeschwindigkeit vollständig.
+:::
+
+## Impulserhaltung
+### Newtonsche und nichtnewtonsche Fluide
+
+Die Schergeschwindigkeit $\dot{\gamma} = \der{u}{y}$ ist proportional zur 
+Schubspannung $\tau$. Es gilt $\tau \propto \der{u}{y}$
+bzw. $\tau = \mu \der{u}{y}$.
+Die Größe $\mu$ wird als dynamische Viskosität oder einfach als Viskosität 
+bezeichnet. Oft wird die Viskosität mit der Dichte normiert 
+$\nu = \frac{\mu}{\rho}$ und als kinematische Viskosität bezeichnet.
+
+:::{.callout-note}
+Ein Newtonsches Fluid hat eine konstante Viskosität. Der Zusammenhang 
+zwischen der Schergeschwindigkeit und der Schubspannung ist also linear.
+:::
+
+::::columns
+:::{.column}
+```{python}
+#| echo: false
+#import matplotlib
+#matplotlib.rcParams.update({'font.size': 28})
+import matplotlib.pyplot as plt
+plt.xkcd()
+plt.rc('font', size=18)
+import numpy as np
+fig = plt.figure(figsize=(5,5))
+ax = fig.gca()
+ax.set_xlabel(r"SCHERGESCHWINDIGKEIT $\dot{\gamma}$")
+ax.set_ylabel(r"SCHUBSPANNUNG $\tau$")
+ax.set_xlim([0,1.5])
+ax.set_ylim([0,1.5])
+ax.set_xticks([])
+ax.set_yticks([])
+xx = np.arange(0,1.509,0.01)
+plt.plot(xx,xx, 'k-', label="Newtonsches")
+plt.plot(xx,0.4+1.5*xx, 'r-', label="Dilatantes")
+plt.plot(xx,xx**2.0, 'g-', label="Strukturviskoses")
+plt.plot(xx,np.sqrt(xx), 'm-', label="Bingham")
+ax.legend(bbox_to_anchor=(1.05, 1),loc='upper left', borderaxespad=0.)
+```
+:::
+:::{.column}
+```{python}
+#| echo: false
+#import matplotlib
+#matplotlib.rcParams.update({'font.size': 28})
+import matplotlib.pyplot as plt
+plt.xkcd()
+plt.rc('font', size=18)
+import numpy as np
+fig = plt.figure(figsize=(5,5))
+ax = fig.gca()
+ax.set_xlabel(r"SCHERGESCHWINDIGKEIT $\dot{\gamma}$")
+ax.set_ylabel(r"VISKOSITAET $\mu$")
+ax.set_xlim([0,1.5])
+ax.set_ylim([0,1.5])
+ax.set_xticks([])
+ax.set_yticks([])
+xx = np.arange(0,1.509,0.01)
+plt.plot(xx,0.5+0.*xx, 'k-', label="Newtonsches")
+plt.plot(xx,0.6+0.*xx, 'r-', label="Dilatantes")
+plt.plot([0.01,0.01,],[0.6, 1.5], 'r-')
+plt.plot(xx,0.7*xx**2.0 + 0.1, 'g-', label="Strukturviskoses")
+plt.plot(xx,- 0.7*xx**2.0 + 0.9, 'm-', label="Bingham")
+#ax.legend(bbox_to_anchor=(1.05, 1),loc='upper left', borderaxespad=0.)
+```
+:::
+::::
+
+:::{.callout-note}
+Nichtnewtonsche Fluide können sich deutlich anders verhalten, siehe z.B. 
+Weissenberger-Effekt @yt_weissenberger.
+:::
+
+## Impulserhaltung
+### Newtonsche Fluide
+
+Bisher haben die Gleichungen noch zu viele Unbekannte, daher wird der 
+Zusammenhang zwischen $\tau_{ji}$ und $u_i$ bzw. der Ableitung $\pp{u_i}{x_j}$ 
+eingesetzt.
+Durch Einsetzen des Zusammenhangs
+$$
+\tau_{ij} 
+= 
+\mu \left( 
+  \pp{u_i}{x_j} + \pp{u_j}{x_i} 
+\right) 
+- 
+\frac{2}{3} \mu \pp{u_k}{x_k} \delta_{ij}
+\; \text{mit} \;
+\delta_{ij} 
+= 
+\begin{cases}
+1 \; \text{falls} \; i = j \\
+0 \; \text{falls} \; i \neq j
+\end{cases}
+\;
+\text{(Kronecker-Delta)}
+$$
+in die Impulsgleichung ergibt sich die Impulsgleichung für Newtonsche Fluide 
+zu:
+$$
+\rho \left( 
+  \pp{u_i}{t}
+  + 
+  u_j \pp{u_i}{x_j}
+\right)
+=
+- \pp{p}{x_i}
+- \pp{\Psi}{x_i} \, \rho
++ \pp{}{x_j} \left(
+\mu \left( 
+  \pp{u_i}{x_j} + \pp{u_j}{x_i} 
+\right) 
+- 
+\frac{2}{3} \mu \pp{u_k}{x_k} \delta_{ij}
+\right)
+\;
+\text{.}
+$$
+
+Der Tensor $\tau_{ij}$ für Newtonsche Fluide ist symmetrisch. Es gilt daher: 
+$$
+\tau_{ij}=\tau_{ji}
+$$
+oder
+$$
+\tau_{ij} 
+= 
+\begin{pmatrix}
+\tau_{11} & \tau_{12} & \tau_{13} \\
+\tau_{21} = \tau_{12} & \tau_{22} & \tau_{23} \\
+\tau_{31} = \tau_{31} & \tau_{32} = \tau_{23} & \tau_{33}
+\end{pmatrix} 
+=
+\begin{pmatrix}
+\tau_{11} & \tau_{12} & \tau_{13} \\
+ & \tau_{22} & \tau_{23} \\
+ & & \tau_{33}
+\end{pmatrix} 
+\; \text{.}
+$$
+Für den dreidimensionalen Fall beinhaltet der Tensor dann noch 6 Unbekannte
+Einträge.
+
+## Grundgleichungen
+### Kompressible newtonsche Fluide
+
+Es gilt die Massenerhaltung bzw. Kontinuitätsgleichung
+$$
+\pp{\rho}{t} + \ppb{\rho u_i}{x_i} = 0
+$$
+und die Impulsgleichung
+$$
+\rho \left( 
+  \pp{u_i}{t}
+  + 
+  u_j \pp{u_i}{x_j}
+\right)
+=
+- \pp{p}{x_i}
+- \pp{\Psi}{x_i} \, \rho
++ \pp{}{x_j} \left(
+\mu \left( 
+  \pp{u_i}{x_j} + \pp{u_j}{x_i} 
+\right) 
+- 
+\frac{2}{3} \mu \pp{u_k}{x_k} \delta_{ij}
+\right)
+$$
+mit den Unbekannten $u$, $v$, $w$, $p$ und $\rho$.
+
+:::{.callout-note}
+Die Anzahl der Unbekannten (5) ist größer als die Anzahl der Gleichungen (4).
+Es müssen daher zur Lösung noch zusätzliche Gleichungen benutzt werden oder 
+Annahmen getroffen werden.
+:::
+
+Durch die Verwendung eines Stoffgesetzes, z.B. die ideale Gasgleichung
+$$
+p = \rho R T \; \text{,}
+$$
+kommt die neue Unbekannte $T$ hinzu. Das Gleichungssystem wir dann durch die
+Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen
+dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, 
+Stoffgesetz und Energieleichung) für die 6 Unbekannten ($u$, $v$, $w$, $p$, 
+$\rho$ und $T$) zur Verfügung.
+
+## Grundgleichungen
+### Inkompressible newtonsche Fluide
+
+Unter Annahme von $\rho = const.$ wird die Massenerhaltung bzw. 
+Kontinuitätsgleichung umgeformt:
+$$
+\pp{\rho}{t} + \ppb{\rho u_i}{x_i} = 0 
+\rightarrow
+\pp{u_i}{x_i} = 0 
+$$
+umgeformt. Durch Einsetzen der Massenerhaltung in die Impulsgleichung
+$$
+\rho \left( 
+  \pp{u_i}{t}
+  + 
+  u_j \pp{u_i}{x_j}
+\right)
+=
+- \pp{p}{x_i}
+- \pp{\Psi}{x_i} \, \rho
++ 
+\pp{}{x_j} \left(
+\underbrace{
+  \mu \left( 
+    \pp{u_i}{x_j} + \pp{u_j}{x_i} 
+  \right) 
+}_{
+=\mu \left( \pp{}{x_j} \pp{u_i}{x_j} + \pp{}{x_i} \pp{u_j}{x_j} \right)
+=\pp{}{x_j} \left( \mu \pp{u_i}{x_j}\right)
+}
+- 
+\frac{2}{3} \mu 
+\underbrace{
+  \pp{u_k}{x_k} 
+}_{=0}
+\delta_{ij}
+\right)
+$$
+ergibt sich
+$$
+\pp{u_i}{t}
++ 
+u_j \pp{u_i}{x_j}
+=
+- \frac{1}{\rho}\pp{p}{x_i}
+- \pp{\Psi}{x_i}
++ 
+\pp{}{x_j} \left(
+  \nu \pp{u_i}{x_j} 
+\right)
+\; \text{mit} \; \nu = \frac{\mu}{\rho} \; \text{.}
+$$
+Das Gleichungssystem ist geschlossen mit 4 Gleichungen (Massenerhaltung und
+Impulserhaltung in drei Richtungen) und 4 Unbekannten ($u$, $v$, $w$ und $p$).
+
+## Grundgleichungen
+### Kommentar zur Modellierung
+
+Die Modellierung sollte der Problemstellung angepasst sein:
+
+#### Zitat von Albert Einstein
+
+''Man muß die Dinge so einfach wie möglich machen. Aber nicht einfacher.''
+
+#### Ziel
+
+Die mathematischen Gleichungen beschreiben das technische Problem 
+hinreichend genau und sind gleichzeitig so schnell wie möglich lösbar.
+
+#### Vorgehen
+
+- Vereinfachung der Navier-Stokes-Gleichungen so weit wie möglich 
+  (z.B. Annahme für ein inkompressibles Fluid)
+- Aber: Berücksichtigung von Termen, die für die Problemstellung von Bedeutung
+  sind (z.B. Vernachlässigung von Volumenkräften)
+
+## Grundgleichungen
+### Modellierung für eine Simulation mit Kavitation
+
+::::columns
+:::{.column}
+
+Kavitierender Volllastwirbelzopf in einem Saugrohrkonus
+
+```{=html}
+<video
+  data-autoplay
+  data-src="assets/video_volllast.mp4"
+  loop="loop"
+  width="400"
+>
+</video>
+```
+:::{.callout-note}
+Kavitation entsteht, wenn der Druck unter den Dampfdruck fällt. Es entsteht
+dann Wasserdampf. Der Wasserdampf implodiert in Gebieten mit höherem Druck
+und es entstehen dabei hohe Druckspitzen, die das Material schädigen können.
+:::
+
+:::
+:::{.column}
+
+#### Option 1
+
+Nur daran interessiert, ob es kavitiert oder nicht.
+
+- Einphasige Simulation
+- Berechnungsdauer mit einem hochauflösendem Netz etwa ein Monat
+
+#### Option 2
+
+Interessiert an Kavitationsstrukturen, bzw. die Simulation der Instabilität,
+die nur bei Vorhandensein von Wasserdampf auftritt.
+
+- Zweiphasige Simuation mit Wasser und Wasserdampf
+- Berechnungsdauer mit einem hochauflösendem Netz zwischen zwei und vier 
+  Monaten
+:::
+::::
+
+## Grundgleichungen
+### Klassifizierung nach verschiedenen Kriterien
+
+#### Eigenschaften
+
+::::columns
+:::{.column}
+
+- instationär
+- kompressibel
+- dreidimensional
+- reibungsbehaftet
+- drehungsbehaftet
+- supersonisch
+
+:::
+:::{.column}
+
+- stationär
+- inkompressibel
+- zweidimensional
+- reibungsfrei
+- drehungsfrei
+- subsonisch
+
+:::
+::::
+
+#### Vereinfachungen
+
+- Navier-Stokes: reibungsbehaftet und drehungsbehaftet
+- Euler-Gleichungen: reibungsfrei aber drehungsbehaftet
+- Stokes-Gleichungen: Konvektion wird vernachlässigt aber reibungsbehaftet
+- Potentialströmung: reibungsfrei und drehungsfrei
+
+:::{.callout-note}
+Der Berechnungsaufwand für die Vereinfachungen nimmt von **Navier-Stokes** zu
+**Potentialströmung** in der Regel ab, da immer weniger Terme diskretisiert
+werden.
+:::
+
+## Kontrollfragen
+
+- Welche Annahmen werden bei der Herleitung der Navier-Stokes-Gleichungen 
+  gemacht?
+- Wie lautet die Massenerhaltung in Worten?
+- Leiten Sie die Massenerhaltung her.
+- Wie vereinfacht sich die Massenerhaltung für inkompressible Strömungen?
+- Auf welchem Gesetz beruht die Impulserhaltung?
+- Welche drei Kraftarten gehen in die Impulserhaltung ein?
+- Welcher Zusammenhang steckt hinter der Annahme eines Newton‘schen Fluides?
+- Wie viele Gleichungen und Unbekannte sind in den kompressiblen 
+  Navier-Stokes-Gleichungen enthalten? Wie viele in den inkompressiblen?
+- Welche Philosophie sollte bei der Modellierung berücksichtigt werden?

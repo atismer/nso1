@@ -14,21 +14,29 @@ resources:
   - "assets/tidal_sim-measure.mp4"
   - "assets/tidal_cfd.mp4"
   - "assets/IHSnew_HLRS_reduced.mp4"
+  - "assets/DNS_cylinder.avi.mp4"
+  - "assets/video_volllast.mp4"
 title-slide-attributes:
   data-background-image: assets/titel-ihs-logo.png, assets/titel_la-circ.png, assets/titel-col.png
   data-background-size: 10%, 30%, 100% 60%
   data-background-position: 5% 10%, 90% center, 50% 70%
 format:
   revealjs:
-    menu: false
+    menu: true
     slide-number: false
     preview-links: auto
     logo: assets/sm-logo.png
-    theme: custom.scss
+    theme: 
+      - default
+      - custom.scss
     footer: "Numerische Strömungsmechanik mit Optimierungsanwendung"
     code-block-height: 400px
     width: 1720
     height: 970
+    auto-stretch: false
+#  html:
+    mermaid:
+      theme: neutral    
 bibliography: lit.bib
 csl: ieee.csl
 execute:
@@ -39,15 +47,28 @@ jupyter: python3
 ---
 
 ## Hidden{visibility="hidden"}
-
 \newcommand{\pp}[2]{ \frac{\partial #1}{\partial #2} }
+\newcommand{\ppnd}[2]{ \frac{\partial^2 #1}{\partial #2^2} }
+\newcommand{\der}[2]{ \frac{d #1}{d #2} }
+\newcommand{\ppb}[2]{ \frac{\partial \left( #1 \right)}{\partial #2} }
+\newcommand{\ppndb}[2]{ \frac{ \partial ^2 \left( #1 \right) }{\partial #2 ^2} }
 \newcommand{\dd}[2]{ \frac{\Delta #1}{\Delta #2} }
+\newcommand{\ddb}[2]{ \frac{\Delta \left( #1 \right) }{\Delta #2} }
 \newcommand{\at}[2]{ \left[ #1 \right]_{#2} }
+\newcommand{\att}[3]{ \left[ #1 \right]_{#2}^{#3} }
 \newcommand{\fd}[4]{ \frac{{#1}_{#2}-{#1}_{#3}}{#4} }
 \newcommand{\ffd}[5]{ \frac{{#1}_{#2}-{2#1}_{#3}+{#1}_{#4}}{#5} }
 \newcommand{\hide}[1]{ \color{lightgray}{#1} }
 \newcommand{\intV}[1]{ \int_\mathcal{V} #1 \, d\mathcal{V} }
 \newcommand{\intS}[1]{ \int_\mathcal{S} #1 \, d\mathcal{S} }
-\newcommand{\uv}[0]{ \underline{u} }
+\newcommand{\vec}[1]{ \underline{#1} }
+\newcommand{\uv}[0]{ \vec{u} }
+\newcommand{\av}[0]{ \vec{a} }
+\newcommand{\Fv}[0]{ \vec{F} }
+\newcommand{\hl}[1]{ \color{magenta}{#1} }
+\newcommand{\hla}[1]{ \color{teal}{#1} }
 
 {{< include einfuehrung.qmd >}} 
+{{< include grundgleichungen.qmd >}} 
+{{< include versys.qmd >}} 
+{{< include fdm.qmd >}} 

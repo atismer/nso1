@@ -1,0 +1,473 @@
+# Ortsdiskretisierung mit der Finite-Differenz-Methode
+
+## Von den Grundgleichungen zum linearen Gleichungssystem
+
+```{=html}
+<center>
+<video
+  data-autoplay
+  data-src="assets/DNS_cylinder.avi.mp4"
+  loop="loop"
+  width="600"
+>
+</video>
+</center>
+```
+
+**Ziel**
+
+Aufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen
+gelöst werden konstant.
+
+**Zunächst**
+
+Stationäres Problem $\rightarrow \pp{}{t} = 0$
+
+## Vorgehensweise in der numerischen Strömungsmechanik
+
+1. Technisches Problem
+
+    *Modellierung*
+
+1. Mathematische Beschreibung
+    
+    *Diskretisierung*
+
+    - Rechengitter
+    - Diskretisierung mit Finite-Differenzen
+    - Diskretisierung für 1. und 2. Ableitung
+    - Randbedingungen
+    - Form des linearen Gleichungssystems
+
+1. Numerische Lösung
+
+    *Visualisierung*
+
+1. Auswertung
+
+    *Expertise, Experimente*
+
+1. Validierung der Ergebnisse
+
+## Diskretisierung
+### Allgemeine Hinweise
+
+- Die mathematischen Gleichungen können in der Regel nicht analytisch gelöst
+  werden
+    - Daher Anwendung von numerischer Strömungsmechanik
+- Zur Anwendung numerischer Methoden ist eine diskrete Darstellung der Lösung
+  erforderlich
+    - Die Lösung kann nicht an jeder Stelle des Rechengebiets berechnet werden
+    - Durch die diskrete Darstellung erhält man die Lösung in den diskreten
+      Punkten
+    - Die diskreten Punkte sind durch das verwendete Rechengitter definiert,
+      das für eine Strömungssimulation erstellt werden muss
+
+::: {layout-ncol=2}
+![](assets/fdm-fvm0000.png){width=500px fig-align=center}
+
+![](assets/fdm-fvm0001.png){width=500px fig-align=center}
+:::
+
+## Diskretisierung
+### Übliche Methoden und Anschauungsbeispiel
+
+
+:::columns
+::::{.column}
+
+![](assets/pt_mesh.png){width=100% fig-align=center}
+
+::::
+::::{.column}
+
+**Übliche Diskretisierungsmethoden**
+
+- Finite-Differenzen-Methode
+  - Anschaulich
+  - In diesem Kapitel der Vorlesung behandelt
+- Finite-Volumen-Methode
+  - Häufig für CFD-Anwendungen, z.B. OpenFOAM, ANSYS Fluent, ...
+- Finite-Element-Methode
+  - Unüblich für CFD-Anwendungen
+  - Nicht im Rahmen der Vorlesung behandelt
+
+::::
+:::
+
+- Die Berechnung erfolgt basierend auf dem verwendeten Rechennetz
+- Die Unbekannten werden entweder auf dem Schnittpunkt der Gitterlinien oder
+  in der Zellmitte durchgeführt
+
+## Finite-Differenzen-Methode
+### Vorgehensweise
+
+:::columns
+::::{.column}
+**Erstellen des Rechengitters**
+
+- Orthogonales Netz
+- Nicht äquidistant
+::::
+::::{.column}
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+import matplotlib.pyplot as plt
+plt.xkcd()
+plt.rc('font', size=18)
+from matplotlib import gridspec
+import numpy as np
+fig = plt.figure(figsize=(10.8,2))
+gs = gridspec.GridSpec(1, 2, width_ratios=[1, 1]) 
+plt.subplot(gs[0])
+ax = fig.gca()
+ax.set_title(r"1D")
+ax.set_xlabel(r"X")
+plt.plot([0.0,1.0], [0.0, 0.0], 'k-', linewidth=15.0, alpha=0.1)
+plt.plot([0.0,1.0], [0.0, 0.0], 'k-')
+XX = [0.0, 0.05, 0.15, 0.35, 0.65, 1.0,]
+for xs in XX:
+  plt.plot([xs,], [0.0,], 'ko')
+a = ax.set_yticks([])
+a = ax.set_yticklabels([])
+a = ax.set_xticks([])
+a = ax.set_xticklabels([])
+plt.subplot(gs[1])
+ax = fig.gca()
+ax.set_title(r"2D")
+ax.set_xlabel(r"X")
+ax.set_ylabel(r"Y")
+plt.plot(
+  [0.0,1.0,1.0,0.0,0.0,], 
+  [0.0, 0.0,1.0,1.0,0.0,], 
+  'k-', linewidth=15.0, alpha=0.1
+)
+XX = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0,]
+YY = [0.0, 0.15, 0.35, 0.65, 1.0,]
+for xs in XX:
+  plt.plot([xs,xs,], [0.0,1.0,], 'k-')
+for ys in YY:
+  plt.plot([0.0,1.0,], [ys,ys,], 'k-')
+for xs in XX:
+  for ys in YY:
+    plt.plot(xs, ys, 'ko')
+a = ax.set_yticks([])
+a = ax.set_yticklabels([])
+a = ax.set_xticks([])
+a = ax.set_xticklabels([])
+```
+
+::::
+:::
+
+:::columns
+::::{.column}
+**Appproximation der Differentialquotienten durch Differenzenquotienten**
+
+- Genauigkeit der Approximation
+::::
+::::{.column}
+$$
+\pp{u}{x} = \dd{u}{x} + \text{Abbruchfehler} \approx \dd{u}{x}
+$$
+::::
+:::
+
+:::columns
+::::{.column}
+**Aufstellen des Linearen Gleichungssystems**
+
+- Berücksichtigung von Randbedingungen
+::::
+::::{.column}
+$$
+{\tiny
+\begin{bmatrix}
+\blacksquare & \blacksquare & 0  & \dots & \dots & \dots & 0\\
+\blacksquare & \ddots & \ddots & 0 & & & \vdots\\
+0 & \ddots & \ddots  & \ddots & 0 &  & \vdots\\
+\vdots & 0 & \blacksquare  & \blacksquare & \blacksquare& 0 & \vdots\\
+\vdots & & 0 & \ddots & \ddots& \ddots & 0\\
+\vdots & & & 0 & \ddots& \ddots & \blacksquare\\
+0 & \dots & \dots  & \dots & 0 & \blacksquare & \blacksquare\\
+\end{bmatrix}
+\begin{bmatrix}
+\phi_1 \\
+\vdots \\
+\phi_m \\
+\vdots \\
+\phi_N \\
+\end{bmatrix}
+= \begin{bmatrix}
+0 \\
+\vdots \\
+0 \\
+\vdots \\
+0 \\
+\end{bmatrix}
+\mathrm{mit} \; \blacksquare \; \mathrm{für\ Einträge} \neq 0
+}
+$$
+::::
+:::
+:::columns
+::::{.column}
+**Lösung**
+
+::::
+::::{.column}
+$$
+\vec{\phi}^{(n+1)} = f(\phi^{(n)})
+$$
+::::
+:::
+
+## Finite-Differenzen-Methode
+### Erstellen des Rechengitters (1/4)
+
+**Beispiel:**  Betrachtung eines ein- und zweidimensionalen Berechnungsgebiets 
+mit $N$ und $N \times M$ Knoten
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+import matplotlib.pyplot as plt
+plt.xkcd()
+plt.rc('font', size=18)
+from matplotlib import gridspec
+from matplotlib import colors
+import numpy as np
+fig = plt.figure(figsize=(15,7))
+gs = gridspec.GridSpec(2, 1, height_ratios=[1, 6]) 
+# plot 1
+plt.subplot(gs[0])
+ax = fig.gca()
+#XX = 1.0+np.tanh( 1.002*np.linspace(-1.0,0.0,16) )#[0.0, 0.2, 0.4, 0.6, 0.8, 1.0,]
+XX = np.linspace(0.0,1.0,16)#[0.0, 0.2, 0.4, 0.6, 0.8, 1.0,]
+xlab = np.full(np.size(XX), r'$\ldots$', np.dtypes.StringDType)
+I = int(np.size(XX)/2)
+xlab[0] = '1'; xlab[1] = '2'; xlab[I-2] = 'i-2'; xlab[I-1] = 'i-1'
+xlab[I] = 'i'; xlab[I+1] = 'i+1'; xlab[I+2] = 'i+2'; xlab[-2] = 'N-1'
+xlab[-1] = 'N'
+for xs in XX:
+  plt.plot([XX[0],XX[-1],], [0.0, 0.0,], 'k-')
+for xs in XX[1:-1]:
+  plt.plot(xs, 0.0, 'ko', fillstyle='full', markersize=10, markerfacecolor='w')
+for xs in [ XX[0], XX[-1], ]:
+  plt.plot(xs, 0.0, 'ko', fillstyle='full', markersize=10, markerfacecolor='k')
+plt.plot(
+  XX[I],0.0,'ko', 
+  fillstyle='full', markersize=30, 
+  markerfacecolor=colors.to_rgba('k', 0.2), zorder=-50
+)
+a = ax.set_xticks(XX)
+a = ax.set_xticklabels(xlab)
+a = ax.set_yticks([])
+a = ax.set_yticklabels([])
+# plot 2
+plt.subplot(gs[1])
+ax = fig.gca()
+XX = 1.0+np.tanh( 1.02*np.linspace(-1.0,0.0,21) )#[0.0, 0.2, 0.4, 0.6, 0.8, 1.0,]
+YY = 1.0+np.tanh( 1.2 * np.linspace(-1.0,0.0,11) )#[0.0, 0.2, 0.4, 0.6, 0.8, 1.0,]
+xlab = np.full(np.size(XX), r'$\ldots$', np.dtypes.StringDType)
+ylab = np.full(np.size(YY), r'$\vdots$', np.dtypes.StringDType)
+I = int(np.size(XX)/2)
+J = int(np.size(YY)/2)
+xlab[0] = '1'; xlab[1] = '2'; xlab[I-2] = 'i-2'; xlab[I-1] = 'i-1'
+xlab[I] = 'i'; xlab[I+1] = 'i+1'; xlab[I+2] = 'i+2'; xlab[-2] = 'N-1'
+xlab[-1] = 'N'
+ylab[0] = '1'; ylab[1] = '2'; ylab[J-2] = 'j-2'; ylab[J-1] = 'j-1'
+ylab[J] = 'j'; ylab[J+1] = 'j+1'; ylab[J+2] = 'j+2'; ylab[-2] = 'M-1'
+ylab[-1] = 'M'
+for xs in XX:
+  plt.plot([xs,xs,], [YY[0],YY[-1],], 'k-')
+for ys in YY:
+  plt.plot([XX[0],XX[-1],], [ys,ys,], 'k-')
+for xs in XX[1:-1]:
+  for ys in YY[1:-1]:
+    plt.plot(xs, ys, 'ko', fillstyle='full', markersize=10, markerfacecolor='w')
+for xs in [ XX[0], XX[-1], ]:
+  for ys in YY:
+    plt.plot(xs, ys, 'ko', fillstyle='full', markersize=10, markerfacecolor='k')
+for ys in [ YY[0], YY[-1], ]:
+  for xs in XX:
+    plt.plot(xs, ys, 'ko', fillstyle='full', markersize=10, markerfacecolor='k')
+a = ax.set_yticks(YY)
+a = ax.set_yticklabels(ylab)
+a = ax.set_xticks(XX)
+a = ax.set_xticklabels(xlab)
+plt.plot(
+  XX[0],YY[0],'ko', 
+  fillstyle='full', markersize=10, markerfacecolor='k', 
+  label=r'äußere Knoten (Randbedingung)'
+)
+plt.plot(
+  XX[1],YY[1],'ko', 
+  fillstyle='full', markersize=10, markerfacecolor='w', 
+  label=r'innere Knoten'
+)
+plt.plot(
+  XX[I],YY[J],'ko', 
+  fillstyle='full', markersize=30, 
+  markerfacecolor=colors.to_rgba('k', 0.2),
+  label=r'Knoten an der Stelle (i) und (i,j)', zorder=-50
+)
+
+ax.legend(loc='center', bbox_to_anchor=(1.2,0.5))
+```
+
+:::{.callout-note}
+Im Allgemeinen muss das Gitter strukturiert und rechtwinklig (kartesisch) sein.
+:::
+
+## Finite-Differenzen-Methode
+### Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)
+
+- Je nachdem welche Differentialgleichung gelöst wird, werden meist für eine 
+  Unbekannte $\phi$ die Ableitungen $\pp{\phi}{x}$, 
+  $\pp{^2 \phi}{x^2}$ und $\pp{\phi}{t}$ benötigt.
+- Orts- und Zeitableitung werden prinzipiell durch das gleiche Schema 
+  abgeleitet
+
+**Beispiel:** Graphische Approximation für $\pp{\phi}{x}$ an der Stelle 
+$x=x_i$
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+import matplotlib.pyplot as plt
+plt.xkcd()
+plt.rc('font', size=18)
+from matplotlib import gridspec
+from matplotlib import colors
+import numpy as np
+fig = plt.figure(figsize=(15,3))
+ax = fig.gca()
+xx = np.linspace(0.0,1.0,100)#[0.0, 0.2, 0.4, 0.6, 0.8, 1.0,]
+XX = np.linspace(0.0,1.0,12)#[0.0, 0.2, 0.4, 0.6, 0.8, 1.0,]
+xlab = np.full(np.size(XX), r'$\ldots$', np.dtypes.StringDType)
+I = int(np.size(XX)/2)
+xlab[0] = '1\n$0.0$'; xlab[1] = '2'; xlab[I-2] = 'i-2'
+xlab[I-1] = 'i-1\n$x_i - \Delta x$'
+xlab[I] = 'i\n$x_i$'; xlab[I+1] = 'i+1\n$x_i + \Delta x$'
+xlab[I+2] = 'i+2'; xlab[-2] = 'N-1'
+xlab[-1] = 'N\n$1.0$'
+gridPos = -0.2
+for xs in XX:
+  plt.plot([XX[0],XX[-1],], [gridPos, gridPos,], 'k-')
+for xs in XX[1:-1]:
+  plt.plot(
+    xs, gridPos, 'ko', fillstyle='full', markersize=10, markerfacecolor='w'
+  )
+for xs in [ XX[0], XX[-1], ]:
+  plt.plot(
+    xs, gridPos, 'ko', fillstyle='full', markersize=10, markerfacecolor='k'
+  )
+plt.plot(
+  XX[I],gridPos,'ko', 
+  fillstyle='full', markersize=30, 
+  markerfacecolor=colors.to_rgba('k', 0.2), zorder=-50
+)
+phi = np.exp(-40*(xx-0.5)**2.0)
+PHI = np.exp(-40*(XX-0.5)**2.0)
+
+plt.plot(XX, PHI, 'ks', ms=15, fillstyle='none')
+plt.plot(xx, phi, 'k-')
+
+plt.plot(
+  [XX[I], XX[I+1],], [PHI[I], PHI[I+1],], 'g-',lw=13, zorder=-10
+)
+plt.plot(
+  [XX[I-1], XX[I],], [PHI[I-1], PHI[I],], 'y-', lw=13, zorder=-10
+)
+plt.plot(
+  [XX[I-1], XX[I+1],], [PHI[I-1], PHI[I+1],], 'b-',lw=13, zorder=-10
+)
+plt.plot(
+  [XX[I-1], XX[I+1],], [1.2, 1.2,], 'b-',lw=7, zorder=-10
+)
+plt.plot(
+  [XX[I-1], XX[I],], [1.3, 1.3,], 'y-',lw=7, zorder=-10
+)
+plt.plot(
+  [XX[I], XX[I+1],], [1.4, 1.4,], 'g-',lw=7, zorder=-10
+)
+plt.annotate(
+  'VORWÄRTSDIFFERENZ', xy=(XX[I+1], 1.4), xytext=(.70, 1.1),
+  arrowprops=dict(facecolor='g', shrink=0.05),
+)
+plt.annotate(
+  'RÜCKWÄRTSDIFFERENZ', xy=(XX[I-1], 1.3), xytext=(.1, .75),
+  arrowprops=dict(facecolor='y', shrink=0.05),
+)
+plt.annotate(
+  'ZENTRALE DIFFERENZ', xy=(XX[I+1], 1.2), xytext=(.75, .50),
+  arrowprops=dict(facecolor='b', shrink=0.05),
+)
+a = ax.set_xticks(XX)
+a = ax.set_xticklabels(xlab)
+a = ax.set_yticks([gridPos, 0, 1])
+a = ax.set_yticklabels(['', r'$\phi=0.0$', r'$\phi=1.0$'])
+plt.ylim([-0.5, 1.5])
+```
+
+::: {.panel-tabset}
+
+### $\pp{\phi}{x}$ (Vorwärtsdifferenz)
+
+$\ppb{\phi(x_i)}{x} = \at{\pp{\phi}{x}}{x=x_i}
+=
+\at{\pp{\phi}{x}}{i}
+\approx 
+\at{\dd{\phi}{x}}{i}
+=
+\frac{\phi(x_i + \Delta x) - \phi(x_i)}{(x_i + \Delta x) - (x_i)}
+=
+\fd{\phi}{i+1}{i}{\Delta x}$
+
+### $\pp{\phi}{x}$ (Rückwärtsdifferenz)
+
+$\ppb{\phi(x_i)}{x} = \at{\pp{\phi}{x}}{x=x_i}
+=
+\at{\pp{\phi}{x}}{i}
+\approx 
+\at{\dd{\phi}{x}}{i}
+=
+\frac{\phi(x_i) - \phi(x_i - \Delta x)}{(x_i) - (x_i - \Delta x)}
+=
+\fd{\phi}{i}{i-1}{\Delta x}$
+
+### $\pp{\phi}{x}$ (Zentrale Differenz)
+
+$\ppb{\phi(x_i)}{x} = \at{\pp{\phi}{x}}{x=x_i}
+=
+\at{\pp{\phi}{x}}{i}
+\approx 
+\at{\dd{\phi}{x}}{i}
+=
+\frac{\phi(x_i + \Delta x) - \phi(x_i - \Delta x)}{(x_i + \Delta x) - (x_i - \Delta x)}
+=
+\fd{\phi}{i+1}{i-1}{2\Delta x}$
+
+### $\ppnd{\phi}{x}$
+
+$\ppndb{\phi(x_i)}{x} = \at{\ppnd{\phi}{x}}{x=x_i}
+=
+\at{\ppnd{\phi}{x}}{i}
+=
+\at{\pp{}{x} \left( \pp{\phi}{x} \right)}{i}
+\approx
+\at{\ddb{\pp{\phi}{x}}{x}}{i}
+=
+\frac{1}{\Delta x}\left( 
+\fd{\phi}{i+1}{i}{\Delta x} 
+-
+\fd{\phi}{i}{i-1}{\Delta x}
+\right)$
+
+:::
+
