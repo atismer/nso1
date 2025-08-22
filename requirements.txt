@@ -3,3 +3,4 @@ numpy
 jupyter
 ipympl
 finite_difference
+numexpr
