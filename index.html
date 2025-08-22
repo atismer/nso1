@@ -6,8 +6,8 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.43">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
 
   <meta name="author" content="Dr.-Ing. Alexander Tismer">
   <title>Numerische Strömungsmechanik  mit Optimierungsanwendung</title>
@@ -49,7 +49,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-1cdcfb3c638365d9e74cd3ca989975c1.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-77b067e3f7e02342f5525cde5e1e259e.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -766,9 +766,9 @@ u  \frac{\partial \phi}{\partial x}
 <p>Bei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in</p>
 <p><span class="math display">\[
 {\scriptsize
-   \frac{\partial }{\partial t}   \underline{u} +
+   \frac{\partial }{\partial t}    \underline{u}  +
   \underbrace{
-     \underline{u} \cdot \left( \nabla \cdot  \underline{u} \right)
+      \underline{u}  \cdot \left( \nabla \cdot   \underline{u}  \right)
   }_{
   \mathrm{nicht-linear}
   } =
@@ -793,26 +793,42 @@ u  \frac{\partial \phi}{\partial x}
 <h2>Anwendung</h2>
 <h3 id="wasserkraftwerk-in-nepal-hoffmann_2000">Wasserkraftwerk in Nepal <span class="citation" data-cites="Hoffmann_2000"><a href="#/referenzen" role="doc-biblioref" onclick="">[4]</a></span></h3>
 <p>Leistungsschwankungen der Turbine verursacht durch die Trifurkation</p>
-
-<img data-src="assets/nepal_over.png" class="quarto-figure quarto-figure-center r-stretch" width="600"></section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/nepal_over.png" class="quarto-figure quarto-figure-center" width="600"></p>
+</figure>
+</div>
+</section>
 <section id="anwendung-1" class="slide level2">
 <h2>Anwendung</h2>
 <h3 id="wasserkraftwerk-in-nepal-hoffmann_2000-1">Wasserkraftwerk in Nepal <span class="citation" data-cites="Hoffmann_2000"><a href="#/referenzen" role="doc-biblioref" onclick="">[4]</a></span></h3>
 <p>Instationärer Wirbel innerhalt der Trifurkation</p>
-
-<img data-src="assets/nepal_cfd.png" class="quarto-figure quarto-figure-center r-stretch" width="600"></section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/nepal_cfd.png" class="quarto-figure quarto-figure-center" width="600"></p>
+</figure>
+</div>
+</section>
 <section id="anwendung-2" class="slide level2">
 <h2>Anwendung</h2>
 <h3 id="wasserkraftwerk-in-nepal-hoffmann_2000-2">Wasserkraftwerk in Nepal <span class="citation" data-cites="Hoffmann_2000"><a href="#/referenzen" role="doc-biblioref" onclick="">[4]</a></span></h3>
 <p><strong>Lösung</strong>: Einbau von Blechen</p>
-
-<img data-src="assets/nepal_erg.png" class="quarto-figure quarto-figure-center r-stretch" width="600"></section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/nepal_erg.png" class="quarto-figure quarto-figure-center" width="600"></p>
+</figure>
+</div>
+</section>
 <section id="anwendung-3" class="slide level2">
 <h2>Anwendung</h2>
 <h3 id="wasserkraftwerk-in-nepal-kirschner_2019">Wasserkraftwerk in Nepal <span class="citation" data-cites="Kirschner_2019"><a href="#/referenzen" role="doc-biblioref" onclick="">[5]</a></span></h3>
 <p>Anderes Kraftwerk, aber gleiches Problem?</p>
-
-<img data-src="assets/nepal_15y.png" class="quarto-figure quarto-figure-center r-stretch" width="800"></section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/nepal_15y.png" class="quarto-figure quarto-figure-center" width="800"></p>
+</figure>
+</div>
+</section>
 <section id="anwendung-4" class="slide level2">
 <h2>Anwendung</h2>
 <h3 id="wasserkraftwerk-in-nepal-kirschner_2019-1">Wasserkraftwerk in Nepal <span class="citation" data-cites="Kirschner_2019"><a href="#/referenzen" role="doc-biblioref" onclick="">[5]</a></span></h3>
@@ -970,6 +986,1185 @@ u  \frac{\partial \phi}{\partial x}
 <div id="ref-Ruopp_2016" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[6] </div><div class="csl-right-inline">A. Ruopp, <span>“Optimierung von symmetrischen gezeitenströmungsturbinen und deren analyse in großräumigen gezeitenströmungsgebieten,”</span> Mitteilung Nr. 33, Universität Stuttgart, Institut für Strömungsmechanink und Hydraulische Strömungsmaschinen, Pfaffenwaldring 10, 70569 Stuttgart, 2016.</div>
 </div>
+<div id="ref-yt_weissenberger" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline"><a href="https://www.youtube.com/watch?v=FzVKTBs2yzk" class="uri">https://www.youtube.com/watch?v=FzVKTBs2yzk</a>.</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="grundgleichungen-1" class="title-slide slide level1 center">
+<h1>Grundgleichungen</h1>
+
+</section>
+<section id="welche-gleichungen-beschreiben-die-problemstellung" class="slide level2">
+<h2>Welche Gleichungen beschreiben die Problemstellung?</h2>
+<center>
+<video data-autoplay="" data-src="assets/DNS_cylinder.avi.mp4" loop="loop" width="600">
+</video>
+</center>
+<p><strong>Ziel</strong></p>
+<p>Mathematischen Gleichungen, die das technische Problem hinreichend genau beschreiben und gleichzeitig so schnell wie möglich lösbar sind.</p>
+<p><strong>Zunächst</strong></p>
+<p>Herleitung der Grundgleichungen</p>
+</section>
+<section id="vorgehensweise-in-der-numerischen-strömungsmechanik" class="slide level2">
+<h2>Vorgehensweise in der numerischen Strömungsmechanik</h2>
+<ol type="1">
+<li><p>Technisches Problem</p>
+<p><em>Modellierung</em></p></li>
+<li><p>Mathematische Beschreibung</p>
+<p><em>Diskretisierung</em></p>
+<ul>
+<li>Index-Schreibweise</li>
+<li>Herleitung Kontinuitätsgleichung</li>
+<li>Herleitung Impulsgleichung</li>
+<li>Kompressibel vs.&nbsp;inkompressibel</li>
+<li>Grundprinzipien bei der Modellbildung</li>
+</ul></li>
+<li><p>Numerische Lösung</p>
+<p><em>Visualisierung</em></p></li>
+<li><p>Auswertung</p>
+<p><em>Expertise, Experimente</em></p></li>
+<li><p>Validierung der Ergebnisse</p></li>
+</ol>
+</section>
+<section id="einsteinsche-summenkonvention" class="slide level2">
+<h2>Einstein’sche Summenkonvention</h2>
+<h3 id="definition-und-beispiele">Definition und Beispiele</h3>
+<p>Zur besseren Übersichtlichkeit werden Summenzeichen weggelassen und es wird über doppelt auftretende Indizes aufsummiert.</p>
+<ol type="a">
+<li>Skalar (kein freier Index und damit eine Gleichung)
+<ol type="i">
+<li><span class="math display">\[
+\frac{\partial U_i}{\partial x_j}  \delta_{ij}
+=
+\sum_{i=1}^3 U_j  \frac{\partial U_i}{\partial x_j}
+=
+U_1  \frac{\partial U_i}{\partial x_1}  + U_2  \frac{\partial U_i}{\partial x_2}  + U_3  \frac{\partial U_i}{\partial x_3}
+\]</span></li>
+<li><span class="math display">\[
+\frac{\partial U_i}{\partial x_i}
+= \sum_{i=1}^3  \frac{\partial U_i}{\partial x_i}
+=  \frac{\partial U_1}{\partial x_1}  +  \frac{\partial U_2}{\partial x_2}  +  \frac{\partial U_3}{\partial x_3}
+\]</span></li>
+</ol></li>
+<li>Vektor (1 freier Index und damit mehrere Gleichungen) <span class="math display">\[
+  U_j  \frac{\partial U_i}{\partial x_j}
+  = \sum_{i=1}^3 U_j  \frac{\partial U_i}{\partial x_j}
+  = U_1  \frac{\partial U_i}{\partial x_1}  + U_2  \frac{\partial U_i}{\partial x_2}  + U_3  \frac{\partial U_i}{\partial x_3}
+\]</span></li>
+</ol>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Die Anzahl der Gleichungen wird über die freien Indizes bestimmt.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="einsteinsche-summenkonvention-1" class="slide level2">
+<h2>Einstein’sche Summenkonvention</h2>
+<h3 id="übung">Übung</h3>
+<p>Wie sieht der Ausdruck <span class="math inline">\(U_j \left(  \frac{\partial U_i}{\partial x_j}  +  \frac{\partial U_j}{\partial x_i}  \right)\)</span> ausgeschrieben aus?</p>
+<div class="fragment fade-in">
+<p><span class="math display">\[
+\begin{align}
+U_j \left(  \frac{\partial U_i}{\partial x_j}  +  \frac{\partial U_j}{\partial x_i}  \right)
+&amp;= \sum_{i=1}^3  \color{teal}{U_j}  \left(  \frac{\partial  \color{magenta}{U_i} }{\partial  \color{teal}{x_j} }  +  \frac{\partial  \color{teal}{U_j} }{\partial  \color{magenta}{x_i} }  \right) \\
+&amp;= U_1 \left(  \frac{\partial  \color{magenta}{U_i} }{\partial x_1}  +  \frac{\partial U_1}{\partial  \color{magenta}{x_i} }  \right)
+  + U_2 \left(  \frac{\partial  \color{magenta}{U_i} }{\partial x_2}  +  \frac{\partial U_2}{\partial  \color{magenta}{x_i} }  \right)
+  + U_3 \left(  \frac{\partial  \color{magenta}{U_i} }{\partial x_3}  +  \frac{\partial U_3}{\partial  \color{magenta}{x_i} }  \right) \\
+&amp;= \begin{bmatrix}
+U_1 \left(  \frac{\partial U_1}{\partial x_1}  +  \frac{\partial U_1}{\partial x_1}  \right)
+  + U_2 \left(  \frac{\partial U_1}{\partial x_2}  +  \frac{\partial U_2}{\partial x_1}  \right)
+  + U_3 \left(  \frac{\partial U_1}{\partial x_3}  +  \frac{\partial U_3}{\partial x_1}  \right) \; \mathrm{für} \; i=1\\
+U_1 \left(  \frac{\partial U_2}{\partial x_1}  +  \frac{\partial U_1}{\partial x_2}  \right)
+  + U_2 \left(  \frac{\partial U_2}{\partial x_2}  +  \frac{\partial U_2}{\partial x_2}  \right)
+  + U_3 \left(  \frac{\partial U_2}{\partial x_3}  +  \frac{\partial U_3}{\partial x_2}  \right) \; \mathrm{für} \; i=2 \\
+U_1 \left(  \frac{\partial U_3}{\partial x_1}  +  \frac{\partial U_1}{\partial x_3}  \right)
+  + U_2 \left(  \frac{\partial U_3}{\partial x_2}  +  \frac{\partial U_2}{\partial x_3}  \right)
+  + U_3 \left(  \frac{\partial U_3}{\partial x_3}  +  \frac{\partial U_3}{\partial x_3}  \right) \; \mathrm{für} \; i=3 \\
+\end{bmatrix}
+\end{align}
+\]</span></p>
+</div>
+</section>
+<section id="grundgleichungen-2" class="slide level2">
+<h2>Grundgleichungen</h2>
+<h3 id="annahmen-und-definitionen">Annahmen und Definitionen</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/grundgleichungen_finel_0.5-1.0.png" class="quarto-figure quarto-figure-center" height="830"></p>
+</figure>
+</div>
+</div><div class="column">
+<h4 id="zeitunabhängig">Zeitunabhängig</h4>
+<p>Das Kontrollvolumen hat ein zeitlich konstantes Volumen</p>
+<p><span class="math display">\[
+dV = dx \, dy \, dz \neq dx(t) \, dy(t) \, dz(t) = dV(t)
+\]</span></p>
+<p>und ist somit unabhängig von der Zeit.</p>
+<h4 id="kontinuum">Kontinuum</h4>
+<ul>
+<li>Statt einzelner Moleküle (mikroskopisches Modell) wird das Fluid als Kontinuum (makroskopisches Modell) betrachtet</li>
+<li>Es bestehen kontinuierliche Felder für die gesuchten Größen</li>
+<li>Diese Annahme ist gültig bei ausreichend großer Anzahl an Molekülen.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Je Raumrichtung gibt es am Kontrollvolumen je ein positives und negatives Schnittufer. Die zugehörigen Normal- und Tangentialvektoren sind entgegengesetzt. Das positive Schnittufer hat jeweils positive Normal- und Tangentialvektoren.</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="massenerhaltung" class="slide level2">
+<h2>Massenerhaltung</h2>
+<h3 id="vorüberlegungen">Vorüberlegungen</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/grundgleichungen_finel_genmasse_0.5-1.0.png" class="quarto-figure quarto-figure-center" height="830"></p>
+</figure>
+</div>
+</div><div class="column">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Vorüberlegungen am Kontrollvolumen</strong></p>
+</div>
+<div class="callout-content">
+<p>Verbindung zwischen einströmendem <span class="math inline">\(\dot{m}_{ein}\)</span> und ausströmendem Massenstrom <span class="math inline">\(\dot{m}_{aus}\)</span> und Dichte <span class="math inline">\(\rho\)</span>:</p>
+<ol type="i">
+<li><span class="math inline">\(\dot{m}_{ein} &gt; \dot{m}_{aus} \rightarrow \rho \uparrow\)</span>: Zunahme der Masse</li>
+<li><span class="math inline">\(\dot{m}_{ein} &lt; \dot{m}_{aus} \rightarrow \rho \downarrow\)</span>: Abnahme der Masse</li>
+<li><span class="math inline">\(\dot{m}_{ein} = \dot{m}_{aus} \rightarrow \rho =\)</span>: Konstante Masse</li>
+</ol>
+</div>
+</div>
+</div>
+<p>Die Massenerhaltung setzt die zeitliche Änderung der Masse im Volumen <span class="math display">\[
+\frac{\partial m}{\partial t}  =  \frac{\partial \left( \rho \, dV \right)}{\partial t}  =  \frac{\partial \rho}{\partial t}  dV
+\]</span> gleich der Summe der ein- und ausströmenden Massenströme <span class="math display">\[
+\sum \dot{m}_{ein} - \sum \dot{m}_{aus} \; \text{.}
+\]</span> Die Massenerhaltung ergibt sich zu: <span class="math display">\[
+\frac{\partial \rho}{\partial t}  dV = \sum \dot{m}_{ein} - \sum \dot{m}_{aus}
+\]</span></p>
+</div></div>
+</section>
+<section id="massenerhaltung-1" class="slide level2">
+<h2>Massenerhaltung</h2>
+<h3 id="massenstrom-in-x-richtung">Massenstrom in <span class="math inline">\(x\)</span>-Richtung</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/grundgleichungen_finel_masse_x_0.5-1.0.png" class="quarto-figure quarto-figure-center" height="830"></p>
+</figure>
+</div>
+</div><div class="column">
+<p><strong>Massenstrom linke Seite:</strong> <span class="math display">\[
+\underbrace{\rho u}_{
+  \left[ \frac{kg}{m^3} \frac{m}{s} \right]
+}
+\underbrace{dy \, dz}_{
+  \left[ m^2 \right]
+}
+\]</span></p>
+<p><strong>Massenstrom rechte Seite:</strong> <span class="math display">\[
+\left(
+  \overbrace{
+  \underbrace{\rho u}_{
+    \text{Wert links}
+  }
+  +
+  \underbrace{ \frac{\partial \left( \rho u \right)}{\partial x} }_{\text{Ableitung}}
+  \underbrace{dx}_{\text{Strecke}}
+  }^{\text{Wert rechts}}
+\right) dy \, dz
+\]</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Die Massenströme ergeben sich aus der Massenstromdichte (entspricht dem Produkt aus Dichte und Geschwindigkeit) und der zugehörigen durchströmten Fläche.</li>
+<li>Die Massenstromdichte auf der rechten Seite entspricht der Summe aus dem Wert auf der linken Seite und der Änderung über der Strecke <span class="math inline">\(dx\)</span> (Produkt aus Ableitung und Strecke).</li>
+<li>Das Vorzeichen des Massenstroms ergibt sich aus dem Skalarprodukt der Geschwindigkeit <span class="math inline">\(  \underline{u}  \)</span> mit dem Normalvektor oder durch Überlegung; ein ein-/ausströmender Massenstrom erhöht/verringert die Dichte und ist positiv/negativ auf der rechten Seite der Gleichung.</li>
+<li>Die <span class="math inline">\(y\)</span>- und <span class="math inline">\(z\)</span>-Richtung funktioniert analog.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="massenerhaltung-2" class="slide level2">
+<h2>Massenerhaltung</h2>
+<h3 id="bilanzierung-der-massenströme">Bilanzierung der Massenströme</h3>
+<p>Das Gleichsetzen der zeitlichen Änderung mit den Massenströmen über alle Flächen <span class="math display">\[
+\begin{align}
+\frac{\partial \rho}{\partial t}  \underbrace{dx dy dz}_{=dV}
+=
+&amp; \rho u \; dy dz - \left( \rho u +  \frac{\partial \left( \rho u \right)}{\partial x}  dx \right) dy dz &amp;(x\text{-Richtung})\\
+&amp; \rho v \; dx dz - \left( \rho v +  \frac{\partial \left( \rho v \right)}{\partial y}  dy \right) dx dz &amp;(y\text{-Richtung})\\
+&amp; \rho w \; dx dy - \left( \rho w +  \frac{\partial \left( \rho w \right)}{\partial z}  dz \right) dx dy &amp;(z\text{-Richtung})
+\end{align}
+\]</span> lässt sich vereinfachen zu: <span class="math display">\[
+\begin{align}
+\frac{\partial \rho}{\partial t}  &amp;+  \frac{\partial \left( \rho u \right)}{\partial x}  +  \frac{\partial \left( \rho v \right)}{\partial y}  +  \frac{\partial \left( \rho w \right)}{\partial z}  = 0\; &amp;\text{,} \\
+\frac{\partial \rho}{\partial t}  &amp;+  \frac{\partial \left( \rho u_i \right)}{\partial x_i}  = 0 \; &amp;\text{(Index-Schreibweise) oder} \\
+\frac{\partial \rho}{\partial t}  &amp;+ \nabla \cdot \left( \rho   \underline{u}  \right) = 0 \; &amp;\text{(Operator-Schreibweise).}
+\end{align}
+\]</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Die Gleichung wird auch als Kontinuitätsgleichung bezeichnet und gilt in dieser Form für kompressible Fluide.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="massenerhaltung-3" class="slide level2">
+<h2>Massenerhaltung</h2>
+<h3 id="vereinfachungen-für-inkompressible-fluide">Vereinfachungen für inkompressible Fluide</h3>
+<p>Bei <strong>inkompressiblen</strong> Strömungen ist die Dichte konstant. Es gilt <span class="math display">\[ \rho = const \; \text{bzw.} \;
+\rho \neq \rho (t) \; \text{und} \; \rho \neq \rho (x) \neq \rho (y) \neq \rho (z)
+\]</span> oder äquivalent dazu <span class="math display">\[
+\frac{\partial \rho}{\partial t}  = 0 \; \text{und} \;
+   \frac{\partial \rho}{\partial x}  =  \frac{\partial \rho}{\partial y}  =  \frac{\partial \rho}{\partial z}  = 0 \; \text{.}
+\]</span> Damit vereinfacht sich die Massenerhaltung <span class="math display">\[
+\frac{\partial \rho}{\partial t}  =  \frac{\partial \left( \rho u \right)}{\partial x}  +  \frac{\partial \left( \rho v \right)}{\partial y}  +  \frac{\partial \left( \rho w \right)}{\partial z}
+\]</span> zu <span class="math display">\[
+\begin{align}
+&amp; \frac{\partial u}{\partial x}  +  \frac{\partial v}{\partial y}  +  \frac{\partial w}{\partial z}  = 0\; &amp;\text{,} \\
+&amp; \frac{\partial u_i}{\partial x_i}  = 0\; &amp;\text{(Index-Schreibweise) oder} \\
+&amp;\nabla \cdot   \underline{u}  = div(  \underline{u}  ) = 0\; &amp;\text{(Operator-Schreibweise).}
+\end{align}
+\]</span></p>
+</section>
+<section id="impulserhaltung" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="vorüberlegungen-1">Vorüberlegungen</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/grundgleichungen_finel_dxdydz_0.5-1.0.png" class="quarto-figure quarto-figure-center" height="830"></p>
+</figure>
+</div>
+</div><div class="column">
+<p>Das zweite Newton’sche Gesetz <span class="math display">\[
+m \;   \underline{a}  = m  \frac{d   \underline{u}  }{d t}  = \sum   \underline{F}  
+\]</span> verbindet das Produkt aus Masse <span class="math inline">\(m\)</span> und Beschleunigung <span class="math inline">\(  \underline{a}  \)</span> mit den angreifenden Kräften <span class="math inline">\(  \underline{F}  \)</span> am Kontrollvolumen. Die angreifenden Kräfte sind:</p>
+<ul>
+<li>Druckkraft</li>
+<li>Reibungskraft</li>
+<li>Volumenkraft</li>
+</ul>
+<p>Die linke Seite der Gleichung wird üblicherweise auch als Trägheitskraft bezeichnet.</p>
+</div></div>
+</section>
+<section id="impulserhaltung-1" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="trägheitskräfte">Trägheitskräfte</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/grundgleichungen_finel_dxdydz_0.5-1.0.png" class="quarto-figure quarto-figure-center" height="830"></p>
+</figure>
+</div>
+</div><div class="column">
+<p>Die Beschleunigung <span class="math inline">\(  \underline{a}  \)</span> des zweiten Newton’schen Gesetzes wird durch das totale Differential <span class="math display">\[
+du_i
+=
+\underbrace{
+   \frac{\partial u_i}{\partial t}
+}_{\text{Änderung in $t$-Richtung}}
+\underbrace{
+  dt
+}_{\text{Strecke}}
++
+\underbrace{
+   \frac{\partial u_i}{\partial x_j}
+}_{\text{Änderung in $x_j$-Richtung}}
+\underbrace{
+  dx_j
+}_{\text{Strecke}}
+\]</span> zu <span class="math display">\[
+\frac{d u_i}{d t}  
+=
+a_i
+=
+\frac{\partial u_i}{\partial t}  +  \frac{\partial u_i}{\partial x_j}  \underbrace{ \frac{d x_j}{d t} }_{=u_j}
+\]</span> umgeschrieben und in die beiden Anteile lokal und kovektiv entsprechend <span class="math display">\[
+\frac{d u_i}{d t}
+=
+\underbrace{
+   \frac{\partial u_i}{\partial t}  
+}_{\text{lokal}}
++
+\underbrace{
+   \frac{\partial u_i}{\partial x_j}  u_j
+}_{\text{konvektiv}}
+\]</span> aufgeteilt.</p>
+</div></div>
+</section>
+<section id="impulserhaltung-2" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="druckkräfte">Druckkräfte</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/grundgleichungen_finel_druck_x_0.5-1.0.png" class="quarto-figure quarto-figure-center" height="830"></p>
+</figure>
+</div>
+</div><div class="column">
+<p>Die Summe der Druckkraft auf die linke und rechte Seite <span class="math display">\[
+p \; dy \, dz
+\; \text{und} \;
+\left( p +  \frac{\partial p}{\partial x}  dx \right) dy \, dz
+\]</span> ergeben die Gesamtkraft in <span class="math inline">\(x\)</span>-Richtung <span class="math display">\[
+F_{p,x} = p \; dy \, dz - \left( p +  \frac{\partial p}{\partial x}  dx \right) dy \, dz \; \text{.}
+\]</span> Daraus ergibt sich die jeweilige Kraft in <span class="math inline">\(x_i\)</span>-Richtung zu: <span class="math display">\[
+F_{p,i} = -  \frac{\partial p}{\partial x_i}  \; dx \, dy \, dz \; \text{.}
+\]</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Das Vorzeichen der Druckkraft ergibt sich aus dem Normalvektor; sie zeigt in entgegengesetzte Richtung.</li>
+<li>Die <span class="math inline">\(y\)</span>- und <span class="math inline">\(z\)</span>-Richtung funktioniert analog.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="impulserhaltung-3" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="volumenkräfte">Volumenkräfte</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/grundgleichungen_finel_gravi_z_0.5-1.0.png" class="quarto-figure quarto-figure-center" height="830"></p>
+</figure>
+</div>
+</div><div class="column">
+<p>Eine wichtige Volumenkraft ist die Gravitationskraft. Im Gegensatz zu den vorherigen Kräften greift diese im Volumen und nicht auf den Flächen an. Die Gravitationskraft in Abhängigkeit der Gravitationskonstante in <span class="math inline">\(z\)</span>-Richtung entspricht <span class="math display">\[
+F_{V,z} = -\rho g \; dx \, dy \, dz \; \text{.}
+\]</span> Allgemein werden Volumenkräfte meist über eine Potentialfunktion <span class="math inline">\(\Psi(x,y,z)\)</span> entsprechend <span class="math display">\[
+F_{V,i} = -  \frac{\partial \Psi}{\partial x_i}  \rho \; dx \, dy \, dz
+\]</span> beschrieben.</p>
+<p>Für den Fall der Gravitationskraft im entsprechenden Koordinatensystem lautet das zugehörige Potential: <span class="math display">\[
+\Psi(z) = gz \; \text{.}
+\]</span></p>
+</div></div>
+</section>
+<section id="impulserhaltung-4" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="reibungskräfte">Reibungskräfte</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/grundgleichungen_finel_reib_x_0.5-1.0.png" class="quarto-figure quarto-figure-center" height="830"></p>
+</figure>
+</div>
+</div><div class="column">
+<p>Die Summe der Spannungen der Oberfläche in <span class="math inline">\(x\)</span>-Richtung sind:</p>
+<ol type="i">
+<li>Normalspannung in <span class="math inline">\(x\)</span>-Richtung <span class="math inline">\(- \tau_{xx} \; dy \, dz + \left( \tau_{xx} +  \frac{\partial \tau_{xx}}{\partial x}  \; dx \right) dy \, dz\)</span></li>
+<li>Schubspannungen in <span class="math inline">\(y\)</span>-Richtung <span class="math inline">\(- \tau_{xy} \; dy \, dz + \left( \tau_{xy} +  \frac{\partial \tau_{xy}}{\partial x}  \; dx \right) dy \, dz\)</span></li>
+<li>Schubspannungen in <span class="math inline">\(z\)</span>-Richtung <span class="math inline">\(- \tau_{xz} \; dy \, dz + \left( \tau_{xz} +  \frac{\partial \tau_{xz}}{\partial x}  \; dx \right) dy \, dz\)</span></li>
+</ol>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Die Spannungen werden mit zwei Indizes bezeichnet: der erste legt die Normalenrichtung des zugehörigen Schnittufers fest, der zweite die Richtung der Spannung. Einander zugeordnete Spannungen am positiven und negativen Schnittufer entsprechen einander in ihren Indizes; unterscheiden sich jedoch in der Wirkrichtung (Vorzeichen).</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="impulserhaltung-5" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="reibungskräfte-1">Reibungskräfte</h3>
+<p>Das Aufsummieren aller Reibungskräfte aus den einzelnen Spannungskomponenten in alle drei Raumrichtungen ergibt:</p>
+<p><span class="math display">\[
+\begin{align}
+F_{R,x}
+&amp;=
+  \left(  \frac{\partial \tau_{xx}}{\partial x}  \; dx \right) dy \, dz
++ \left(  \frac{\partial \tau_{yx}}{\partial y}  \; dy \right) dx \, dz
++ \left(  \frac{\partial \tau_{zx}}{\partial z}  \; dz \right) dx \, dy \\
+F_{R,y}
+&amp;=
+  \left(  \frac{\partial \tau_{xy}}{\partial x}  \; dx \right) dy \, dz
++ \left(  \frac{\partial \tau_{yy}}{\partial y}  \; dy \right) dx \, dz
++ \left(  \frac{\partial \tau_{zy}}{\partial z}  \; dz \right) dx \, dy \\
+F_{R,z}
+&amp;=
+  \left(  \frac{\partial \tau_{xz}}{\partial x}  \; dx \right) dy \, dz
++ \left(  \frac{\partial \tau_{yz}}{\partial y}  \; dy \right) dx \, dz
++ \left(  \frac{\partial \tau_{zz}}{\partial z}  \; dz \right) dx \, dy
+\end{align}
+\]</span></p>
+<p>Es ergibt sich in Index-Schreibweise: <span class="math display">\[
+F_{R,i} =  \frac{\partial \tau_{ji}}{\partial x_j}  \; dV
+\]</span></p>
+<p>Die übliche Notation der Spannungen <span class="math display">\[
+\sigma_x = \tau_{xx}, \;
+\sigma_y = \tau_{yy} \; \text{und} \;
+\sigma_z = \tau_{zz}
+\]</span> fasst die Normalspannungen mit nur einem Index zusammen.</p>
+</section>
+<section id="impulserhaltung-6" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="bilanzierung-der-kräfte">Bilanzierung der Kräfte</h3>
+<p>Das Einsetzen der Trägheitskräfte und angreifenden Kräfte in <span class="math display">\[
+m \;   \underline{a}  = m  \frac{d   \underline{u}  }{d t}  = \sum   \underline{F}  
+\]</span> ergibt <span class="math display">\[
+\rho \; dV \left(
+   \frac{\partial u_i}{\partial t}  + u_j  \frac{\partial u_i}{\partial x_j}  
+\right)
+=
+-  \frac{\partial p}{\partial x_i}  \; dV
+-  \frac{\partial \Psi}{\partial x_i}  \, \rho \; dV
++  \frac{\partial \tau_{ji}}{\partial x_j}  \; dV
+\]</span> bzw. durch Entfernung von <span class="math inline">\(dV\)</span> <span class="math display">\[
+\rho \left(
+  \underbrace{ \frac{\partial u_i}{\partial t} }_{\text{lokale Beschleunigung}}
+  +
+  \underbrace{u_j  \frac{\partial u_i}{\partial x_j} }_{\text{Konvektion}}
+\right)
+=
+- \underbrace{ \frac{\partial p}{\partial x_i} }_{\text{Druckkraft}}
+- \underbrace{ \frac{\partial \Psi}{\partial x_i}  \, \rho}_{\text{Volumenkraft}}
++ \underbrace{ \frac{\partial \tau_{ji}}{\partial x_j} }_{\text{Reibungskraft}}
+\]</span> mit den unbekannten Größen <span class="math inline">\(u_i\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(\rho\)</span> und <span class="math inline">\(\tau_{ji}\)</span>.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Die Reibungskraft ist hier noch eine beliebige Oberflächenkraft und wird erst durch das Einsetzen der Viskosität und Schergeschwindigkeit vollständig.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="impulserhaltung-7" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="newtonsche-und-nichtnewtonsche-fluide">Newtonsche und nichtnewtonsche Fluide</h3>
+<p>Die Schergeschwindigkeit <span class="math inline">\(\dot{\gamma} =  \frac{d u}{d y} \)</span> ist proportional zur Schubspannung <span class="math inline">\(\tau\)</span>. Es gilt <span class="math inline">\(\tau \propto  \frac{d u}{d y} \)</span> bzw. <span class="math inline">\(\tau = \mu  \frac{d u}{d y} \)</span>. Die Größe <span class="math inline">\(\mu\)</span> wird als dynamische Viskosität oder einfach als Viskosität bezeichnet. Oft wird die Viskosität mit der Dichte normiert <span class="math inline">\(\nu = \frac{\mu}{\rho}\)</span> und als kinematische Viskosität bezeichnet.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Ein Newtonsches Fluid hat eine konstante Viskosität. Der Zusammenhang zwischen der Schergeschwindigkeit und der Schubspannung ist also linear.</p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<div id="6acfe250" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-2-output-1.png" width="724" height="422"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div id="e5e0645c" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-3-output-1.png" width="422" height="422"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Nichtnewtonsche Fluide können sich deutlich anders verhalten, siehe z.B. Weissenberger-Effekt <span class="citation" data-cites="yt_weissenberger"><a href="#/referenzen" role="doc-biblioref" onclick="">[7]</a></span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="impulserhaltung-8" class="slide level2">
+<h2>Impulserhaltung</h2>
+<h3 id="newtonsche-fluide">Newtonsche Fluide</h3>
+<p>Bisher haben die Gleichungen noch zu viele Unbekannte, daher wird der Zusammenhang zwischen <span class="math inline">\(\tau_{ji}\)</span> und <span class="math inline">\(u_i\)</span> bzw. der Ableitung <span class="math inline">\( \frac{\partial u_i}{\partial x_j} \)</span> eingesetzt. Durch Einsetzen des Zusammenhangs <span class="math display">\[
+\tau_{ij}
+=
+\mu \left(
+   \frac{\partial u_i}{\partial x_j}  +  \frac{\partial u_j}{\partial x_i}  
+\right)
+-
+\frac{2}{3} \mu  \frac{\partial u_k}{\partial x_k}  \delta_{ij}
+\; \text{mit} \;
+\delta_{ij}
+=
+\begin{cases}
+1 \; \text{falls} \; i = j \\
+0 \; \text{falls} \; i \neq j
+\end{cases}
+\;
+\text{(Kronecker-Delta)}
+\]</span> in die Impulsgleichung ergibt sich die Impulsgleichung für Newtonsche Fluide zu: <span class="math display">\[
+\rho \left(
+   \frac{\partial u_i}{\partial t}
+  +
+  u_j  \frac{\partial u_i}{\partial x_j}
+\right)
+=
+-  \frac{\partial p}{\partial x_i}
+-  \frac{\partial \Psi}{\partial x_i}  \, \rho
++  \frac{\partial }{\partial x_j}  \left(
+\mu \left(
+   \frac{\partial u_i}{\partial x_j}  +  \frac{\partial u_j}{\partial x_i}  
+\right)
+-
+\frac{2}{3} \mu  \frac{\partial u_k}{\partial x_k}  \delta_{ij}
+\right)
+\;
+\text{.}
+\]</span></p>
+<p>Der Tensor <span class="math inline">\(\tau_{ij}\)</span> für Newtonsche Fluide ist symmetrisch. Es gilt daher: <span class="math display">\[
+\tau_{ij}=\tau_{ji}
+\]</span> oder <span class="math display">\[
+\tau_{ij}
+=
+\begin{pmatrix}
+\tau_{11} &amp; \tau_{12} &amp; \tau_{13} \\
+\tau_{21} = \tau_{12} &amp; \tau_{22} &amp; \tau_{23} \\
+\tau_{31} = \tau_{31} &amp; \tau_{32} = \tau_{23} &amp; \tau_{33}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\tau_{11} &amp; \tau_{12} &amp; \tau_{13} \\
+&amp; \tau_{22} &amp; \tau_{23} \\
+&amp; &amp; \tau_{33}
+\end{pmatrix}
+\; \text{.}
+\]</span> Für den dreidimensionalen Fall beinhaltet der Tensor dann noch 6 Unbekannte Einträge.</p>
+</section>
+<section id="grundgleichungen-3" class="slide level2">
+<h2>Grundgleichungen</h2>
+<h3 id="kompressible-newtonsche-fluide">Kompressible newtonsche Fluide</h3>
+<p>Es gilt die Massenerhaltung bzw. Kontinuitätsgleichung <span class="math display">\[
+\frac{\partial \rho}{\partial t}  +  \frac{\partial \left( \rho u_i \right)}{\partial x_i}  = 0
+\]</span> und die Impulsgleichung <span class="math display">\[
+\rho \left(
+   \frac{\partial u_i}{\partial t}
+  +
+  u_j  \frac{\partial u_i}{\partial x_j}
+\right)
+=
+-  \frac{\partial p}{\partial x_i}
+-  \frac{\partial \Psi}{\partial x_i}  \, \rho
++  \frac{\partial }{\partial x_j}  \left(
+\mu \left(
+   \frac{\partial u_i}{\partial x_j}  +  \frac{\partial u_j}{\partial x_i}  
+\right)
+-
+\frac{2}{3} \mu  \frac{\partial u_k}{\partial x_k}  \delta_{ij}
+\right)
+\]</span> mit den Unbekannten <span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(w\)</span>, <span class="math inline">\(p\)</span> und <span class="math inline">\(\rho\)</span>.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Die Anzahl der Unbekannten (5) ist größer als die Anzahl der Gleichungen (4). Es müssen daher zur Lösung noch zusätzliche Gleichungen benutzt werden oder Annahmen getroffen werden.</p>
+</div>
+</div>
+</div>
+<p>Durch die Verwendung eines Stoffgesetzes, z.B. die ideale Gasgleichung <span class="math display">\[
+p = \rho R T \; \text{,}
+\]</span> kommt die neue Unbekannte <span class="math inline">\(T\)</span> hinzu. Das Gleichungssystem wir dann durch die Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, Stoffgesetz und Energieleichung) für die 6 Unbekannten (<span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(w\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(\rho\)</span> und <span class="math inline">\(T\)</span>) zur Verfügung.</p>
+</section>
+<section id="grundgleichungen-4" class="slide level2">
+<h2>Grundgleichungen</h2>
+<h3 id="inkompressible-newtonsche-fluide">Inkompressible newtonsche Fluide</h3>
+<p>Unter Annahme von <span class="math inline">\(\rho = const.\)</span> wird die Massenerhaltung bzw. Kontinuitätsgleichung umgeformt: <span class="math display">\[
+\frac{\partial \rho}{\partial t}  +  \frac{\partial \left( \rho u_i \right)}{\partial x_i}  = 0
+\rightarrow
+\frac{\partial u_i}{\partial x_i}  = 0
+\]</span> umgeformt. Durch Einsetzen der Massenerhaltung in die Impulsgleichung <span class="math display">\[
+\rho \left(
+   \frac{\partial u_i}{\partial t}
+  +
+  u_j  \frac{\partial u_i}{\partial x_j}
+\right)
+=
+-  \frac{\partial p}{\partial x_i}
+-  \frac{\partial \Psi}{\partial x_i}  \, \rho
++
+\frac{\partial }{\partial x_j}  \left(
+\underbrace{
+  \mu \left(
+     \frac{\partial u_i}{\partial x_j}  +  \frac{\partial u_j}{\partial x_i}  
+  \right)
+}_{
+=\mu \left(  \frac{\partial }{\partial x_j}   \frac{\partial u_i}{\partial x_j}  +  \frac{\partial }{\partial x_i}   \frac{\partial u_j}{\partial x_j}  \right)
+= \frac{\partial }{\partial x_j}  \left( \mu  \frac{\partial u_i}{\partial x_j} \right)
+}
+-
+\frac{2}{3} \mu
+\underbrace{
+   \frac{\partial u_k}{\partial x_k}  
+}_{=0}
+\delta_{ij}
+\right)
+\]</span> ergibt sich <span class="math display">\[
+\frac{\partial u_i}{\partial t}
++
+u_j  \frac{\partial u_i}{\partial x_j}
+=
+- \frac{1}{\rho} \frac{\partial p}{\partial x_i}
+-  \frac{\partial \Psi}{\partial x_i}
++
+\frac{\partial }{\partial x_j}  \left(
+  \nu  \frac{\partial u_i}{\partial x_j}  
+\right)
+\; \text{mit} \; \nu = \frac{\mu}{\rho} \; \text{.}
+\]</span> Das Gleichungssystem ist geschlossen mit 4 Gleichungen (Massenerhaltung und Impulserhaltung in drei Richtungen) und 4 Unbekannten (<span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(w\)</span> und <span class="math inline">\(p\)</span>).</p>
+</section>
+<section id="grundgleichungen-5" class="slide level2">
+<h2>Grundgleichungen</h2>
+<h3 id="kommentar-zur-modellierung">Kommentar zur Modellierung</h3>
+<p>Die Modellierung sollte der Problemstellung angepasst sein:</p>
+<h4 id="zitat-von-albert-einstein">Zitat von Albert Einstein</h4>
+<p>‘’Man muß die Dinge so einfach wie möglich machen. Aber nicht einfacher.’’</p>
+<h4 id="ziel">Ziel</h4>
+<p>Die mathematischen Gleichungen beschreiben das technische Problem hinreichend genau und sind gleichzeitig so schnell wie möglich lösbar.</p>
+<h4 id="vorgehen">Vorgehen</h4>
+<ul>
+<li>Vereinfachung der Navier-Stokes-Gleichungen so weit wie möglich (z.B. Annahme für ein inkompressibles Fluid)</li>
+<li>Aber: Berücksichtigung von Termen, die für die Problemstellung von Bedeutung sind (z.B. Vernachlässigung von Volumenkräften)</li>
+</ul>
+</section>
+<section id="grundgleichungen-6" class="slide level2">
+<h2>Grundgleichungen</h2>
+<h3 id="modellierung-für-eine-simulation-mit-kavitation">Modellierung für eine Simulation mit Kavitation</h3>
+<div class="columns">
+<div class="column">
+<p>Kavitierender Volllastwirbelzopf in einem Saugrohrkonus</p>
+<video data-autoplay="" data-src="assets/video_volllast.mp4" loop="loop" width="400">
+</video>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Kavitation entsteht, wenn der Druck unter den Dampfdruck fällt. Es entsteht dann Wasserdampf. Der Wasserdampf implodiert in Gebieten mit höherem Druck und es entstehen dabei hohe Druckspitzen, die das Material schädigen können.</p>
+</div>
+</div>
+</div>
+</div><div class="column">
+<h4 id="option-1">Option 1</h4>
+<p>Nur daran interessiert, ob es kavitiert oder nicht.</p>
+<ul>
+<li>Einphasige Simulation</li>
+<li>Berechnungsdauer mit einem hochauflösendem Netz etwa ein Monat</li>
+</ul>
+<h4 id="option-2">Option 2</h4>
+<p>Interessiert an Kavitationsstrukturen, bzw. die Simulation der Instabilität, die nur bei Vorhandensein von Wasserdampf auftritt.</p>
+<ul>
+<li>Zweiphasige Simuation mit Wasser und Wasserdampf</li>
+<li>Berechnungsdauer mit einem hochauflösendem Netz zwischen zwei und vier Monaten</li>
+</ul>
+</div></div>
+</section>
+<section id="grundgleichungen-7" class="slide level2">
+<h2>Grundgleichungen</h2>
+<h3 id="klassifizierung-nach-verschiedenen-kriterien">Klassifizierung nach verschiedenen Kriterien</h3>
+<h4 id="eigenschaften">Eigenschaften</h4>
+<div class="columns">
+<div class="column">
+<ul>
+<li>instationär</li>
+<li>kompressibel</li>
+<li>dreidimensional</li>
+<li>reibungsbehaftet</li>
+<li>drehungsbehaftet</li>
+<li>supersonisch</li>
+</ul>
+</div><div class="column">
+<ul>
+<li>stationär</li>
+<li>inkompressibel</li>
+<li>zweidimensional</li>
+<li>reibungsfrei</li>
+<li>drehungsfrei</li>
+<li>subsonisch</li>
+</ul>
+</div></div>
+<h4 id="vereinfachungen">Vereinfachungen</h4>
+<ul>
+<li>Navier-Stokes: reibungsbehaftet und drehungsbehaftet</li>
+<li>Euler-Gleichungen: reibungsfrei aber drehungsbehaftet</li>
+<li>Stokes-Gleichungen: Konvektion wird vernachlässigt aber reibungsbehaftet</li>
+<li>Potentialströmung: reibungsfrei und drehungsfrei</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Der Berechnungsaufwand für die Vereinfachungen nimmt von <strong>Navier-Stokes</strong> zu <strong>Potentialströmung</strong> in der Regel ab, da immer weniger Terme diskretisiert werden.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="kontrollfragen" class="slide level2">
+<h2>Kontrollfragen</h2>
+<ul>
+<li>Welche Annahmen werden bei der Herleitung der Navier-Stokes-Gleichungen gemacht?</li>
+<li>Wie lautet die Massenerhaltung in Worten?</li>
+<li>Leiten Sie die Massenerhaltung her.</li>
+<li>Wie vereinfacht sich die Massenerhaltung für inkompressible Strömungen?</li>
+<li>Auf welchem Gesetz beruht die Impulserhaltung?</li>
+<li>Welche drei Kraftarten gehen in die Impulserhaltung ein?</li>
+<li>Welcher Zusammenhang steckt hinter der Annahme eines Newton‘schen Fluides?</li>
+<li>Wie viele Gleichungen und Unbekannte sind in den kompressiblen Navier-Stokes-Gleichungen enthalten? Wie viele in den inkompressiblen?</li>
+<li>Welche Philosophie sollte bei der Modellierung berücksichtigt werden?</li>
+</ul>
+</section></section>
+<section>
+<section id="vereinfachte-systeme" class="title-slide slide level1 center">
+<h1>Vereinfachte Systeme</h1>
+
+</section>
+<section id="warum-und-welche" class="slide level2">
+<h2>Warum und welche?</h2>
+<ul>
+<li>Navier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen</li>
+<li>Es ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Lineare Diffusion</strong></p>
+<p>Eine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.</p>
+<p><span class="math display">\[
+\frac{\partial u}{\partial t}  - \beta  \frac{\partial ^2u}{\partial x^2}  = 0
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><strong>Lineare Advektion</strong></p>
+<p>In einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.</p>
+<p><span class="math display">\[
+\frac{\partial u}{\partial t}  + \alpha  \frac{\partial u}{\partial x}  = 0
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><strong>Burgersgleichung</strong></p>
+<p>Zur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.</p>
+<p><span class="math display">\[
+\frac{\partial u}{\partial t}  + u  \frac{\partial u}{\partial x}  = 0
+\]</span></p>
+<p>Die Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit <span class="math inline">\(\alpha\)</span> der Lösung <span class="math inline">\(u\)</span> an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion.</p>
+</div></div>
+</section>
+<section id="lösungen" class="slide level2">
+<h2>Lösungen</h2>
+<p>Für die drei vereinfachten Systeme wird als Anfangsbedingung <span class="math inline">\(u(x,t=0) = e^{-40 (x-\frac{1}{2})^2}\)</span> und eine periodische Randbedingung bei <span class="math inline">\(x=0\)</span> und <span class="math inline">\(x=1\)</span> verwendet.</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Lineare Diffusion</strong> <span class="math display">\[
+\frac{\partial u}{\partial t}  = \beta  \frac{\partial ^2u}{\partial x^2}  = 0 \; \text{mit} \; \beta = 1 \frac{m^2}{s}
+\]</span></p>
+<div id="3dce8ae8" class="cell" data-message="false" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-4-output-1.png" width="542" height="456"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p><strong>Lineare Advektion</strong></p>
+<p><span class="math display">\[
+\frac{\partial u}{\partial t}  + \alpha  \frac{\partial u}{\partial x}  = 0 \; \text{mit} \; \alpha = 1 \frac{m}{s}
+\]</span></p>
+<div id="73b4f432" class="cell" data-message="false" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-5-output-1.png" width="542" height="456"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p><strong>Burgersgleichung</strong></p>
+<p><span class="math display">\[
+\frac{\partial u}{\partial t}  + u  \frac{\partial u}{\partial x}  = 0
+\]</span></p>
+<div id="6a9655b6" class="cell" data-message="false" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-6-output-1.png" width="542" height="456"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="ortsdiskretisierung-mit-der-finite-differenz-methode" class="title-slide slide level1 center">
+<h1>Ortsdiskretisierung mit der Finite-Differenz-Methode</h1>
+
+</section>
+<section id="von-den-grundgleichungen-zum-linearen-gleichungssystem" class="slide level2">
+<h2>Von den Grundgleichungen zum linearen Gleichungssystem</h2>
+<center>
+<video data-autoplay="" data-src="assets/DNS_cylinder.avi.mp4" loop="loop" width="600">
+</video>
+</center>
+<p><strong>Ziel</strong></p>
+<p>Aufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden konstant.</p>
+<p><strong>Zunächst</strong></p>
+<p>Stationäres Problem <span class="math inline">\(\rightarrow  \frac{\partial }{\partial t}  = 0\)</span></p>
+</section>
+<section id="vorgehensweise-in-der-numerischen-strömungsmechanik-1" class="slide level2">
+<h2>Vorgehensweise in der numerischen Strömungsmechanik</h2>
+<ol type="1">
+<li><p>Technisches Problem</p>
+<p><em>Modellierung</em></p></li>
+<li><p>Mathematische Beschreibung</p>
+<p><em>Diskretisierung</em></p>
+<ul>
+<li>Rechengitter</li>
+<li>Diskretisierung mit Finite-Differenzen</li>
+<li>Diskretisierung für 1. und 2. Ableitung</li>
+<li>Randbedingungen</li>
+<li>Form des linearen Gleichungssystems</li>
+</ul></li>
+<li><p>Numerische Lösung</p>
+<p><em>Visualisierung</em></p></li>
+<li><p>Auswertung</p>
+<p><em>Expertise, Experimente</em></p></li>
+<li><p>Validierung der Ergebnisse</p></li>
+</ol>
+</section>
+<section id="diskretisierung" class="slide level2">
+<h2>Diskretisierung</h2>
+<h3 id="allgemeine-hinweise">Allgemeine Hinweise</h3>
+<ul>
+<li>Die mathematischen Gleichungen können in der Regel nicht analytisch gelöst werden
+<ul>
+<li>Daher Anwendung von numerischer Strömungsmechanik</li>
+</ul></li>
+<li>Zur Anwendung numerischer Methoden ist eine diskrete Darstellung der Lösung erforderlich
+<ul>
+<li>Die Lösung kann nicht an jeder Stelle des Rechengebiets berechnet werden</li>
+<li>Durch die diskrete Darstellung erhält man die Lösung in den diskreten Punkten</li>
+<li>Die diskreten Punkte sind durch das verwendete Rechengitter definiert, das für eine Strömungssimulation erstellt werden muss</li>
+</ul></li>
+</ul>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/fdm-fvm0000.png" class="quarto-figure quarto-figure-center" width="500"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/fdm-fvm0001.png" class="quarto-figure quarto-figure-center" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="diskretisierung-1" class="slide level2">
+<h2>Diskretisierung</h2>
+<h3 id="übliche-methoden-und-anschauungsbeispiel">Übliche Methoden und Anschauungsbeispiel</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/pt_mesh.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div><div class="column">
+<p><strong>Übliche Diskretisierungsmethoden</strong></p>
+<ul>
+<li>Finite-Differenzen-Methode
+<ul>
+<li>Anschaulich</li>
+<li>In diesem Kapitel der Vorlesung behandelt</li>
+</ul></li>
+<li>Finite-Volumen-Methode
+<ul>
+<li>Häufig für CFD-Anwendungen, z.B. OpenFOAM, ANSYS Fluent, …</li>
+</ul></li>
+<li>Finite-Element-Methode
+<ul>
+<li>Unüblich für CFD-Anwendungen</li>
+<li>Nicht im Rahmen der Vorlesung behandelt</li>
+</ul></li>
+</ul>
+</div></div>
+<ul>
+<li>Die Berechnung erfolgt basierend auf dem verwendeten Rechennetz</li>
+<li>Die Unbekannten werden entweder auf dem Schnittpunkt der Gitterlinien oder in der Zellmitte durchgeführt</li>
+</ul>
+</section>
+<section id="finite-differenzen-methode" class="slide level2">
+<h2>Finite-Differenzen-Methode</h2>
+<h3 id="vorgehensweise">Vorgehensweise</h3>
+<div class="columns">
+<div class="column">
+<p><strong>Erstellen des Rechengitters</strong></p>
+<ul>
+<li>Orthogonales Netz</li>
+<li>Nicht äquidistant</li>
+</ul>
+</div><div class="column">
+<div id="3b9897c0" class="cell" data-message="false" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-7-output-1.png" width="823" height="226"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="columns">
+<div class="column">
+<p><strong>Appproximation der Differentialquotienten durch Differenzenquotienten</strong></p>
+<ul>
+<li>Genauigkeit der Approximation</li>
+</ul>
+</div><div class="column">
+<p><span class="math display">\[
+\frac{\partial u}{\partial x}  =  \frac{\Delta u}{\Delta x}  + \text{Abbruchfehler} \approx  \frac{\Delta u}{\Delta x}
+\]</span></p>
+</div></div>
+<div class="columns">
+<div class="column">
+<p><strong>Aufstellen des Linearen Gleichungssystems</strong></p>
+<ul>
+<li>Berücksichtigung von Randbedingungen</li>
+</ul>
+</div><div class="column">
+<p><span class="math display">\[
+{\tiny
+\begin{bmatrix}
+\blacksquare &amp; \blacksquare &amp; 0  &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+\blacksquare &amp; \ddots &amp; \ddots &amp; 0 &amp; &amp; &amp; \vdots\\
+0 &amp; \ddots &amp; \ddots  &amp; \ddots &amp; 0 &amp;  &amp; \vdots\\
+\vdots &amp; 0 &amp; \blacksquare  &amp; \blacksquare &amp; \blacksquare&amp; 0 &amp; \vdots\\
+\vdots &amp; &amp; 0 &amp; \ddots &amp; \ddots&amp; \ddots &amp; 0\\
+\vdots &amp; &amp; &amp; 0 &amp; \ddots&amp; \ddots &amp; \blacksquare\\
+0 &amp; \dots &amp; \dots  &amp; \dots &amp; 0 &amp; \blacksquare &amp; \blacksquare\\
+\end{bmatrix}
+\begin{bmatrix}
+\phi_1 \\
+\vdots \\
+\phi_m \\
+\vdots \\
+\phi_N \\
+\end{bmatrix}
+= \begin{bmatrix}
+0 \\
+\vdots \\
+0 \\
+\vdots \\
+0 \\
+\end{bmatrix}
+\mathrm{mit} \; \blacksquare \; \mathrm{für\ Einträge} \neq 0
+}
+\]</span></p>
+</div></div>
+<div class="columns">
+<div class="column">
+<p><strong>Lösung</strong></p>
+</div><div class="column">
+<p><span class="math display">\[
+\underline{\phi} ^{(n+1)} = f(\phi^{(n)})
+\]</span></p>
+</div></div>
+</section>
+<section id="finite-differenzen-methode-1" class="slide level2">
+<h2>Finite-Differenzen-Methode</h2>
+<h3 id="erstellen-des-rechengitters-14">Erstellen des Rechengitters (1/4)</h3>
+<p><strong>Beispiel:</strong> Betrachtung eines ein- und zweidimensionalen Berechnungsgebiets mit <span class="math inline">\(N\)</span> und <span class="math inline">\(N \times M\)</span> Knoten</p>
+<div id="306557f5" class="cell" data-message="false" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-8-output-1.png" width="1658" height="575"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Im Allgemeinen muss das Gitter strukturiert und rechtwinklig (kartesisch) sein.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="finite-differenzen-methode-2" class="slide level2">
+<h2>Finite-Differenzen-Methode</h2>
+<h3 id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<ul>
+<li>Je nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte <span class="math inline">\(\phi\)</span> die Ableitungen <span class="math inline">\( \frac{\partial \phi}{\partial x} \)</span>, <span class="math inline">\( \frac{\partial ^2 \phi}{\partial x^2} \)</span> und <span class="math inline">\( \frac{\partial \phi}{\partial t} \)</span> benötigt.</li>
+<li>Orts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet</li>
+</ul>
+<p><strong>Beispiel:</strong> Graphische Approximation für <span class="math inline">\( \frac{\partial \phi}{\partial x} \)</span> an der Stelle <span class="math inline">\(x=x_i\)</span></p>
+<div id="7f3cb0b8" class="cell" data-message="false" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-9-output-1.png" width="1233" height="307"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1"><span class="math inline">\( \frac{\partial \phi}{\partial x} \)</span> (Vorwärtsdifferenz)</a></li><li><a href="#tabset-1-2"><span class="math inline">\( \frac{\partial \phi}{\partial x} \)</span> (Rückwärtsdifferenz)</a></li><li><a href="#tabset-1-3"><span class="math inline">\( \frac{\partial \phi}{\partial x} \)</span> (Zentrale Differenz)</a></li><li><a href="#tabset-1-4"><span class="math inline">\( \frac{\partial^2 \phi}{\partial x^2} \)</span></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<p><span class="math inline">\( \frac{\partial \left( \phi(x_i) \right)}{\partial x}  =  \left[  \frac{\partial \phi}{\partial x}  \right]_{x=x_i}
+=
+\left[  \frac{\partial \phi}{\partial x}  \right]_{i}
+\approx
+\left[  \frac{\Delta \phi}{\Delta x}  \right]_{i}
+=
+\frac{\phi(x_i + \Delta x) - \phi(x_i)}{(x_i + \Delta x) - (x_i)}
+=
+\frac{{\phi}_{i+1}-{\phi}_{i}}{\Delta x} \)</span></p>
+</div>
+<div id="tabset-1-2">
+<p><span class="math inline">\( \frac{\partial \left( \phi(x_i) \right)}{\partial x}  =  \left[  \frac{\partial \phi}{\partial x}  \right]_{x=x_i}
+=
+\left[  \frac{\partial \phi}{\partial x}  \right]_{i}
+\approx
+\left[  \frac{\Delta \phi}{\Delta x}  \right]_{i}
+=
+\frac{\phi(x_i) - \phi(x_i - \Delta x)}{(x_i) - (x_i - \Delta x)}
+=
+\frac{{\phi}_{i}-{\phi}_{i-1}}{\Delta x} \)</span></p>
+</div>
+<div id="tabset-1-3">
+<p><span class="math inline">\( \frac{\partial \left( \phi(x_i) \right)}{\partial x}  =  \left[  \frac{\partial \phi}{\partial x}  \right]_{x=x_i}
+=
+\left[  \frac{\partial \phi}{\partial x}  \right]_{i}
+\approx
+\left[  \frac{\Delta \phi}{\Delta x}  \right]_{i}
+=
+\frac{\phi(x_i + \Delta x) - \phi(x_i - \Delta x)}{(x_i + \Delta x) - (x_i - \Delta x)}
+=
+\frac{{\phi}_{i+1}-{\phi}_{i-1}}{2\Delta x} \)</span></p>
+</div>
+<div id="tabset-1-4">
+<p><span class="math inline">\( \frac{ \partial ^2 \left( \phi(x_i) \right) }{\partial x ^2}  =  \left[  \frac{\partial^2 \phi}{\partial x^2}  \right]_{x=x_i}
+=
+\left[  \frac{\partial^2 \phi}{\partial x^2}  \right]_{i}
+=
+\left[  \frac{\partial }{\partial x}  \left(  \frac{\partial \phi}{\partial x}  \right) \right]_{i}
+\approx
+\left[  \frac{\Delta \left(  \frac{\partial \phi}{\partial x}  \right) }{\Delta x}  \right]_{i}
+=
+\frac{1}{\Delta x}\left(
+\frac{{\phi}_{i+1}-{\phi}_{i}}{\Delta x}
+-
+\frac{{\phi}_{i}-{\phi}_{i-1}}{\Delta x}
+\right)\)</span></p>
+</div>
+</div>
 </div>
 
 
@@ -1010,7 +2205,7 @@ u  \frac{\partial \phi}{\partial x}
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1191,190 +2386,172 @@ u  \frac{\partial \phi}{\partial x}
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/atismer\.github\.io\/nso1\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/atismer\.github\.io\/nso1\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

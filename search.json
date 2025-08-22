@@ -67,7 +67,7 @@
     "href": "index.html#turbulenzmodellierung",
     "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
     "section": "Turbulenzmodellierung",
-    "text": "Turbulenzmodellierung\n\n\n\n\n\n[2]\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n   \\frac{\\partial }{\\partial t}   \\underline{u} +\n  \\underbrace{\n     \\underline{u} \\cdot \\left( \\nabla \\cdot  \\underline{u} \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert."
+    "text": "Turbulenzmodellierung\n\n\n\n\n\n[2]\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n   \\frac{\\partial }{\\partial t}    \\underline{u}  +\n  \\underbrace{\n      \\underline{u}  \\cdot \\left( \\nabla \\cdot   \\underline{u}  \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert."
   },
   {
     "objectID": "index.html#evolutionäre-optimierung",
@@ -144,7 +144,413 @@
     "href": "index.html#referenzen",
     "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
     "section": "Referenzen",
-    "text": "Referenzen\n\n\n[1] B. Junginger, “Investigation of the Influences of Gaps at the Runner Blade for an Axial Turbine Using Hybrid Turbulence Models.” https://www.gauss-centre.eu/results/computational-and-scientific-engineering/investigation-of-the-influences-of-gaps-at-the-runner-blade-for-an-axial-turbine-using-hybrid-turbulence-models, 2016.\n\n\n[2] T. Krappel, “Large eddy simulation of a complete francis turbine.” (https://www.gauss-centre.eu/results/computational-and-scientific-engineering/large-eddy-simulation-of-a-complete-francis-turbine?no_cache=1&sword_list%5B0%5D=krappel&cHash=fd004c0078d48dc042bd56d5bf051285, 2020.\n\n\n[3] A. Tismer, “Entwicklung einer softwareumgebung zur automatischen auslegung von hydraulischen maschinen mit dem inselmodell,” PhD thesis, Universität Stuttgart; Universität Stuttgart, Institut für Strömungsmechanik und Hydraulische Strömungsmaschinen, 2020. Available: https://d-nb.info/1220692778/34\n\n\n[4] H. Hoffmann, R. Roswora, and A. Egger, “Rectification of the marsyangdi trifurcation,” Hydro Vision, p. 2000, 2000.\n\n\n[5] O. Kirschner, J. Wack, B. Junginger, J. Junginger, A. Ruprecht, and S. Riedelbauch, “Experimentelle und numerische strömungsanalyse einer trifurkation eines 150-MW-kraftwerkes,” WASSERWIRTSCHAFT, vol. 109, no. 9, pp. 44–47, Sep. 2019, doi: 10.1007/s35147-019-0223-3.\n\n\n[6] A. Ruopp, “Optimierung von symmetrischen gezeitenströmungsturbinen und deren analyse in großräumigen gezeitenströmungsgebieten,” Mitteilung Nr. 33, Universität Stuttgart, Institut für Strömungsmechanink und Hydraulische Strömungsmaschinen, Pfaffenwaldring 10, 70569 Stuttgart, 2016."
+    "text": "Referenzen\n\n\n[1] B. Junginger, “Investigation of the Influences of Gaps at the Runner Blade for an Axial Turbine Using Hybrid Turbulence Models.” https://www.gauss-centre.eu/results/computational-and-scientific-engineering/investigation-of-the-influences-of-gaps-at-the-runner-blade-for-an-axial-turbine-using-hybrid-turbulence-models, 2016.\n\n\n[2] T. Krappel, “Large eddy simulation of a complete francis turbine.” (https://www.gauss-centre.eu/results/computational-and-scientific-engineering/large-eddy-simulation-of-a-complete-francis-turbine?no_cache=1&sword_list%5B0%5D=krappel&cHash=fd004c0078d48dc042bd56d5bf051285, 2020.\n\n\n[3] A. Tismer, “Entwicklung einer softwareumgebung zur automatischen auslegung von hydraulischen maschinen mit dem inselmodell,” PhD thesis, Universität Stuttgart; Universität Stuttgart, Institut für Strömungsmechanik und Hydraulische Strömungsmaschinen, 2020. Available: https://d-nb.info/1220692778/34\n\n\n[4] H. Hoffmann, R. Roswora, and A. Egger, “Rectification of the marsyangdi trifurcation,” Hydro Vision, p. 2000, 2000.\n\n\n[5] O. Kirschner, J. Wack, B. Junginger, J. Junginger, A. Ruprecht, and S. Riedelbauch, “Experimentelle und numerische strömungsanalyse einer trifurkation eines 150-MW-kraftwerkes,” WASSERWIRTSCHAFT, vol. 109, no. 9, pp. 44–47, Sep. 2019, doi: 10.1007/s35147-019-0223-3.\n\n\n[6] A. Ruopp, “Optimierung von symmetrischen gezeitenströmungsturbinen und deren analyse in großräumigen gezeitenströmungsgebieten,” Mitteilung Nr. 33, Universität Stuttgart, Institut für Strömungsmechanink und Hydraulische Strömungsmaschinen, Pfaffenwaldring 10, 70569 Stuttgart, 2016.\n\n\n[7] https://www.youtube.com/watch?v=FzVKTBs2yzk."
+  },
+  {
+    "objectID": "index.html#welche-gleichungen-beschreiben-die-problemstellung",
+    "href": "index.html#welche-gleichungen-beschreiben-die-problemstellung",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Welche Gleichungen beschreiben die Problemstellung?",
+    "text": "Welche Gleichungen beschreiben die Problemstellung?\n\n\n\n\nZiel\nMathematischen Gleichungen, die das technische Problem hinreichend genau beschreiben und gleichzeitig so schnell wie möglich lösbar sind.\nZunächst\nHerleitung der Grundgleichungen"
+  },
+  {
+    "objectID": "index.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
+    "href": "index.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Vorgehensweise in der numerischen Strömungsmechanik",
+    "text": "Vorgehensweise in der numerischen Strömungsmechanik\n\nTechnisches Problem\nModellierung\nMathematische Beschreibung\nDiskretisierung\n\nIndex-Schreibweise\nHerleitung Kontinuitätsgleichung\nHerleitung Impulsgleichung\nKompressibel vs. inkompressibel\nGrundprinzipien bei der Modellbildung\n\nNumerische Lösung\nVisualisierung\nAuswertung\nExpertise, Experimente\nValidierung der Ergebnisse"
+  },
+  {
+    "objectID": "index.html#einsteinsche-summenkonvention",
+    "href": "index.html#einsteinsche-summenkonvention",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Einstein’sche Summenkonvention",
+    "text": "Einstein’sche Summenkonvention\nDefinition und Beispiele\nZur besseren Übersichtlichkeit werden Summenzeichen weggelassen und es wird über doppelt auftretende Indizes aufsummiert.\n\nSkalar (kein freier Index und damit eine Gleichung)\n\n\\[\n\\frac{\\partial U_i}{\\partial x_j}  \\delta_{ij}\n=\n\\sum_{i=1}^3 U_j  \\frac{\\partial U_i}{\\partial x_j}\n=\nU_1  \\frac{\\partial U_i}{\\partial x_1}  + U_2  \\frac{\\partial U_i}{\\partial x_2}  + U_3  \\frac{\\partial U_i}{\\partial x_3}\n\\]\n\\[\n\\frac{\\partial U_i}{\\partial x_i}\n= \\sum_{i=1}^3  \\frac{\\partial U_i}{\\partial x_i}\n=  \\frac{\\partial U_1}{\\partial x_1}  +  \\frac{\\partial U_2}{\\partial x_2}  +  \\frac{\\partial U_3}{\\partial x_3}\n\\]\n\nVektor (1 freier Index und damit mehrere Gleichungen) \\[\n  U_j  \\frac{\\partial U_i}{\\partial x_j}\n  = \\sum_{i=1}^3 U_j  \\frac{\\partial U_i}{\\partial x_j}\n  = U_1  \\frac{\\partial U_i}{\\partial x_1}  + U_2  \\frac{\\partial U_i}{\\partial x_2}  + U_3  \\frac{\\partial U_i}{\\partial x_3}\n\\]\n\n\n\n\n\n\n\nNote\n\n\nDie Anzahl der Gleichungen wird über die freien Indizes bestimmt."
+  },
+  {
+    "objectID": "index.html#einsteinsche-summenkonvention-1",
+    "href": "index.html#einsteinsche-summenkonvention-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Einstein’sche Summenkonvention",
+    "text": "Einstein’sche Summenkonvention\nÜbung\nWie sieht der Ausdruck \\(U_j \\left(  \\frac{\\partial U_i}{\\partial x_j}  +  \\frac{\\partial U_j}{\\partial x_i}  \\right)\\) ausgeschrieben aus?\n\n\\[\n\\begin{align}\nU_j \\left(  \\frac{\\partial U_i}{\\partial x_j}  +  \\frac{\\partial U_j}{\\partial x_i}  \\right)\n&= \\sum_{i=1}^3  \\color{teal}{U_j}  \\left(  \\frac{\\partial  \\color{magenta}{U_i} }{\\partial  \\color{teal}{x_j} }  +  \\frac{\\partial  \\color{teal}{U_j} }{\\partial  \\color{magenta}{x_i} }  \\right) \\\\\n&= U_1 \\left(  \\frac{\\partial  \\color{magenta}{U_i} }{\\partial x_1}  +  \\frac{\\partial U_1}{\\partial  \\color{magenta}{x_i} }  \\right)\n  + U_2 \\left(  \\frac{\\partial  \\color{magenta}{U_i} }{\\partial x_2}  +  \\frac{\\partial U_2}{\\partial  \\color{magenta}{x_i} }  \\right)\n  + U_3 \\left(  \\frac{\\partial  \\color{magenta}{U_i} }{\\partial x_3}  +  \\frac{\\partial U_3}{\\partial  \\color{magenta}{x_i} }  \\right) \\\\\n&= \\begin{bmatrix}\nU_1 \\left(  \\frac{\\partial U_1}{\\partial x_1}  +  \\frac{\\partial U_1}{\\partial x_1}  \\right)\n  + U_2 \\left(  \\frac{\\partial U_1}{\\partial x_2}  +  \\frac{\\partial U_2}{\\partial x_1}  \\right)\n  + U_3 \\left(  \\frac{\\partial U_1}{\\partial x_3}  +  \\frac{\\partial U_3}{\\partial x_1}  \\right) \\; \\mathrm{für} \\; i=1\\\\\nU_1 \\left(  \\frac{\\partial U_2}{\\partial x_1}  +  \\frac{\\partial U_1}{\\partial x_2}  \\right)\n  + U_2 \\left(  \\frac{\\partial U_2}{\\partial x_2}  +  \\frac{\\partial U_2}{\\partial x_2}  \\right)\n  + U_3 \\left(  \\frac{\\partial U_2}{\\partial x_3}  +  \\frac{\\partial U_3}{\\partial x_2}  \\right) \\; \\mathrm{für} \\; i=2 \\\\\nU_1 \\left(  \\frac{\\partial U_3}{\\partial x_1}  +  \\frac{\\partial U_1}{\\partial x_3}  \\right)\n  + U_2 \\left(  \\frac{\\partial U_3}{\\partial x_2}  +  \\frac{\\partial U_2}{\\partial x_3}  \\right)\n  + U_3 \\left(  \\frac{\\partial U_3}{\\partial x_3}  +  \\frac{\\partial U_3}{\\partial x_3}  \\right) \\; \\mathrm{für} \\; i=3 \\\\\n\\end{bmatrix}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "index.html#grundgleichungen-2",
+    "href": "index.html#grundgleichungen-2",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\nAnnahmen und Definitionen\n\n\n\n\n\n\n\n\nZeitunabhängig\nDas Kontrollvolumen hat ein zeitlich konstantes Volumen\n\\[\ndV = dx \\, dy \\, dz \\neq dx(t) \\, dy(t) \\, dz(t) = dV(t)\n\\]\nund ist somit unabhängig von der Zeit.\nKontinuum\n\nStatt einzelner Moleküle (mikroskopisches Modell) wird das Fluid als Kontinuum (makroskopisches Modell) betrachtet\nEs bestehen kontinuierliche Felder für die gesuchten Größen\nDiese Annahme ist gültig bei ausreichend großer Anzahl an Molekülen.\n\n\n\n\n\n\n\nNote\n\n\nJe Raumrichtung gibt es am Kontrollvolumen je ein positives und negatives Schnittufer. Die zugehörigen Normal- und Tangentialvektoren sind entgegengesetzt. Das positive Schnittufer hat jeweils positive Normal- und Tangentialvektoren."
+  },
+  {
+    "objectID": "index.html#massenerhaltung",
+    "href": "index.html#massenerhaltung",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Massenerhaltung",
+    "text": "Massenerhaltung\nVorüberlegungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVorüberlegungen am Kontrollvolumen\n\n\nVerbindung zwischen einströmendem \\(\\dot{m}_{ein}\\) und ausströmendem Massenstrom \\(\\dot{m}_{aus}\\) und Dichte \\(\\rho\\):\n\n\\(\\dot{m}_{ein} &gt; \\dot{m}_{aus} \\rightarrow \\rho \\uparrow\\): Zunahme der Masse\n\\(\\dot{m}_{ein} &lt; \\dot{m}_{aus} \\rightarrow \\rho \\downarrow\\): Abnahme der Masse\n\\(\\dot{m}_{ein} = \\dot{m}_{aus} \\rightarrow \\rho =\\): Konstante Masse\n\n\n\n\nDie Massenerhaltung setzt die zeitliche Änderung der Masse im Volumen \\[\n\\frac{\\partial m}{\\partial t}  =  \\frac{\\partial \\left( \\rho \\, dV \\right)}{\\partial t}  =  \\frac{\\partial \\rho}{\\partial t}  dV\n\\] gleich der Summe der ein- und ausströmenden Massenströme \\[\n\\sum \\dot{m}_{ein} - \\sum \\dot{m}_{aus} \\; \\text{.}\n\\] Die Massenerhaltung ergibt sich zu: \\[\n\\frac{\\partial \\rho}{\\partial t}  dV = \\sum \\dot{m}_{ein} - \\sum \\dot{m}_{aus}\n\\]"
+  },
+  {
+    "objectID": "index.html#massenerhaltung-1",
+    "href": "index.html#massenerhaltung-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Massenerhaltung",
+    "text": "Massenerhaltung\nMassenstrom in \\(x\\)-Richtung\n\n\n\n\n\n\n\n\nMassenstrom linke Seite: \\[\n\\underbrace{\\rho u}_{\n  \\left[ \\frac{kg}{m^3} \\frac{m}{s} \\right]\n}\n\\underbrace{dy \\, dz}_{\n  \\left[ m^2 \\right]\n}\n\\]\nMassenstrom rechte Seite: \\[\n\\left(\n  \\overbrace{\n  \\underbrace{\\rho u}_{\n    \\text{Wert links}\n  }\n  +\n  \\underbrace{ \\frac{\\partial \\left( \\rho u \\right)}{\\partial x} }_{\\text{Ableitung}}\n  \\underbrace{dx}_{\\text{Strecke}}\n  }^{\\text{Wert rechts}}\n\\right) dy \\, dz\n\\]\n\n\n\n\n\n\nNote\n\n\n\nDie Massenströme ergeben sich aus der Massenstromdichte (entspricht dem Produkt aus Dichte und Geschwindigkeit) und der zugehörigen durchströmten Fläche.\nDie Massenstromdichte auf der rechten Seite entspricht der Summe aus dem Wert auf der linken Seite und der Änderung über der Strecke \\(dx\\) (Produkt aus Ableitung und Strecke).\nDas Vorzeichen des Massenstroms ergibt sich aus dem Skalarprodukt der Geschwindigkeit \\(  \\underline{u}  \\) mit dem Normalvektor oder durch Überlegung; ein ein-/ausströmender Massenstrom erhöht/verringert die Dichte und ist positiv/negativ auf der rechten Seite der Gleichung.\nDie \\(y\\)- und \\(z\\)-Richtung funktioniert analog."
+  },
+  {
+    "objectID": "index.html#massenerhaltung-2",
+    "href": "index.html#massenerhaltung-2",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Massenerhaltung",
+    "text": "Massenerhaltung\nBilanzierung der Massenströme\nDas Gleichsetzen der zeitlichen Änderung mit den Massenströmen über alle Flächen \\[\n\\begin{align}\n\\frac{\\partial \\rho}{\\partial t}  \\underbrace{dx dy dz}_{=dV}\n=\n& \\rho u \\; dy dz - \\left( \\rho u +  \\frac{\\partial \\left( \\rho u \\right)}{\\partial x}  dx \\right) dy dz &(x\\text{-Richtung})\\\\\n& \\rho v \\; dx dz - \\left( \\rho v +  \\frac{\\partial \\left( \\rho v \\right)}{\\partial y}  dy \\right) dx dz &(y\\text{-Richtung})\\\\\n& \\rho w \\; dx dy - \\left( \\rho w +  \\frac{\\partial \\left( \\rho w \\right)}{\\partial z}  dz \\right) dx dy &(z\\text{-Richtung})\n\\end{align}\n\\] lässt sich vereinfachen zu: \\[\n\\begin{align}\n\\frac{\\partial \\rho}{\\partial t}  &+  \\frac{\\partial \\left( \\rho u \\right)}{\\partial x}  +  \\frac{\\partial \\left( \\rho v \\right)}{\\partial y}  +  \\frac{\\partial \\left( \\rho w \\right)}{\\partial z}  = 0\\; &\\text{,} \\\\\n\\frac{\\partial \\rho}{\\partial t}  &+  \\frac{\\partial \\left( \\rho u_i \\right)}{\\partial x_i}  = 0 \\; &\\text{(Index-Schreibweise) oder} \\\\\n\\frac{\\partial \\rho}{\\partial t}  &+ \\nabla \\cdot \\left( \\rho   \\underline{u}  \\right) = 0 \\; &\\text{(Operator-Schreibweise).}\n\\end{align}\n\\]\n\n\n\n\n\n\nNote\n\n\nDie Gleichung wird auch als Kontinuitätsgleichung bezeichnet und gilt in dieser Form für kompressible Fluide."
+  },
+  {
+    "objectID": "index.html#massenerhaltung-3",
+    "href": "index.html#massenerhaltung-3",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Massenerhaltung",
+    "text": "Massenerhaltung\nVereinfachungen für inkompressible Fluide\nBei inkompressiblen Strömungen ist die Dichte konstant. Es gilt \\[ \\rho = const \\; \\text{bzw.} \\;\n\\rho \\neq \\rho (t) \\; \\text{und} \\; \\rho \\neq \\rho (x) \\neq \\rho (y) \\neq \\rho (z)\n\\] oder äquivalent dazu \\[\n\\frac{\\partial \\rho}{\\partial t}  = 0 \\; \\text{und} \\;\n   \\frac{\\partial \\rho}{\\partial x}  =  \\frac{\\partial \\rho}{\\partial y}  =  \\frac{\\partial \\rho}{\\partial z}  = 0 \\; \\text{.}\n\\] Damit vereinfacht sich die Massenerhaltung \\[\n\\frac{\\partial \\rho}{\\partial t}  =  \\frac{\\partial \\left( \\rho u \\right)}{\\partial x}  +  \\frac{\\partial \\left( \\rho v \\right)}{\\partial y}  +  \\frac{\\partial \\left( \\rho w \\right)}{\\partial z}\n\\] zu \\[\n\\begin{align}\n& \\frac{\\partial u}{\\partial x}  +  \\frac{\\partial v}{\\partial y}  +  \\frac{\\partial w}{\\partial z}  = 0\\; &\\text{,} \\\\\n& \\frac{\\partial u_i}{\\partial x_i}  = 0\\; &\\text{(Index-Schreibweise) oder} \\\\\n&\\nabla \\cdot   \\underline{u}  = div(  \\underline{u}  ) = 0\\; &\\text{(Operator-Schreibweise).}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "index.html#impulserhaltung",
+    "href": "index.html#impulserhaltung",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nVorüberlegungen\n\n\n\n\n\n\n\n\nDas zweite Newton’sche Gesetz \\[\nm \\;   \\underline{a}  = m  \\frac{d   \\underline{u}  }{d t}  = \\sum   \\underline{F}  \n\\] verbindet das Produkt aus Masse \\(m\\) und Beschleunigung \\(  \\underline{a}  \\) mit den angreifenden Kräften \\(  \\underline{F}  \\) am Kontrollvolumen. Die angreifenden Kräfte sind:\n\nDruckkraft\nReibungskraft\nVolumenkraft\n\nDie linke Seite der Gleichung wird üblicherweise auch als Trägheitskraft bezeichnet."
+  },
+  {
+    "objectID": "index.html#impulserhaltung-1",
+    "href": "index.html#impulserhaltung-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nTrägheitskräfte\n\n\n\n\n\n\n\n\nDie Beschleunigung \\(  \\underline{a}  \\) des zweiten Newton’schen Gesetzes wird durch das totale Differential \\[\ndu_i\n=\n\\underbrace{\n   \\frac{\\partial u_i}{\\partial t}\n}_{\\text{Änderung in $t$-Richtung}}\n\\underbrace{\n  dt\n}_{\\text{Strecke}}\n+\n\\underbrace{\n   \\frac{\\partial u_i}{\\partial x_j}\n}_{\\text{Änderung in $x_j$-Richtung}}\n\\underbrace{\n  dx_j\n}_{\\text{Strecke}}\n\\] zu \\[\n\\frac{d u_i}{d t}  \n=\na_i\n=\n\\frac{\\partial u_i}{\\partial t}  +  \\frac{\\partial u_i}{\\partial x_j}  \\underbrace{ \\frac{d x_j}{d t} }_{=u_j}\n\\] umgeschrieben und in die beiden Anteile lokal und kovektiv entsprechend \\[\n\\frac{d u_i}{d t}\n=\n\\underbrace{\n   \\frac{\\partial u_i}{\\partial t}  \n}_{\\text{lokal}}\n+\n\\underbrace{\n   \\frac{\\partial u_i}{\\partial x_j}  u_j\n}_{\\text{konvektiv}}\n\\] aufgeteilt."
+  },
+  {
+    "objectID": "index.html#impulserhaltung-2",
+    "href": "index.html#impulserhaltung-2",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nDruckkräfte\n\n\n\n\n\n\n\n\nDie Summe der Druckkraft auf die linke und rechte Seite \\[\np \\; dy \\, dz\n\\; \\text{und} \\;\n\\left( p +  \\frac{\\partial p}{\\partial x}  dx \\right) dy \\, dz\n\\] ergeben die Gesamtkraft in \\(x\\)-Richtung \\[\nF_{p,x} = p \\; dy \\, dz - \\left( p +  \\frac{\\partial p}{\\partial x}  dx \\right) dy \\, dz \\; \\text{.}\n\\] Daraus ergibt sich die jeweilige Kraft in \\(x_i\\)-Richtung zu: \\[\nF_{p,i} = -  \\frac{\\partial p}{\\partial x_i}  \\; dx \\, dy \\, dz \\; \\text{.}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nDas Vorzeichen der Druckkraft ergibt sich aus dem Normalvektor; sie zeigt in entgegengesetzte Richtung.\nDie \\(y\\)- und \\(z\\)-Richtung funktioniert analog."
+  },
+  {
+    "objectID": "index.html#impulserhaltung-3",
+    "href": "index.html#impulserhaltung-3",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nVolumenkräfte\n\n\n\n\n\n\n\n\nEine wichtige Volumenkraft ist die Gravitationskraft. Im Gegensatz zu den vorherigen Kräften greift diese im Volumen und nicht auf den Flächen an. Die Gravitationskraft in Abhängigkeit der Gravitationskonstante in \\(z\\)-Richtung entspricht \\[\nF_{V,z} = -\\rho g \\; dx \\, dy \\, dz \\; \\text{.}\n\\] Allgemein werden Volumenkräfte meist über eine Potentialfunktion \\(\\Psi(x,y,z)\\) entsprechend \\[\nF_{V,i} = -  \\frac{\\partial \\Psi}{\\partial x_i}  \\rho \\; dx \\, dy \\, dz\n\\] beschrieben.\nFür den Fall der Gravitationskraft im entsprechenden Koordinatensystem lautet das zugehörige Potential: \\[\n\\Psi(z) = gz \\; \\text{.}\n\\]"
+  },
+  {
+    "objectID": "index.html#impulserhaltung-4",
+    "href": "index.html#impulserhaltung-4",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nReibungskräfte\n\n\n\n\n\n\n\n\nDie Summe der Spannungen der Oberfläche in \\(x\\)-Richtung sind:\n\nNormalspannung in \\(x\\)-Richtung \\(- \\tau_{xx} \\; dy \\, dz + \\left( \\tau_{xx} +  \\frac{\\partial \\tau_{xx}}{\\partial x}  \\; dx \\right) dy \\, dz\\)\nSchubspannungen in \\(y\\)-Richtung \\(- \\tau_{xy} \\; dy \\, dz + \\left( \\tau_{xy} +  \\frac{\\partial \\tau_{xy}}{\\partial x}  \\; dx \\right) dy \\, dz\\)\nSchubspannungen in \\(z\\)-Richtung \\(- \\tau_{xz} \\; dy \\, dz + \\left( \\tau_{xz} +  \\frac{\\partial \\tau_{xz}}{\\partial x}  \\; dx \\right) dy \\, dz\\)\n\n\n\n\n\n\n\nNote\n\n\nDie Spannungen werden mit zwei Indizes bezeichnet: der erste legt die Normalenrichtung des zugehörigen Schnittufers fest, der zweite die Richtung der Spannung. Einander zugeordnete Spannungen am positiven und negativen Schnittufer entsprechen einander in ihren Indizes; unterscheiden sich jedoch in der Wirkrichtung (Vorzeichen)."
+  },
+  {
+    "objectID": "index.html#impulserhaltung-5",
+    "href": "index.html#impulserhaltung-5",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nReibungskräfte\nDas Aufsummieren aller Reibungskräfte aus den einzelnen Spannungskomponenten in alle drei Raumrichtungen ergibt:\n\\[\n\\begin{align}\nF_{R,x}\n&=\n  \\left(  \\frac{\\partial \\tau_{xx}}{\\partial x}  \\; dx \\right) dy \\, dz\n+ \\left(  \\frac{\\partial \\tau_{yx}}{\\partial y}  \\; dy \\right) dx \\, dz\n+ \\left(  \\frac{\\partial \\tau_{zx}}{\\partial z}  \\; dz \\right) dx \\, dy \\\\\nF_{R,y}\n&=\n  \\left(  \\frac{\\partial \\tau_{xy}}{\\partial x}  \\; dx \\right) dy \\, dz\n+ \\left(  \\frac{\\partial \\tau_{yy}}{\\partial y}  \\; dy \\right) dx \\, dz\n+ \\left(  \\frac{\\partial \\tau_{zy}}{\\partial z}  \\; dz \\right) dx \\, dy \\\\\nF_{R,z}\n&=\n  \\left(  \\frac{\\partial \\tau_{xz}}{\\partial x}  \\; dx \\right) dy \\, dz\n+ \\left(  \\frac{\\partial \\tau_{yz}}{\\partial y}  \\; dy \\right) dx \\, dz\n+ \\left(  \\frac{\\partial \\tau_{zz}}{\\partial z}  \\; dz \\right) dx \\, dy\n\\end{align}\n\\]\nEs ergibt sich in Index-Schreibweise: \\[\nF_{R,i} =  \\frac{\\partial \\tau_{ji}}{\\partial x_j}  \\; dV\n\\]\nDie übliche Notation der Spannungen \\[\n\\sigma_x = \\tau_{xx}, \\;\n\\sigma_y = \\tau_{yy} \\; \\text{und} \\;\n\\sigma_z = \\tau_{zz}\n\\] fasst die Normalspannungen mit nur einem Index zusammen."
+  },
+  {
+    "objectID": "index.html#impulserhaltung-6",
+    "href": "index.html#impulserhaltung-6",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nBilanzierung der Kräfte\nDas Einsetzen der Trägheitskräfte und angreifenden Kräfte in \\[\nm \\;   \\underline{a}  = m  \\frac{d   \\underline{u}  }{d t}  = \\sum   \\underline{F}  \n\\] ergibt \\[\n\\rho \\; dV \\left(\n   \\frac{\\partial u_i}{\\partial t}  + u_j  \\frac{\\partial u_i}{\\partial x_j}  \n\\right)\n=\n-  \\frac{\\partial p}{\\partial x_i}  \\; dV\n-  \\frac{\\partial \\Psi}{\\partial x_i}  \\, \\rho \\; dV\n+  \\frac{\\partial \\tau_{ji}}{\\partial x_j}  \\; dV\n\\] bzw. durch Entfernung von \\(dV\\) \\[\n\\rho \\left(\n  \\underbrace{ \\frac{\\partial u_i}{\\partial t} }_{\\text{lokale Beschleunigung}}\n  +\n  \\underbrace{u_j  \\frac{\\partial u_i}{\\partial x_j} }_{\\text{Konvektion}}\n\\right)\n=\n- \\underbrace{ \\frac{\\partial p}{\\partial x_i} }_{\\text{Druckkraft}}\n- \\underbrace{ \\frac{\\partial \\Psi}{\\partial x_i}  \\, \\rho}_{\\text{Volumenkraft}}\n+ \\underbrace{ \\frac{\\partial \\tau_{ji}}{\\partial x_j} }_{\\text{Reibungskraft}}\n\\] mit den unbekannten Größen \\(u_i\\), \\(p\\), \\(\\rho\\) und \\(\\tau_{ji}\\).\n\n\n\n\n\n\nNote\n\n\nDie Reibungskraft ist hier noch eine beliebige Oberflächenkraft und wird erst durch das Einsetzen der Viskosität und Schergeschwindigkeit vollständig."
+  },
+  {
+    "objectID": "index.html#impulserhaltung-7",
+    "href": "index.html#impulserhaltung-7",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nNewtonsche und nichtnewtonsche Fluide\nDie Schergeschwindigkeit \\(\\dot{\\gamma} =  \\frac{d u}{d y} \\) ist proportional zur Schubspannung \\(\\tau\\). Es gilt \\(\\tau \\propto  \\frac{d u}{d y} \\) bzw. \\(\\tau = \\mu  \\frac{d u}{d y} \\). Die Größe \\(\\mu\\) wird als dynamische Viskosität oder einfach als Viskosität bezeichnet. Oft wird die Viskosität mit der Dichte normiert \\(\\nu = \\frac{\\mu}{\\rho}\\) und als kinematische Viskosität bezeichnet.\n\n\n\n\n\n\nNote\n\n\nEin Newtonsches Fluid hat eine konstante Viskosität. Der Zusammenhang zwischen der Schergeschwindigkeit und der Schubspannung ist also linear.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nNichtnewtonsche Fluide können sich deutlich anders verhalten, siehe z.B. Weissenberger-Effekt [7]."
+  },
+  {
+    "objectID": "index.html#impulserhaltung-8",
+    "href": "index.html#impulserhaltung-8",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\nNewtonsche Fluide\nBisher haben die Gleichungen noch zu viele Unbekannte, daher wird der Zusammenhang zwischen \\(\\tau_{ji}\\) und \\(u_i\\) bzw. der Ableitung \\( \\frac{\\partial u_i}{\\partial x_j} \\) eingesetzt. Durch Einsetzen des Zusammenhangs \\[\n\\tau_{ij}\n=\n\\mu \\left(\n   \\frac{\\partial u_i}{\\partial x_j}  +  \\frac{\\partial u_j}{\\partial x_i}  \n\\right)\n-\n\\frac{2}{3} \\mu  \\frac{\\partial u_k}{\\partial x_k}  \\delta_{ij}\n\\; \\text{mit} \\;\n\\delta_{ij}\n=\n\\begin{cases}\n1 \\; \\text{falls} \\; i = j \\\\\n0 \\; \\text{falls} \\; i \\neq j\n\\end{cases}\n\\;\n\\text{(Kronecker-Delta)}\n\\] in die Impulsgleichung ergibt sich die Impulsgleichung für Newtonsche Fluide zu: \\[\n\\rho \\left(\n   \\frac{\\partial u_i}{\\partial t}\n  +\n  u_j  \\frac{\\partial u_i}{\\partial x_j}\n\\right)\n=\n-  \\frac{\\partial p}{\\partial x_i}\n-  \\frac{\\partial \\Psi}{\\partial x_i}  \\, \\rho\n+  \\frac{\\partial }{\\partial x_j}  \\left(\n\\mu \\left(\n   \\frac{\\partial u_i}{\\partial x_j}  +  \\frac{\\partial u_j}{\\partial x_i}  \n\\right)\n-\n\\frac{2}{3} \\mu  \\frac{\\partial u_k}{\\partial x_k}  \\delta_{ij}\n\\right)\n\\;\n\\text{.}\n\\]\nDer Tensor \\(\\tau_{ij}\\) für Newtonsche Fluide ist symmetrisch. Es gilt daher: \\[\n\\tau_{ij}=\\tau_{ji}\n\\] oder \\[\n\\tau_{ij}\n=\n\\begin{pmatrix}\n\\tau_{11} & \\tau_{12} & \\tau_{13} \\\\\n\\tau_{21} = \\tau_{12} & \\tau_{22} & \\tau_{23} \\\\\n\\tau_{31} = \\tau_{31} & \\tau_{32} = \\tau_{23} & \\tau_{33}\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n\\tau_{11} & \\tau_{12} & \\tau_{13} \\\\\n& \\tau_{22} & \\tau_{23} \\\\\n& & \\tau_{33}\n\\end{pmatrix}\n\\; \\text{.}\n\\] Für den dreidimensionalen Fall beinhaltet der Tensor dann noch 6 Unbekannte Einträge."
+  },
+  {
+    "objectID": "index.html#grundgleichungen-3",
+    "href": "index.html#grundgleichungen-3",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\nKompressible newtonsche Fluide\nEs gilt die Massenerhaltung bzw. Kontinuitätsgleichung \\[\n\\frac{\\partial \\rho}{\\partial t}  +  \\frac{\\partial \\left( \\rho u_i \\right)}{\\partial x_i}  = 0\n\\] und die Impulsgleichung \\[\n\\rho \\left(\n   \\frac{\\partial u_i}{\\partial t}\n  +\n  u_j  \\frac{\\partial u_i}{\\partial x_j}\n\\right)\n=\n-  \\frac{\\partial p}{\\partial x_i}\n-  \\frac{\\partial \\Psi}{\\partial x_i}  \\, \\rho\n+  \\frac{\\partial }{\\partial x_j}  \\left(\n\\mu \\left(\n   \\frac{\\partial u_i}{\\partial x_j}  +  \\frac{\\partial u_j}{\\partial x_i}  \n\\right)\n-\n\\frac{2}{3} \\mu  \\frac{\\partial u_k}{\\partial x_k}  \\delta_{ij}\n\\right)\n\\] mit den Unbekannten \\(u\\), \\(v\\), \\(w\\), \\(p\\) und \\(\\rho\\).\n\n\n\n\n\n\nNote\n\n\nDie Anzahl der Unbekannten (5) ist größer als die Anzahl der Gleichungen (4). Es müssen daher zur Lösung noch zusätzliche Gleichungen benutzt werden oder Annahmen getroffen werden.\n\n\n\nDurch die Verwendung eines Stoffgesetzes, z.B. die ideale Gasgleichung \\[\np = \\rho R T \\; \\text{,}\n\\] kommt die neue Unbekannte \\(T\\) hinzu. Das Gleichungssystem wir dann durch die Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, Stoffgesetz und Energieleichung) für die 6 Unbekannten (\\(u\\), \\(v\\), \\(w\\), \\(p\\), \\(\\rho\\) und \\(T\\)) zur Verfügung."
+  },
+  {
+    "objectID": "index.html#grundgleichungen-4",
+    "href": "index.html#grundgleichungen-4",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\nInkompressible newtonsche Fluide\nUnter Annahme von \\(\\rho = const.\\) wird die Massenerhaltung bzw. Kontinuitätsgleichung umgeformt: \\[\n\\frac{\\partial \\rho}{\\partial t}  +  \\frac{\\partial \\left( \\rho u_i \\right)}{\\partial x_i}  = 0\n\\rightarrow\n\\frac{\\partial u_i}{\\partial x_i}  = 0\n\\] umgeformt. Durch Einsetzen der Massenerhaltung in die Impulsgleichung \\[\n\\rho \\left(\n   \\frac{\\partial u_i}{\\partial t}\n  +\n  u_j  \\frac{\\partial u_i}{\\partial x_j}\n\\right)\n=\n-  \\frac{\\partial p}{\\partial x_i}\n-  \\frac{\\partial \\Psi}{\\partial x_i}  \\, \\rho\n+\n\\frac{\\partial }{\\partial x_j}  \\left(\n\\underbrace{\n  \\mu \\left(\n     \\frac{\\partial u_i}{\\partial x_j}  +  \\frac{\\partial u_j}{\\partial x_i}  \n  \\right)\n}_{\n=\\mu \\left(  \\frac{\\partial }{\\partial x_j}   \\frac{\\partial u_i}{\\partial x_j}  +  \\frac{\\partial }{\\partial x_i}   \\frac{\\partial u_j}{\\partial x_j}  \\right)\n= \\frac{\\partial }{\\partial x_j}  \\left( \\mu  \\frac{\\partial u_i}{\\partial x_j} \\right)\n}\n-\n\\frac{2}{3} \\mu\n\\underbrace{\n   \\frac{\\partial u_k}{\\partial x_k}  \n}_{=0}\n\\delta_{ij}\n\\right)\n\\] ergibt sich \\[\n\\frac{\\partial u_i}{\\partial t}\n+\nu_j  \\frac{\\partial u_i}{\\partial x_j}\n=\n- \\frac{1}{\\rho} \\frac{\\partial p}{\\partial x_i}\n-  \\frac{\\partial \\Psi}{\\partial x_i}\n+\n\\frac{\\partial }{\\partial x_j}  \\left(\n  \\nu  \\frac{\\partial u_i}{\\partial x_j}  \n\\right)\n\\; \\text{mit} \\; \\nu = \\frac{\\mu}{\\rho} \\; \\text{.}\n\\] Das Gleichungssystem ist geschlossen mit 4 Gleichungen (Massenerhaltung und Impulserhaltung in drei Richtungen) und 4 Unbekannten (\\(u\\), \\(v\\), \\(w\\) und \\(p\\))."
+  },
+  {
+    "objectID": "index.html#grundgleichungen-5",
+    "href": "index.html#grundgleichungen-5",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\nKommentar zur Modellierung\nDie Modellierung sollte der Problemstellung angepasst sein:\nZitat von Albert Einstein\n‘’Man muß die Dinge so einfach wie möglich machen. Aber nicht einfacher.’’\nZiel\nDie mathematischen Gleichungen beschreiben das technische Problem hinreichend genau und sind gleichzeitig so schnell wie möglich lösbar.\nVorgehen\n\nVereinfachung der Navier-Stokes-Gleichungen so weit wie möglich (z.B. Annahme für ein inkompressibles Fluid)\nAber: Berücksichtigung von Termen, die für die Problemstellung von Bedeutung sind (z.B. Vernachlässigung von Volumenkräften)"
+  },
+  {
+    "objectID": "index.html#grundgleichungen-6",
+    "href": "index.html#grundgleichungen-6",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\nModellierung für eine Simulation mit Kavitation\n\n\nKavitierender Volllastwirbelzopf in einem Saugrohrkonus\n\n\n\n\n\n\n\n\nNote\n\n\nKavitation entsteht, wenn der Druck unter den Dampfdruck fällt. Es entsteht dann Wasserdampf. Der Wasserdampf implodiert in Gebieten mit höherem Druck und es entstehen dabei hohe Druckspitzen, die das Material schädigen können.\n\n\n\n\nOption 1\nNur daran interessiert, ob es kavitiert oder nicht.\n\nEinphasige Simulation\nBerechnungsdauer mit einem hochauflösendem Netz etwa ein Monat\n\nOption 2\nInteressiert an Kavitationsstrukturen, bzw. die Simulation der Instabilität, die nur bei Vorhandensein von Wasserdampf auftritt.\n\nZweiphasige Simuation mit Wasser und Wasserdampf\nBerechnungsdauer mit einem hochauflösendem Netz zwischen zwei und vier Monaten"
+  },
+  {
+    "objectID": "index.html#grundgleichungen-7",
+    "href": "index.html#grundgleichungen-7",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\nKlassifizierung nach verschiedenen Kriterien\nEigenschaften\n\n\n\ninstationär\nkompressibel\ndreidimensional\nreibungsbehaftet\ndrehungsbehaftet\nsupersonisch\n\n\n\nstationär\ninkompressibel\nzweidimensional\nreibungsfrei\ndrehungsfrei\nsubsonisch\n\n\nVereinfachungen\n\nNavier-Stokes: reibungsbehaftet und drehungsbehaftet\nEuler-Gleichungen: reibungsfrei aber drehungsbehaftet\nStokes-Gleichungen: Konvektion wird vernachlässigt aber reibungsbehaftet\nPotentialströmung: reibungsfrei und drehungsfrei\n\n\n\n\n\n\n\nNote\n\n\nDer Berechnungsaufwand für die Vereinfachungen nimmt von Navier-Stokes zu Potentialströmung in der Regel ab, da immer weniger Terme diskretisiert werden."
+  },
+  {
+    "objectID": "index.html#kontrollfragen",
+    "href": "index.html#kontrollfragen",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Kontrollfragen",
+    "text": "Kontrollfragen\n\nWelche Annahmen werden bei der Herleitung der Navier-Stokes-Gleichungen gemacht?\nWie lautet die Massenerhaltung in Worten?\nLeiten Sie die Massenerhaltung her.\nWie vereinfacht sich die Massenerhaltung für inkompressible Strömungen?\nAuf welchem Gesetz beruht die Impulserhaltung?\nWelche drei Kraftarten gehen in die Impulserhaltung ein?\nWelcher Zusammenhang steckt hinter der Annahme eines Newton‘schen Fluides?\nWie viele Gleichungen und Unbekannte sind in den kompressiblen Navier-Stokes-Gleichungen enthalten? Wie viele in den inkompressiblen?\nWelche Philosophie sollte bei der Modellierung berücksichtigt werden?"
+  },
+  {
+    "objectID": "index.html#warum-und-welche",
+    "href": "index.html#warum-und-welche",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Warum und welche?",
+    "text": "Warum und welche?\n\nNavier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\frac{\\partial u}{\\partial t}  - \\beta  \\frac{\\partial ^2u}{\\partial x^2}  = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\frac{\\partial u}{\\partial t}  + \\alpha  \\frac{\\partial u}{\\partial x}  = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\frac{\\partial u}{\\partial t}  + u  \\frac{\\partial u}{\\partial x}  = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(u\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
+  },
+  {
+    "objectID": "index.html#lösungen",
+    "href": "index.html#lösungen",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Lösungen",
+    "text": "Lösungen\nFür die drei vereinfachten Systeme wird als Anfangsbedingung \\(u(x,t=0) = e^{-40 (x-\\frac{1}{2})^2}\\) und eine periodische Randbedingung bei \\(x=0\\) und \\(x=1\\) verwendet.\n\n\nLineare Diffusion \\[\n\\frac{\\partial u}{\\partial t}  = \\beta  \\frac{\\partial ^2u}{\\partial x^2}  = 0 \\; \\text{mit} \\; \\beta = 1 \\frac{m^2}{s}\n\\]\n\n\n\n\n\n\n\n\n\n\nLineare Advektion\n\\[\n\\frac{\\partial u}{\\partial t}  + \\alpha  \\frac{\\partial u}{\\partial x}  = 0 \\; \\text{mit} \\; \\alpha = 1 \\frac{m}{s}\n\\]\n\n\n\n\n\n\n\n\n\n\nBurgersgleichung\n\\[\n\\frac{\\partial u}{\\partial t}  + u  \\frac{\\partial u}{\\partial x}  = 0\n\\]"
+  },
+  {
+    "objectID": "index.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
+    "href": "index.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Von den Grundgleichungen zum linearen Gleichungssystem",
+    "text": "Von den Grundgleichungen zum linearen Gleichungssystem\n\n\n\n\nZiel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden konstant.\nZunächst\nStationäres Problem \\(\\rightarrow  \\frac{\\partial }{\\partial t}  = 0\\)"
+  },
+  {
+    "objectID": "index.html#vorgehensweise-in-der-numerischen-strömungsmechanik-1",
+    "href": "index.html#vorgehensweise-in-der-numerischen-strömungsmechanik-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Vorgehensweise in der numerischen Strömungsmechanik",
+    "text": "Vorgehensweise in der numerischen Strömungsmechanik\n\nTechnisches Problem\nModellierung\nMathematische Beschreibung\nDiskretisierung\n\nRechengitter\nDiskretisierung mit Finite-Differenzen\nDiskretisierung für 1. und 2. Ableitung\nRandbedingungen\nForm des linearen Gleichungssystems\n\nNumerische Lösung\nVisualisierung\nAuswertung\nExpertise, Experimente\nValidierung der Ergebnisse"
+  },
+  {
+    "objectID": "index.html#diskretisierung",
+    "href": "index.html#diskretisierung",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Diskretisierung",
+    "text": "Diskretisierung\nAllgemeine Hinweise\n\nDie mathematischen Gleichungen können in der Regel nicht analytisch gelöst werden\n\nDaher Anwendung von numerischer Strömungsmechanik\n\nZur Anwendung numerischer Methoden ist eine diskrete Darstellung der Lösung erforderlich\n\nDie Lösung kann nicht an jeder Stelle des Rechengebiets berechnet werden\nDurch die diskrete Darstellung erhält man die Lösung in den diskreten Punkten\nDie diskreten Punkte sind durch das verwendete Rechengitter definiert, das für eine Strömungssimulation erstellt werden muss"
+  },
+  {
+    "objectID": "index.html#diskretisierung-1",
+    "href": "index.html#diskretisierung-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Diskretisierung",
+    "text": "Diskretisierung\nÜbliche Methoden und Anschauungsbeispiel\n\n\n\n\n\n\n\n\nÜbliche Diskretisierungsmethoden\n\nFinite-Differenzen-Methode\n\nAnschaulich\nIn diesem Kapitel der Vorlesung behandelt\n\nFinite-Volumen-Methode\n\nHäufig für CFD-Anwendungen, z.B. OpenFOAM, ANSYS Fluent, …\n\nFinite-Element-Methode\n\nUnüblich für CFD-Anwendungen\nNicht im Rahmen der Vorlesung behandelt\n\n\n\n\nDie Berechnung erfolgt basierend auf dem verwendeten Rechennetz\nDie Unbekannten werden entweder auf dem Schnittpunkt der Gitterlinien oder in der Zellmitte durchgeführt"
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode",
+    "href": "index.html#finite-differenzen-methode",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nVorgehensweise\n\n\nErstellen des Rechengitters\n\nOrthogonales Netz\nNicht äquidistant\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAppproximation der Differentialquotienten durch Differenzenquotienten\n\nGenauigkeit der Approximation\n\n\n\\[\n\\frac{\\partial u}{\\partial x}  =  \\frac{\\Delta u}{\\Delta x}  + \\text{Abbruchfehler} \\approx  \\frac{\\Delta u}{\\Delta x}\n\\]\n\n\n\nAufstellen des Linearen Gleichungssystems\n\nBerücksichtigung von Randbedingungen\n\n\n\\[\n{\\tiny\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\n\n\nLösung\n\n\\[\n\\underline{\\phi} ^{(n+1)} = f(\\phi^{(n)})\n\\]"
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-1",
+    "href": "index.html#finite-differenzen-methode-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nErstellen des Rechengitters (1/4)\nBeispiel: Betrachtung eines ein- und zweidimensionalen Berechnungsgebiets mit \\(N\\) und \\(N \\times M\\) Knoten\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nIm Allgemeinen muss das Gitter strukturiert und rechtwinklig (kartesisch) sein."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-2",
+    "href": "index.html#finite-differenzen-methode-2",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nJe nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte \\(\\phi\\) die Ableitungen \\( \\frac{\\partial \\phi}{\\partial x} \\), \\( \\frac{\\partial ^2 \\phi}{\\partial x^2} \\) und \\( \\frac{\\partial \\phi}{\\partial t} \\) benötigt.\nOrts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet\n\nBeispiel: Graphische Approximation für \\( \\frac{\\partial \\phi}{\\partial x} \\) an der Stelle \\(x=x_i\\)\n\n\n\n\n\n\n\n\n\n\n\\( \\frac{\\partial \\phi}{\\partial x} \\) (Vorwärtsdifferenz)\\( \\frac{\\partial \\phi}{\\partial x} \\) (Rückwärtsdifferenz)\\( \\frac{\\partial \\phi}{\\partial x} \\) (Zentrale Differenz)\\( \\frac{\\partial^2 \\phi}{\\partial x^2} \\)\n\n\n\\( \\frac{\\partial \\left( \\phi(x_i) \\right)}{\\partial x}  =  \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{x=x_i}\n=\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}\n\\approx\n\\left[  \\frac{\\Delta \\phi}{\\Delta x}  \\right]_{i}\n=\n\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i)}{(x_i + \\Delta x) - (x_i)}\n=\n\\frac{{\\phi}_{i+1}-{\\phi}_{i}}{\\Delta x} \\)\n\n\n\\( \\frac{\\partial \\left( \\phi(x_i) \\right)}{\\partial x}  =  \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{x=x_i}\n=\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}\n\\approx\n\\left[  \\frac{\\Delta \\phi}{\\Delta x}  \\right]_{i}\n=\n\\frac{\\phi(x_i) - \\phi(x_i - \\Delta x)}{(x_i) - (x_i - \\Delta x)}\n=\n\\frac{{\\phi}_{i}-{\\phi}_{i-1}}{\\Delta x} \\)\n\n\n\\( \\frac{\\partial \\left( \\phi(x_i) \\right)}{\\partial x}  =  \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{x=x_i}\n=\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}\n\\approx\n\\left[  \\frac{\\Delta \\phi}{\\Delta x}  \\right]_{i}\n=\n\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i - \\Delta x)}{(x_i + \\Delta x) - (x_i - \\Delta x)}\n=\n\\frac{{\\phi}_{i+1}-{\\phi}_{i-1}}{2\\Delta x} \\)\n\n\n\\( \\frac{ \\partial ^2 \\left( \\phi(x_i) \\right) }{\\partial x ^2}  =  \\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{x=x_i}\n=\n\\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{i}\n=\n\\left[  \\frac{\\partial }{\\partial x}  \\left(  \\frac{\\partial \\phi}{\\partial x}  \\right) \\right]_{i}\n\\approx\n\\left[  \\frac{\\Delta \\left(  \\frac{\\partial \\phi}{\\partial x}  \\right) }{\\Delta x}  \\right]_{i}\n=\n\\frac{1}{\\Delta x}\\left(\n\\frac{{\\phi}_{i+1}-{\\phi}_{i}}{\\Delta x}\n-\n\\frac{{\\phi}_{i}-{\\phi}_{i-1}}{\\Delta x}\n\\right)\\)"
+  },
+  {
+    "objectID": "grundgleichungen.html",
+    "href": "grundgleichungen.html",
+    "title": "Grundgleichungen",
+    "section": "",
+    "text": "Ziel\nMathematischen Gleichungen, die das technische Problem hinreichend genau beschreiben und gleichzeitig so schnell wie möglich lösbar sind.\nZunächst\nHerleitung der Grundgleichungen"
+  },
+  {
+    "objectID": "grundgleichungen.html#welche-gleichungen-beschreiben-die-problemstellung",
+    "href": "grundgleichungen.html#welche-gleichungen-beschreiben-die-problemstellung",
+    "title": "Grundgleichungen",
+    "section": "",
+    "text": "Ziel\nMathematischen Gleichungen, die das technische Problem hinreichend genau beschreiben und gleichzeitig so schnell wie möglich lösbar sind.\nZunächst\nHerleitung der Grundgleichungen"
+  },
+  {
+    "objectID": "grundgleichungen.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
+    "href": "grundgleichungen.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
+    "title": "Grundgleichungen",
+    "section": "Vorgehensweise in der numerischen Strömungsmechanik",
+    "text": "Vorgehensweise in der numerischen Strömungsmechanik\n\nTechnisches Problem\nModellierung\nMathematische Beschreibung\nDiskretisierung\n\nIndex-Schreibweise\nHerleitung Kontinuitätsgleichung\nHerleitung Impulsgleichung\nKompressibel vs. inkompressibel\nGrundprinzipien bei der Modellbildung\n\nNumerische Lösung\nVisualisierung\nAuswertung\nExpertise, Experimente\nValidierung der Ergebnisse"
+  },
+  {
+    "objectID": "grundgleichungen.html#einsteinsche-summenkonvention",
+    "href": "grundgleichungen.html#einsteinsche-summenkonvention",
+    "title": "Grundgleichungen",
+    "section": "Einstein’sche Summenkonvention",
+    "text": "Einstein’sche Summenkonvention\n\nDefinition und Beispiele\nZur besseren Übersichtlichkeit werden Summenzeichen weggelassen und es wird über doppelt auftretende Indizes aufsummiert.\n\nSkalar (kein freier Index und damit eine Gleichung)\n\n\\[\n\\pp{U_i}{x_j} \\delta_{ij}\n=\n\\sum_{i=1}^3 U_j \\pp{U_i}{x_j}\n=\nU_1 \\pp{U_i}{x_1} + U_2 \\pp{U_i}{x_2} + U_3 \\pp{U_i}{x_3}\n\\]\n\\[\n\\pp{U_i}{x_i}\n= \\sum_{i=1}^3 \\pp{U_i}{x_i}\n= \\pp{U_1}{x_1} + \\pp{U_2}{x_2} + \\pp{U_3}{x_3}\n\\]\n\nVektor (1 freier Index und damit mehrere Gleichungen) \\[\n  U_j \\pp{U_i}{x_j}\n  = \\sum_{i=1}^3 U_j \\pp{U_i}{x_j}\n  = U_1 \\pp{U_i}{x_1} + U_2 \\pp{U_i}{x_2} + U_3 \\pp{U_i}{x_3}\n\\]\n\n\n\n\n\n\n\nNote\n\n\n\nDie Anzahl der Gleichungen wird über die freien Indizes bestimmt."
+  },
+  {
+    "objectID": "grundgleichungen.html#einsteinsche-summenkonvention-1",
+    "href": "grundgleichungen.html#einsteinsche-summenkonvention-1",
+    "title": "Grundgleichungen",
+    "section": "Einstein’sche Summenkonvention",
+    "text": "Einstein’sche Summenkonvention\n\nÜbung\nWie sieht der Ausdruck \\(U_j \\left( \\pp{U_i}{x_j} + \\pp{U_j}{x_i} \\right)\\) ausgeschrieben aus?\n\n\\[\n\\begin{align}\nU_j \\left( \\pp{U_i}{x_j} + \\pp{U_j}{x_i} \\right)\n&= \\sum_{i=1}^3 \\hla{U_j} \\left( \\pp{\\hl{U_i}}{\\hla{x_j}} + \\pp{\\hla{U_j}}{\\hl{x_i}} \\right) \\\\\n&= U_1 \\left( \\pp{\\hl{U_i}}{x_1} + \\pp{U_1}{\\hl{x_i}} \\right)\n  + U_2 \\left( \\pp{\\hl{U_i}}{x_2} + \\pp{U_2}{\\hl{x_i}} \\right)\n  + U_3 \\left( \\pp{\\hl{U_i}}{x_3} + \\pp{U_3}{\\hl{x_i}} \\right) \\\\\n&= \\begin{bmatrix}\nU_1 \\left( \\pp{U_1}{x_1} + \\pp{U_1}{x_1} \\right)\n  + U_2 \\left( \\pp{U_1}{x_2} + \\pp{U_2}{x_1} \\right)\n  + U_3 \\left( \\pp{U_1}{x_3} + \\pp{U_3}{x_1} \\right) \\; \\mathrm{für} \\; i=1\\\\\nU_1 \\left( \\pp{U_2}{x_1} + \\pp{U_1}{x_2} \\right)\n  + U_2 \\left( \\pp{U_2}{x_2} + \\pp{U_2}{x_2} \\right)\n  + U_3 \\left( \\pp{U_2}{x_3} + \\pp{U_3}{x_2} \\right) \\; \\mathrm{für} \\; i=2 \\\\\nU_1 \\left( \\pp{U_3}{x_1} + \\pp{U_1}{x_3} \\right)\n  + U_2 \\left( \\pp{U_3}{x_2} + \\pp{U_2}{x_3} \\right)\n  + U_3 \\left( \\pp{U_3}{x_3} + \\pp{U_3}{x_3} \\right) \\; \\mathrm{für} \\; i=3 \\\\\n\\end{bmatrix}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "grundgleichungen.html#grundgleichungen",
+    "href": "grundgleichungen.html#grundgleichungen",
+    "title": "Grundgleichungen",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\n\nAnnahmen und Definitionen\n\n\n\n\n\n\n\n\n\nZeitunabhängig\nDas Kontrollvolumen hat ein zeitlich konstantes Volumen\n\\[\ndV = dx \\, dy \\, dz \\neq dx(t) \\, dy(t) \\, dz(t) = dV(t)\n\\]\nund ist somit unabhängig von der Zeit.\n\n\nKontinuum\n\nStatt einzelner Moleküle (mikroskopisches Modell) wird das Fluid als Kontinuum (makroskopisches Modell) betrachtet\nEs bestehen kontinuierliche Felder für die gesuchten Größen\nDiese Annahme ist gültig bei ausreichend großer Anzahl an Molekülen.\n\n\n\n\n\n\n\nNote\n\n\n\nJe Raumrichtung gibt es am Kontrollvolumen je ein positives und negatives Schnittufer. Die zugehörigen Normal- und Tangentialvektoren sind entgegengesetzt. Das positive Schnittufer hat jeweils positive Normal- und Tangentialvektoren."
+  },
+  {
+    "objectID": "grundgleichungen.html#massenerhaltung",
+    "href": "grundgleichungen.html#massenerhaltung",
+    "title": "Grundgleichungen",
+    "section": "Massenerhaltung",
+    "text": "Massenerhaltung\n\nVorüberlegungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVorüberlegungen am Kontrollvolumen\n\n\n\nVerbindung zwischen einströmendem \\(\\dot{m}_{ein}\\) und ausströmendem Massenstrom \\(\\dot{m}_{aus}\\) und Dichte \\(\\rho\\):\n\n\\(\\dot{m}_{ein} &gt; \\dot{m}_{aus} \\rightarrow \\rho \\uparrow\\): Zunahme der Masse\n\\(\\dot{m}_{ein} &lt; \\dot{m}_{aus} \\rightarrow \\rho \\downarrow\\): Abnahme der Masse\n\\(\\dot{m}_{ein} = \\dot{m}_{aus} \\rightarrow \\rho =\\): Konstante Masse\n\n\n\nDie Massenerhaltung setzt die zeitliche Änderung der Masse im Volumen \\[\n\\pp{m}{t} = \\ppb{\\rho \\, dV}{t} = \\pp{\\rho}{t} dV\n\\] gleich der Summe der ein- und ausströmenden Massenströme \\[\n\\sum \\dot{m}_{ein} - \\sum \\dot{m}_{aus} \\; \\text{.}\n\\] Die Massenerhaltung ergibt sich zu: \\[\n\\pp{\\rho}{t} dV = \\sum \\dot{m}_{ein} - \\sum \\dot{m}_{aus}\n\\]"
+  },
+  {
+    "objectID": "grundgleichungen.html#massenerhaltung-1",
+    "href": "grundgleichungen.html#massenerhaltung-1",
+    "title": "Grundgleichungen",
+    "section": "Massenerhaltung",
+    "text": "Massenerhaltung\n\nMassenstrom in \\(x\\)-Richtung\n\n\n\n\n\n\n\n\nMassenstrom linke Seite: \\[\n\\underbrace{\\rho u}_{\n  \\left[ \\frac{kg}{m^3} \\frac{m}{s} \\right]\n}\n\\underbrace{dy \\, dz}_{\n  \\left[ m^2 \\right]\n}\n\\]\nMassenstrom rechte Seite: \\[\n\\left(\n  \\overbrace{\n  \\underbrace{\\rho u}_{\n    \\text{Wert links}\n  }\n  +\n  \\underbrace{\\ppb{\\rho u}{x}}_{\\text{Ableitung}}\n  \\underbrace{dx}_{\\text{Strecke}}\n  }^{\\text{Wert rechts}}\n\\right) dy \\, dz\n\\]\n\n\n\n\n\n\nNote\n\n\n\n\nDie Massenströme ergeben sich aus der Massenstromdichte (entspricht dem Produkt aus Dichte und Geschwindigkeit) und der zugehörigen durchströmten Fläche.\nDie Massenstromdichte auf der rechten Seite entspricht der Summe aus dem Wert auf der linken Seite und der Änderung über der Strecke \\(dx\\) (Produkt aus Ableitung und Strecke).\nDas Vorzeichen des Massenstroms ergibt sich aus dem Skalarprodukt der Geschwindigkeit \\(\\uv\\) mit dem Normalvektor oder durch Überlegung; ein ein-/ausströmender Massenstrom erhöht/verringert die Dichte und ist positiv/negativ auf der rechten Seite der Gleichung.\nDie \\(y\\)- und \\(z\\)-Richtung funktioniert analog."
+  },
+  {
+    "objectID": "grundgleichungen.html#massenerhaltung-2",
+    "href": "grundgleichungen.html#massenerhaltung-2",
+    "title": "Grundgleichungen",
+    "section": "Massenerhaltung",
+    "text": "Massenerhaltung\n\nBilanzierung der Massenströme\nDas Gleichsetzen der zeitlichen Änderung mit den Massenströmen über alle Flächen \\[\n\\begin{align}\n\\pp{\\rho}{t} \\underbrace{dx dy dz}_{=dV}\n=\n& \\rho u \\; dy dz - \\left( \\rho u + \\ppb{\\rho u}{x} dx \\right) dy dz &(x\\text{-Richtung})\\\\\n& \\rho v \\; dx dz - \\left( \\rho v + \\ppb{\\rho v}{y} dy \\right) dx dz &(y\\text{-Richtung})\\\\\n& \\rho w \\; dx dy - \\left( \\rho w + \\ppb{\\rho w}{z} dz \\right) dx dy &(z\\text{-Richtung})\n\\end{align}\n\\] lässt sich vereinfachen zu: \\[\n\\begin{align}\n\\pp{\\rho}{t} &+ \\ppb{\\rho u}{x} + \\ppb{\\rho v}{y} + \\ppb{\\rho w}{z} = 0\\; &\\text{,} \\\\\n\\pp{\\rho}{t} &+ \\ppb{\\rho u_i}{x_i} = 0 \\; &\\text{(Index-Schreibweise) oder} \\\\\n\\pp{\\rho}{t} &+ \\nabla \\cdot \\left( \\rho \\uv \\right) = 0 \\; &\\text{(Operator-Schreibweise).}\n\\end{align}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nDie Gleichung wird auch als Kontinuitätsgleichung bezeichnet und gilt in dieser Form für kompressible Fluide."
+  },
+  {
+    "objectID": "grundgleichungen.html#massenerhaltung-3",
+    "href": "grundgleichungen.html#massenerhaltung-3",
+    "title": "Grundgleichungen",
+    "section": "Massenerhaltung",
+    "text": "Massenerhaltung\n\nVereinfachungen für inkompressible Fluide\nBei inkompressiblen Strömungen ist die Dichte konstant. Es gilt \\[ \\rho = const \\; \\text{bzw.} \\;\n\\rho \\neq \\rho (t) \\; \\text{und} \\; \\rho \\neq \\rho (x) \\neq \\rho (y) \\neq \\rho (z)\n\\] oder äquivalent dazu \\[\n\\pp{\\rho}{t} = 0 \\; \\text{und} \\;\n  \\pp{\\rho}{x} = \\pp{\\rho}{y} = \\pp{\\rho}{z} = 0 \\; \\text{.}\n\\] Damit vereinfacht sich die Massenerhaltung \\[\n\\pp{\\rho}{t} = \\ppb{\\rho u}{x} + \\ppb{\\rho v}{y} + \\ppb{\\rho w}{z}\n\\] zu \\[\n\\begin{align}\n&\\pp{u}{x} + \\pp{v}{y} + \\pp{w}{z} = 0\\; &\\text{,} \\\\\n&\\pp{u_i}{x_i} = 0\\; &\\text{(Index-Schreibweise) oder} \\\\\n&\\nabla \\cdot \\uv = div(\\uv) = 0\\; &\\text{(Operator-Schreibweise).}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung",
+    "href": "grundgleichungen.html#impulserhaltung",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nVorüberlegungen\n\n\n\n\n\n\n\n\nDas zweite Newton’sche Gesetz \\[\nm \\; \\av = m \\der{\\uv}{t} = \\sum \\Fv\n\\] verbindet das Produkt aus Masse \\(m\\) und Beschleunigung \\(\\av\\) mit den angreifenden Kräften \\(\\Fv\\) am Kontrollvolumen. Die angreifenden Kräfte sind:\n\nDruckkraft\nReibungskraft\nVolumenkraft\n\nDie linke Seite der Gleichung wird üblicherweise auch als Trägheitskraft bezeichnet."
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung-1",
+    "href": "grundgleichungen.html#impulserhaltung-1",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nTrägheitskräfte\n\n\n\n\n\n\n\n\nDie Beschleunigung \\(\\av\\) des zweiten Newton’schen Gesetzes wird durch das totale Differential \\[\ndu_i\n=\n\\underbrace{\n  \\pp{u_i}{t}\n}_{\\text{Änderung in $t$-Richtung}}\n\\underbrace{\n  dt\n}_{\\text{Strecke}}\n+\n\\underbrace{\n  \\pp{u_i}{x_j}\n}_{\\text{Änderung in $x_j$-Richtung}}\n\\underbrace{\n  dx_j\n}_{\\text{Strecke}}\n\\] zu \\[\n\\der{u_i}{t}\n=\na_i\n=\n\\pp{u_i}{t} + \\pp{u_i}{x_j} \\underbrace{\\der{x_j}{t}}_{=u_j}\n\\] umgeschrieben und in die beiden Anteile lokal und kovektiv entsprechend \\[\n\\der{u_i}{t}\n=\n\\underbrace{\n  \\pp{u_i}{t}\n}_{\\text{lokal}}\n+\n\\underbrace{\n  \\pp{u_i}{x_j} u_j\n}_{\\text{konvektiv}}\n\\] aufgeteilt."
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung-2",
+    "href": "grundgleichungen.html#impulserhaltung-2",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nDruckkräfte\n\n\n\n\n\n\n\n\nDie Summe der Druckkraft auf die linke und rechte Seite \\[\np \\; dy \\, dz\n\\; \\text{und} \\;\n\\left( p + \\pp{p}{x} dx \\right) dy \\, dz\n\\] ergeben die Gesamtkraft in \\(x\\)-Richtung \\[\nF_{p,x} = p \\; dy \\, dz - \\left( p + \\pp{p}{x} dx \\right) dy \\, dz \\; \\text{.}\n\\] Daraus ergibt sich die jeweilige Kraft in \\(x_i\\)-Richtung zu: \\[\nF_{p,i} = - \\pp{p}{x_i} \\; dx \\, dy \\, dz \\; \\text{.}\n\\]\n\n\n\n\n\n\nNote\n\n\n\n\nDas Vorzeichen der Druckkraft ergibt sich aus dem Normalvektor; sie zeigt in entgegengesetzte Richtung.\nDie \\(y\\)- und \\(z\\)-Richtung funktioniert analog."
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung-3",
+    "href": "grundgleichungen.html#impulserhaltung-3",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nVolumenkräfte\n\n\n\n\n\n\n\n\nEine wichtige Volumenkraft ist die Gravitationskraft. Im Gegensatz zu den vorherigen Kräften greift diese im Volumen und nicht auf den Flächen an. Die Gravitationskraft in Abhängigkeit der Gravitationskonstante in \\(z\\)-Richtung entspricht \\[\nF_{V,z} = -\\rho g \\; dx \\, dy \\, dz \\; \\text{.}\n\\] Allgemein werden Volumenkräfte meist über eine Potentialfunktion \\(\\Psi(x,y,z)\\) entsprechend \\[\nF_{V,i} = - \\pp{\\Psi}{x_i} \\rho \\; dx \\, dy \\, dz\n\\] beschrieben.\nFür den Fall der Gravitationskraft im entsprechenden Koordinatensystem lautet das zugehörige Potential: \\[\n\\Psi(z) = gz \\; \\text{.}\n\\]"
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung-4",
+    "href": "grundgleichungen.html#impulserhaltung-4",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nReibungskräfte\n\n\n\n\n\n\n\n\nDie Summe der Spannungen der Oberfläche in \\(x\\)-Richtung sind:\n\nNormalspannung in \\(x\\)-Richtung \\(- \\tau_{xx} \\; dy \\, dz + \\left( \\tau_{xx} + \\pp{\\tau_{xx}}{x} \\; dx \\right) dy \\, dz\\)\nSchubspannungen in \\(y\\)-Richtung \\(- \\tau_{xy} \\; dy \\, dz + \\left( \\tau_{xy} + \\pp{\\tau_{xy}}{x} \\; dx \\right) dy \\, dz\\)\nSchubspannungen in \\(z\\)-Richtung \\(- \\tau_{xz} \\; dy \\, dz + \\left( \\tau_{xz} + \\pp{\\tau_{xz}}{x} \\; dx \\right) dy \\, dz\\)\n\n\n\n\n\n\n\nNote\n\n\n\nDie Spannungen werden mit zwei Indizes bezeichnet: der erste legt die Normalenrichtung des zugehörigen Schnittufers fest, der zweite die Richtung der Spannung. Einander zugeordnete Spannungen am positiven und negativen Schnittufer entsprechen einander in ihren Indizes; unterscheiden sich jedoch in der Wirkrichtung (Vorzeichen)."
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung-5",
+    "href": "grundgleichungen.html#impulserhaltung-5",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nReibungskräfte\nDas Aufsummieren aller Reibungskräfte aus den einzelnen Spannungskomponenten in alle drei Raumrichtungen ergibt:\n\\[\n\\begin{align}\nF_{R,x}\n&=\n  \\left( \\pp{\\tau_{xx}}{x} \\; dx \\right) dy \\, dz\n+ \\left( \\pp{\\tau_{yx}}{y} \\; dy \\right) dx \\, dz\n+ \\left( \\pp{\\tau_{zx}}{z} \\; dz \\right) dx \\, dy \\\\\nF_{R,y}\n&=\n  \\left( \\pp{\\tau_{xy}}{x} \\; dx \\right) dy \\, dz\n+ \\left( \\pp{\\tau_{yy}}{y} \\; dy \\right) dx \\, dz\n+ \\left( \\pp{\\tau_{zy}}{z} \\; dz \\right) dx \\, dy \\\\\nF_{R,z}\n&=\n  \\left( \\pp{\\tau_{xz}}{x} \\; dx \\right) dy \\, dz\n+ \\left( \\pp{\\tau_{yz}}{y} \\; dy \\right) dx \\, dz\n+ \\left( \\pp{\\tau_{zz}}{z} \\; dz \\right) dx \\, dy\n\\end{align}\n\\]\nEs ergibt sich in Index-Schreibweise: \\[\nF_{R,i} = \\pp{\\tau_{ji}}{x_j} \\; dV\n\\]\nDie übliche Notation der Spannungen \\[\n\\sigma_x = \\tau_{xx}, \\;\n\\sigma_y = \\tau_{yy} \\; \\text{und} \\;\n\\sigma_z = \\tau_{zz}\n\\] fasst die Normalspannungen mit nur einem Index zusammen."
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung-6",
+    "href": "grundgleichungen.html#impulserhaltung-6",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nBilanzierung der Kräfte\nDas Einsetzen der Trägheitskräfte und angreifenden Kräfte in \\[\nm \\; \\av = m \\der{\\uv}{t} = \\sum \\Fv\n\\] ergibt \\[\n\\rho \\; dV \\left(\n  \\pp{u_i}{t} + u_j \\pp{u_i}{x_j}\n\\right)\n=\n- \\pp{p}{x_i} \\; dV\n- \\pp{\\Psi}{x_i} \\, \\rho \\; dV\n+ \\pp{\\tau_{ji}}{x_j} \\; dV\n\\] bzw. durch Entfernung von \\(dV\\) \\[\n\\rho \\left(\n  \\underbrace{\\pp{u_i}{t}}_{\\text{lokale Beschleunigung}}\n  +\n  \\underbrace{u_j \\pp{u_i}{x_j}}_{\\text{Konvektion}}\n\\right)\n=\n- \\underbrace{\\pp{p}{x_i}}_{\\text{Druckkraft}}\n- \\underbrace{\\pp{\\Psi}{x_i} \\, \\rho}_{\\text{Volumenkraft}}\n+ \\underbrace{\\pp{\\tau_{ji}}{x_j}}_{\\text{Reibungskraft}}\n\\] mit den unbekannten Größen \\(u_i\\), \\(p\\), \\(\\rho\\) und \\(\\tau_{ji}\\).\n\n\n\n\n\n\nNote\n\n\n\nDie Reibungskraft ist hier noch eine beliebige Oberflächenkraft und wird erst durch das Einsetzen der Viskosität und Schergeschwindigkeit vollständig."
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung-7",
+    "href": "grundgleichungen.html#impulserhaltung-7",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nNewtonsche und nichtnewtonsche Fluide\nDie Schergeschwindigkeit \\(\\dot{\\gamma} = \\der{u}{y}\\) ist proportional zur Schubspannung \\(\\tau\\). Es gilt \\(\\tau \\propto \\der{u}{y}\\) bzw. \\(\\tau = \\mu \\der{u}{y}\\). Die Größe \\(\\mu\\) wird als dynamische Viskosität oder einfach als Viskosität bezeichnet. Oft wird die Viskosität mit der Dichte normiert \\(\\nu = \\frac{\\mu}{\\rho}\\) und als kinematische Viskosität bezeichnet.\n\n\n\n\n\n\nNote\n\n\n\nEin Newtonsches Fluid hat eine konstante Viskosität. Der Zusammenhang zwischen der Schergeschwindigkeit und der Schubspannung ist also linear.\n\n\n\n\n\n\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family ['xkcd', 'xkcd Script', 'Comic Neue', 'Comic Sans MS'] not found. Falling back to DejaVu Sans.\nfindfont: Font family ['xkcd', 'xkcd Script', 'Comic Neue', 'Comic Sans MS'] not found. Falling back to DejaVu Sans.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\n\n\n\n\n\n\n\n\n\n\n\n\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\nfindfont: Font family 'xkcd' not found.\nfindfont: Font family 'xkcd Script' not found.\nfindfont: Font family 'Comic Neue' not found.\nfindfont: Font family 'Comic Sans MS' not found.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nNichtnewtonsche Fluide können sich deutlich anders verhalten, siehe z.B. Weissenberger-Effekt @yt_weissenberger."
+  },
+  {
+    "objectID": "grundgleichungen.html#impulserhaltung-8",
+    "href": "grundgleichungen.html#impulserhaltung-8",
+    "title": "Grundgleichungen",
+    "section": "Impulserhaltung",
+    "text": "Impulserhaltung\n\nNewtonsche Fluide\nBisher haben die Gleichungen noch zu viele Unbekannte, daher wird der Zusammenhang zwischen \\(\\tau_{ji}\\) und \\(u_i\\) bzw. der Ableitung \\(\\pp{u_i}{x_j}\\) eingesetzt. Durch Einsetzen des Zusammenhangs \\[\n\\tau_{ij}\n=\n\\mu \\left(\n  \\pp{u_i}{x_j} + \\pp{u_j}{x_i}\n\\right)\n-\n\\frac{2}{3} \\mu \\pp{u_k}{x_k} \\delta_{ij}\n\\; \\text{mit} \\;\n\\delta_{ij}\n=\n\\begin{cases}\n1 \\; \\text{falls} \\; i = j \\\\\n0 \\; \\text{falls} \\; i \\neq j\n\\end{cases}\n\\;\n\\text{(Kronecker-Delta)}\n\\] in die Impulsgleichung ergibt sich die Impulsgleichung für Newtonsche Fluide zu: \\[\n\\rho \\left(\n  \\pp{u_i}{t}\n  +\n  u_j \\pp{u_i}{x_j}\n\\right)\n=\n- \\pp{p}{x_i}\n- \\pp{\\Psi}{x_i} \\, \\rho\n+ \\pp{}{x_j} \\left(\n\\mu \\left(\n  \\pp{u_i}{x_j} + \\pp{u_j}{x_i}\n\\right)\n-\n\\frac{2}{3} \\mu \\pp{u_k}{x_k} \\delta_{ij}\n\\right)\n\\;\n\\text{.}\n\\]\nDer Tensor \\(\\tau_{ij}\\) für Newtonsche Fluide ist symmetrisch. Es gilt daher: \\[\n\\tau_{ij}=\\tau_{ji}\n\\] oder \\[\n\\tau_{ij}\n=\n\\begin{pmatrix}\n\\tau_{11} & \\tau_{12} & \\tau_{13} \\\\\n\\tau_{21} = \\tau_{12} & \\tau_{22} & \\tau_{23} \\\\\n\\tau_{31} = \\tau_{31} & \\tau_{32} = \\tau_{23} & \\tau_{33}\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n\\tau_{11} & \\tau_{12} & \\tau_{13} \\\\\n& \\tau_{22} & \\tau_{23} \\\\\n& & \\tau_{33}\n\\end{pmatrix}\n\\; \\text{.}\n\\] Für den dreidimensionalen Fall beinhaltet der Tensor dann noch 6 Unbekannte Einträge."
+  },
+  {
+    "objectID": "grundgleichungen.html#grundgleichungen-1",
+    "href": "grundgleichungen.html#grundgleichungen-1",
+    "title": "Grundgleichungen",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\n\nKompressible newtonsche Fluide\nEs gilt die Massenerhaltung bzw. Kontinuitätsgleichung \\[\n\\pp{\\rho}{t} + \\ppb{\\rho u_i}{x_i} = 0\n\\] und die Impulsgleichung \\[\n\\rho \\left(\n  \\pp{u_i}{t}\n  +\n  u_j \\pp{u_i}{x_j}\n\\right)\n=\n- \\pp{p}{x_i}\n- \\pp{\\Psi}{x_i} \\, \\rho\n+ \\pp{}{x_j} \\left(\n\\mu \\left(\n  \\pp{u_i}{x_j} + \\pp{u_j}{x_i}\n\\right)\n-\n\\frac{2}{3} \\mu \\pp{u_k}{x_k} \\delta_{ij}\n\\right)\n\\] mit den Unbekannten \\(u\\), \\(v\\), \\(w\\), \\(p\\) und \\(\\rho\\).\n\n\n\n\n\n\nNote\n\n\n\nDie Anzahl der Unbekannten (5) ist größer als die Anzahl der Gleichungen (4). Es müssen daher zur Lösung noch zusätzliche Gleichungen benutzt werden oder Annahmen getroffen werden.\n\n\nDurch die Verwendung eines Stoffgesetzes, z.B. die ideale Gasgleichung \\[\np = \\rho R T \\; \\text{,}\n\\] kommt die neue Unbekannte \\(T\\) hinzu. Das Gleichungssystem wir dann durch die Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, Stoffgesetz und Energieleichung) für die 6 Unbekannten (\\(u\\), \\(v\\), \\(w\\), \\(p\\), \\(\\rho\\) und \\(T\\)) zur Verfügung."
+  },
+  {
+    "objectID": "grundgleichungen.html#grundgleichungen-2",
+    "href": "grundgleichungen.html#grundgleichungen-2",
+    "title": "Grundgleichungen",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\n\nInkompressible newtonsche Fluide\nUnter Annahme von \\(\\rho = const.\\) wird die Massenerhaltung bzw. Kontinuitätsgleichung umgeformt: \\[\n\\pp{\\rho}{t} + \\ppb{\\rho u_i}{x_i} = 0\n\\rightarrow\n\\pp{u_i}{x_i} = 0\n\\] umgeformt. Durch Einsetzen der Massenerhaltung in die Impulsgleichung \\[\n\\rho \\left(\n  \\pp{u_i}{t}\n  +\n  u_j \\pp{u_i}{x_j}\n\\right)\n=\n- \\pp{p}{x_i}\n- \\pp{\\Psi}{x_i} \\, \\rho\n+\n\\pp{}{x_j} \\left(\n\\underbrace{\n  \\mu \\left(\n    \\pp{u_i}{x_j} + \\pp{u_j}{x_i}\n  \\right)\n}_{\n=\\mu \\left( \\pp{}{x_j} \\pp{u_i}{x_j} + \\pp{}{x_i} \\pp{u_j}{x_j} \\right)\n=\\pp{}{x_j} \\left( \\mu \\pp{u_i}{x_j}\\right)\n}\n-\n\\frac{2}{3} \\mu\n\\underbrace{\n  \\pp{u_k}{x_k}\n}_{=0}\n\\delta_{ij}\n\\right)\n\\] ergibt sich \\[\n\\pp{u_i}{t}\n+\nu_j \\pp{u_i}{x_j}\n=\n- \\frac{1}{\\rho}\\pp{p}{x_i}\n- \\pp{\\Psi}{x_i}\n+\n\\pp{}{x_j} \\left(\n  \\nu \\pp{u_i}{x_j}\n\\right)\n\\; \\text{mit} \\; \\nu = \\frac{\\mu}{\\rho} \\; \\text{.}\n\\] Das Gleichungssystem ist geschlossen mit 4 Gleichungen (Massenerhaltung und Impulserhaltung in drei Richtungen) und 4 Unbekannten (\\(u\\), \\(v\\), \\(w\\) und \\(p\\))."
+  },
+  {
+    "objectID": "grundgleichungen.html#grundgleichungen-3",
+    "href": "grundgleichungen.html#grundgleichungen-3",
+    "title": "Grundgleichungen",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\n\nKommentar zur Modellierung\nDie Modellierung sollte der Problemstellung angepasst sein:\n\nZitat von Albert Einstein\n‘’Man muß die Dinge so einfach wie möglich machen. Aber nicht einfacher.’’\n\n\nZiel\nDie mathematischen Gleichungen beschreiben das technische Problem hinreichend genau und sind gleichzeitig so schnell wie möglich lösbar.\n\n\nVorgehen\n\nVereinfachung der Navier-Stokes-Gleichungen so weit wie möglich (z.B. Annahme für ein inkompressibles Fluid)\nAber: Berücksichtigung von Termen, die für die Problemstellung von Bedeutung sind (z.B. Vernachlässigung von Volumenkräften)"
+  },
+  {
+    "objectID": "grundgleichungen.html#grundgleichungen-4",
+    "href": "grundgleichungen.html#grundgleichungen-4",
+    "title": "Grundgleichungen",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\n\nModellierung für eine Simulation mit Kavitation\n\n\nKavitierender Volllastwirbelzopf in einem Saugrohrkonus\n\n\n\n\n\n\n\n\nNote\n\n\n\nKavitation entsteht, wenn der Druck unter den Dampfdruck fällt. Es entsteht dann Wasserdampf. Der Wasserdampf implodiert in Gebieten mit höherem Druck und es entstehen dabei hohe Druckspitzen, die das Material schädigen können.\n\n\n\n\nOption 1\nNur daran interessiert, ob es kavitiert oder nicht.\n\nEinphasige Simulation\nBerechnungsdauer mit einem hochauflösendem Netz etwa ein Monat\n\n\n\nOption 2\nInteressiert an Kavitationsstrukturen, bzw. die Simulation der Instabilität, die nur bei Vorhandensein von Wasserdampf auftritt.\n\nZweiphasige Simuation mit Wasser und Wasserdampf\nBerechnungsdauer mit einem hochauflösendem Netz zwischen zwei und vier Monaten"
+  },
+  {
+    "objectID": "grundgleichungen.html#grundgleichungen-5",
+    "href": "grundgleichungen.html#grundgleichungen-5",
+    "title": "Grundgleichungen",
+    "section": "Grundgleichungen",
+    "text": "Grundgleichungen\n\nKlassifizierung nach verschiedenen Kriterien\n\nEigenschaften\n\n\n\ninstationär\nkompressibel\ndreidimensional\nreibungsbehaftet\ndrehungsbehaftet\nsupersonisch\n\n\n\nstationär\ninkompressibel\nzweidimensional\nreibungsfrei\ndrehungsfrei\nsubsonisch\n\n\n\n\n\nVereinfachungen\n\nNavier-Stokes: reibungsbehaftet und drehungsbehaftet\nEuler-Gleichungen: reibungsfrei aber drehungsbehaftet\nStokes-Gleichungen: Konvektion wird vernachlässigt aber reibungsbehaftet\nPotentialströmung: reibungsfrei und drehungsfrei\n\n\n\n\n\n\n\nNote\n\n\n\nDer Berechnungsaufwand für die Vereinfachungen nimmt von Navier-Stokes zu Potentialströmung in der Regel ab, da immer weniger Terme diskretisiert werden."
+  },
+  {
+    "objectID": "grundgleichungen.html#kontrollfragen",
+    "href": "grundgleichungen.html#kontrollfragen",
+    "title": "Grundgleichungen",
+    "section": "Kontrollfragen",
+    "text": "Kontrollfragen\n\nWelche Annahmen werden bei der Herleitung der Navier-Stokes-Gleichungen gemacht?\nWie lautet die Massenerhaltung in Worten?\nLeiten Sie die Massenerhaltung her.\nWie vereinfacht sich die Massenerhaltung für inkompressible Strömungen?\nAuf welchem Gesetz beruht die Impulserhaltung?\nWelche drei Kraftarten gehen in die Impulserhaltung ein?\nWelcher Zusammenhang steckt hinter der Annahme eines Newton‘schen Fluides?\nWie viele Gleichungen und Unbekannte sind in den kompressiblen Navier-Stokes-Gleichungen enthalten? Wie viele in den inkompressiblen?\nWelche Philosophie sollte bei der Modellierung berücksichtigt werden?"
   },
   {
     "objectID": "einfuehrung.html",
@@ -292,5 +698,82 @@
     "title": "Einführung",
     "section": "",
     "text": "Beispiel des Verlaufs der Anströmbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStarke Variation der lokalen Anströmrichtungen\nTurbinenverbund verblockt maßgeblich Kernströmung im Kanal"
+  },
+  {
+    "objectID": "versys.html",
+    "href": "versys.html",
+    "title": "Vereinfachte Systeme",
+    "section": "",
+    "text": "Navier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\pp{u}{t} - \\beta \\pp{^2u}{x^2} = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\pp{u}{t} + \\alpha \\pp{u}{x} = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\pp{u}{t} + u \\pp{u}{x} = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(u\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
+  },
+  {
+    "objectID": "versys.html#warum-und-welche",
+    "href": "versys.html#warum-und-welche",
+    "title": "Vereinfachte Systeme",
+    "section": "",
+    "text": "Navier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\pp{u}{t} - \\beta \\pp{^2u}{x^2} = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\pp{u}{t} + \\alpha \\pp{u}{x} = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\pp{u}{t} + u \\pp{u}{x} = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(u\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
+  },
+  {
+    "objectID": "versys.html#lösungen",
+    "href": "versys.html#lösungen",
+    "title": "Vereinfachte Systeme",
+    "section": "Lösungen",
+    "text": "Lösungen\nFür die drei vereinfachten Systeme wird als Anfangsbedingung \\(u(x,t=0) = e^{-40 (x-\\frac{1}{2})^2}\\) und eine periodische Randbedingung bei \\(x=0\\) und \\(x=1\\) verwendet.\n\n\nLineare Diffusion \\[\n\\pp{u}{t} = \\beta \\pp{^2u}{x^2} = 0 \\; \\text{mit} \\; \\beta = 1 \\frac{m^2}{s}\n\\]\n\n\n\n\n\n\n\n\n\n\nLineare Advektion\n\\[\n\\pp{u}{t} + \\alpha \\pp{u}{x} = 0 \\; \\text{mit} \\; \\alpha = 1 \\frac{m}{s}\n\\]\n\n\n\n\n\n\n\n\n\n\nBurgersgleichung\n\\[\n\\pp{u}{t} + u \\pp{u}{x} = 0\n\\]"
+  },
+  {
+    "objectID": "fdm.html",
+    "href": "fdm.html",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "",
+    "text": "Ziel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden konstant.\nZunächst\nStationäres Problem \\(\\rightarrow \\pp{}{t} = 0\\)"
+  },
+  {
+    "objectID": "fdm.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
+    "href": "fdm.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "",
+    "text": "Ziel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden konstant.\nZunächst\nStationäres Problem \\(\\rightarrow \\pp{}{t} = 0\\)"
+  },
+  {
+    "objectID": "fdm.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
+    "href": "fdm.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Vorgehensweise in der numerischen Strömungsmechanik",
+    "text": "Vorgehensweise in der numerischen Strömungsmechanik\n\nTechnisches Problem\nModellierung\nMathematische Beschreibung\nDiskretisierung\n\nRechengitter\nDiskretisierung mit Finite-Differenzen\nDiskretisierung für 1. und 2. Ableitung\nRandbedingungen\nForm des linearen Gleichungssystems\n\nNumerische Lösung\nVisualisierung\nAuswertung\nExpertise, Experimente\nValidierung der Ergebnisse"
+  },
+  {
+    "objectID": "fdm.html#diskretisierung",
+    "href": "fdm.html#diskretisierung",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Diskretisierung",
+    "text": "Diskretisierung\n\nAllgemeine Hinweise\n\nDie mathematischen Gleichungen können in der Regel nicht analytisch gelöst werden\n\nDaher Anwendung von numerischer Strömungsmechanik\n\nZur Anwendung numerischer Methoden ist eine diskrete Darstellung der Lösung erforderlich\n\nDie Lösung kann nicht an jeder Stelle des Rechengebiets berechnet werden\nDurch die diskrete Darstellung erhält man die Lösung in den diskreten Punkten\nDie diskreten Punkte sind durch das verwendete Rechengitter definiert, das für eine Strömungssimulation erstellt werden muss"
+  },
+  {
+    "objectID": "fdm.html#diskretisierung-1",
+    "href": "fdm.html#diskretisierung-1",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Diskretisierung",
+    "text": "Diskretisierung\n\nÜbliche Methoden und Anschauungsbeispiel\n\n\n\n\n\n\n\n\nÜbliche Diskretisierungsmethoden\n\nFinite-Differenzen-Methode\n\nAnschaulich\nIn diesem Kapitel der Vorlesung behandelt\n\nFinite-Volumen-Methode\n\nHäufig für CFD-Anwendungen, z.B. OpenFOAM, ANSYS Fluent, …\n\nFinite-Element-Methode\n\nUnüblich für CFD-Anwendungen\nNicht im Rahmen der Vorlesung behandelt\n\n\n\n\n\nDie Berechnung erfolgt basierend auf dem verwendeten Rechennetz\nDie Unbekannten werden entweder auf dem Schnittpunkt der Gitterlinien oder in der Zellmitte durchgeführt"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode",
+    "href": "fdm.html#finite-differenzen-methode",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nVorgehensweise\n\n\nErstellen des Rechengitters\n\nOrthogonales Netz\nNicht äquidistant\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAppproximation der Differentialquotienten durch Differenzenquotienten\n\nGenauigkeit der Approximation\n\n\n\\[\n\\pp{u}{x} = \\dd{u}{x} + \\text{Abbruchfehler} \\approx \\dd{u}{x}\n\\]\n\n\n\n\nAufstellen des Linearen Gleichungssystems\n\nBerücksichtigung von Randbedingungen\n\n\n\\[\n{\\tiny\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\n\n\n\nLösung\n\n\\[\n\\vec{\\phi}^{(n+1)} = f(\\phi^{(n)})\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-1",
+    "href": "fdm.html#finite-differenzen-methode-1",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nErstellen des Rechengitters (1/4)\nBeispiel: Betrachtung eines ein- und zweidimensionalen Berechnungsgebiets mit \\(N\\) und \\(N \\times M\\) Knoten\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIm Allgemeinen muss das Gitter strukturiert und rechtwinklig (kartesisch) sein."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-2",
+    "href": "fdm.html#finite-differenzen-methode-2",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nJe nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte \\(\\phi\\) die Ableitungen \\(\\pp{\\phi}{x}\\), \\(\\pp{^2 \\phi}{x^2}\\) und \\(\\pp{\\phi}{t}\\) benötigt.\nOrts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet\n\nBeispiel: Graphische Approximation für \\(\\pp{\\phi}{x}\\) an der Stelle \\(x=x_i\\)\n\n\n\n\n\n\n\n\n\n\n\\(\\pp{\\phi}{x}\\) (Vorwärtsdifferenz)\\(\\pp{\\phi}{x}\\) (Rückwärtsdifferenz)\\(\\pp{\\phi}{x}\\) (Zentrale Differenz)\\(\\ppnd{\\phi}{x}\\)\n\n\n\\(\\ppb{\\phi(x_i)}{x} = \\at{\\pp{\\phi}{x}}{x=x_i}\n=\n\\at{\\pp{\\phi}{x}}{i}\n\\approx\n\\at{\\dd{\\phi}{x}}{i}\n=\n\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i)}{(x_i + \\Delta x) - (x_i)}\n=\n\\fd{\\phi}{i+1}{i}{\\Delta x}\\)\n\n\n\\(\\ppb{\\phi(x_i)}{x} = \\at{\\pp{\\phi}{x}}{x=x_i}\n=\n\\at{\\pp{\\phi}{x}}{i}\n\\approx\n\\at{\\dd{\\phi}{x}}{i}\n=\n\\frac{\\phi(x_i) - \\phi(x_i - \\Delta x)}{(x_i) - (x_i - \\Delta x)}\n=\n\\fd{\\phi}{i}{i-1}{\\Delta x}\\)\n\n\n\\(\\ppb{\\phi(x_i)}{x} = \\at{\\pp{\\phi}{x}}{x=x_i}\n=\n\\at{\\pp{\\phi}{x}}{i}\n\\approx\n\\at{\\dd{\\phi}{x}}{i}\n=\n\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i - \\Delta x)}{(x_i + \\Delta x) - (x_i - \\Delta x)}\n=\n\\fd{\\phi}{i+1}{i-1}{2\\Delta x}\\)\n\n\n\\(\\ppndb{\\phi(x_i)}{x} = \\at{\\ppnd{\\phi}{x}}{x=x_i}\n=\n\\at{\\ppnd{\\phi}{x}}{i}\n=\n\\at{\\pp{}{x} \\left( \\pp{\\phi}{x} \\right)}{i}\n\\approx\n\\at{\\ddb{\\pp{\\phi}{x}}{x}}{i}\n=\n\\frac{1}{\\Delta x}\\left(\n\\fd{\\phi}{i+1}{i}{\\Delta x}\n-\n\\fd{\\phi}{i}{i-1}{\\Delta x}\n\\right)\\)"
   }
 ]

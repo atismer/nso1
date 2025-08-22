@@ -2,10 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://atismer.github.io/nso1/index.html</loc>
-    <lastmod>2025-04-25T14:26:02.407Z</lastmod>
+    <lastmod>2025-08-22T09:12:04.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://atismer.github.io/nso1/grundgleichungen.html</loc>
+    <lastmod>2025-08-22T09:12:04.842Z</lastmod>
   </url>
   <url>
     <loc>https://atismer.github.io/nso1/einfuehrung.html</loc>
-    <lastmod>2025-04-25T14:26:02.407Z</lastmod>
+    <lastmod>2025-08-22T09:12:04.841Z</lastmod>
+  </url>
+  <url>
+    <loc>https://atismer.github.io/nso1/versys.html</loc>
+    <lastmod>2025-08-22T09:12:04.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://atismer.github.io/nso1/fdm.html</loc>
+    <lastmod>2025-08-22T09:12:04.842Z</lastmod>
   </url>
 </urlset>
