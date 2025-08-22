@@ -2,3 +2,4 @@ matplotlib
 numpy
 jupyter
 ipympl
+finite_difference
