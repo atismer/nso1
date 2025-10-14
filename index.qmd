@@ -34,7 +34,7 @@ format:
     width: 1720
     height: 970
     auto-stretch: false
-#  html:
+    chalkboard: false
     mermaid:
       theme: neutral    
 bibliography: lit.bib
