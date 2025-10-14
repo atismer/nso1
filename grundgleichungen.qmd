@@ -56,23 +56,46 @@ Zur besseren Übersichtlichkeit werden Summenzeichen weggelassen und es wird
 über doppelt auftretende Indizes aufsummiert.
 
 a) Skalar (kein freier Index und damit eine Gleichung) 
-    i) $$
+    $$\begin{align}
        \pp{U_i}{x_j} \delta_{ij}
+       &=
+       \sum_{j=1}^3 \sum_{i=1}^3 \pp{U_i}{x_j} \delta_{ij}
        =
-       \sum_{i=1}^3 U_j \pp{U_i}{x_j}
-       =
-       U_1 \pp{U_i}{x_1} + U_2 \pp{U_i}{x_2} + U_3 \pp{U_i}{x_3}
-       $$
-    i) $$
-       \pp{U_i}{x_i}
-       = \sum_{i=1}^3 \pp{U_i}{x_i}
+       \sum_{j=1}^3
+       \left(
+         \pp{U_1}{x_j} \delta_{1j}
+         + 
+         \pp{U_2}{x_j} \delta_{2j}
+         +
+         \pp{U_3}{x_j} \delta_{3j}
+       \right)\\
+       &=
+       \pp{U_1}{x_1} \delta_{11}
+       + 
+       \pp{U_2}{x_1} \delta_{21}
+       +
+       \pp{U_3}{x_1} \delta_{31}
+       +
+       \pp{U_1}{x_2} \delta_{12}
+       + 
+       \pp{U_2}{x_2} \delta_{22}
+       +
+       \pp{U_3}{x_2} \delta_{32}
+       +
+       \pp{U_1}{x_3} \delta_{13}
+       + 
+       \pp{U_2}{x_3} \delta_{23}
+       +
+       \pp{U_3}{x_3} \delta_{33} \\
+      \pp{U_i}{x_i}
+       &= \sum_{i=1}^3 \pp{U_i}{x_i}
        = \pp{U_1}{x_1} + \pp{U_2}{x_2} + \pp{U_3}{x_3}
-       $$
+    \end{align}$$
 
 a) Vektor (1 freier Index und damit mehrere Gleichungen) 
     $$
      U_j \pp{U_i}{x_j}
-     = \sum_{i=1}^3 U_j \pp{U_i}{x_j}
+     = \sum_{j=1}^3 U_j \pp{U_i}{x_j}
      = U_1 \pp{U_i}{x_1} + U_2 \pp{U_i}{x_2} + U_3 \pp{U_i}{x_3}
     $$
 
@@ -89,7 +112,12 @@ Wie sieht der Ausdruck $U_j \left( \pp{U_i}{x_j} + \pp{U_j}{x_i} \right)$ ausges
 $$
 \begin{align}
 U_j \left( \pp{U_i}{x_j} + \pp{U_j}{x_i} \right) 
-&= \sum_{i=1}^3 \hla{U_j} \left( \pp{\hl{U_i}}{\hla{x_j}} + \pp{\hla{U_j}}{\hl{x_i}} \right) \\
+&= \sum_{j=1}^3 \hla{U_j} \left( 
+  \pp{\hl{U_i}}{\hla{x_j}} + \pp{\hla{U_j}}{\hl{x_i}} 
+\right) 
+= \sum_{j=1}^3 \left( 
+  \hla{U_j} \pp{\hl{U_i}}{\hla{x_j}} + \hla{U_j} \pp{\hla{U_j}}{\hl{x_i}} 
+\right) \\
 &= U_1 \left( \pp{\hl{U_i}}{x_1} + \pp{U_1}{\hl{x_i}} \right) 
   + U_2 \left( \pp{\hl{U_i}}{x_2} + \pp{U_2}{\hl{x_i}} \right) 
   + U_3 \left( \pp{\hl{U_i}}{x_3} + \pp{U_3}{\hl{x_i}} \right) \\
@@ -344,7 +372,7 @@ a_i
 = 
 \pp{u_i}{t} + \pp{u_i}{x_j} \underbrace{\der{x_j}{t}}_{=u_j}
 $$
-umgeschrieben und in die beiden Anteile lokal und kovektiv entsprechend
+umgeschrieben und in die beiden Anteile lokal und konvektiv entsprechend
 $$
 \der{u_i}{t}
 =
@@ -717,20 +745,21 @@ $$
 kommt die neue Unbekannte $T$ hinzu. Das Gleichungssystem wir dann durch die
 Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen
 dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, 
-Stoffgesetz und Energieleichung) für die 6 Unbekannten ($u$, $v$, $w$, $p$, 
+Stoffgesetz und Energiegleichung) für die 6 Unbekannten ($u$, $v$, $w$, $p$, 
 $\rho$ und $T$) zur Verfügung.
 
 ## Grundgleichungen
 ### Inkompressible newtonsche Fluide
 
 Unter Annahme von $\rho = const.$ wird die Massenerhaltung bzw. 
-Kontinuitätsgleichung umgeformt:
+Kontinuitätsgleichung
 $$
 \pp{\rho}{t} + \ppb{\rho u_i}{x_i} = 0 
 \rightarrow
 \pp{u_i}{x_i} = 0 
 $$
-umgeformt. Durch Einsetzen der Massenerhaltung in die Impulsgleichung
+umgeformt.
+Durch Einsetzen der Massenerhaltung in die Impulsgleichung
 $$
 \rho \left( 
   \pp{u_i}{t}
