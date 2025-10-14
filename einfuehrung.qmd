@@ -5,7 +5,7 @@
 ::: columns
 ::: {.column width="50%"}
 - Vorlesung
-  - [Alexander Tismer](https://www.ihs.uni-stuttgart.de/institut/team/Tismer/){preview-link="true" style="text-align: center"}
+  - [Alexander Tismer](https://www.ihs.uni-stuttgart.de/institut/team/Tismer/)
 
 - Übung
   - [Marco Zorn](https://www.ihs.uni-stuttgart.de/institut/team/Zorn/)
