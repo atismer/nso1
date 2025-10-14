@@ -6,8 +6,8 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Dr.-Ing. Alexander Tismer">
   <title>Numerische Strömungsmechanik  mit Optimierungsanwendung</title>
@@ -49,7 +49,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-77b067e3f7e02342f5525cde5e1e259e.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-ddc0db52ccb93cecd3e07a9cdd3f0e4f.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -174,7 +174,7 @@ Dr.-Ing. Alexander Tismer
 <ul>
 <li>Vorlesung
 <ul>
-<li><a href="https://www.ihs.uni-stuttgart.de/institut/team/Tismer/" data-preview-link="true" style="text-align: center">Alexander Tismer</a></li>
+<li><a href="https://www.ihs.uni-stuttgart.de/institut/team/Tismer/">Alexander Tismer</a></li>
 </ul></li>
 <li>Übung
 <ul>
@@ -1033,26 +1033,46 @@ u  \frac{\partial \phi}{\partial x}
 <h3 id="definition-und-beispiele">Definition und Beispiele</h3>
 <p>Zur besseren Übersichtlichkeit werden Summenzeichen weggelassen und es wird über doppelt auftretende Indizes aufsummiert.</p>
 <ol type="a">
-<li>Skalar (kein freier Index und damit eine Gleichung)
-<ol type="i">
-<li><span class="math display">\[
-\frac{\partial U_i}{\partial x_j}  \delta_{ij}
-=
-\sum_{i=1}^3 U_j  \frac{\partial U_i}{\partial x_j}
-=
-U_1  \frac{\partial U_i}{\partial x_1}  + U_2  \frac{\partial U_i}{\partial x_2}  + U_3  \frac{\partial U_i}{\partial x_3}
-\]</span></li>
-<li><span class="math display">\[
-\frac{\partial U_i}{\partial x_i}
-= \sum_{i=1}^3  \frac{\partial U_i}{\partial x_i}
-=  \frac{\partial U_1}{\partial x_1}  +  \frac{\partial U_2}{\partial x_2}  +  \frac{\partial U_3}{\partial x_3}
-\]</span></li>
-</ol></li>
-<li>Vektor (1 freier Index und damit mehrere Gleichungen) <span class="math display">\[
+<li><p>Skalar (kein freier Index und damit eine Gleichung) <span class="math display">\[\begin{align}
+     \frac{\partial U_i}{\partial x_j}  \delta_{ij}
+    &amp;=
+    \sum_{j=1}^3 \sum_{i=1}^3  \frac{\partial U_i}{\partial x_j}  \delta_{ij}
+    =
+    \sum_{j=1}^3
+    \left(
+       \frac{\partial U_1}{\partial x_j}  \delta_{1j}
+      +
+       \frac{\partial U_2}{\partial x_j}  \delta_{2j}
+      +
+       \frac{\partial U_3}{\partial x_j}  \delta_{3j}
+    \right)\\
+    &amp;=
+     \frac{\partial U_1}{\partial x_1}  \delta_{11}
+    +
+     \frac{\partial U_2}{\partial x_1}  \delta_{21}
+    +
+     \frac{\partial U_3}{\partial x_1}  \delta_{31}
+    +
+     \frac{\partial U_1}{\partial x_2}  \delta_{12}
+    +
+     \frac{\partial U_2}{\partial x_2}  \delta_{22}
+    +
+     \frac{\partial U_3}{\partial x_2}  \delta_{32}
+    +
+     \frac{\partial U_1}{\partial x_3}  \delta_{13}
+    +
+     \frac{\partial U_2}{\partial x_3}  \delta_{23}
+    +
+     \frac{\partial U_3}{\partial x_3}  \delta_{33} \\
+    \frac{\partial U_i}{\partial x_i}
+    &amp;= \sum_{i=1}^3  \frac{\partial U_i}{\partial x_i}
+    =  \frac{\partial U_1}{\partial x_1}  +  \frac{\partial U_2}{\partial x_2}  +  \frac{\partial U_3}{\partial x_3}
+\end{align}\]</span></p></li>
+<li><p>Vektor (1 freier Index und damit mehrere Gleichungen) <span class="math display">\[
   U_j  \frac{\partial U_i}{\partial x_j}
-  = \sum_{i=1}^3 U_j  \frac{\partial U_i}{\partial x_j}
+  = \sum_{j=1}^3 U_j  \frac{\partial U_i}{\partial x_j}
   = U_1  \frac{\partial U_i}{\partial x_1}  + U_2  \frac{\partial U_i}{\partial x_2}  + U_3  \frac{\partial U_i}{\partial x_3}
-\]</span></li>
+\]</span></p></li>
 </ol>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -1076,7 +1096,12 @@ U_1  \frac{\partial U_i}{\partial x_1}  + U_2  \frac{\partial U_i}{\partial x_2}
 <p><span class="math display">\[
 \begin{align}
 U_j \left(  \frac{\partial U_i}{\partial x_j}  +  \frac{\partial U_j}{\partial x_i}  \right)
-&amp;= \sum_{i=1}^3  \color{teal}{U_j}  \left(  \frac{\partial  \color{magenta}{U_i} }{\partial  \color{teal}{x_j} }  +  \frac{\partial  \color{teal}{U_j} }{\partial  \color{magenta}{x_i} }  \right) \\
+&amp;= \sum_{j=1}^3  \color{teal}{U_j}  \left(
+   \frac{\partial  \color{magenta}{U_i} }{\partial  \color{teal}{x_j} }  +  \frac{\partial  \color{teal}{U_j} }{\partial  \color{magenta}{x_i} }  
+\right)
+= \sum_{j=1}^3 \left(
+   \color{teal}{U_j}   \frac{\partial  \color{magenta}{U_i} }{\partial  \color{teal}{x_j} }  +  \color{teal}{U_j}   \frac{\partial  \color{teal}{U_j} }{\partial  \color{magenta}{x_i} }  
+\right) \\
 &amp;= U_1 \left(  \frac{\partial  \color{magenta}{U_i} }{\partial x_1}  +  \frac{\partial U_1}{\partial  \color{magenta}{x_i} }  \right)
   + U_2 \left(  \frac{\partial  \color{magenta}{U_i} }{\partial x_2}  +  \frac{\partial U_2}{\partial  \color{magenta}{x_i} }  \right)
   + U_3 \left(  \frac{\partial  \color{magenta}{U_i} }{\partial x_3}  +  \frac{\partial U_3}{\partial  \color{magenta}{x_i} }  \right) \\
@@ -1327,7 +1352,7 @@ du_i
 a_i
 =
 \frac{\partial u_i}{\partial t}  +  \frac{\partial u_i}{\partial x_j}  \underbrace{ \frac{d x_j}{d t} }_{=u_j}
-\]</span> umgeschrieben und in die beiden Anteile lokal und kovektiv entsprechend <span class="math display">\[
+\]</span> umgeschrieben und in die beiden Anteile lokal und konvektiv entsprechend <span class="math display">\[
 \frac{d u_i}{d t}
 =
 \underbrace{
@@ -1520,7 +1545,7 @@ m \;   \underline{a}  = m  \frac{d   \underline{u}  }{d t}  = \sum   \underline{
 </div>
 <div class="columns">
 <div class="column">
-<div id="6acfe250" class="cell" data-execution_count="1">
+<div id="4d994ace" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1530,7 +1555,7 @@ m \;   \underline{a}  = m  \frac{d   \underline{u}  }{d t}  = \sum   \underline{
 </div>
 </div>
 </div><div class="column">
-<div id="e5e0645c" class="cell" data-execution_count="2">
+<div id="e2a8e594" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1649,12 +1674,12 @@ m \;   \underline{a}  = m  \frac{d   \underline{u}  }{d t}  = \sum   \underline{
 </div>
 <p>Durch die Verwendung eines Stoffgesetzes, z.B. die ideale Gasgleichung <span class="math display">\[
 p = \rho R T \; \text{,}
-\]</span> kommt die neue Unbekannte <span class="math inline">\(T\)</span> hinzu. Das Gleichungssystem wir dann durch die Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, Stoffgesetz und Energieleichung) für die 6 Unbekannten (<span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(w\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(\rho\)</span> und <span class="math inline">\(T\)</span>) zur Verfügung.</p>
+\]</span> kommt die neue Unbekannte <span class="math inline">\(T\)</span> hinzu. Das Gleichungssystem wir dann durch die Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, Stoffgesetz und Energiegleichung) für die 6 Unbekannten (<span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(w\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(\rho\)</span> und <span class="math inline">\(T\)</span>) zur Verfügung.</p>
 </section>
 <section id="grundgleichungen-4" class="slide level2">
 <h2>Grundgleichungen</h2>
 <h3 id="inkompressible-newtonsche-fluide">Inkompressible newtonsche Fluide</h3>
-<p>Unter Annahme von <span class="math inline">\(\rho = const.\)</span> wird die Massenerhaltung bzw. Kontinuitätsgleichung umgeformt: <span class="math display">\[
+<p>Unter Annahme von <span class="math inline">\(\rho = const.\)</span> wird die Massenerhaltung bzw. Kontinuitätsgleichung <span class="math display">\[
 \frac{\partial \rho}{\partial t}  +  \frac{\partial \left( \rho u_i \right)}{\partial x_i}  = 0
 \rightarrow
 \frac{\partial u_i}{\partial x_i}  = 0
@@ -1848,7 +1873,7 @@ u_j  \frac{\partial u_i}{\partial x_j}
 <p><strong>Lineare Diffusion</strong> <span class="math display">\[
 \frac{\partial u}{\partial t}  = \beta  \frac{\partial ^2u}{\partial x^2}  = 0 \; \text{mit} \; \beta = 1 \frac{m^2}{s}
 \]</span></p>
-<div id="3dce8ae8" class="cell" data-message="false" data-execution_count="3">
+<div id="5eb9ac55" class="cell" data-message="false" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1862,7 +1887,7 @@ u_j  \frac{\partial u_i}{\partial x_j}
 <p><span class="math display">\[
 \frac{\partial u}{\partial t}  + \alpha  \frac{\partial u}{\partial x}  = 0 \; \text{mit} \; \alpha = 1 \frac{m}{s}
 \]</span></p>
-<div id="73b4f432" class="cell" data-message="false" data-execution_count="4">
+<div id="64757bcf" class="cell" data-message="false" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1876,7 +1901,7 @@ u_j  \frac{\partial u_i}{\partial x_j}
 <p><span class="math display">\[
 \frac{\partial u}{\partial t}  + u  \frac{\partial u}{\partial x}  = 0
 \]</span></p>
-<div id="6a9655b6" class="cell" data-message="false" data-execution_count="5">
+<div id="3f200fc8" class="cell" data-message="false" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -2003,7 +2028,7 @@ u_j  \frac{\partial u_i}{\partial x_j}
 <li>Nicht äquidistant</li>
 </ul>
 </div><div class="column">
-<div id="3b9897c0" class="cell" data-message="false" data-execution_count="6">
+<div id="146aa27a" class="cell" data-message="false" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -2073,7 +2098,7 @@ u_j  \frac{\partial u_i}{\partial x_j}
 <h2>Finite-Differenzen-Methode</h2>
 <h3 id="erstellen-des-rechengitters-14">Erstellen des Rechengitters (1/4)</h3>
 <p><strong>Beispiel:</strong> Betrachtung eines ein- und zweidimensionalen Berechnungsgebiets mit <span class="math inline">\(N\)</span> und <span class="math inline">\(N \times M\)</span> Knoten</p>
-<div id="306557f5" class="cell" data-message="false" data-execution_count="7">
+<div id="9cee2cdc" class="cell" data-message="false" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -2104,7 +2129,7 @@ u_j  \frac{\partial u_i}{\partial x_j}
 <li>Orts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet</li>
 </ul>
 <p><strong>Beispiel:</strong> Graphische Approximation für <span class="math inline">\( \frac{\partial \phi}{\partial x} \)</span> an der Stelle <span class="math inline">\(x=x_i\)</span></p>
-<div id="7f3cb0b8" class="cell" data-message="false" data-execution_count="8">
+<div id="b0523084" class="cell" data-message="false" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -2359,7 +2384,7 @@ u_j  \frac{\partial u_i}{\partial x_j}
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -2433,13 +2458,14 @@ u_j  \frac{\partial u_i}{\partial x_j}
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

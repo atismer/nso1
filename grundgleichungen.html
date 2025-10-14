@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -31,14 +31,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6ef52b30d4130b5a8a6bc02bcd7e7872.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -81,7 +82,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -167,26 +168,46 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="definition-und-beispiele">Definition und Beispiele</h3>
 <p>Zur besseren Übersichtlichkeit werden Summenzeichen weggelassen und es wird über doppelt auftretende Indizes aufsummiert.</p>
 <ol type="a">
-<li>Skalar (kein freier Index und damit eine Gleichung)
-<ol type="i">
-<li><span class="math display">\[
-\pp{U_i}{x_j} \delta_{ij}
-=
-\sum_{i=1}^3 U_j \pp{U_i}{x_j}
-=
-U_1 \pp{U_i}{x_1} + U_2 \pp{U_i}{x_2} + U_3 \pp{U_i}{x_3}
-\]</span></li>
-<li><span class="math display">\[
-\pp{U_i}{x_i}
-= \sum_{i=1}^3 \pp{U_i}{x_i}
-= \pp{U_1}{x_1} + \pp{U_2}{x_2} + \pp{U_3}{x_3}
-\]</span></li>
-</ol></li>
-<li>Vektor (1 freier Index und damit mehrere Gleichungen) <span class="math display">\[
+<li><p>Skalar (kein freier Index und damit eine Gleichung) <span class="math display">\[\begin{align}
+    \pp{U_i}{x_j} \delta_{ij}
+    &amp;=
+    \sum_{j=1}^3 \sum_{i=1}^3 \pp{U_i}{x_j} \delta_{ij}
+    =
+    \sum_{j=1}^3
+    \left(
+      \pp{U_1}{x_j} \delta_{1j}
+      +
+      \pp{U_2}{x_j} \delta_{2j}
+      +
+      \pp{U_3}{x_j} \delta_{3j}
+    \right)\\
+    &amp;=
+    \pp{U_1}{x_1} \delta_{11}
+    +
+    \pp{U_2}{x_1} \delta_{21}
+    +
+    \pp{U_3}{x_1} \delta_{31}
+    +
+    \pp{U_1}{x_2} \delta_{12}
+    +
+    \pp{U_2}{x_2} \delta_{22}
+    +
+    \pp{U_3}{x_2} \delta_{32}
+    +
+    \pp{U_1}{x_3} \delta_{13}
+    +
+    \pp{U_2}{x_3} \delta_{23}
+    +
+    \pp{U_3}{x_3} \delta_{33} \\
+   \pp{U_i}{x_i}
+    &amp;= \sum_{i=1}^3 \pp{U_i}{x_i}
+    = \pp{U_1}{x_1} + \pp{U_2}{x_2} + \pp{U_3}{x_3}
+\end{align}\]</span></p></li>
+<li><p>Vektor (1 freier Index und damit mehrere Gleichungen) <span class="math display">\[
   U_j \pp{U_i}{x_j}
-  = \sum_{i=1}^3 U_j \pp{U_i}{x_j}
+  = \sum_{j=1}^3 U_j \pp{U_i}{x_j}
   = U_1 \pp{U_i}{x_1} + U_2 \pp{U_i}{x_2} + U_3 \pp{U_i}{x_3}
-\]</span></li>
+\]</span></p></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -212,7 +233,12 @@ Note
 <p><span class="math display">\[
 \begin{align}
 U_j \left( \pp{U_i}{x_j} + \pp{U_j}{x_i} \right)
-&amp;= \sum_{i=1}^3 \hla{U_j} \left( \pp{\hl{U_i}}{\hla{x_j}} + \pp{\hla{U_j}}{\hl{x_i}} \right) \\
+&amp;= \sum_{j=1}^3 \hla{U_j} \left(
+  \pp{\hl{U_i}}{\hla{x_j}} + \pp{\hla{U_j}}{\hl{x_i}}
+\right)
+= \sum_{j=1}^3 \left(
+  \hla{U_j} \pp{\hl{U_i}}{\hla{x_j}} + \hla{U_j} \pp{\hla{U_j}}{\hl{x_i}}
+\right) \\
 &amp;= U_1 \left( \pp{\hl{U_i}}{x_1} + \pp{U_1}{\hl{x_i}} \right)
   + U_2 \left( \pp{\hl{U_i}}{x_2} + \pp{U_2}{\hl{x_i}} \right)
   + U_3 \left( \pp{\hl{U_i}}{x_3} + \pp{U_3}{\hl{x_i}} \right) \\
@@ -295,7 +321,7 @@ Note
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Vorüberlegungen am Kontrollvolumen
+<span class="screen-reader-only">Note</span>Vorüberlegungen am Kontrollvolumen
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -485,7 +511,7 @@ du_i
 a_i
 =
 \pp{u_i}{t} + \pp{u_i}{x_j} \underbrace{\der{x_j}{t}}_{=u_j}
-\]</span> umgeschrieben und in die beiden Anteile lokal und kovektiv entsprechend <span class="math display">\[
+\]</span> umgeschrieben und in die beiden Anteile lokal und konvektiv entsprechend <span class="math display">\[
 \der{u_i}{t}
 =
 \underbrace{
@@ -694,7 +720,7 @@ Note
 </div>
 <div class="columns">
 <div class="column">
-<div id="984327ee" class="cell" data-execution_count="1">
+<div id="a5da83cf" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stderr">
 <pre><code>findfont: Font family 'xkcd' not found.
 findfont: Font family 'xkcd Script' not found.
@@ -816,7 +842,7 @@ findfont: Font family 'Comic Sans MS' not found.</code></pre>
 </div>
 </div>
 </div><div class="column">
-<div id="580cc1a0" class="cell" data-execution_count="2">
+<div id="c96002c3" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stderr">
 <pre><code>findfont: Font family 'xkcd' not found.
 findfont: Font family 'xkcd Script' not found.
@@ -954,14 +980,14 @@ Note
 </div>
 <p>Durch die Verwendung eines Stoffgesetzes, z.B. die ideale Gasgleichung <span class="math display">\[
 p = \rho R T \; \text{,}
-\]</span> kommt die neue Unbekannte <span class="math inline">\(T\)</span> hinzu. Das Gleichungssystem wir dann durch die Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, Stoffgesetz und Energieleichung) für die 6 Unbekannten (<span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(w\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(\rho\)</span> und <span class="math inline">\(T\)</span>) zur Verfügung.</p>
+\]</span> kommt die neue Unbekannte <span class="math inline">\(T\)</span> hinzu. Das Gleichungssystem wir dann durch die Energiegleichung, die keine weitere Unbekannte enhält, geschlossen. Es stehen dann 6 Gleichungen (Massenerhaltung, Impulserhaltung in drei Richtungen, Stoffgesetz und Energiegleichung) für die 6 Unbekannten (<span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(w\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(\rho\)</span> und <span class="math inline">\(T\)</span>) zur Verfügung.</p>
 </section>
 </section>
 <section id="grundgleichungen-2" class="level2">
 <h2 class="anchored" data-anchor-id="grundgleichungen-2">Grundgleichungen</h2>
 <section id="inkompressible-newtonsche-fluide" class="level3">
 <h3 class="anchored" data-anchor-id="inkompressible-newtonsche-fluide">Inkompressible newtonsche Fluide</h3>
-<p>Unter Annahme von <span class="math inline">\(\rho = const.\)</span> wird die Massenerhaltung bzw. Kontinuitätsgleichung umgeformt: <span class="math display">\[
+<p>Unter Annahme von <span class="math inline">\(\rho = const.\)</span> wird die Massenerhaltung bzw. Kontinuitätsgleichung <span class="math display">\[
 \pp{\rho}{t} + \ppb{\rho u_i}{x_i} = 0
 \rightarrow
 \pp{u_i}{x_i} = 0
@@ -1192,13 +1218,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
