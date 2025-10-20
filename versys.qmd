@@ -18,7 +18,7 @@ Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen
 "treibenden" Gradienten mehr gibt.
 
 $$
-\pp{u}{t} - \beta \pp{^2u}{x^2} = 0
+\pp{\phi}{t} - \beta \pp{^2\phi}{x^2} = 0
 $$
 :::
 :::{.column width="33%"}
@@ -29,7 +29,7 @@ Anstieg der Temperatur, mit der Strömung transportiert. Die Störung "folgt"
 also einfach der Strömung.
 
 $$
-\pp{u}{t} + \alpha \pp{u}{x} = 0
+\pp{\phi}{t} + \alpha \pp{\phi}{x} = 0
 $$
 :::
 :::{.column width="33%"}
@@ -41,26 +41,26 @@ Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen
 entfernt.
 
 $$
-\pp{u}{t} + u \pp{u}{x} = 0
+\pp{\phi}{t} + \phi \pp{\phi}{x} = 0
 $$
 
 Die Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die 
-Geschwindigkeit $\alpha$ der Lösung $u$ an der jeweiligen Stelle. Das Verhalten
-der Burgersgleichung ist also ähnlich zur linearen Advektion.
+Geschwindigkeit $\alpha$ der Lösung $\phi$ an der jeweiligen Stelle. Das 
+Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion.
 :::
 ::::
 
 ## Lösungen
 
 Für die drei vereinfachten Systeme wird als 
-Anfangsbedingung $u(x,t=0) = e^{-40 (x-\frac{1}{2})^2}$ und eine periodische
+Anfangsbedingung $\phi(x,t=0) = e^{-40 (x-\frac{1}{2})^2}$ und eine periodische
 Randbedingung bei $x=0$ und $x=1$ verwendet.
 
 ::::columns
 :::{.column width="33%"}
 **Lineare Diffusion**
 $$
-\pp{u}{t} = \beta \pp{^2u}{x^2} = 0 \; \text{mit} \; \beta = 1 \frac{m^2}{s}
+\pp{\phi}{t} = \beta \pp{^2\phi}{x^2} = 0 \; \text{mit} \; \beta = 1
 $$
 ```{python}
 #| echo: false
@@ -112,7 +112,7 @@ a = ax.set_yticklabels(yticklabels)
 **Lineare Advektion**
 
 $$
-\pp{u}{t} + \alpha \pp{u}{x} = 0 \; \text{mit} \; \alpha = 1 \frac{m}{s}
+\pp{\phi}{t} + \alpha \pp{\phi}{x} = 0 \; \text{mit} \; \alpha = 1
 $$
 ```{python}
 #| echo: false
@@ -164,7 +164,7 @@ a = ax.set_yticklabels(yticklabels)
 **Burgersgleichung**
 
 $$
-\pp{u}{t} + u \pp{u}{x} = 0
+\pp{\phi}{t} + \phi \pp{\phi}{x} = 0
 $$
 ```{python}
 #| echo: false
