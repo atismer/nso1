@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2d5effa1089c490eac5c05282fa1a5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -141,33 +141,33 @@ window.Quarto = {
 <p><strong>Lineare Diffusion</strong></p>
 <p>Eine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.</p>
 <p><span class="math display">\[
-\pp{u}{t} - \beta \pp{^2u}{x^2} = 0
+\pp{\phi}{t} - \beta \pp{^2\phi}{x^2} = 0
 \]</span></p>
 </div><div class="column" style="width:33%;">
 <p><strong>Lineare Advektion</strong></p>
 <p>In einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.</p>
 <p><span class="math display">\[
-\pp{u}{t} + \alpha \pp{u}{x} = 0
+\pp{\phi}{t} + \alpha \pp{\phi}{x} = 0
 \]</span></p>
 </div><div class="column" style="width:33%;">
 <p><strong>Burgersgleichung</strong></p>
 <p>Zur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.</p>
 <p><span class="math display">\[
-\pp{u}{t} + u \pp{u}{x} = 0
+\pp{\phi}{t} + \phi \pp{\phi}{x} = 0
 \]</span></p>
-<p>Die Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit <span class="math inline">\(\alpha\)</span> der Lösung <span class="math inline">\(u\)</span> an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion.</p>
+<p>Die Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit <span class="math inline">\(\alpha\)</span> der Lösung <span class="math inline">\(\phi\)</span> an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion.</p>
 </div>
 </div>
 </section>
 <section id="lösungen" class="level2">
 <h2 class="anchored" data-anchor-id="lösungen">Lösungen</h2>
-<p>Für die drei vereinfachten Systeme wird als Anfangsbedingung <span class="math inline">\(u(x,t=0) = e^{-40 (x-\frac{1}{2})^2}\)</span> und eine periodische Randbedingung bei <span class="math inline">\(x=0\)</span> und <span class="math inline">\(x=1\)</span> verwendet.</p>
+<p>Für die drei vereinfachten Systeme wird als Anfangsbedingung <span class="math inline">\(\phi(x,t=0) = e^{-40 (x-\frac{1}{2})^2}\)</span> und eine periodische Randbedingung bei <span class="math inline">\(x=0\)</span> und <span class="math inline">\(x=1\)</span> verwendet.</p>
 <div class="columns">
 <div class="column" style="width:33%;">
 <p><strong>Lineare Diffusion</strong> <span class="math display">\[
-\pp{u}{t} = \beta \pp{^2u}{x^2} = 0 \; \text{mit} \; \beta = 1 \frac{m^2}{s}
+\pp{\phi}{t} = \beta \pp{^2\phi}{x^2} = 0 \; \text{mit} \; \beta = 1
 \]</span></p>
-<div id="3da231ea" class="cell" data-message="false" data-execution_count="1">
+<div id="ce0d3d79" class="cell" data-message="false" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -179,9 +179,9 @@ window.Quarto = {
 </div><div class="column" style="width:33%;">
 <p><strong>Lineare Advektion</strong></p>
 <p><span class="math display">\[
-\pp{u}{t} + \alpha \pp{u}{x} = 0 \; \text{mit} \; \alpha = 1 \frac{m}{s}
+\pp{\phi}{t} + \alpha \pp{\phi}{x} = 0 \; \text{mit} \; \alpha = 1
 \]</span></p>
-<div id="048f2f77" class="cell" data-message="false" data-execution_count="2">
+<div id="7c9d9042" class="cell" data-message="false" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -193,9 +193,9 @@ window.Quarto = {
 </div><div class="column" style="width:33%;">
 <p><strong>Burgersgleichung</strong></p>
 <p><span class="math display">\[
-\pp{u}{t} + u \pp{u}{x} = 0
+\pp{\phi}{t} + \phi \pp{\phi}{x} = 0
 \]</span></p>
-<div id="57b52975" class="cell" data-message="false" data-execution_count="3">
+<div id="d1d89b0b" class="cell" data-message="false" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

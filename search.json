@@ -1,5 +1,495 @@
 [
   {
+    "objectID": "einfuehrung.html",
+    "href": "einfuehrung.html",
+    "title": "Einführung",
+    "section": "",
+    "text": "Vorlesung\n\nAlexander Tismer\n\nÜbung\n\nMarco Zorn\n\nSprechstunde\n\nTermine nach Vereinbarung\n\nPrüfung mündlich 40 Minuten\n\nTermine nach Vereinbarung\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nEinführung\n1\n\n\nGrundgleichungen\n2\n\n\nOrtsdiskretisierung FDM\n3/4\n\n\nTurbulenz\n5/6\n\n\nZeitdiskretisierung FDM\n7\n\n\nFVM\n8/9\n\n\nTurbomaschinen\n10\n\n\nGeometrie\n11\n\n\nVernetzung\n12\n\n\nOptimierung\n13/14\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nOrtsdiskretisierung (H)\n1\n\n\nZeitdiskretisierung (H)\n2\n\n\nEinführung (CFX)\n3\n\n\nBackward-Facing-Step (CFX)\n4\n\n\nRechnerübungen\n5/6\n\n\nSimulation Turbine (CFX)\n7\n\n\nRechnerübungen\n8/9\n\n\nVernetzung (H)\n10\n\n\nOptimierung\n11/12\n\n\n\n\n\n10 Vorlesungen in 14 x 90 Minuten und 9 Übungen in 12 x 90 Minuten 1 x Institutsbesichtigung und 2 x Offene Sprechstunde\n\n\n\n\nFerziger, J. H.; Peric, M.; “Numerische Strömungsmechanik”; Springer-Verlag, 2008\nLaurien, E.; Örtel, H.; “Numerische Strömungsmechanik”; Vieweg-Verlag, 2010\nPope, S. B.; “Turbulent Flows”; Cambridge Univ. Pr., 2006\nMoukalled, F.; Mangani, L.; Darwish, M.; “The Finite Volume Method in Computational Fluid Dynamics”; Springer, 2016\nWeicker, K.; “Evolutionäre Algorithmen”; Springer Vieweg, 2015\n\n\n\n\n\n\nRahmenbedingungen\n\nBestehende Anlage\nSaugrohr fix (Änderung sehr teuer)\nKontour von Nabe und Kranz fix\n\nZiel\n\nMöglichst hoher Wirkungsgrad unter Einhaltung der Auslegungsdaten\n\n\n\n\n@junginger_2016\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInkompressible Wasserströmung mit kinematischer Viskosität \\(\\nu = 10^{-6}\\)\nRohrturbine mit z.B. \\(D = 4m\\) Durchmesser und einer Zuströmgeschwindigkeit von \\(v=1\\frac{m}{s}\\) und damit hohen \\(Re\\)-Zahlen bzw. turbulenter Strömung\nSteigender Druckgradient\nVernetzung des Strömungsgebiets\nStehende und rotierende Gebiete müssen berechnet und gekoppelt werden\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAuslegung der Maschine auf Blattschnitten\nDefinition von Freiheitsgraden zur Veränderung der Geometrie\nErzeugung der dreidimensionalen Geometrie durch Verbinden von Kurven\nVerwendung von nicht-uniformen, rationalen B-Splines (NURBS)\n\n\n\n\n\nBeschreibung von Strömungen durch Navier-Stokes-Gleichungen:\n\n\n\\[\n\\begin{aligned}\n  \\frac{\\partial{}}{\\partial{t}} \\underline{u} +\n  \\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)\n  & =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\\[\n\\begin{aligned}\n  \\color{blue}{\\frac{\\partial{}}{\\partial{t}} \\underline{u}} +\n  \\color{orange}{\\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)}\n  & =\n  \\color{magenta}{\\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)} -\n  \\color{green}{\\frac{1}{\\rho} \\nabla p}\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\nUnbekannte \\(\\phi\\) bzw. \\(\\underline{u}\\) und \\(\\underline{p}\\) sind kontinuierliche Felder (Kontinuumsmechanik)\nNumerik löst partielle Differentialgleichungen an diskreten Stellen (Gitter)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEindimensionales Konvektions-Diffusions-Problem \\(u\\pp{\\phi}{x} = \\Gamma \\pp{}{x}\\pp{\\phi}{x}\\) mit \\(u,\\Gamma=\\mathrm{const}\\)\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n  \\hide{\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n  \\hide{\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n\\end{aligned}}\n\\]\n\n\n\n\nDifferential\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem \\(\\rightarrow\\) lineare Approximation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\n\\]\n\n\n\n\n\n\n\nFVM liefert \\[{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\\]\n\nKoeffizienten für die \\(m\\)-te Zeile\nAnaloges Aufstellen für alle anderen Auswertestellen liefern das lineare Gleichungssystem\n\n\\[\n{\\scriptsize\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\nMatrix hat für den gezeigten Fall eine Bandstruktur\nMatrix ist fast immer schwachbesetzt und die Besetzungsstruktur ist abhängig vom verwendeten Berechnungsgitter\n\n\n\n\n\n\n\n\n\n\n@krappel_2020\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n  \\pp{}{t} \\uv +\n  \\underbrace{\n    \\uv \\cdot \\left( \\nabla \\cdot \\uv \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert.\n\n\n\n\n\n\n\n\n\n\n@Tismer_2020\n\n\n\n\n\n\n\nLeistungsschwankungen der Turbine verursacht durch die Trifurkation\n\n\n\n\n\n\n\n\n\n\n\nInstationärer Wirbel innerhalt der Trifurkation\n\n\n\n\n\n\n\n\n\n\n\nLösung: Einbau von Blechen\n\n\n\n\n\n\n\n\n\n\n\nAnderes Kraftwerk, aber gleiches Problem?\n\n\n\n\n\n\n\n\n\n\n\n\n\nOriginal\n\n\n\n\n\nModifikation\n\n\n\n\n\n\nDer Einbau von Blechen in der Trifurkation reduziert das instationäre Verhalten des Wirbels @Kirschner_2019\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeometriedaten aus geometrischem Informationssystem (GIS)\nKopplung von TPXO für Randbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTheoretisches Potential\n\n\n\n\n\n\nKanalverblockung\n\n\nTechnisches Potential\n\n\n\n\n\n\nVerblockung nutzbare Fläche\n\n\nRealistisches Potential\n\n\n\n\n\n\nPlatzierung einzelner Turbinen\nBerücksichtigung der Hauptströmungsrichtungen\nFernfeldeinfluss mit Nachlaufschatten\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeitlicher Verlauf der Strömungsrichtung und zwei Strömungsfelder in unterschiedlichen Zeitschritten\n\n\n\n\n\n\n\nBeispiel des Verlaufs der Anströmbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStarke Variation der lokalen Anströmrichtungen\nTurbinenverbund verblockt maßgeblich Kernströmung im Kanal"
+  },
+  {
+    "objectID": "einfuehrung.html#organisation",
+    "href": "einfuehrung.html#organisation",
+    "title": "Einführung",
+    "section": "",
+    "text": "Vorlesung\n\nAlexander Tismer\n\nÜbung\n\nMarco Zorn\n\nSprechstunde\n\nTermine nach Vereinbarung\n\nPrüfung mündlich 40 Minuten\n\nTermine nach Vereinbarung"
+  },
+  {
+    "objectID": "einfuehrung.html#zeitplan",
+    "href": "einfuehrung.html#zeitplan",
+    "title": "Einführung",
+    "section": "",
+    "text": "Thema\n\n\n\n\n\nEinführung\n1\n\n\nGrundgleichungen\n2\n\n\nOrtsdiskretisierung FDM\n3/4\n\n\nTurbulenz\n5/6\n\n\nZeitdiskretisierung FDM\n7\n\n\nFVM\n8/9\n\n\nTurbomaschinen\n10\n\n\nGeometrie\n11\n\n\nVernetzung\n12\n\n\nOptimierung\n13/14\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nOrtsdiskretisierung (H)\n1\n\n\nZeitdiskretisierung (H)\n2\n\n\nEinführung (CFX)\n3\n\n\nBackward-Facing-Step (CFX)\n4\n\n\nRechnerübungen\n5/6\n\n\nSimulation Turbine (CFX)\n7\n\n\nRechnerübungen\n8/9\n\n\nVernetzung (H)\n10\n\n\nOptimierung\n11/12\n\n\n\n\n\n10 Vorlesungen in 14 x 90 Minuten und 9 Übungen in 12 x 90 Minuten 1 x Institutsbesichtigung und 2 x Offene Sprechstunde"
+  },
+  {
+    "objectID": "einfuehrung.html#literatur",
+    "href": "einfuehrung.html#literatur",
+    "title": "Einführung",
+    "section": "",
+    "text": "Ferziger, J. H.; Peric, M.; “Numerische Strömungsmechanik”; Springer-Verlag, 2008\nLaurien, E.; Örtel, H.; “Numerische Strömungsmechanik”; Vieweg-Verlag, 2010\nPope, S. B.; “Turbulent Flows”; Cambridge Univ. Pr., 2006\nMoukalled, F.; Mangani, L.; Darwish, M.; “The Finite Volume Method in Computational Fluid Dynamics”; Springer, 2016\nWeicker, K.; “Evolutionäre Algorithmen”; Springer Vieweg, 2015"
+  },
+  {
+    "objectID": "einfuehrung.html#hydraulische-maschine",
+    "href": "einfuehrung.html#hydraulische-maschine",
+    "title": "Einführung",
+    "section": "",
+    "text": "Rahmenbedingungen\n\nBestehende Anlage\nSaugrohr fix (Änderung sehr teuer)\nKontour von Nabe und Kranz fix\n\nZiel\n\nMöglichst hoher Wirkungsgrad unter Einhaltung der Auslegungsdaten\n\n\n\n\n@junginger_2016"
+  },
+  {
+    "objectID": "einfuehrung.html#hydraulische-maschine-1",
+    "href": "einfuehrung.html#hydraulische-maschine-1",
+    "title": "Einführung",
+    "section": "",
+    "text": "Inkompressible Wasserströmung mit kinematischer Viskosität \\(\\nu = 10^{-6}\\)\nRohrturbine mit z.B. \\(D = 4m\\) Durchmesser und einer Zuströmgeschwindigkeit von \\(v=1\\frac{m}{s}\\) und damit hohen \\(Re\\)-Zahlen bzw. turbulenter Strömung\nSteigender Druckgradient\nVernetzung des Strömungsgebiets\nStehende und rotierende Gebiete müssen berechnet und gekoppelt werden"
+  },
+  {
+    "objectID": "einfuehrung.html#hydraulische-maschine-2",
+    "href": "einfuehrung.html#hydraulische-maschine-2",
+    "title": "Einführung",
+    "section": "",
+    "text": "Auslegung der Maschine auf Blattschnitten\nDefinition von Freiheitsgraden zur Veränderung der Geometrie\nErzeugung der dreidimensionalen Geometrie durch Verbinden von Kurven\nVerwendung von nicht-uniformen, rationalen B-Splines (NURBS)"
+  },
+  {
+    "objectID": "einfuehrung.html#grundgleichungen",
+    "href": "einfuehrung.html#grundgleichungen",
+    "title": "Einführung",
+    "section": "",
+    "text": "Beschreibung von Strömungen durch Navier-Stokes-Gleichungen:\n\n\n\\[\n\\begin{aligned}\n  \\frac{\\partial{}}{\\partial{t}} \\underline{u} +\n  \\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)\n  & =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\\[\n\\begin{aligned}\n  \\color{blue}{\\frac{\\partial{}}{\\partial{t}} \\underline{u}} +\n  \\color{orange}{\\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)}\n  & =\n  \\color{magenta}{\\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)} -\n  \\color{green}{\\frac{1}{\\rho} \\nabla p}\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\nUnbekannte \\(\\phi\\) bzw. \\(\\underline{u}\\) und \\(\\underline{p}\\) sind kontinuierliche Felder (Kontinuumsmechanik)\nNumerik löst partielle Differentialgleichungen an diskreten Stellen (Gitter)"
+  },
+  {
+    "objectID": "einfuehrung.html#finite-volumen-methode",
+    "href": "einfuehrung.html#finite-volumen-methode",
+    "title": "Einführung",
+    "section": "",
+    "text": "Eindimensionales Konvektions-Diffusions-Problem \\(u\\pp{\\phi}{x} = \\Gamma \\pp{}{x}\\pp{\\phi}{x}\\) mit \\(u,\\Gamma=\\mathrm{const}\\)\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n  \\hide{\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n  \\hide{\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n\\end{aligned}}\n\\]\n\n\n\n\nDifferential\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem \\(\\rightarrow\\) lineare Approximation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\n\\]"
+  },
+  {
+    "objectID": "einfuehrung.html#finite-volumen-methode-1",
+    "href": "einfuehrung.html#finite-volumen-methode-1",
+    "title": "Einführung",
+    "section": "",
+    "text": "FVM liefert \\[{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\\]\n\nKoeffizienten für die \\(m\\)-te Zeile\nAnaloges Aufstellen für alle anderen Auswertestellen liefern das lineare Gleichungssystem\n\n\\[\n{\\scriptsize\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\nMatrix hat für den gezeigten Fall eine Bandstruktur\nMatrix ist fast immer schwachbesetzt und die Besetzungsstruktur ist abhängig vom verwendeten Berechnungsgitter"
+  },
+  {
+    "objectID": "einfuehrung.html#turbulenzmodellierung",
+    "href": "einfuehrung.html#turbulenzmodellierung",
+    "title": "Einführung",
+    "section": "",
+    "text": "@krappel_2020\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n  \\pp{}{t} \\uv +\n  \\underbrace{\n    \\uv \\cdot \\left( \\nabla \\cdot \\uv \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert."
+  },
+  {
+    "objectID": "einfuehrung.html#evolutionäre-optimierung",
+    "href": "einfuehrung.html#evolutionäre-optimierung",
+    "title": "Einführung",
+    "section": "",
+    "text": "@Tismer_2020"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung",
+    "href": "einfuehrung.html#anwendung",
+    "title": "Einführung",
+    "section": "",
+    "text": "Leistungsschwankungen der Turbine verursacht durch die Trifurkation"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-1",
+    "href": "einfuehrung.html#anwendung-1",
+    "title": "Einführung",
+    "section": "",
+    "text": "Instationärer Wirbel innerhalt der Trifurkation"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-2",
+    "href": "einfuehrung.html#anwendung-2",
+    "title": "Einführung",
+    "section": "",
+    "text": "Lösung: Einbau von Blechen"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-3",
+    "href": "einfuehrung.html#anwendung-3",
+    "title": "Einführung",
+    "section": "",
+    "text": "Anderes Kraftwerk, aber gleiches Problem?"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-4",
+    "href": "einfuehrung.html#anwendung-4",
+    "title": "Einführung",
+    "section": "",
+    "text": "Original\n\n\n\n\n\nModifikation\n\n\n\n\n\n\nDer Einbau von Blechen in der Trifurkation reduziert das instationäre Verhalten des Wirbels @Kirschner_2019"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-5",
+    "href": "einfuehrung.html#anwendung-5",
+    "title": "Einführung",
+    "section": "",
+    "text": "Geometriedaten aus geometrischem Informationssystem (GIS)\nKopplung von TPXO für Randbedingungen"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-6",
+    "href": "einfuehrung.html#anwendung-6",
+    "title": "Einführung",
+    "section": "",
+    "text": "Theoretisches Potential\n\n\n\n\n\n\nKanalverblockung\n\n\nTechnisches Potential\n\n\n\n\n\n\nVerblockung nutzbare Fläche\n\n\nRealistisches Potential\n\n\n\n\n\n\nPlatzierung einzelner Turbinen\nBerücksichtigung der Hauptströmungsrichtungen\nFernfeldeinfluss mit Nachlaufschatten"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-7",
+    "href": "einfuehrung.html#anwendung-7",
+    "title": "Einführung",
+    "section": "",
+    "text": "Zeitlicher Verlauf der Strömungsrichtung und zwei Strömungsfelder in unterschiedlichen Zeitschritten"
+  },
+  {
+    "objectID": "einfuehrung.html#anwendung-8",
+    "href": "einfuehrung.html#anwendung-8",
+    "title": "Einführung",
+    "section": "",
+    "text": "Beispiel des Verlaufs der Anströmbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStarke Variation der lokalen Anströmrichtungen\nTurbinenverbund verblockt maßgeblich Kernströmung im Kanal"
+  },
+  {
+    "objectID": "versys.html",
+    "href": "versys.html",
+    "title": "Vereinfachte Systeme",
+    "section": "",
+    "text": "Navier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\pp{\\phi}{t} - \\beta \\pp{^2\\phi}{x^2} = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\pp{\\phi}{t} + \\alpha \\pp{\\phi}{x} = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\pp{\\phi}{t} + \\phi \\pp{\\phi}{x} = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(\\phi\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
+  },
+  {
+    "objectID": "versys.html#warum-und-welche",
+    "href": "versys.html#warum-und-welche",
+    "title": "Vereinfachte Systeme",
+    "section": "",
+    "text": "Navier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\pp{\\phi}{t} - \\beta \\pp{^2\\phi}{x^2} = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\pp{\\phi}{t} + \\alpha \\pp{\\phi}{x} = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\pp{\\phi}{t} + \\phi \\pp{\\phi}{x} = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(\\phi\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
+  },
+  {
+    "objectID": "versys.html#lösungen",
+    "href": "versys.html#lösungen",
+    "title": "Vereinfachte Systeme",
+    "section": "Lösungen",
+    "text": "Lösungen\nFür die drei vereinfachten Systeme wird als Anfangsbedingung \\(\\phi(x,t=0) = e^{-40 (x-\\frac{1}{2})^2}\\) und eine periodische Randbedingung bei \\(x=0\\) und \\(x=1\\) verwendet.\n\n\nLineare Diffusion \\[\n\\pp{\\phi}{t} = \\beta \\pp{^2\\phi}{x^2} = 0 \\; \\text{mit} \\; \\beta = 1\n\\]\n\n\n\n\n\n\n\n\n\n\nLineare Advektion\n\\[\n\\pp{\\phi}{t} + \\alpha \\pp{\\phi}{x} = 0 \\; \\text{mit} \\; \\alpha = 1\n\\]\n\n\n\n\n\n\n\n\n\n\nBurgersgleichung\n\\[\n\\pp{\\phi}{t} + \\phi \\pp{\\phi}{x} = 0\n\\]"
+  },
+  {
+    "objectID": "fdm.html",
+    "href": "fdm.html",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "",
+    "text": "Ziel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden kann.\nZunächst\nStationäres Problem \\(\\rightarrow \\pp{}{t} = 0\\)"
+  },
+  {
+    "objectID": "fdm.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
+    "href": "fdm.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "",
+    "text": "Ziel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden kann.\nZunächst\nStationäres Problem \\(\\rightarrow \\pp{}{t} = 0\\)"
+  },
+  {
+    "objectID": "fdm.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
+    "href": "fdm.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Vorgehensweise in der numerischen Strömungsmechanik",
+    "text": "Vorgehensweise in der numerischen Strömungsmechanik\n\nTechnisches Problem\nModellierung\nMathematische Beschreibung\nDiskretisierung\n\nRechengitter\nDiskretisierung mit Finite-Differenzen\nDiskretisierung für 1. und 2. Ableitung\nRandbedingungen\nForm des linearen Gleichungssystems\n\nNumerische Lösung\nVisualisierung\nAuswertung\nExpertise, Experimente\nValidierung der Ergebnisse"
+  },
+  {
+    "objectID": "fdm.html#diskretisierung",
+    "href": "fdm.html#diskretisierung",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Diskretisierung",
+    "text": "Diskretisierung\n\nAllgemeine Hinweise\n\nDie mathematischen Gleichungen können in der Regel nicht analytisch gelöst werden\n\nDaher Anwendung von numerischer Strömungsmechanik\n\nZur Anwendung numerischer Methoden ist eine diskrete Darstellung der Lösung erforderlich\n\nDie Lösung kann nicht an jeder Stelle des Rechengebiets berechnet werden\nDurch die diskrete Darstellung erhält man die Lösung in den diskreten Punkten\nDie diskreten Punkte sind durch das verwendete Rechengitter definiert, das für eine Strömungssimulation erstellt werden muss"
+  },
+  {
+    "objectID": "fdm.html#diskretisierung-1",
+    "href": "fdm.html#diskretisierung-1",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Diskretisierung",
+    "text": "Diskretisierung\n\nÜbliche Methoden und Anschauungsbeispiel\n\n\n\n\n\n\n\n\nÜbliche Diskretisierungsmethoden\n\nFinite-Differenzen-Methode\n\nAnschaulich\nIn diesem Kapitel der Vorlesung behandelt\n\nFinite-Volumen-Methode\n\nHäufig für CFD-Anwendungen, z.B. OpenFOAM, ANSYS Fluent, …\n\nFinite-Element-Methode\n\nUnüblich für CFD-Anwendungen\nNicht im Rahmen der Vorlesung behandelt\n\n\n\n\n\nDie Berechnung erfolgt basierend auf dem verwendeten Rechennetz\nDie Unbekannten werden entweder auf dem Schnittpunkt der Gitterlinien oder in der Zellmitte durchgeführt"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode",
+    "href": "fdm.html#finite-differenzen-methode",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nVorgehensweise\n\n\n1. Erstellen des Rechengitters\n\nOrthogonales Netz\nNicht äquidistant\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2. Appproximation der Differentialquotienten durch Differenzenquotienten\n\nGenauigkeit der Approximation\n\n\n\\[\n\\pp{\\phi}{x} = \\dd{\\phi}{x} + \\text{Abbruchfehler} \\approx \\dd{\\phi}{x}\n\\]\n\n\n\n\n3. Aufstellen des Linearen Gleichungssystems\n\nBerücksichtigung von Randbedingungen\n\n\n\\[\n{\\tiny\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\n\n\n\n4. Lösung\n\n\\[\n\\vec{\\phi}^{(n+1)} = f(\\vec{\\phi}^{(n)})\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-1",
+    "href": "fdm.html#finite-differenzen-methode-1",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nErstellen des Rechengitters (1/4)\nBeispiel: Betrachtung eines ein- und zweidimensionalen Berechnungsgebiets mit \\(N\\) und \\(N \\times M\\) Knoten\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIm Allgemeinen muss das Gitter strukturiert und rechtwinklig (kartesisch) sein."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-2",
+    "href": "fdm.html#finite-differenzen-methode-2",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nJe nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte \\(\\phi\\) die Ableitungen \\(\\pp{\\phi}{x}\\), \\(\\pp{^2 \\phi}{x^2}\\) und \\(\\pp{\\phi}{t}\\) benötigt. Diese kommen z.B. in den folgenden Gleichungen vor:\n\n\\(\\pp{\\phi}{t} - \\beta \\pp{^2\\phi}{x^2} = 0\\)\n\\(\\pp{\\phi}{t} + \\alpha \\pp{\\phi}{x} = 0\\)\n\\(\\pp{\\phi}{t} + \\phi \\pp{\\phi}{x} = 0\\)\n\nOrts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-3",
+    "href": "fdm.html#finite-differenzen-methode-3",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (graphisch) (2/4)\n\n\n\n\n\n\n\n\n\nDas Differential für \\(\\pp{\\phi}{x}\\) an der Stelle \\(x=x_i\\), also \\(\\ppb{\\phi(x_i)}{x}\n  = \\at{\\pp{\\phi}{x}}{x=x_i}\n  = \\at{\\pp{\\phi}{x}}{i}\n  \\approx\n  \\at{\\dd{\\phi}{x}}{i}\\), wird durch unterschiedliche Differenzen approximiert:\n\n\\(\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i)}{(x_i + \\Delta x) - (x_i)}\n=\n\\fd{\\phi}{i+1}{i}{\\Delta x}\\) (Vorwärtsdifferenz)\n\\(\\frac{\\phi(x_i) - \\phi(x_i - \\Delta x)}{(x_i) - (x_i - \\Delta x)}\n=\n\\fd{\\phi}{i}{i-1}{\\Delta x}\\) (Rückwärtsdifferenz)\n\\(\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i - \\Delta x)}{(x_i + \\Delta x) - (x_i - \\Delta x)}\n=\n\\fd{\\phi}{i+1}{i-1}{2\\Delta x}\\) (Zentrale Differenz)\n\nDie Differenz wird jeweils über unterschiedliche Intervalle gebildet. Bei der Vorwärts- und Rückwärtsdifferenz hat das Interval eine Länge von \\(\\Delta x\\); bei der zentralen Differenz entspricht das Interval der doppelten Länge \\(2 \\Delta x\\)."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-4",
+    "href": "fdm.html#finite-differenzen-methode-4",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (graphisch) (2/4)\n\n\n\n\n\n\n\n\n\nDas Differential für \\(\\ppnd{\\phi}{x}\\) an der Stelle \\(x=x_i\\), also \\(\\ppndb{\\phi(x_i)}{x}\n  = \\at{\\ppnd{\\phi}{x}}{x=x_i}\n  = \\at{\\ppnd{\\phi}{x}}{i}\n  = \\at{\\pp{}{x} \\left( \\pp{\\phi}{x} \\right)}{i}\n  \\approx\n  \\at{\\dd{}{x} \\left( \\dd{\\phi}{x} \\right)}{i}\\), lässt sich in zwei Differenzen “unterteilen”: die Differenz aus Vorwärts- und Rückwärtsdifferenz von \\(\\phi\\). Es ergibt sich damit die Approximation von \\(\\at{\\ppnd{\\phi}{x}}{i}\\) zu:\n\\[\n\\frac{1}{\\Delta x}\\left(\n\\fd{\\phi}{i+1}{i}{\\Delta x}\n-\n\\fd{\\phi}{i}{i-1}{\\Delta x}\n\\right)\n=\n\\frac{\\phi_{i+1}-2\\phi_i+\\phi_{i-1}}{\\bdx{2}}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-5",
+    "href": "fdm.html#finite-differenzen-methode-5",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nDie systematische Herleitung von Approximationen erfolgt über die Taylorreihe. Allgemein wird eine eindimensionale Funktion \\(f(x)\\) über den Entwicklungspunkt \\(a\\) durch \\[\nT_m f(x;a) = \\sum_{n=0}^{(m-1)} \\frac{(x-a)^n}{n!} \\at{\\pp{^n f(x)}{x^n}}{x=a}\n\\] angenährt. Mit steigendem \\(m\\) wird die Näherung genauer; entsprechend konvergiert sie für \\(m \\rightarrow \\infty\\) für viele Funktionen gegen diese.\nTaylorreihe bis zur Ableitung 3. Ordnung:\n\\[\n\\begin{align}\nT_4 f(x;a)\n&=\n\\sum_{n=0}^{3} \\frac{(x-a)^n}{n!} \\at{\\pp{^n f}{x^n}}{a} \\\\\n&=\n\\frac{(x-a)^0}{0!} \\at{\\pp{^0 f}{x^0}}{a}\n+\n\\frac{(x-a)^1}{1!} \\at{\\pp{^1 f}{x^1}}{a}\n+\n\\frac{(x-a)^2}{2!} \\at{\\pp{^2 f}{x^2}}{a}\n+\n\\frac{(x-a)^3}{3!} \\at{\\pp{^3 f}{x^3}}{a} \\\\\n&=\n\\at{f}{a}\n+\n(x-a) \\at{\\pp{f}{x}}{a}\n+\n\\frac{(x-a)^2}{2} \\at{\\pp{^2 f}{x^2}}{a}\n+\n\\frac{(x-a)^3}{6} \\at{\\pp{^3 f}{x^3}}{a}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-6",
+    "href": "fdm.html#finite-differenzen-methode-6",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\n\n\n\n\n\n\n\n\nVergleich unterschiedlicher Annäherungen mit dem Entwicklungspunkt \\(x_i\\):\n\\[\n\\begin{align}\nT_2 f(x;x_i)\n&=\n\\at{f}{x_i}\n+\n(x-x_i) \\at{\\pp{f}{x}}{x_i} \\\\\nT_3 f(x;x_i)\n&=\n\\at{f}{x_i}\n+\n(x-x_i) \\at{\\pp{f}{x}}{x_i}\n+\n\\frac{(x-x_i)^2}{2} \\at{\\pp{^2 f}{x^2}}{x_i} \\\\\nT_4 f(x;x_i)\n&=\n\\at{f}{x_i}\n+\n(x-x_i) \\at{\\pp{f}{x}}{x_i}\n+\n\\frac{(x-x_i)^2}{2} \\at{\\pp{^2 f}{x^2}}{x_i}\n+\n\\frac{(x-x_i)^3}{6} \\at{\\pp{^3 f}{x^3}}{x_i} \\\\\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-7",
+    "href": "fdm.html#finite-differenzen-methode-7",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nAuswertung des Taylorpolynoms \\(T_4\\) um den Entwicklungspunkt \\(x_i\\) an der Stelle \\(x_i + \\Delta x\\) liefert:\n\\[\n\\begin{align}\nT_4 f(\\underbrace{x_i + \\Delta x}_{x};x_i)\n&=\n\\at{f}{x_i}\n+\n(\\underbrace{x_i + \\Delta x}_{x} - x_i) \\at{\\pp{f}{x}}{x_i}\n+\n\\frac{(\\overbrace{x_i + \\Delta x}^{x} - x_i)^2}{2} \\at{\\pp{^2 f}{x^2}}{x_i}\n+\n\\frac{(\\overbrace{x_i + \\Delta x}^{x} - x_i)^3}{6} \\at{\\pp{^3 f}{x^3}}{x_i} \\\\\n&=\n\\at{f}{x_i}\n+\n(\\Delta x) \\at{\\pp{f}{x}}{x_i}\n+\n\\frac{(\\Delta x)^2}{2} \\at{\\pp{^2 f}{x^2}}{x_i}\n+\n\\frac{(\\Delta x)^3}{6} \\at{\\pp{^3 f}{x^3}}{x_i}\n\\end{align}\n\\]\nDie vollständige Taylorreihe an der Stelle \\(x_i + \\Delta x\\) konvergiert also gegen den Funktionswert:\n\\[\n\\begin{align}\nf(x_i + \\Delta x)\n=\n\\at{f}{x_i}\n+\n(\\Delta x) \\at{\\pp{f}{x}}{x_i}\n+\n\\frac{(\\Delta x)^2}{2} \\at{\\pp{^2 f}{x^2}}{x_i}\n+\n\\frac{(\\Delta x)^3}{6} \\at{\\pp{^3 f}{x^3}}{x_i}\n+\n...\n\\end{align}\n\\]\nEntsprechendes gilt für die Taylorreihe an der Stelle \\(x_i - \\Delta x\\):\n\\[\n\\begin{align}\nf(x_i - \\Delta x)\n=\n\\at{f}{x_i}\n-\n(\\Delta x) \\at{\\pp{f}{x}}{x_i}\n+\n\\frac{(\\Delta x)^2}{2} \\at{\\pp{^2 f}{x^2}}{x_i}\n-\n\\frac{(\\Delta x)^3}{6} \\at{\\pp{^3 f}{x^3}}{x_i}\n+\n...\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-8",
+    "href": "fdm.html#finite-differenzen-methode-8",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung der Vorwärtsdifferenz wird die Taylorreihe\n\\[\n\\begin{align}\n\\underbrace{f(x_i + \\Delta x)}_{=\\at{f}{x_{i+1}}}\n=\n\\at{f}{x_i}\n+\n(\\Delta x) \\at{\\pp{f}{x}}{x_i}\n+\n\\frac{(\\Delta x)^2}{2} \\at{\\pp{^2 f}{x^2}}{x_i}\n+\n\\frac{(\\Delta x)^3}{6} \\at{\\pp{^3 f}{x^3}}{x_i}\n+\n\\underbrace{...}_{=\\Odx{4})}\n\\end{align}\n\\]\nmit dem Abbruchfehler (Fehlerterm) \\(\\Odx{4})\\) nach der ersten Ableitung \\(\\at{\\pp{f}{x}}{x_i}\\) umgestellt:\n\\[\n\\begin{align}\n\\underbrace{\\at{\\pp{f}{x}}{x_i}}_{=\\at{\\pp{f}{x}}{i}}\n&=\n\\underbrace{\n  \\frac{\\at{f}{x_{i+1}} - \\at{f}{x_i}}{\\Delta x}\n}_{\n  \\frac{f_{i+1}-f_i}{\\Delta x}\n}\n-\n\\underbrace{\n  \\frac{(\\Delta x)^2}{2 \\Delta x} \\at{\\pp{^2 f}{x^2}}{x_i}\n  -\n  \\frac{(\\Delta x)^3}{6 \\Delta x} \\at{\\pp{^3 f}{x^3}}{x_i}\n  -\n  \\frac{\\Odx{4})}{\\Delta x}\n}_{\\Odx{1}}\n\\\\\n\\at{\\pp{f}{x}}{i}\n&=\n\\frac{f_{i+1}-f_i}{\\Delta x}\n+\n\\underbrace{\n  \\Odx{1}\n}_{\n  \\text{Führender Fehlerterm}\n}\n\\approx \\frac{f_{i+1}-f_i}{\\Delta x}\n\\end{align}\n\\]\n\n\n\n\n\n\nNote\n\n\n\n\nDer Führende Fehlerterm gibt die Fehlerordnung des Diskretisierungsschemas vor.\nEs ist der erste Term, der nicht für die Approximation verwendet wird.\nDie folgenden Fehlerterme mit einer höheren Ordnung haben in der Regel einen geringeren Einfluss."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-9",
+    "href": "fdm.html#finite-differenzen-methode-9",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung der Rückwärtsdifferenz wird die Taylorreihe\n\\[\n\\begin{align}\n\\at{f}{i-1}\n=\n\\at{f}{i}\n-\n\\dx \\at{\\pp{f}{x}}{i}\n+\n\\frac{\\bdx{2}}{2} \\at{\\pp{^2 f}{x^2}}{i}\n-\n\\frac{\\bdx{3}}{6} \\at{\\pp{^3 f}{x^3}}{i}\n+\n\\underbrace{...}_{=\\Odx{4})}\n\\end{align}\n\\]\nwieder nach der ersten Ableitung \\(\\at{\\pp{f}{x}}{i}\\) umgestellt:\n\\[\n\\begin{align}\n\\at{\\pp{f}{x}}{i}\n&=\n\\fd{f}{i}{i-1}{\\Delta x}\n+\n\\Odx{1}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-10",
+    "href": "fdm.html#finite-differenzen-methode-10",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung weiterer Diskretisierungsschemata werden die beiden Gleichungen \\[\n\\begin{align}\n\\at{f}{i+1}\n=\n\\at{f}{i}\n+\n\\dx \\at{\\pp{f}{x}}{i}\n+\n\\frac{\\bdx{2}}{2} \\at{\\pp{^2 f}{x^2}}{i}\n+\n\\frac{\\bdx{3}}{6} \\at{\\pp{^3 f}{x^3}}{i}\n+\n\\Odx{4}\n\\end{align}\n\\] und \\[\n\\begin{align}\n\\at{f}{i-1}\n=\n\\at{f}{i}\n-\n\\dx \\at{\\pp{f}{x}}{i}\n+\n\\frac{\\bdx{2}}{2} \\at{\\pp{^2 f}{x^2}}{i}\n-\n\\frac{\\bdx{3}}{6} \\at{\\pp{^3 f}{x^3}}{i}\n+\n\\Odx{4}\n\\end{align}\n\\] zu \\[\n\\begin{align}\na \\at{f}{i+1}\n+\nb \\at{f}{i-1}\n=\n(a+b) \\at{f}{i}\n+\n(a-b) \\dx \\at{\\pp{f}{x}}{i}\n+\n(a+b) \\frac{\\bdx{2}}{2} \\at{\\pp{^2 f}{x^2}}{i}\n+\n(a-b) \\frac{\\bdx{3}}{6} \\at{\\pp{^3 f}{x^3}}{i}\n+\n(a+b) \\Odx{4}\n\\end{align}\n\\] kombiniert.\nEine geschickte Wahl von \\(a\\) und \\(b\\) liefert dann Diskretisierungsschemata für gewünschte Ableitungen und Fehlerordnungen."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-11",
+    "href": "fdm.html#finite-differenzen-methode-11",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung der Zentralen Differenz müssen folgende Bedingungen gelten: \\[\n\\begin{align}\na \\at{f}{i+1}\n+\nb \\at{f}{i-1}\n=\n(a+b) \\at{f}{i}\n+\n\\underbrace{(a-b)}_{=1} \\dx \\at{\\pp{f}{x}}{i}\n+\n\\underbrace{(a+b)}_{=0} \\frac{\\bdx{2}}{2} \\at{\\pp{^2 f}{x^2}}{i}\n+\n(a-b) \\frac{\\bdx{3}}{6} \\at{\\pp{^3 f}{x^3}}{i}\n+\n(a+b) \\Odx{4}\n\\end{align}\n\\]\nEs ergibt sich \\(a=\\frac{1}{2}\\) und \\(b=-\\frac{1}{2}\\). Damit ergibt sich folgendes Diskretisierungsschema:\n\\[\n\\at{\\pp{f}{x}}{i} = \\fd{f}{i+1}{i-1}{2\\dx} + \\Odx{2}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nIm Vergleich zu den bisherigen Schemata hat die Zentrale Differenz einen führenden Fehlerterm mit der Ordnung 2 für die Appoximation der ersten Ableitung."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-12",
+    "href": "fdm.html#finite-differenzen-methode-12",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung einer Appoximation für die zweite Ableitung müssen folgende Bedingungen gelten: \\[\n\\begin{align}\na \\at{f}{i+1}\n+\nb \\at{f}{i-1}\n=\n(a+b) \\at{f}{i}\n+\n\\underbrace{(a-b)}_{=0} \\dx \\at{\\pp{f}{x}}{i}\n+\n\\underbrace{(a+b)}_{=1} \\frac{\\bdx{2}}{2} \\at{\\pp{^2 f}{x^2}}{i}\n+\n(a-b) \\frac{\\bdx{3}}{6} \\at{\\pp{^3 f}{x^3}}{i}\n+\n(a+b) \\Odx{4}\n\\end{align}\n\\]\nEs ergibt sich \\(a=\\frac{1}{2}\\) und \\(b=\\frac{1}{2}\\). Damit ergibt sich folgendes Diskretisierungsschema:\n\\[\n\\at{\\ppnd{f}{x}}{i} = \\ffd{f}{i+1}{i}{i-1}{\\dx^2} + \\Odx{2}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-13",
+    "href": "fdm.html#finite-differenzen-methode-13",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nDie Approximationen für eindimensionale Probleme können einfach auf zwei- oder dreidimensionale Probleme angewendet werden.\n\nBeispiele in zwei Dimensionen\n\n\nVorwärtsdifferenz\n\\[\n\\begin{align}\n\\at{\\pp{f}{x}}{i,j} \\approx \\fd{f}{i+1,j}{i,j}{\\dx}\n\\; \\text{und} \\;\n\\at{\\pp{f}{y}}{i,j} \\approx \\fd{f}{i,j+1}{i,j}{\\dy}\n\\end{align}\n\\]\nRückwärtsdifferenz\n\\[\n\\begin{align}\n\\at{\\pp{f}{x}}{i,j} \\approx \\fd{f}{i,j}{i-1,j}{\\dx}\n\\; \\text{und} \\;\n\\at{\\pp{f}{y}}{i,j} \\approx \\fd{f}{i,j}{i,j-1}{\\dy}\n\\end{align}\n\\]\nZentrale Differenz\n\\[\n\\begin{align}\n\\at{\\pp{f}{x}}{i,j} \\approx \\fd{f}{i+1,j}{i-1,j}{2 \\dx}\n\\; \\text{und} \\;\n\\at{\\pp{f}{y}}{i,j} \\approx \\fd{f}{i,j+1}{i,j-1}{2 \\dy}\n\\end{align}\n\\]\n\n\\[\n\\begin{align}\n\\at{\\ppnd{f}{x}}{i,j} &\\approx \\ffd{f}{i+1,j}{i,j}{i-1,j}{\\dx^2}\\\\\n\\at{\\ppnd{f}{y}}{i,j} &\\approx \\ffd{f}{i,j+1}{i,j}{i,j-1}{\\dy^2}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-14",
+    "href": "fdm.html#finite-differenzen-methode-14",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nAnmerkungen zum Diskretisierungsfehler\nDie Fehlerordnung bezieht sich auf die Konvergenzrate bei Gitterverfeinerung.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\nEin Verfahren mit hoher Fehlerordnung bedeutet nicht unbedingt auch einen kleineren Fehler.\nFür die 1. Ordung halbiert sich theoretisch der Fehler bei Verdopplung der Knotenanzahl; entsprechend viertelt sich der Fehler bei der 2. Ordnung\nEs kann gezeigt werden, dass die Fehlerordnung auf nichtäquidistanten gleich der auf äquidistanten Gittern ist."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-15",
+    "href": "fdm.html#finite-differenzen-methode-15",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nAnmerkungen zum Diskretisierungsfehler\n\nDie Idee hinter der Verwendung von nichtäquidistanten Gittern ist, dass der Diskretisierungsfehler nicht nur von der Gitterweite \\(\\dx\\), sondern auch von den Ableitungen der Variablen (z.B. \\(\\frac{\\dx}{2!} \\at{\\ppnd{f}{x}}{i}\\)) abhängt.\n\n\n\n\n\n\n\n\n\n\n\nDer Diskretisierungsfehler hängt von der gewählten Approximation sowie der Gitterweite ab.\nApproximationen höherer Ordnung lassen sich ebenfalls herleiten. Diese resultieren in einem größeren Differenzenstern und somit erhöhtem Berechnungsaufwand, z. B. eine Rückwärtsdifferenz für die erste Ableitung aus den Knoten \\(i\\), \\(i-1\\) und \\(i-2\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\leftarrow\\) Verfahren 1. Ordnung \\(\\leftrightarrow\\) Verfahren 2. Ordnung \\(\\rightarrow\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIm Idealfall sollten alle Terme (inklusive Randbedingungen) mit Approximationen gleicher Ordnung diskretisiert werden."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-16",
+    "href": "fdm.html#finite-differenzen-methode-16",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nAufwind (Upwind) Diskretisierung vs. Zentrale Differenz\n\nBei Transportgleichungen mit dominanter Konvektion liegt eine Richtungsabhängigkeit vor. Diese wird mit einer Zentralen Differenz nicht berücksichtigt.\nPhysikalisch gesehen hat dann der stromauf gelegene Knoten mehr Einfluss als der stromab gelegene.\nDas einfachste Diskretisierungsschema, das die Richtungsabhängigkeit berücksichtigt, ist ein Aufwind-Verfahren, das je nach Strömungsrichtung eine Vorwärts- oder Rückwärtsdifferenz verwendet.\n\nBeispiel:\nJe nach Vorzeichen der Geschwindigeit \\(\\alpha\\) in der Gleichung \\(\\pp{\\phi}{t} + \\alpha \\pp{\\phi}{x} = 0\\) wird das Diskretisierungsschema für den Konvektionsterm angepasst:\n\\[\n\\pp{\\phi}{x}\n=\n\\begin{cases}\n\\fd{\\phi}{i}{i-1}{\\dx} \\, \\text{wenn} \\, \\alpha&gt;0 \\\\\n\\fd{\\phi}{i+1}{i}{\\dx} \\, \\text{sonst}\n\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-17",
+    "href": "fdm.html#finite-differenzen-methode-17",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nAufwind (Upwind) Diskretisierung vs. Zentrale Differenz\n\nFür Strömungsvorgänge definiert die \\(Re\\)-Zahl das Verhältnis aus Trägheits- und Reibkräften, also genau das Verhältnis aus Konvektion und Diffusion; entsprechend muss bei hohen \\(Re\\)-Zahlen eine Aufwind-Diskretisierung angewendet werden.\nIn der Energiegleichung definiert die \\(Pe\\)-Zahl (Peclet-Zahl) das Verhältnis aus Konvektion und Diffusion\nBei dominierender Konvektion kann es bei Verwendung einer zentralen Differenz für die Diskretisierung des Konvektionsterms zu unphysikalischen Oszillationen in der Lösung kommen.\nDer Grund für die unphysikalischen Oszillationen ist, dass die Matrix im linearen Gleichungssystem bei Verwendung einer Diskretisierung mit zentralen Differenzen nicht mehr diagonaldominant ist.\n\nDas bedeutet, dass die Koeffizienten der Hauptdiagonale nicht mehr größer sind als die Summe der weiteren Einträge in dieser Zeile.\n\nEs kann gezeigt werden, dass eine Zentrale Differenz nur stabil ist, sofern folgende Bedingung für die Geschwindigkeit \\(v\\), die Gitterweite \\(\\dx\\) und der Diffusionskonstanten \\(\\alpha\\) bzw. \\(\\nu\\) in einem jeweiligen Element gilt:\n\\[\nPe_{\\text{Element}} = \\frac{v \\dx}{\\alpha} &lt; 2\n\\;\n\\text{bzw.}\n\\;\nRe_{\\text{Element}} = \\frac{v \\dx}{\\nu} &lt; 2\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-18",
+    "href": "fdm.html#finite-differenzen-methode-18",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nVerhalten des Diskretisierungsfehlers\nZur Untersuchung wird in die Gleichung \\(\\pp{\\phi}{t}+\\alpha \\pp{\\phi}{x} = 0\\) statt dem Diskretisierungsschema die Ableitung und der führende Fehlerterm eingesetzt:\n\n\nDie Rückwärtsdifferenz \\[\\at{\\pp{\\phi}{x}}{i}\n\\approx\n\\fd{\\phi}{i}{i-1}{\\dx}\n+\n\\frac{\\dx}{2} \\at{\\ppnd{\\phi}{x}}{i}\n\\] wird umgestellt zu \\[\\fd{\\phi}{i}{i-1}{\\dx}\n\\approx\n\\at{\\pp{\\phi}{x}}{i}\n-\n\\frac{\\dx}{2} \\at{\\ppnd{\\phi}{x}}{i}\n\\] und in die Differentialgleichung eingesetzt. Es ergibt sich die effektiv zu lösende Gleichung als: \\[\n\\at{\\pp{\\phi}{t}}{t_i}\n+\n\\alpha \\left(\n  \\at{\\pp{\\phi}{x}}{i}\n  -\n  \\frac{\\dx}{2} \\at{\\ppnd{\\phi}{x}}{i}\n\\right) \\approx 0\n\\]\nDer Fehlerterm hat diffusiven Charakter.\n\nDie Zentrale Differenz \\[\n\\at{\\pp{\\phi}{x}}{i}\n\\approx\n\\fd{\\phi}{i+1}{i-1}{2\\dx}\n-\n\\frac{\\dx}{6} \\at{\\pp{^3\\phi}{x^3}}{i}\n\\] wird umgestellt zu \\[\n\\fd{\\phi}{i+1}{i-1}{2\\dx}\n\\approx\n\\at{\\pp{\\phi}{x}}{i}\n+\n\\frac{\\dx}{6} \\at{\\pp{^3\\phi}{x^3}}{i}\n\\] und in die Differentialgleichung eingesetzt. Es ergibt sich die effektiv zu lösende Gleichung als: \\[\n\\at{\\pp{\\phi}{t}}{t_i}\n+\n\\alpha \\left(\n  \\at{\\pp{\\phi}{x}}{i}\n  +\n  \\frac{\\dx}{6} \\at{\\pp{^3\\phi}{x^3}}{i}\n\\right) \\approx 0\n\\]\nDer Fehlerterm hat dispersiven Charakter."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-19",
+    "href": "fdm.html#finite-differenzen-methode-19",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nVerhalten des Diskretisierungsfehlers\n\n\nDiffusiver Fehler\n\\[\n\\pp{\\phi}{t}\n+\n\\alpha \\pp{\\phi}{x}\n-\n\\underbrace{\\alpha \\frac{\\dx}{2} \\ppnd{\\phi}{x}}_{\\text{Gerade Ableitung}}\n\\approx 0\n\\]\n\n\n\n\n\n\nGradienten werden geglättet\nBeschränkt\n\n\nDispersiver Fehler\n\\[\n\\pp{\\phi}{t}\n+\n\\alpha \\pp{\\phi}{x}\n+\n\\underbrace{\\alpha \\frac{\\dx}{6} \\pp{^3\\phi}{x^3}}_{\\text{Ungerade Ableitung}}\n\\approx 0\n\\]\n\n\n\n\n\n\nNumerische Oszillationen in der Lösung möglich\nUnbeschränkt\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nSofern die ursprüngliche Gleichung schon eine zweite Ableitung und damit Diffusion enthält, kann durch einen diffusiven Fehler diese erhöht werden. Das wird als zusätzliche numerische Diffusion bezeichnet."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-20",
+    "href": "fdm.html#finite-differenzen-methode-20",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nEs gibt eine Vielzahl möglicher Schemas für die Diskretisierung des Konvektionsterms, die für unterschiedliche Anwendungen entwickelt wurden.\nGängige Diskretisierungsschemas für praktische Anwendungen (z.B. Turbinensimulationen) sind:\n\nHigh Resolution:\n\nMischung aus Verfahren 1. und 2. Ordnung\nVerfahren 2. Ordnung, wo möglich\nVerfahren 1. Ordnung in Bereichen hoher Gradienten\n\nLinear Upwind (Aufwind-Diskretisierung 2.Ordnung) \\[\n\\at{\\pp{\\phi}{x}}{i} \\approx \\frac{\\phi_{i+2}-4\\phi_{i+1}+3\\phi_i}{2\\dx}\n\\;\n\\text{bzw.}\n\\;\n\\at{\\pp{\\phi}{x}}{i} \\approx \\frac{\\phi_{i-2}-4\\phi_{i-1}+3\\phi_i}{2\\dx}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-21",
+    "href": "fdm.html#finite-differenzen-methode-21",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAufstellen des linearen Gleichungssystems (3/4)\nDurch Einsetzen der Differenzenquotienten erhält man die diskretisierte Gleichung zur Berechnung der inneren Knoten.\nBeispiel:\nDie Gleichung \\[\nu \\pp{\\phi}{x} - \\beta \\ppnd{\\phi}{x} = 0\n\\] mit der unbekannten Größe \\(\\phi\\) lautet nach einer möglichen Diskretisierung für den Knoten \\(i\\): \\[\nu_i \\fd{\\phi}{i+1}{i-1}{2\\dx} - \\beta_i \\ffd{\\phi}{i+1}{i}{i-1}{\\dx^2} = 0\n\\] Umgestellt lautet die Gleichung: \\[\n\\left(\n\\frac{u_i}{2\\dx}\n-\n\\frac{\\beta}{\\dx^2}\n\\right)\n\\phi_{i+1}\n+\n\\left(\n\\frac{2\\beta}{\\dx^2}\n\\right)\n\\phi_{i}\n+\n\\left(\n-\n\\frac{u_i}{2\\dx}\n-\n\\frac{\\beta}{\\dx^2}\n\\right)\n\\phi_{i-1}\n=\n0\n\\] Diese Gleichung wird für jeden anderen inneren Knoten ebenfalls aufgestellt."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-22",
+    "href": "fdm.html#finite-differenzen-methode-22",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAufstellen des linearen Gleichungssystems (3/4)\nEs ergibt sich das lineare Gleichungssystem \\(\\mat{A} \\vec{\\phi} = \\vec{b}\\). Die Matrix hat für die gewählte Diskretisierung auf dem Gitter drei Bänder.\n\n\n\n\n\n\n\n\n\nFür das Beispiel ergibt sich das lineare Gleichungssystem zu: \\[\n\\underbrace{\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots                                                  &\n  0                                                     &\n  \\left( \\frac{u_i}{2\\dx} - \\frac{\\beta}{\\dx^2} \\right) &\n  \\left( \\frac{2\\beta}{\\dx^2}                   \\right) &\n  \\left( \\frac{u_i}{2\\dx} - \\frac{\\beta}{\\dx^2} \\right) &\n  0                                                     &\n  \\vdots\n\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n}_{\\text{Systemmatrix}\\;\\mat{A}}\n\\underbrace{\n  \\begin{bmatrix}\n  \\phi_1 \\\\\n  \\vdots \\\\\n  \\phi_{i-1} \\\\\n  \\phi_{i} \\\\\n  \\phi_{i+1} \\\\\n  \\vdots \\\\\n  \\phi_N \\\\\n  \\end{bmatrix}\n}_{\\text{Lösungsvektor} \\; \\vec{\\phi}}\n=\n\\underbrace{\n  \\begin{bmatrix}\n  0 \\\\\n  \\vdots \\\\\n  0 \\\\\n  \\vdots \\\\\n  0 \\\\\n  \\end{bmatrix}\n}_{\\text{Rechte Seite} \\; \\vec{b}}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-23",
+    "href": "fdm.html#finite-differenzen-methode-23",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAufstellen des linearen Gleichungssystems (3/4)\n\nSystemmatrix\n\nDie Form der Systemmatrix hängt vom verwendeten Differenzenstern und Gitter ab.\nBei strukturieren Gittern ergibt sich meist eine Bandmatrix.\nJe nachdem in welcher Reihenfolge ein struturiertes mehrdimensionales Gitter nummeriert wird, liegen die Bänder näher oder weiter entfernt von der Hauptdiagonalen.\nDie Struktur der Matrix ist meist symmetrisch.\nDie Werte müssen jdedoch nicht symmetrisch sein. Dies hängt von der diskretisierten Gleichung ab.\nJe größer der verwendete Diskretisierungsstern in, desto mehr Einträge ungleich Null sind in einer Zeile vorhanden.\nFast alle Diskretisierungsverfahren für partielle Differentialgleichungen liefern schwachbesetzte Matrizen.\nDie Dimension der Matrix ist quadratisch und entspricht der Größe des Gitters. Beim Finite-Differenzen-Verfahren ist die Dimension die Anzahl der Knotenpunkte; beim Finite-Volumen-Verfahren entspricht sie der Anzahl der Zellen.\n\n\n\nLösungsvektor\n\nDer Lösungsvektor enthält die gesuchte Größe für jeden Gitterpunkt.\n\n\n\nRechte Seite\n\nDer Vektor enthält Terme, die nicht die gesuchte Größe enthalten, z.B. Quellterme. Zusätzlich stehen in ihm die Randbedingungen."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-24",
+    "href": "fdm.html#finite-differenzen-methode-24",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nRandbedingung (3/4)\n\nWährend die inneren Knoten alle einheitlich behandelt werden, müssen die äußeren Knoten (Randknoten) separat über Randbedingungen behandelt werden.\nEs gibt verschiedene Typen von Randbedingungen:\n\nDirichlet-Randbedingung\nNeumann-Randbedingung\nPeriodische Randbedingung\n\nRandbedingungen sollten in Regionen gelegt werden, in denen sie keinen Einfluss auf die Lösung haben. Tendenziell gilt: je weiter entfernt die Randbedingung liegt, desto weniger wird das Ergebnis beeinflusst.\n\nBeispiel: Position der Randbedingung für eine Stufenströmung (Backward-Facing-Step) von schlecht (rot) über besser (gelb) nach gut (grün)"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-25",
+    "href": "fdm.html#finite-differenzen-methode-25",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nDirichlet-Randbedingung (3/4)\nEine Dirichlet-Randbedingung gibt direkt den Wert eines Randknotens vor, z.B. Unbekannte \\(\\phi=1\\).\n\n\n\n\n\n\n\n\n\nDie Vorgabe der Unbekannten für den ersten Knoten lautet z.B.\n\\[\n\\phi_{1} = 1\n\\]\nEine Dirichlet-Randbedingung “eliminiert” damit eine Zeile aus der Systemmatrix. An einem Dirichlet-Randknoten muss also keine Gleichungs mehr gelöst werden. Theoretisch kann diese dann um eine Dimension durch Einsetzen des bekannten Werts reduziert werden.\nBeispiele:\n\nGeschwindigeit bzw. Massenstrom am Eintritt ist bekannt.\nWandtemperatur oder Eintrittstemperatur ist bekannt.\nGeschwindigkeit an reibungsbehafteten Wänden ist bekannt (Haftbedingung).\nDruck am Austritt wird vorgegeben."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-26",
+    "href": "fdm.html#finite-differenzen-methode-26",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nNeumann-Randbedingung (3/4)\nEine Neumann-Randbedingung gibt den Gradient der Unbekannten an einem Randknoten vor, z.B. \\(\\pp{\\phi}{\\vec{n}} = 0\\). Typischerweise wird der Gradient in Normalenrichtung \\(\\vec{n}\\) des Randes vorgegeben.\n\n\n\n\n\n\n\n\n\nBeispiel: Vorgabe des Gradienten \\(\\pp{\\phi}{x}=0\\) am rechten Rand für die Gleichung \\(u \\pp{\\phi}{x} - \\beta \\ppnd{\\phi}{x} = 0\\)\nDie diskretisierte Gleichung für den Knoten \\(N\\) lautet: \\[\nu_N \\fd{\\phi}{N+1}{N-1}{2\\dx}\n-\n\\beta_i \\ffd{\\phi}{N+1}{N}{N-1}{\\dx^2}\n=\n0\n\\] Der Knoten an der Stelle \\(N+1\\) gehört nicht zum Rechengitter. Aus der Vorgabe des Gradienten, z.B. mit einer zentralen Differenz \\[\n\\at{\\pp{\\phi}{x}}{N} = \\fd{\\phi}{N+1}{N-1}{2\\dx} + \\Odx{2} = 0\n\\] wird die Bedingung unter Vernachlässigung des Abbruchfehlers \\(\\phi_{N+1} = \\phi_{N-1}\\) abgeleitet. Es wird in der diskretisierten Gleichung für den Knoten \\(N\\) der Werte \\(\\phi_{N+1}\\) durch \\(\\phi_{N-1}\\) ersetzt."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-27",
+    "href": "fdm.html#finite-differenzen-methode-27",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nAufstellen des linearen Gleichungssystems (3/4)\nDas Einsetzen der Dirichlet- und Neumann-Randbedingung jeweils am linken und rechten Rand verändert die Systemmatrix und die rechte Seite zu: \\[\n\\begin{bmatrix}\n1 & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots                                                  &\n  0                                                     &\n  \\left( \\frac{u_i}{2\\dx} - \\frac{\\beta}{\\dx^2} \\right) &\n  \\left( \\frac{2\\beta}{\\dx^2}                   \\right) &\n  \\left( \\frac{u_i}{2\\dx} - \\frac{\\beta}{\\dx^2} \\right) &\n  0                                                     &\n  \\vdots\n\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 &\n\\dots &\n\\dots  &\n\\dots &\n0 &\n-\\frac{2\\beta}{\\bdx{2}} &\n\\frac{2\\beta}{\\bdx{2}}\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n  \\phi_1 \\\\\n  \\vdots \\\\\n  \\phi_{i-1} \\\\\n  \\phi_{i} \\\\\n  \\phi_{i+1} \\\\\n  \\vdots \\\\\n  \\phi_N \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n  1 \\\\\n  \\vdots \\\\\n  0 \\\\\n  0 \\\\\n  0 \\\\\n  \\vdots \\\\\n  0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n\\]\nBeim Einsetzen der Randbedingungen verändern sich meist die Koeffizienten der Matrix in den Randknoten und die rechte Seite."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-28",
+    "href": "fdm.html#finite-differenzen-methode-28",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nTypische Randbedingungen (3/4)\nBei der Berechnung von inkompressiblen Strömungsproblemen gibt es mehrere Möglichkeiten. Eine typische Randbedingungsvorgabe erfolgt durch:\n\n\n\n\n\n\n\nDirichlet-Randbedingung\n\nGeschwindigkeit am Eintritt\nDruck am Austritt\n\n\nNeumann-Randbedingung\n\nGeschwindigkeit am Austritt\nDruck am Eintritt\n\n\n\nAchtung: Bei kompressiblen Überschallströmungen müssen Geschwindigkeit und Druck am Eintritt vorgegeben werden, da sich Störungen nur stromab ausbreiten."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-29",
+    "href": "fdm.html#finite-differenzen-methode-29",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nLösung (4/4)\nDie Lösung des linearen Gleichungssystems \\[\n\\mat{A} \\vec{\\phi} = \\vec{b}\n\\] erfolgt fast immer bei numerischer Strömungssimulation indirekt. Es wird also nicht die Inverse \\(\\mat{A}^{-1}\\) berechnet, da dies in der Regel zu aufwändig ist.\nFür indirekte Gleichungslöser gilt:\n\nDie Lösung wird iterativ berechnet, d.h. es wird eine Iterationsvorschrift \\(\\vec{\\phi}^{(n+1)} = f(\\vec{\\phi}^{(n)})\\) abgearbeitet. Je nach verwendetem Löser enthält die Iterationsvorschrift \\(f(\\vec{\\phi}^{(n)})\\) meist mehrere Matrix-Vektor- und Skalarprodukte.\nTypische iterative Verfahren sind z.B. Gradientenverfahren, bikonjugierte Gradientenverfahren, …\nMeist muss zusätzlich eine Vorkonditionierung verwendet werden.\n\nDie Gesamtdauer (Rechenzeit) einer numerischen Strömungssimulation hängt sehr stark vom verwendeten indirekten Gleichungslöser ab. Die Iterationsvorschrift wird in jedem Iterations- und Zeitschritt mehrmals durchlaufen."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-30",
+    "href": "fdm.html#finite-differenzen-methode-30",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDie eindimensionale Helmholtz-Gleichung lautet: \\[\n\\ppnd{\\phi}{x} - \\lambda^2 \\phi = 0 \\; \\text{mit} \\; \\lambda = \\frac{1}{2}\n\\] Die exakte Lösung lautet: \\[\n\\phi(x) = \\frac{1}{2} e^{-\\lambda x} + \\frac{1}{2} e^{\\lambda x}\n\\]\nDas verwendete Netz enthält 5 Knoten und hat eine Gitterweite von \\(\\dx = \\frac{1}{2}\\).\n\n\n\n\n\n\n\n\n\nAls Randbedingungen wird am linken und rechten Rand eine Dirichlet-Randbedingung \\(\\at{\\phi}{x=0.0}=\\phi_1=1.0\\) und \\(\\at{\\phi}{x=2.0}=\\phi_5=1.54308\\) vorgegeben."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-31",
+    "href": "fdm.html#finite-differenzen-methode-31",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDie diskretisierte Helmholtz-Gleichung ergibt sich nach Approximation der Differentialquotienten durch Differenzenquotienten zu: \\[\n\\underbrace{\n  \\ffd{\\phi}{i+1}{i}{i-1}{\\bdx{2}}\n}_{\n\\at{\\ppnd{\\phi}{x}}{i}\n}\n-\n\\underbrace{\n  \\lambda^2 \\phi_i\n}_{\\at{\\lambda^2 \\phi}{i}}\n= 0\n\\]\nDurch Umstellung ergeben sich die Vorfaktoren: \\[\n\\left(\n  \\frac{1}{\\bdx{2}}\n\\right) \\phi_{i+1}\n+\n\\left(\n-\\frac{2}{\\bdx{2}} - \\lambda^2\n\\right) \\phi_i\n+\n\\left(\n  \\frac{1}{\\bdx{2}}\n\\right) \\phi_{i-1}\n\\]\nDas Einsetzen von \\(\\lambda=\\frac{1}{2}\\) und \\(\\dx=\\frac{1}{2}\\) in die diskretisierte Gleichung ergibt: \\[\n4 \\phi_{i+1} - 8.25 \\phi_i + 4 \\phi_{i-1} = 0\n\\]\nDer erste und letzte Knoten ist entsprechend der Randbedingungen durch \\[\n\\phi_1 = 1.0\n\\] und \\[\n\\phi_5 = 1.54308\n\\] gegeben."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-32",
+    "href": "fdm.html#finite-differenzen-methode-32",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nBeispiel: Eindimensionale Helmholtz-Gleichung\nEs ergibt sich das lineare Gleichungssystem \\[\n\\begin{bmatrix}\n1 & 0 & 0  & 0 & 0 \\\\\n4 & -8.25 & 4  & 0 & 0 \\\\\n0 & 4 & -8.25  & 4 & 0 \\\\\n0 & 0 & 4  & 8.25 & 4 \\\\\n0 & 0 & 0  & 0 & 1 \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n  \\phi_1 \\\\\n  \\phi_2 \\\\\n  \\phi_3 \\\\\n  \\phi_4 \\\\\n  \\phi_5 \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n  1 \\\\\n  0 \\\\\n  0 \\\\\n  0 \\\\\n  1.54308 \\\\\n\\end{bmatrix}\n\\] bzw. nach Umformung und Reduktion der Dimension: \\[\n\\begin{bmatrix}\n-8.25 & 4  & 0 \\\\\n4 & -8.25  & 4 \\\\\n0 & 4  & -8.25 \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n  \\phi_2 \\\\\n  \\phi_3 \\\\\n  \\phi_4 \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n  -4 \\\\\n  0 \\\\\n  -6.17232 \\\\\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-33",
+    "href": "fdm.html#finite-differenzen-methode-33",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDer Vergleich zwischen den diskreten berechneten Punkten (siehe \\(\\square\\) in der Abbildung) und der exakten Lösung ist für dieses Beispiel vernachlässigbar klein. Die Zahlen an den Symbolen ist die Abweichung zwischen exakter und numerischer Lösung in Prozent."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-34",
+    "href": "fdm.html#finite-differenzen-methode-34",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDie Gleichung wird erneut gelöst mit der gleichen Diskretisierung. Allerdings wird nun am linken Rand anstatt einer Dirichlet-Randbedingung eine Neumann-Randbedingung von \\[\n\\at{\\pp{\\phi}{x}}{i=1} = 0\n\\] vorgegeben. Die Diskretisierung der inneren Knoten für \\(i=2,3,4\\) \\[\n\\left(\n  \\frac{1}{\\bdx{2}}\n\\right) \\phi_{i+1}\n+\n\\left(\n-\\frac{2}{\\bdx{2}} - \\lambda^2\n\\right) \\phi_i\n+\n\\left(\n  \\frac{1}{\\bdx{2}}\n\\right) \\phi_{i-1}\n\\] und des rechten Randes \\[\n\\phi_5 = 1.54308\n\\] ist unverändert."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-35",
+    "href": "fdm.html#finite-differenzen-methode-35",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nBeispiel: Eindimensionale Helmholtz-Gleichung\n\nEinarbeiten der Neumann-Randbedingung\nDie diskrete Gleichung am Knoten 1 ergibt sich mit eingesetzen Werten zu: \\[\n4\\phi_2-8.25\\phi_1+4\\phi_0 = 0\n\\] Da der Knoten 0 im Netz nicht enthalten ist, wird dieser durch Einarbeiten der Neumann-Randbedingung \\[\n\\frac{\\phi_2 - \\phi_0}{2\\dx} = 0 \\; \\rightarrow \\; \\phi_0 = \\phi_2\n\\] ersetzt. Es ergibt sich: \\[\n8\\phi_2 - 8.25\\phi_1 = 0\n\\]\nDas lineare Gleichungssystem lautet mit der neuen Randbedingung: \\[\n\\begin{bmatrix}\n-8.25 & 8  & 0 & 0\\\\\n4 & -8.25  & 4 & 0\\\\\n0 & 4  & -8.25 & 4\\\\\n0 & 0 & 4  & -8.25\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n  \\phi_1 \\\\\n  \\phi_2 \\\\\n  \\phi_3 \\\\\n  \\phi_4 \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n  0 \\\\\n  0 \\\\\n  0 \\\\\n  -6.17232 \\\\\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-36",
+    "href": "fdm.html#finite-differenzen-methode-36",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDer erneute Vergleich zur exakten Lösung liefert wieder eine sehr gute Näherungslösung.\n\n\n\n\n\n\n\n\n\nWird hingegen zur Einarbeitung der Neumann-Randbedingung am Knoten 1 die Gleichung \\[\n\\frac{\\phi_1 - \\phi_0}{\\dx} = 0 \\; \\rightarrow \\; \\phi_0 = \\phi_1\n\\] und somit eine Diskretisierung 1. Ordnung verwendet, werden die Abweichungen größer (siehe \\(\\color{red}{\\times}\\) in der Abbildung)."
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-37",
+    "href": "fdm.html#finite-differenzen-methode-37",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nGenauigkeit von numerischen Lösung\n\nDie numerischen Lösungen von Strömungsproblemen sind nur Näherungslösungen.\nDie numerischen Lösungen beinhalten drei Arten von systematischen Fehlern:\n\nDiskretisierungsfehler: Differenz zwischen der genauen Lösung des mathematischen Modells und der genauen Lösung der durch Diskretisierung dieser Gleichungen entstandenen algebraischen Gleichungssysteme\n\nFührender Fehlerterm\n\nModellfehler: Differenz zwischen sich tatsächlich einstellender Strömung und der genauen Lösung des mathematischen Modells\n\nVereinfachungen der Grundgleichungen\n\nIterationsfehler: Differenz zwischen der genauen und der iterativen Lösung der algebraischen Gleichungssysteme\n\nUngenauigkeiten bei der indirekten Lösung des linearen Gleichungssystems"
+  },
+  {
+    "objectID": "fdm.html#finite-differenzen-methode-38",
+    "href": "fdm.html#finite-differenzen-methode-38",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\n\nNichtkartesische Gitter\n\nDie bisherige Vorgehensweise wurde auf kartesische Gitter angewendet.\nReale (komplexe) Geometrien können aber in der Regel nicht rechtwinklig vernetzt werden.\n\nDie Anwendung der Finite-Differenzen-Methode erfordert dann eine Koordinatentransformation zwischen physikalischem Raum und Berechnungsraum.\n\n\n\n\n\n\n\n\n\nPhysikalischer Raum\n\n\n\n\n\n\nBerechnungsraum\n\n\nDie Transformation zwischem den beiden Räumen ist durch die Jacob-Matrix gegeben und definiert die Transformation der Ableitungen z.B. durch: \\[\n\\begin{align}\n\\pp{\\phi}{x} &= \\pp{\\phi}{\\zeta} \\pp{\\zeta}{x} + \\pp{\\phi}{\\eta} \\pp{\\eta}{x}\\\\\n\\pp{\\phi}{y} &= \\pp{\\phi}{\\zeta} \\pp{\\zeta}{y} + \\pp{\\phi}{\\eta} \\pp{\\eta}{y}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "fdm.html#kontrollfragen-12",
+    "href": "fdm.html#kontrollfragen-12",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Kontrollfragen (1/2)",
+    "text": "Kontrollfragen (1/2)\n\nWelche drei gängigen Diskretisierungsmethoden gibt es?\nBeschreiben Sie die Vorgehensweise bei der Finite Differenzen Methode.\nWelche Anforderungen bestehen für das Rechengitter bei der Finite-Differenzen-Methode?\nInwiefern ist die Fehlerordnung des Diskretisierungsschemas wichtig?\nWarum benötigt man bei der Diskretisierung einer Konvektion-Diffusions-Gleichung bei sinkender Diffusion eine Upwind-Diskretisierung?\nBeschreiben Sie wie sich ein diffusiver Fehler auf die Lösung auswirkt.\nWie wirkt sich ein dispersiver Fehler aus?\nWas ist bei der Wahl der Randbedingungen zu beachten?\nWelche drei Arten von systematischen Fehlern gibt es in numerischen Lösungen?"
+  },
+  {
+    "objectID": "fdm.html#kontrollfragen-12-1",
+    "href": "fdm.html#kontrollfragen-12-1",
+    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
+    "section": "Kontrollfragen (1/2)",
+    "text": "Kontrollfragen (1/2)\n\nWie sieht die Matrixstruktur bei verschiedenen Differenzensternen aus?\n\n\n\n\n\n\n\nDiskretisieren Sie folgende Gleichungen mit der Finite-Differenzen-Methode: \\[\nu \\pp{\\phi}{x} - \\beta \\ppnd{\\phi}{x} = 0\n\\; \\text{mit} \\; u=const. \\; \\text{und} \\; \\beta=const.\n\\] und \\[\n\\ppnd{\\phi}{x} + \\ppnd{\\phi}{y} = 0\n\\]"
+  },
+  {
     "objectID": "grundgleichungen.html",
     "href": "grundgleichungen.html",
     "title": "Grundgleichungen",
@@ -173,83 +663,6 @@
     "title": "Grundgleichungen",
     "section": "Kontrollfragen",
     "text": "Kontrollfragen\n\nWelche Annahmen werden bei der Herleitung der Navier-Stokes-Gleichungen gemacht?\nWie lautet die Massenerhaltung in Worten?\nLeiten Sie die Massenerhaltung her.\nWie vereinfacht sich die Massenerhaltung für inkompressible Strömungen?\nAuf welchem Gesetz beruht die Impulserhaltung?\nWelche drei Kraftarten gehen in die Impulserhaltung ein?\nWelcher Zusammenhang steckt hinter der Annahme eines Newton‘schen Fluides?\nWie viele Gleichungen und Unbekannte sind in den kompressiblen Navier-Stokes-Gleichungen enthalten? Wie viele in den inkompressiblen?\nWelche Philosophie sollte bei der Modellierung berücksichtigt werden?"
-  },
-  {
-    "objectID": "fdm.html",
-    "href": "fdm.html",
-    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
-    "section": "",
-    "text": "Ziel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden konstant.\nZunächst\nStationäres Problem \\(\\rightarrow \\pp{}{t} = 0\\)"
-  },
-  {
-    "objectID": "fdm.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
-    "href": "fdm.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
-    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
-    "section": "",
-    "text": "Ziel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden konstant.\nZunächst\nStationäres Problem \\(\\rightarrow \\pp{}{t} = 0\\)"
-  },
-  {
-    "objectID": "fdm.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
-    "href": "fdm.html#vorgehensweise-in-der-numerischen-strömungsmechanik",
-    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
-    "section": "Vorgehensweise in der numerischen Strömungsmechanik",
-    "text": "Vorgehensweise in der numerischen Strömungsmechanik\n\nTechnisches Problem\nModellierung\nMathematische Beschreibung\nDiskretisierung\n\nRechengitter\nDiskretisierung mit Finite-Differenzen\nDiskretisierung für 1. und 2. Ableitung\nRandbedingungen\nForm des linearen Gleichungssystems\n\nNumerische Lösung\nVisualisierung\nAuswertung\nExpertise, Experimente\nValidierung der Ergebnisse"
-  },
-  {
-    "objectID": "fdm.html#diskretisierung",
-    "href": "fdm.html#diskretisierung",
-    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
-    "section": "Diskretisierung",
-    "text": "Diskretisierung\n\nAllgemeine Hinweise\n\nDie mathematischen Gleichungen können in der Regel nicht analytisch gelöst werden\n\nDaher Anwendung von numerischer Strömungsmechanik\n\nZur Anwendung numerischer Methoden ist eine diskrete Darstellung der Lösung erforderlich\n\nDie Lösung kann nicht an jeder Stelle des Rechengebiets berechnet werden\nDurch die diskrete Darstellung erhält man die Lösung in den diskreten Punkten\nDie diskreten Punkte sind durch das verwendete Rechengitter definiert, das für eine Strömungssimulation erstellt werden muss"
-  },
-  {
-    "objectID": "fdm.html#diskretisierung-1",
-    "href": "fdm.html#diskretisierung-1",
-    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
-    "section": "Diskretisierung",
-    "text": "Diskretisierung\n\nÜbliche Methoden und Anschauungsbeispiel\n\n\n\n\n\n\n\n\nÜbliche Diskretisierungsmethoden\n\nFinite-Differenzen-Methode\n\nAnschaulich\nIn diesem Kapitel der Vorlesung behandelt\n\nFinite-Volumen-Methode\n\nHäufig für CFD-Anwendungen, z.B. OpenFOAM, ANSYS Fluent, …\n\nFinite-Element-Methode\n\nUnüblich für CFD-Anwendungen\nNicht im Rahmen der Vorlesung behandelt\n\n\n\n\n\nDie Berechnung erfolgt basierend auf dem verwendeten Rechennetz\nDie Unbekannten werden entweder auf dem Schnittpunkt der Gitterlinien oder in der Zellmitte durchgeführt"
-  },
-  {
-    "objectID": "fdm.html#finite-differenzen-methode",
-    "href": "fdm.html#finite-differenzen-methode",
-    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
-    "section": "Finite-Differenzen-Methode",
-    "text": "Finite-Differenzen-Methode\n\nVorgehensweise\n\n\nErstellen des Rechengitters\n\nOrthogonales Netz\nNicht äquidistant\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAppproximation der Differentialquotienten durch Differenzenquotienten\n\nGenauigkeit der Approximation\n\n\n\\[\n\\pp{u}{x} = \\dd{u}{x} + \\text{Abbruchfehler} \\approx \\dd{u}{x}\n\\]\n\n\n\n\nAufstellen des Linearen Gleichungssystems\n\nBerücksichtigung von Randbedingungen\n\n\n\\[\n{\\tiny\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\n\n\n\nLösung\n\n\\[\n\\vec{\\phi}^{(n+1)} = f(\\phi^{(n)})\n\\]"
-  },
-  {
-    "objectID": "fdm.html#finite-differenzen-methode-1",
-    "href": "fdm.html#finite-differenzen-methode-1",
-    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
-    "section": "Finite-Differenzen-Methode",
-    "text": "Finite-Differenzen-Methode\n\nErstellen des Rechengitters (1/4)\nBeispiel: Betrachtung eines ein- und zweidimensionalen Berechnungsgebiets mit \\(N\\) und \\(N \\times M\\) Knoten\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIm Allgemeinen muss das Gitter strukturiert und rechtwinklig (kartesisch) sein."
-  },
-  {
-    "objectID": "fdm.html#finite-differenzen-methode-2",
-    "href": "fdm.html#finite-differenzen-methode-2",
-    "title": "Ortsdiskretisierung mit der Finite-Differenz-Methode",
-    "section": "Finite-Differenzen-Methode",
-    "text": "Finite-Differenzen-Methode\n\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nJe nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte \\(\\phi\\) die Ableitungen \\(\\pp{\\phi}{x}\\), \\(\\pp{^2 \\phi}{x^2}\\) und \\(\\pp{\\phi}{t}\\) benötigt.\nOrts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet\n\nBeispiel: Graphische Approximation für \\(\\pp{\\phi}{x}\\) an der Stelle \\(x=x_i\\)\n\n\n\n\n\n\n\n\n\n\n\\(\\pp{\\phi}{x}\\) (Vorwärtsdifferenz)\\(\\pp{\\phi}{x}\\) (Rückwärtsdifferenz)\\(\\pp{\\phi}{x}\\) (Zentrale Differenz)\\(\\ppnd{\\phi}{x}\\)\n\n\n\\(\\ppb{\\phi(x_i)}{x} = \\at{\\pp{\\phi}{x}}{x=x_i}\n=\n\\at{\\pp{\\phi}{x}}{i}\n\\approx\n\\at{\\dd{\\phi}{x}}{i}\n=\n\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i)}{(x_i + \\Delta x) - (x_i)}\n=\n\\fd{\\phi}{i+1}{i}{\\Delta x}\\)\n\n\n\\(\\ppb{\\phi(x_i)}{x} = \\at{\\pp{\\phi}{x}}{x=x_i}\n=\n\\at{\\pp{\\phi}{x}}{i}\n\\approx\n\\at{\\dd{\\phi}{x}}{i}\n=\n\\frac{\\phi(x_i) - \\phi(x_i - \\Delta x)}{(x_i) - (x_i - \\Delta x)}\n=\n\\fd{\\phi}{i}{i-1}{\\Delta x}\\)\n\n\n\\(\\ppb{\\phi(x_i)}{x} = \\at{\\pp{\\phi}{x}}{x=x_i}\n=\n\\at{\\pp{\\phi}{x}}{i}\n\\approx\n\\at{\\dd{\\phi}{x}}{i}\n=\n\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i - \\Delta x)}{(x_i + \\Delta x) - (x_i - \\Delta x)}\n=\n\\fd{\\phi}{i+1}{i-1}{2\\Delta x}\\)\n\n\n\\(\\ppndb{\\phi(x_i)}{x} = \\at{\\ppnd{\\phi}{x}}{x=x_i}\n=\n\\at{\\ppnd{\\phi}{x}}{i}\n=\n\\at{\\pp{}{x} \\left( \\pp{\\phi}{x} \\right)}{i}\n\\approx\n\\at{\\ddb{\\pp{\\phi}{x}}{x}}{i}\n=\n\\frac{1}{\\Delta x}\\left(\n\\fd{\\phi}{i+1}{i}{\\Delta x}\n-\n\\fd{\\phi}{i}{i-1}{\\Delta x}\n\\right)\\)"
-  },
-  {
-    "objectID": "versys.html",
-    "href": "versys.html",
-    "title": "Vereinfachte Systeme",
-    "section": "",
-    "text": "Navier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\pp{u}{t} - \\beta \\pp{^2u}{x^2} = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\pp{u}{t} + \\alpha \\pp{u}{x} = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\pp{u}{t} + u \\pp{u}{x} = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(u\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
-  },
-  {
-    "objectID": "versys.html#warum-und-welche",
-    "href": "versys.html#warum-und-welche",
-    "title": "Vereinfachte Systeme",
-    "section": "",
-    "text": "Navier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\pp{u}{t} - \\beta \\pp{^2u}{x^2} = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\pp{u}{t} + \\alpha \\pp{u}{x} = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\pp{u}{t} + u \\pp{u}{x} = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(u\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
-  },
-  {
-    "objectID": "versys.html#lösungen",
-    "href": "versys.html#lösungen",
-    "title": "Vereinfachte Systeme",
-    "section": "Lösungen",
-    "text": "Lösungen\nFür die drei vereinfachten Systeme wird als Anfangsbedingung \\(u(x,t=0) = e^{-40 (x-\\frac{1}{2})^2}\\) und eine periodische Randbedingung bei \\(x=0\\) und \\(x=1\\) verwendet.\n\n\nLineare Diffusion \\[\n\\pp{u}{t} = \\beta \\pp{^2u}{x^2} = 0 \\; \\text{mit} \\; \\beta = 1 \\frac{m^2}{s}\n\\]\n\n\n\n\n\n\n\n\n\n\nLineare Advektion\n\\[\n\\pp{u}{t} + \\alpha \\pp{u}{x} = 0 \\; \\text{mit} \\; \\alpha = 1 \\frac{m}{s}\n\\]\n\n\n\n\n\n\n\n\n\n\nBurgersgleichung\n\\[\n\\pp{u}{t} + u \\pp{u}{x} = 0\n\\]"
   },
   {
     "objectID": "index.html#organisation",
@@ -571,21 +984,21 @@
     "href": "index.html#warum-und-welche",
     "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
     "section": "Warum und welche?",
-    "text": "Warum und welche?\n\nNavier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\frac{\\partial u}{\\partial t}  - \\beta  \\frac{\\partial ^2u}{\\partial x^2}  = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\frac{\\partial u}{\\partial t}  + \\alpha  \\frac{\\partial u}{\\partial x}  = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\frac{\\partial u}{\\partial t}  + u  \\frac{\\partial u}{\\partial x}  = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(u\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
+    "text": "Warum und welche?\n\nNavier-Stokes-Gleichungen sind ein komplexes System aus gekoppelten partiellen Differentialgleichungen und damit schwer zu lösen\nEs ist zweckmäßig zunächst vereinfachte Systeme zu betrachten, die entweder einzelne physikalische Mechanismen entkoppeln oder vernachlässigen.\n\n\n\nLineare Diffusion\nEine Störung in einem ruhenden Fluid, z.B. ein Anstieg der Temperatur, diffundiert mit der Zeit in das benachbarte Fluid. Eine anfängliche Ungleichheit verteilt sich also im angrenzenden Fluid so lange bis es keinen “treibenden” Gradienten mehr gibt.\n\\[\n\\frac{\\partial \\phi}{\\partial t}  - \\beta  \\frac{\\partial ^2\\phi}{\\partial x^2}  = 0\n\\]\n\nLineare Advektion\nIn einem Fluid mit konstanter Geschwindigkeit wird eine Störung, z.B. ein Anstieg der Temperatur, mit der Strömung transportiert. Die Störung “folgt” also einfach der Strömung.\n\\[\n\\frac{\\partial \\phi}{\\partial t}  + \\alpha  \\frac{\\partial \\phi}{\\partial x}  = 0\n\\]\n\nBurgersgleichung\nZur Ableitung der Burgersgleichung aus den Navier-Stokes-Gleichungen wird in der Impulsgleichung die viskosen Terme und die Druckkraft vernachlässigt. Zusätzlich wird noch die Massenerhaltung aus den Navier-Stokes-Gleichungen entfernt.\n\\[\n\\frac{\\partial \\phi}{\\partial t}  + \\phi  \\frac{\\partial \\phi}{\\partial x}  = 0\n\\]\nDie Gleichung ist ähnlich zur linearen Advektion. Jedoch entspricht die Geschwindigkeit \\(\\alpha\\) der Lösung \\(\\phi\\) an der jeweiligen Stelle. Das Verhalten der Burgersgleichung ist also ähnlich zur linearen Advektion."
   },
   {
     "objectID": "index.html#lösungen",
     "href": "index.html#lösungen",
     "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
     "section": "Lösungen",
-    "text": "Lösungen\nFür die drei vereinfachten Systeme wird als Anfangsbedingung \\(u(x,t=0) = e^{-40 (x-\\frac{1}{2})^2}\\) und eine periodische Randbedingung bei \\(x=0\\) und \\(x=1\\) verwendet.\n\n\nLineare Diffusion \\[\n\\frac{\\partial u}{\\partial t}  = \\beta  \\frac{\\partial ^2u}{\\partial x^2}  = 0 \\; \\text{mit} \\; \\beta = 1 \\frac{m^2}{s}\n\\]\n\n\n\n\n\n\n\n\n\n\nLineare Advektion\n\\[\n\\frac{\\partial u}{\\partial t}  + \\alpha  \\frac{\\partial u}{\\partial x}  = 0 \\; \\text{mit} \\; \\alpha = 1 \\frac{m}{s}\n\\]\n\n\n\n\n\n\n\n\n\n\nBurgersgleichung\n\\[\n\\frac{\\partial u}{\\partial t}  + u  \\frac{\\partial u}{\\partial x}  = 0\n\\]"
+    "text": "Lösungen\nFür die drei vereinfachten Systeme wird als Anfangsbedingung \\(\\phi(x,t=0) = e^{-40 (x-\\frac{1}{2})^2}\\) und eine periodische Randbedingung bei \\(x=0\\) und \\(x=1\\) verwendet.\n\n\nLineare Diffusion \\[\n\\frac{\\partial \\phi}{\\partial t}  = \\beta  \\frac{\\partial ^2\\phi}{\\partial x^2}  = 0 \\; \\text{mit} \\; \\beta = 1\n\\]\n\n\n\n\n\n\n\n\n\n\nLineare Advektion\n\\[\n\\frac{\\partial \\phi}{\\partial t}  + \\alpha  \\frac{\\partial \\phi}{\\partial x}  = 0 \\; \\text{mit} \\; \\alpha = 1\n\\]\n\n\n\n\n\n\n\n\n\n\nBurgersgleichung\n\\[\n\\frac{\\partial \\phi}{\\partial t}  + \\phi  \\frac{\\partial \\phi}{\\partial x}  = 0\n\\]"
   },
   {
     "objectID": "index.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
     "href": "index.html#von-den-grundgleichungen-zum-linearen-gleichungssystem",
     "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
     "section": "Von den Grundgleichungen zum linearen Gleichungssystem",
-    "text": "Von den Grundgleichungen zum linearen Gleichungssystem\n\n\n\n\nZiel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden konstant.\nZunächst\nStationäres Problem \\(\\rightarrow  \\frac{\\partial }{\\partial t}  = 0\\)"
+    "text": "Von den Grundgleichungen zum linearen Gleichungssystem\n\n\n\n\nZiel\nAufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden kann.\nZunächst\nStationäres Problem \\(\\rightarrow  \\frac{\\partial }{\\partial t}  = 0\\)"
   },
   {
     "objectID": "index.html#vorgehensweise-in-der-numerischen-strömungsmechanik-1",
@@ -613,7 +1026,7 @@
     "href": "index.html#finite-differenzen-methode",
     "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
     "section": "Finite-Differenzen-Methode",
-    "text": "Finite-Differenzen-Methode\nVorgehensweise\n\n\nErstellen des Rechengitters\n\nOrthogonales Netz\nNicht äquidistant\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAppproximation der Differentialquotienten durch Differenzenquotienten\n\nGenauigkeit der Approximation\n\n\n\\[\n\\frac{\\partial u}{\\partial x}  =  \\frac{\\Delta u}{\\Delta x}  + \\text{Abbruchfehler} \\approx  \\frac{\\Delta u}{\\Delta x}\n\\]\n\n\n\nAufstellen des Linearen Gleichungssystems\n\nBerücksichtigung von Randbedingungen\n\n\n\\[\n{\\tiny\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\n\n\nLösung\n\n\\[\n\\underline{\\phi} ^{(n+1)} = f(\\phi^{(n)})\n\\]"
+    "text": "Finite-Differenzen-Methode\nVorgehensweise\n\n\n1. Erstellen des Rechengitters\n\nOrthogonales Netz\nNicht äquidistant\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2. Appproximation der Differentialquotienten durch Differenzenquotienten\n\nGenauigkeit der Approximation\n\n\n\\[\n\\frac{\\partial \\phi}{\\partial x}  =  \\frac{\\Delta \\phi}{\\Delta x}  + \\text{Abbruchfehler} \\approx  \\frac{\\Delta \\phi}{\\Delta x}\n\\]\n\n\n\n3. Aufstellen des Linearen Gleichungssystems\n\nBerücksichtigung von Randbedingungen\n\n\n\\[\n{\\tiny\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\n\n\n4. Lösung\n\n\\[\n\\underline{\\phi} ^{(n+1)} = f( \\underline{\\phi} ^{(n)})\n\\]"
   },
   {
     "objectID": "index.html#finite-differenzen-methode-1",
@@ -627,153 +1040,272 @@
     "href": "index.html#finite-differenzen-methode-2",
     "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
     "section": "Finite-Differenzen-Methode",
-    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nJe nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte \\(\\phi\\) die Ableitungen \\( \\frac{\\partial \\phi}{\\partial x} \\), \\( \\frac{\\partial ^2 \\phi}{\\partial x^2} \\) und \\( \\frac{\\partial \\phi}{\\partial t} \\) benötigt.\nOrts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet\n\nBeispiel: Graphische Approximation für \\( \\frac{\\partial \\phi}{\\partial x} \\) an der Stelle \\(x=x_i\\)\n\n\n\n\n\n\n\n\n\n\n\\( \\frac{\\partial \\phi}{\\partial x} \\) (Vorwärtsdifferenz)\\( \\frac{\\partial \\phi}{\\partial x} \\) (Rückwärtsdifferenz)\\( \\frac{\\partial \\phi}{\\partial x} \\) (Zentrale Differenz)\\( \\frac{\\partial^2 \\phi}{\\partial x^2} \\)\n\n\n\\( \\frac{\\partial \\left( \\phi(x_i) \\right)}{\\partial x}  =  \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{x=x_i}\n=\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}\n\\approx\n\\left[  \\frac{\\Delta \\phi}{\\Delta x}  \\right]_{i}\n=\n\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i)}{(x_i + \\Delta x) - (x_i)}\n=\n\\frac{{\\phi}_{i+1}-{\\phi}_{i}}{\\Delta x} \\)\n\n\n\\( \\frac{\\partial \\left( \\phi(x_i) \\right)}{\\partial x}  =  \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{x=x_i}\n=\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}\n\\approx\n\\left[  \\frac{\\Delta \\phi}{\\Delta x}  \\right]_{i}\n=\n\\frac{\\phi(x_i) - \\phi(x_i - \\Delta x)}{(x_i) - (x_i - \\Delta x)}\n=\n\\frac{{\\phi}_{i}-{\\phi}_{i-1}}{\\Delta x} \\)\n\n\n\\( \\frac{\\partial \\left( \\phi(x_i) \\right)}{\\partial x}  =  \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{x=x_i}\n=\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}\n\\approx\n\\left[  \\frac{\\Delta \\phi}{\\Delta x}  \\right]_{i}\n=\n\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i - \\Delta x)}{(x_i + \\Delta x) - (x_i - \\Delta x)}\n=\n\\frac{{\\phi}_{i+1}-{\\phi}_{i-1}}{2\\Delta x} \\)\n\n\n\\( \\frac{ \\partial ^2 \\left( \\phi(x_i) \\right) }{\\partial x ^2}  =  \\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{x=x_i}\n=\n\\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{i}\n=\n\\left[  \\frac{\\partial }{\\partial x}  \\left(  \\frac{\\partial \\phi}{\\partial x}  \\right) \\right]_{i}\n\\approx\n\\left[  \\frac{\\Delta \\left(  \\frac{\\partial \\phi}{\\partial x}  \\right) }{\\Delta x}  \\right]_{i}\n=\n\\frac{1}{\\Delta x}\\left(\n\\frac{{\\phi}_{i+1}-{\\phi}_{i}}{\\Delta x}\n-\n\\frac{{\\phi}_{i}-{\\phi}_{i-1}}{\\Delta x}\n\\right)\\)"
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nJe nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte \\(\\phi\\) die Ableitungen \\( \\frac{\\partial \\phi}{\\partial x} \\), \\( \\frac{\\partial ^2 \\phi}{\\partial x^2} \\) und \\( \\frac{\\partial \\phi}{\\partial t} \\) benötigt. Diese kommen z.B. in den folgenden Gleichungen vor:\n\n\\( \\frac{\\partial \\phi}{\\partial t}  - \\beta  \\frac{\\partial ^2\\phi}{\\partial x^2}  = 0\\)\n\\( \\frac{\\partial \\phi}{\\partial t}  + \\alpha  \\frac{\\partial \\phi}{\\partial x}  = 0\\)\n\\( \\frac{\\partial \\phi}{\\partial t}  + \\phi  \\frac{\\partial \\phi}{\\partial x}  = 0\\)\n\nOrts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet"
   },
   {
-    "objectID": "einfuehrung.html",
-    "href": "einfuehrung.html",
-    "title": "Einführung",
-    "section": "",
-    "text": "Vorlesung\n\nAlexander Tismer\n\nÜbung\n\nMarco Zorn\n\nSprechstunde\n\nTermine nach Vereinbarung\n\nPrüfung mündlich 40 Minuten\n\nTermine nach Vereinbarung\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nEinführung\n1\n\n\nGrundgleichungen\n2\n\n\nOrtsdiskretisierung FDM\n3/4\n\n\nTurbulenz\n5/6\n\n\nZeitdiskretisierung FDM\n7\n\n\nFVM\n8/9\n\n\nTurbomaschinen\n10\n\n\nGeometrie\n11\n\n\nVernetzung\n12\n\n\nOptimierung\n13/14\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nOrtsdiskretisierung (H)\n1\n\n\nZeitdiskretisierung (H)\n2\n\n\nEinführung (CFX)\n3\n\n\nBackward-Facing-Step (CFX)\n4\n\n\nRechnerübungen\n5/6\n\n\nSimulation Turbine (CFX)\n7\n\n\nRechnerübungen\n8/9\n\n\nVernetzung (H)\n10\n\n\nOptimierung\n11/12\n\n\n\n\n\n10 Vorlesungen in 14 x 90 Minuten und 9 Übungen in 12 x 90 Minuten 1 x Institutsbesichtigung und 2 x Offene Sprechstunde\n\n\n\n\nFerziger, J. H.; Peric, M.; “Numerische Strömungsmechanik”; Springer-Verlag, 2008\nLaurien, E.; Örtel, H.; “Numerische Strömungsmechanik”; Vieweg-Verlag, 2010\nPope, S. B.; “Turbulent Flows”; Cambridge Univ. Pr., 2006\nMoukalled, F.; Mangani, L.; Darwish, M.; “The Finite Volume Method in Computational Fluid Dynamics”; Springer, 2016\nWeicker, K.; “Evolutionäre Algorithmen”; Springer Vieweg, 2015\n\n\n\n\n\n\nRahmenbedingungen\n\nBestehende Anlage\nSaugrohr fix (Änderung sehr teuer)\nKontour von Nabe und Kranz fix\n\nZiel\n\nMöglichst hoher Wirkungsgrad unter Einhaltung der Auslegungsdaten\n\n\n\n\n@junginger_2016\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInkompressible Wasserströmung mit kinematischer Viskosität \\(\\nu = 10^{-6}\\)\nRohrturbine mit z.B. \\(D = 4m\\) Durchmesser und einer Zuströmgeschwindigkeit von \\(v=1\\frac{m}{s}\\) und damit hohen \\(Re\\)-Zahlen bzw. turbulenter Strömung\nSteigender Druckgradient\nVernetzung des Strömungsgebiets\nStehende und rotierende Gebiete müssen berechnet und gekoppelt werden\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAuslegung der Maschine auf Blattschnitten\nDefinition von Freiheitsgraden zur Veränderung der Geometrie\nErzeugung der dreidimensionalen Geometrie durch Verbinden von Kurven\nVerwendung von nicht-uniformen, rationalen B-Splines (NURBS)\n\n\n\n\n\nBeschreibung von Strömungen durch Navier-Stokes-Gleichungen:\n\n\n\\[\n\\begin{aligned}\n  \\frac{\\partial{}}{\\partial{t}} \\underline{u} +\n  \\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)\n  & =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\\[\n\\begin{aligned}\n  \\color{blue}{\\frac{\\partial{}}{\\partial{t}} \\underline{u}} +\n  \\color{orange}{\\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)}\n  & =\n  \\color{magenta}{\\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)} -\n  \\color{green}{\\frac{1}{\\rho} \\nabla p}\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\nUnbekannte \\(\\phi\\) bzw. \\(\\underline{u}\\) und \\(\\underline{p}\\) sind kontinuierliche Felder (Kontinuumsmechanik)\nNumerik löst partielle Differentialgleichungen an diskreten Stellen (Gitter)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEindimensionales Konvektions-Diffusions-Problem \\(u\\pp{\\phi}{x} = \\Gamma \\pp{}{x}\\pp{\\phi}{x}\\) mit \\(u,\\Gamma=\\mathrm{const}\\)\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n  \\hide{\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n  \\hide{\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n\\end{aligned}}\n\\]\n\n\n\n\nDifferential\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem \\(\\rightarrow\\) lineare Approximation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\n\\]\n\n\n\n\n\n\n\nFVM liefert \\[{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\\]\n\nKoeffizienten für die \\(m\\)-te Zeile\nAnaloges Aufstellen für alle anderen Auswertestellen liefern das lineare Gleichungssystem\n\n\\[\n{\\scriptsize\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\nMatrix hat für den gezeigten Fall eine Bandstruktur\nMatrix ist fast immer schwachbesetzt und die Besetzungsstruktur ist abhängig vom verwendeten Berechnungsgitter\n\n\n\n\n\n\n\n\n\n\n@krappel_2020\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n  \\pp{}{t} \\uv +\n  \\underbrace{\n    \\uv \\cdot \\left( \\nabla \\cdot \\uv \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert.\n\n\n\n\n\n\n\n\n\n\n@Tismer_2020\n\n\n\n\n\n\n\nLeistungsschwankungen der Turbine verursacht durch die Trifurkation\n\n\n\n\n\n\n\n\n\n\n\nInstationärer Wirbel innerhalt der Trifurkation\n\n\n\n\n\n\n\n\n\n\n\nLösung: Einbau von Blechen\n\n\n\n\n\n\n\n\n\n\n\nAnderes Kraftwerk, aber gleiches Problem?\n\n\n\n\n\n\n\n\n\n\n\n\n\nOriginal\n\n\n\n\n\nModifikation\n\n\n\n\n\n\nDer Einbau von Blechen in der Trifurkation reduziert das instationäre Verhalten des Wirbels @Kirschner_2019\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeometriedaten aus geometrischem Informationssystem (GIS)\nKopplung von TPXO für Randbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTheoretisches Potential\n\n\n\n\n\n\nKanalverblockung\n\n\nTechnisches Potential\n\n\n\n\n\n\nVerblockung nutzbare Fläche\n\n\nRealistisches Potential\n\n\n\n\n\n\nPlatzierung einzelner Turbinen\nBerücksichtigung der Hauptströmungsrichtungen\nFernfeldeinfluss mit Nachlaufschatten\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeitlicher Verlauf der Strömungsrichtung und zwei Strömungsfelder in unterschiedlichen Zeitschritten\n\n\n\n\n\n\n\nBeispiel des Verlaufs der Anströmbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStarke Variation der lokalen Anströmrichtungen\nTurbinenverbund verblockt maßgeblich Kernströmung im Kanal"
+    "objectID": "index.html#finite-differenzen-methode-3",
+    "href": "index.html#finite-differenzen-methode-3",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (graphisch) (2/4)\n\n\n\n\n\n\n\n\n\nDas Differential für \\( \\frac{\\partial \\phi}{\\partial x} \\) an der Stelle \\(x=x_i\\), also \\( \\frac{\\partial \\left( \\phi(x_i) \\right)}{\\partial x}\n  =  \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{x=x_i}\n  =  \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}\n  \\approx\n   \\left[  \\frac{\\Delta \\phi}{\\Delta x}  \\right]_{i} \\), wird durch unterschiedliche Differenzen approximiert:\n\n\\(\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i)}{(x_i + \\Delta x) - (x_i)}\n=\n\\frac{{\\phi}_{i+1}-{\\phi}_{i}}{\\Delta x} \\) (Vorwärtsdifferenz)\n\\(\\frac{\\phi(x_i) - \\phi(x_i - \\Delta x)}{(x_i) - (x_i - \\Delta x)}\n=\n\\frac{{\\phi}_{i}-{\\phi}_{i-1}}{\\Delta x} \\) (Rückwärtsdifferenz)\n\\(\\frac{\\phi(x_i + \\Delta x) - \\phi(x_i - \\Delta x)}{(x_i + \\Delta x) - (x_i - \\Delta x)}\n=\n\\frac{{\\phi}_{i+1}-{\\phi}_{i-1}}{2\\Delta x} \\) (Zentrale Differenz)\n\nDie Differenz wird jeweils über unterschiedliche Intervalle gebildet. Bei der Vorwärts- und Rückwärtsdifferenz hat das Interval eine Länge von \\(\\Delta x\\); bei der zentralen Differenz entspricht das Interval der doppelten Länge \\(2 \\Delta x\\)."
   },
   {
-    "objectID": "einfuehrung.html#organisation",
-    "href": "einfuehrung.html#organisation",
-    "title": "Einführung",
-    "section": "",
-    "text": "Vorlesung\n\nAlexander Tismer\n\nÜbung\n\nMarco Zorn\n\nSprechstunde\n\nTermine nach Vereinbarung\n\nPrüfung mündlich 40 Minuten\n\nTermine nach Vereinbarung"
+    "objectID": "index.html#finite-differenzen-methode-4",
+    "href": "index.html#finite-differenzen-methode-4",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (graphisch) (2/4)\n\n\n\n\n\n\n\n\n\nDas Differential für \\( \\frac{\\partial^2 \\phi}{\\partial x^2} \\) an der Stelle \\(x=x_i\\), also \\( \\frac{ \\partial ^2 \\left( \\phi(x_i) \\right) }{\\partial x ^2}\n  =  \\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{x=x_i}\n  =  \\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{i}\n  =  \\left[  \\frac{\\partial }{\\partial x}  \\left(  \\frac{\\partial \\phi}{\\partial x}  \\right) \\right]_{i}\n  \\approx\n   \\left[  \\frac{\\Delta }{\\Delta x}  \\left(  \\frac{\\Delta \\phi}{\\Delta x}  \\right) \\right]_{i} \\), lässt sich in zwei Differenzen “unterteilen”: die Differenz aus Vorwärts- und Rückwärtsdifferenz von \\(\\phi\\). Es ergibt sich damit die Approximation von \\( \\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{i} \\) zu:\n\\[\n\\frac{1}{\\Delta x}\\left(\n\\frac{{\\phi}_{i+1}-{\\phi}_{i}}{\\Delta x}  \n-\n\\frac{{\\phi}_{i}-{\\phi}_{i-1}}{\\Delta x}\n\\right)\n=\n\\frac{\\phi_{i+1}-2\\phi_i+\\phi_{i-1}}{ (\\Delta x)^{2} }\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#zeitplan",
-    "href": "einfuehrung.html#zeitplan",
-    "title": "Einführung",
-    "section": "",
-    "text": "Thema\n\n\n\n\n\nEinführung\n1\n\n\nGrundgleichungen\n2\n\n\nOrtsdiskretisierung FDM\n3/4\n\n\nTurbulenz\n5/6\n\n\nZeitdiskretisierung FDM\n7\n\n\nFVM\n8/9\n\n\nTurbomaschinen\n10\n\n\nGeometrie\n11\n\n\nVernetzung\n12\n\n\nOptimierung\n13/14\n\n\n\n\n\n\n\nThema\n\n\n\n\n\nOrtsdiskretisierung (H)\n1\n\n\nZeitdiskretisierung (H)\n2\n\n\nEinführung (CFX)\n3\n\n\nBackward-Facing-Step (CFX)\n4\n\n\nRechnerübungen\n5/6\n\n\nSimulation Turbine (CFX)\n7\n\n\nRechnerübungen\n8/9\n\n\nVernetzung (H)\n10\n\n\nOptimierung\n11/12\n\n\n\n\n\n10 Vorlesungen in 14 x 90 Minuten und 9 Übungen in 12 x 90 Minuten 1 x Institutsbesichtigung und 2 x Offene Sprechstunde"
+    "objectID": "index.html#finite-differenzen-methode-5",
+    "href": "index.html#finite-differenzen-methode-5",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nDie systematische Herleitung von Approximationen erfolgt über die Taylorreihe. Allgemein wird eine eindimensionale Funktion \\(f(x)\\) über den Entwicklungspunkt \\(a\\) durch \\[\nT_m f(x;a) = \\sum_{n=0}^{(m-1)} \\frac{(x-a)^n}{n!}  \\left[  \\frac{\\partial ^n f(x)}{\\partial x^n}  \\right]_{x=a}\n\\] angenährt. Mit steigendem \\(m\\) wird die Näherung genauer; entsprechend konvergiert sie für \\(m \\rightarrow \\infty\\) für viele Funktionen gegen diese.\nTaylorreihe bis zur Ableitung 3. Ordnung:\n\\[\n\\begin{align}\nT_4 f(x;a)\n&=\n\\sum_{n=0}^{3} \\frac{(x-a)^n}{n!}  \\left[  \\frac{\\partial ^n f}{\\partial x^n}  \\right]_{a}  \\\\\n&=\n\\frac{(x-a)^0}{0!}  \\left[  \\frac{\\partial ^0 f}{\\partial x^0}  \\right]_{a}\n+\n\\frac{(x-a)^1}{1!}  \\left[  \\frac{\\partial ^1 f}{\\partial x^1}  \\right]_{a}\n+\n\\frac{(x-a)^2}{2!}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{a}\n+\n\\frac{(x-a)^3}{3!}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{a}  \\\\\n&=\n\\left[ f \\right]_{a}\n+\n(x-a)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{a}\n+\n\\frac{(x-a)^2}{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{a}\n+\n\\frac{(x-a)^3}{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{a}\n\\end{align}\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#literatur",
-    "href": "einfuehrung.html#literatur",
-    "title": "Einführung",
-    "section": "",
-    "text": "Ferziger, J. H.; Peric, M.; “Numerische Strömungsmechanik”; Springer-Verlag, 2008\nLaurien, E.; Örtel, H.; “Numerische Strömungsmechanik”; Vieweg-Verlag, 2010\nPope, S. B.; “Turbulent Flows”; Cambridge Univ. Pr., 2006\nMoukalled, F.; Mangani, L.; Darwish, M.; “The Finite Volume Method in Computational Fluid Dynamics”; Springer, 2016\nWeicker, K.; “Evolutionäre Algorithmen”; Springer Vieweg, 2015"
+    "objectID": "index.html#finite-differenzen-methode-6",
+    "href": "index.html#finite-differenzen-methode-6",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\n\n\n\n\n\n\n\n\nVergleich unterschiedlicher Annäherungen mit dem Entwicklungspunkt \\(x_i\\):\n\\[\n\\begin{align}\nT_2 f(x;x_i)\n&=\n\\left[ f \\right]_{x_i}\n+\n(x-x_i)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i}  \\\\\nT_3 f(x;x_i)\n&=\n\\left[ f \\right]_{x_i}\n+\n(x-x_i)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i}\n+\n\\frac{(x-x_i)^2}{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{x_i}  \\\\\nT_4 f(x;x_i)\n&=\n\\left[ f \\right]_{x_i}\n+\n(x-x_i)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i}\n+\n\\frac{(x-x_i)^2}{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{x_i}\n+\n\\frac{(x-x_i)^3}{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{x_i}  \\\\\n\\end{align}\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#hydraulische-maschine",
-    "href": "einfuehrung.html#hydraulische-maschine",
-    "title": "Einführung",
-    "section": "",
-    "text": "Rahmenbedingungen\n\nBestehende Anlage\nSaugrohr fix (Änderung sehr teuer)\nKontour von Nabe und Kranz fix\n\nZiel\n\nMöglichst hoher Wirkungsgrad unter Einhaltung der Auslegungsdaten\n\n\n\n\n@junginger_2016"
+    "objectID": "index.html#finite-differenzen-methode-7",
+    "href": "index.html#finite-differenzen-methode-7",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nAuswertung des Taylorpolynoms \\(T_4\\) um den Entwicklungspunkt \\(x_i\\) an der Stelle \\(x_i + \\Delta x\\) liefert:\n\\[\n\\begin{align}\nT_4 f(\\underbrace{x_i + \\Delta x}_{x};x_i)\n&=\n\\left[ f \\right]_{x_i}\n+\n(\\underbrace{x_i + \\Delta x}_{x} - x_i)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i}\n+\n\\frac{(\\overbrace{x_i + \\Delta x}^{x} - x_i)^2}{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{x_i}\n+\n\\frac{(\\overbrace{x_i + \\Delta x}^{x} - x_i)^3}{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{x_i}  \\\\\n&=\n\\left[ f \\right]_{x_i}\n+\n(\\Delta x)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i}\n+\n\\frac{(\\Delta x)^2}{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{x_i}\n+\n\\frac{(\\Delta x)^3}{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{x_i}  \n\\end{align}\n\\]\nDie vollständige Taylorreihe an der Stelle \\(x_i + \\Delta x\\) konvergiert also gegen den Funktionswert:\n\\[\n\\begin{align}\nf(x_i + \\Delta x)\n=\n\\left[ f \\right]_{x_i}\n+\n(\\Delta x)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i}\n+\n\\frac{(\\Delta x)^2}{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{x_i}\n+\n\\frac{(\\Delta x)^3}{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{x_i}  \n+\n...\n\\end{align}\n\\]\nEntsprechendes gilt für die Taylorreihe an der Stelle \\(x_i - \\Delta x\\):\n\\[\n\\begin{align}\nf(x_i - \\Delta x)\n=\n\\left[ f \\right]_{x_i}\n-\n(\\Delta x)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i}\n+\n\\frac{(\\Delta x)^2}{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{x_i}\n-\n\\frac{(\\Delta x)^3}{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{x_i}  \n+\n...\n\\end{align}\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#hydraulische-maschine-1",
-    "href": "einfuehrung.html#hydraulische-maschine-1",
-    "title": "Einführung",
-    "section": "",
-    "text": "Inkompressible Wasserströmung mit kinematischer Viskosität \\(\\nu = 10^{-6}\\)\nRohrturbine mit z.B. \\(D = 4m\\) Durchmesser und einer Zuströmgeschwindigkeit von \\(v=1\\frac{m}{s}\\) und damit hohen \\(Re\\)-Zahlen bzw. turbulenter Strömung\nSteigender Druckgradient\nVernetzung des Strömungsgebiets\nStehende und rotierende Gebiete müssen berechnet und gekoppelt werden"
+    "objectID": "index.html#finite-differenzen-methode-8",
+    "href": "index.html#finite-differenzen-methode-8",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung der Vorwärtsdifferenz wird die Taylorreihe\n\\[\n\\begin{align}\n\\underbrace{f(x_i + \\Delta x)}_{= \\left[ f \\right]_{x_{i+1}} }\n=\n\\left[ f \\right]_{x_i}\n+\n(\\Delta x)  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i}\n+\n\\frac{(\\Delta x)^2}{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{x_i}\n+\n\\frac{(\\Delta x)^3}{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{x_i}  \n+\n\\underbrace{...}_{= \\mathcal{O}((\\Delta x)^{4}) )}\n\\end{align}\n\\]\nmit dem Abbruchfehler (Fehlerterm) \\( \\mathcal{O}((\\Delta x)^{4}) )\\) nach der ersten Ableitung \\( \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i} \\) umgestellt:\n\\[\n\\begin{align}\n\\underbrace{ \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{x_i} }_{= \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i} }\n&=\n\\underbrace{\n  \\frac{ \\left[ f \\right]_{x_{i+1}}  -  \\left[ f \\right]_{x_i} }{\\Delta x}\n}_{\n  \\frac{f_{i+1}-f_i}{\\Delta x}\n}\n-\n\\underbrace{\n  \\frac{(\\Delta x)^2}{2 \\Delta x}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{x_i}\n  -\n  \\frac{(\\Delta x)^3}{6 \\Delta x}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{x_i}  \n  -\n  \\frac{ \\mathcal{O}((\\Delta x)^{4}) )}{\\Delta x}\n}_{ \\mathcal{O}((\\Delta x)^{1}) }\n\\\\\n\\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}\n&=\n\\frac{f_{i+1}-f_i}{\\Delta x}\n+\n\\underbrace{\n   \\mathcal{O}((\\Delta x)^{1})\n}_{\n  \\text{Führender Fehlerterm}\n}\n\\approx \\frac{f_{i+1}-f_i}{\\Delta x}\n\\end{align}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nDer Führende Fehlerterm gibt die Fehlerordnung des Diskretisierungsschemas vor.\nEs ist der erste Term, der nicht für die Approximation verwendet wird.\nDie folgenden Fehlerterme mit einer höheren Ordnung haben in der Regel einen geringeren Einfluss."
   },
   {
-    "objectID": "einfuehrung.html#hydraulische-maschine-2",
-    "href": "einfuehrung.html#hydraulische-maschine-2",
-    "title": "Einführung",
-    "section": "",
-    "text": "Auslegung der Maschine auf Blattschnitten\nDefinition von Freiheitsgraden zur Veränderung der Geometrie\nErzeugung der dreidimensionalen Geometrie durch Verbinden von Kurven\nVerwendung von nicht-uniformen, rationalen B-Splines (NURBS)"
+    "objectID": "index.html#finite-differenzen-methode-9",
+    "href": "index.html#finite-differenzen-methode-9",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung der Rückwärtsdifferenz wird die Taylorreihe\n\\[\n\\begin{align}\n\\left[ f \\right]_{i-1}\n=\n\\left[ f \\right]_{i}\n-\n\\Delta x  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}\n+\n\\frac{ (\\Delta x)^{2} }{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{i}\n-\n\\frac{ (\\Delta x)^{3} }{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{i}  \n+\n\\underbrace{...}_{= \\mathcal{O}((\\Delta x)^{4}) )}\n\\end{align}\n\\]\nwieder nach der ersten Ableitung \\( \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i} \\) umgestellt:\n\\[\n\\begin{align}\n\\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}\n&=\n\\frac{{f}_{i}-{f}_{i-1}}{\\Delta x}\n+\n\\mathcal{O}((\\Delta x)^{1})\n\\end{align}\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#grundgleichungen",
-    "href": "einfuehrung.html#grundgleichungen",
-    "title": "Einführung",
-    "section": "",
-    "text": "Beschreibung von Strömungen durch Navier-Stokes-Gleichungen:\n\n\n\\[\n\\begin{aligned}\n  \\frac{\\partial{}}{\\partial{t}} \\underline{u} +\n  \\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)\n  & =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\\[\n\\begin{aligned}\n  \\color{blue}{\\frac{\\partial{}}{\\partial{t}} \\underline{u}} +\n  \\color{orange}{\\underline{u} \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)}\n  & =\n  \\color{magenta}{\\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right)} -\n  \\color{green}{\\frac{1}{\\rho} \\nabla p}\n  \\\\\n  \\nabla \\cdot \\underline{u}\n  & =\n  0\n\\end{aligned}\n\\]\n\n\n\nUnbekannte \\(\\phi\\) bzw. \\(\\underline{u}\\) und \\(\\underline{p}\\) sind kontinuierliche Felder (Kontinuumsmechanik)\nNumerik löst partielle Differentialgleichungen an diskreten Stellen (Gitter)"
+    "objectID": "index.html#finite-differenzen-methode-10",
+    "href": "index.html#finite-differenzen-methode-10",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung weiterer Diskretisierungsschemata werden die beiden Gleichungen \\[\n\\begin{align}\n\\left[ f \\right]_{i+1}\n=\n\\left[ f \\right]_{i}\n+\n\\Delta x  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}\n+\n\\frac{ (\\Delta x)^{2} }{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{i}\n+\n\\frac{ (\\Delta x)^{3} }{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{i}  \n+\n\\mathcal{O}((\\Delta x)^{4})\n\\end{align}\n\\] und \\[\n\\begin{align}\n\\left[ f \\right]_{i-1}\n=\n\\left[ f \\right]_{i}\n-\n\\Delta x  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}\n+\n\\frac{ (\\Delta x)^{2} }{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{i}\n-\n\\frac{ (\\Delta x)^{3} }{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{i}  \n+\n\\mathcal{O}((\\Delta x)^{4})\n\\end{align}\n\\] zu \\[\n\\begin{align}\na  \\left[ f \\right]_{i+1}\n+\nb  \\left[ f \\right]_{i-1}\n=\n(a+b)  \\left[ f \\right]_{i}\n+\n(a-b)  \\Delta x  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}\n+\n(a+b) \\frac{ (\\Delta x)^{2} }{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{i}\n+\n(a-b) \\frac{ (\\Delta x)^{3} }{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{i}  \n+\n(a+b)  \\mathcal{O}((\\Delta x)^{4})\n\\end{align}\n\\] kombiniert.\nEine geschickte Wahl von \\(a\\) und \\(b\\) liefert dann Diskretisierungsschemata für gewünschte Ableitungen und Fehlerordnungen."
   },
   {
-    "objectID": "einfuehrung.html#finite-volumen-methode",
-    "href": "einfuehrung.html#finite-volumen-methode",
-    "title": "Einführung",
-    "section": "",
-    "text": "Eindimensionales Konvektions-Diffusions-Problem \\(u\\pp{\\phi}{x} = \\Gamma \\pp{}{x}\\pp{\\phi}{x}\\) mit \\(u,\\Gamma=\\mathrm{const}\\)\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n  \\hide{\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n  \\hide{\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n  \\hide{\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  }\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  }\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n  \\hide{\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n  }\n\\end{aligned}}\n\\]\n\n\n\\[\n{\\small\\begin{aligned}\nu \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{u\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{u \\phi}\n    \\rightarrow\n      - \\at{u \\phi}{k}\n      + \\at{u \\phi}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - u \\frac{\\phi_{m-1} + \\phi_{m}}{2}\n      + u \\frac{\\phi_m + \\phi_{m+1}}{2}\n    \\rightarrow\n    u\\fd{\\phi}{m+1}{m-1}{2}\n  \\\\\n\\Gamma \\pp{}{x} \\pp{\\phi}{x}\n  &\n    \\rightarrow\n      \\intV{\\Gamma \\pp{}{x}\\pp{\\phi}{x}}\n    \\rightarrow\n      \\intS{\\Gamma \\pp{\\phi}{x}}\n    \\rightarrow\n      - \\at{\\Gamma\\pp{ \\phi}{x}}{k}\n      + \\at{\\Gamma \\pp{\\phi}{x}}{k+1}\n  \\\\\n  &\n    \\rightarrow\n      - \\Gamma \\fd{\\phi}{m}{m-1}{\\delta x}\n      + \\Gamma \\fd{\\phi}{m+1}{m}{\\delta x}\n    \\rightarrow\n    \\Gamma \\ffd{\\phi}{m+1}{m}{m-1}{\\delta x}\n\\end{aligned}}\n\\]\n\n\n\n\nDifferential\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem\n\n\nDifferential \\(\\rightarrow\\) Integral mit Divergenztheorem \\(\\rightarrow\\) lineare Approximation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\n\\]"
+    "objectID": "index.html#finite-differenzen-methode-11",
+    "href": "index.html#finite-differenzen-methode-11",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung der Zentralen Differenz müssen folgende Bedingungen gelten: \\[\n\\begin{align}\na  \\left[ f \\right]_{i+1}\n+\nb  \\left[ f \\right]_{i-1}\n=\n(a+b)  \\left[ f \\right]_{i}\n+\n\\underbrace{(a-b)}_{=1}  \\Delta x  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}\n+\n\\underbrace{(a+b)}_{=0} \\frac{ (\\Delta x)^{2} }{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{i}\n+\n(a-b) \\frac{ (\\Delta x)^{3} }{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{i}  \n+\n(a+b)  \\mathcal{O}((\\Delta x)^{4})\n\\end{align}\n\\]\nEs ergibt sich \\(a=\\frac{1}{2}\\) und \\(b=-\\frac{1}{2}\\). Damit ergibt sich folgendes Diskretisierungsschema:\n\\[\n\\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}  =  \\frac{{f}_{i+1}-{f}_{i-1}}{2 \\Delta x }  +  \\mathcal{O}((\\Delta x)^{2})\n\\]\n\n\n\n\n\n\nNote\n\n\nIm Vergleich zu den bisherigen Schemata hat die Zentrale Differenz einen führenden Fehlerterm mit der Ordnung 2 für die Appoximation der ersten Ableitung."
   },
   {
-    "objectID": "einfuehrung.html#finite-volumen-methode-1",
-    "href": "einfuehrung.html#finite-volumen-methode-1",
-    "title": "Einführung",
-    "section": "",
-    "text": "FVM liefert \\[{\\small\n\\left(\n-\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m-1}\n+\\left(\n\\frac{2\\Gamma}{\\delta x}\n\\right) \\phi_{m}\n+\\left(\n\\frac{u}{2}-\\frac{\\Gamma}{\\delta x}\n\\right) \\phi_{m+1} = 0\n}\\]\n\nKoeffizienten für die \\(m\\)-te Zeile\nAnaloges Aufstellen für alle anderen Auswertestellen liefern das lineare Gleichungssystem\n\n\\[\n{\\scriptsize\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots & 0 & \\blacksquare  & \\blacksquare & \\blacksquare& 0 & \\vdots\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\phi_1 \\\\\n\\vdots \\\\\n\\phi_m \\\\\n\\vdots \\\\\n\\phi_N \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n}\n\\]\n\nMatrix hat für den gezeigten Fall eine Bandstruktur\nMatrix ist fast immer schwachbesetzt und die Besetzungsstruktur ist abhängig vom verwendeten Berechnungsgitter"
+    "objectID": "index.html#finite-differenzen-methode-12",
+    "href": "index.html#finite-differenzen-methode-12",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nZur Herleitung einer Appoximation für die zweite Ableitung müssen folgende Bedingungen gelten: \\[\n\\begin{align}\na  \\left[ f \\right]_{i+1}\n+\nb  \\left[ f \\right]_{i-1}\n=\n(a+b)  \\left[ f \\right]_{i}\n+\n\\underbrace{(a-b)}_{=0}  \\Delta x  \\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i}\n+\n\\underbrace{(a+b)}_{=1} \\frac{ (\\Delta x)^{2} }{2}  \\left[  \\frac{\\partial ^2 f}{\\partial x^2}  \\right]_{i}\n+\n(a-b) \\frac{ (\\Delta x)^{3} }{6}  \\left[  \\frac{\\partial ^3 f}{\\partial x^3}  \\right]_{i}  \n+\n(a+b)  \\mathcal{O}((\\Delta x)^{4})\n\\end{align}\n\\]\nEs ergibt sich \\(a=\\frac{1}{2}\\) und \\(b=\\frac{1}{2}\\). Damit ergibt sich folgendes Diskretisierungsschema:\n\\[\n\\left[  \\frac{\\partial^2 f}{\\partial x^2}  \\right]_{i}  =  \\frac{{f}_{i+1}-{2f}_{i}+{f}_{i-1}}{ \\Delta x ^2}  +  \\mathcal{O}((\\Delta x)^{2})\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#turbulenzmodellierung",
-    "href": "einfuehrung.html#turbulenzmodellierung",
-    "title": "Einführung",
-    "section": "",
-    "text": "@krappel_2020\n\n\n\nLösung der Navier-Stokes-Gleichungen (DNS)\n\nAuflösung aller Wirbelskalen\n\nRechenaufwand bei großer \\(Re\\)-Zahl mehr als 100 Jahre\nKomplette oder teilweise Modellierung der Wirbelskala\nRANS (zeitliche Mittelung) oder LES (räumliche Filterung)\n\n\n\nBei RANS entsteht der Reynoldsspannungstensor aus den nicht-linearen Konvektionstermen in\n\\[\n{\\scriptsize\n  \\pp{}{t} \\uv +\n  \\underbrace{\n    \\uv \\cdot \\left( \\nabla \\cdot \\uv \\right)\n  }_{\n  \\mathrm{nicht-linear}\n  } =\n  \\nu \\nabla \\cdot \\left( \\nabla \\cdot \\underline{u} \\right) -\n  \\frac{1}{\\rho} \\nabla p\n}\n\\]\nDieser Tensor wird durch Turbulenzmodellierung approximiert."
+    "objectID": "index.html#finite-differenzen-methode-13",
+    "href": "index.html#finite-differenzen-methode-13",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nDie Approximationen für eindimensionale Probleme können einfach auf zwei- oder dreidimensionale Probleme angewendet werden.\nBeispiele in zwei Dimensionen\n\n\nVorwärtsdifferenz\n\\[\n\\begin{align}\n\\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i,j}  \\approx  \\frac{{f}_{i+1,j}-{f}_{i,j}}{ \\Delta x }  \n\\; \\text{und} \\;\n\\left[  \\frac{\\partial f}{\\partial y}  \\right]_{i,j}  \\approx  \\frac{{f}_{i,j+1}-{f}_{i,j}}{ \\Delta y }\n\\end{align}\n\\]\nRückwärtsdifferenz\n\\[\n\\begin{align}\n\\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i,j}  \\approx  \\frac{{f}_{i,j}-{f}_{i-1,j}}{ \\Delta x }\n\\; \\text{und} \\;\n\\left[  \\frac{\\partial f}{\\partial y}  \\right]_{i,j}  \\approx  \\frac{{f}_{i,j}-{f}_{i,j-1}}{ \\Delta y }\n\\end{align}\n\\]\nZentrale Differenz\n\\[\n\\begin{align}\n\\left[  \\frac{\\partial f}{\\partial x}  \\right]_{i,j}  \\approx  \\frac{{f}_{i+1,j}-{f}_{i-1,j}}{2  \\Delta x }\n\\; \\text{und} \\;\n\\left[  \\frac{\\partial f}{\\partial y}  \\right]_{i,j}  \\approx  \\frac{{f}_{i,j+1}-{f}_{i,j-1}}{2  \\Delta y }\n\\end{align}\n\\]\n\n\\[\n\\begin{align}\n\\left[  \\frac{\\partial^2 f}{\\partial x^2}  \\right]_{i,j}  &\\approx  \\frac{{f}_{i+1,j}-{2f}_{i,j}+{f}_{i-1,j}}{ \\Delta x ^2} \\\\\n\\left[  \\frac{\\partial^2 f}{\\partial y^2}  \\right]_{i,j}  &\\approx  \\frac{{f}_{i,j+1}-{2f}_{i,j}+{f}_{i,j-1}}{ \\Delta y ^2}\n\\end{align}\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#evolutionäre-optimierung",
-    "href": "einfuehrung.html#evolutionäre-optimierung",
-    "title": "Einführung",
-    "section": "",
-    "text": "@Tismer_2020"
+    "objectID": "index.html#finite-differenzen-methode-14",
+    "href": "index.html#finite-differenzen-methode-14",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nAnmerkungen zum Diskretisierungsfehler\nDie Fehlerordnung bezieht sich auf die Konvergenzrate bei Gitterverfeinerung.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nEin Verfahren mit hoher Fehlerordnung bedeutet nicht unbedingt auch einen kleineren Fehler.\nFür die 1. Ordung halbiert sich theoretisch der Fehler bei Verdopplung der Knotenanzahl; entsprechend viertelt sich der Fehler bei der 2. Ordnung\nEs kann gezeigt werden, dass die Fehlerordnung auf nichtäquidistanten gleich der auf äquidistanten Gittern ist."
   },
   {
-    "objectID": "einfuehrung.html#anwendung",
-    "href": "einfuehrung.html#anwendung",
-    "title": "Einführung",
-    "section": "",
-    "text": "Leistungsschwankungen der Turbine verursacht durch die Trifurkation"
+    "objectID": "index.html#finite-differenzen-methode-15",
+    "href": "index.html#finite-differenzen-methode-15",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nAnmerkungen zum Diskretisierungsfehler\n\nDie Idee hinter der Verwendung von nichtäquidistanten Gittern ist, dass der Diskretisierungsfehler nicht nur von der Gitterweite \\( \\Delta x \\), sondern auch von den Ableitungen der Variablen (z.B. \\(\\frac{ \\Delta x }{2!}  \\left[  \\frac{\\partial^2 f}{\\partial x^2}  \\right]_{i} \\)) abhängt.\n\n\n\n\n\n\n\n\n\n\n\nDer Diskretisierungsfehler hängt von der gewählten Approximation sowie der Gitterweite ab.\nApproximationen höherer Ordnung lassen sich ebenfalls herleiten. Diese resultieren in einem größeren Differenzenstern und somit erhöhtem Berechnungsaufwand, z. B. eine Rückwärtsdifferenz für die erste Ableitung aus den Knoten \\(i\\), \\(i-1\\) und \\(i-2\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\leftarrow\\) Verfahren 1. Ordnung \\(\\leftrightarrow\\) Verfahren 2. Ordnung \\(\\rightarrow\\)\n\n\n\n\n\n\n\n\n\n\n\n\nIm Idealfall sollten alle Terme (inklusive Randbedingungen) mit Approximationen gleicher Ordnung diskretisiert werden."
   },
   {
-    "objectID": "einfuehrung.html#anwendung-1",
-    "href": "einfuehrung.html#anwendung-1",
-    "title": "Einführung",
-    "section": "",
-    "text": "Instationärer Wirbel innerhalt der Trifurkation"
+    "objectID": "index.html#finite-differenzen-methode-16",
+    "href": "index.html#finite-differenzen-methode-16",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nAufwind (Upwind) Diskretisierung vs. Zentrale Differenz\n\nBei Transportgleichungen mit dominanter Konvektion liegt eine Richtungsabhängigkeit vor. Diese wird mit einer Zentralen Differenz nicht berücksichtigt.\nPhysikalisch gesehen hat dann der stromauf gelegene Knoten mehr Einfluss als der stromab gelegene.\nDas einfachste Diskretisierungsschema, das die Richtungsabhängigkeit berücksichtigt, ist ein Aufwind-Verfahren, das je nach Strömungsrichtung eine Vorwärts- oder Rückwärtsdifferenz verwendet.\n\nBeispiel:\nJe nach Vorzeichen der Geschwindigeit \\(\\alpha\\) in der Gleichung \\( \\frac{\\partial \\phi}{\\partial t}  + \\alpha  \\frac{\\partial \\phi}{\\partial x}  = 0\\) wird das Diskretisierungsschema für den Konvektionsterm angepasst:\n\\[\n\\frac{\\partial \\phi}{\\partial x}  \n=\n\\begin{cases}\n\\frac{{\\phi}_{i}-{\\phi}_{i-1}}{ \\Delta x }  \\, \\text{wenn} \\, \\alpha&gt;0 \\\\\n\\frac{{\\phi}_{i+1}-{\\phi}_{i}}{ \\Delta x }  \\, \\text{sonst}\n\\end{cases}\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#anwendung-2",
-    "href": "einfuehrung.html#anwendung-2",
-    "title": "Einführung",
-    "section": "",
-    "text": "Lösung: Einbau von Blechen"
+    "objectID": "index.html#finite-differenzen-methode-17",
+    "href": "index.html#finite-differenzen-methode-17",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nAufwind (Upwind) Diskretisierung vs. Zentrale Differenz\n\nFür Strömungsvorgänge definiert die \\(Re\\)-Zahl das Verhältnis aus Trägheits- und Reibkräften, also genau das Verhältnis aus Konvektion und Diffusion; entsprechend muss bei hohen \\(Re\\)-Zahlen eine Aufwind-Diskretisierung angewendet werden.\nIn der Energiegleichung definiert die \\(Pe\\)-Zahl (Peclet-Zahl) das Verhältnis aus Konvektion und Diffusion\nBei dominierender Konvektion kann es bei Verwendung einer zentralen Differenz für die Diskretisierung des Konvektionsterms zu unphysikalischen Oszillationen in der Lösung kommen.\nDer Grund für die unphysikalischen Oszillationen ist, dass die Matrix im linearen Gleichungssystem bei Verwendung einer Diskretisierung mit zentralen Differenzen nicht mehr diagonaldominant ist.\n\nDas bedeutet, dass die Koeffizienten der Hauptdiagonale nicht mehr größer sind als die Summe der weiteren Einträge in dieser Zeile.\n\nEs kann gezeigt werden, dass eine Zentrale Differenz nur stabil ist, sofern folgende Bedingung für die Geschwindigkeit \\(v\\), die Gitterweite \\( \\Delta x \\) und der Diffusionskonstanten \\(\\alpha\\) bzw. \\(\\nu\\) in einem jeweiligen Element gilt:\n\\[\nPe_{\\text{Element}} = \\frac{v  \\Delta x }{\\alpha} &lt; 2\n\\;\n\\text{bzw.}\n\\;\nRe_{\\text{Element}} = \\frac{v  \\Delta x }{\\nu} &lt; 2\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#anwendung-3",
-    "href": "einfuehrung.html#anwendung-3",
-    "title": "Einführung",
-    "section": "",
-    "text": "Anderes Kraftwerk, aber gleiches Problem?"
+    "objectID": "index.html#finite-differenzen-methode-18",
+    "href": "index.html#finite-differenzen-methode-18",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nVerhalten des Diskretisierungsfehlers\nZur Untersuchung wird in die Gleichung \\( \\frac{\\partial \\phi}{\\partial t} +\\alpha  \\frac{\\partial \\phi}{\\partial x}  = 0\\) statt dem Diskretisierungsschema die Ableitung und der führende Fehlerterm eingesetzt:\n\n\nDie Rückwärtsdifferenz \\[ \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}  \n\\approx\n\\frac{{\\phi}_{i}-{\\phi}_{i-1}}{ \\Delta x }  \n+\n\\frac{ \\Delta x }{2}  \\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{i}\n\\] wird umgestellt zu \\[ \\frac{{\\phi}_{i}-{\\phi}_{i-1}}{ \\Delta x }  \n\\approx\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}  \n-\n\\frac{ \\Delta x }{2}  \\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{i}\n\\] und in die Differentialgleichung eingesetzt. Es ergibt sich die effektiv zu lösende Gleichung als: \\[\n\\left[  \\frac{\\partial \\phi}{\\partial t}  \\right]_{t_i}\n+\n\\alpha \\left(\n   \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}  \n  -\n  \\frac{ \\Delta x }{2}  \\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{i}\n\\right) \\approx 0\n\\]\nDer Fehlerterm hat diffusiven Charakter.\n\nDie Zentrale Differenz \\[\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}  \n\\approx\n\\frac{{\\phi}_{i+1}-{\\phi}_{i-1}}{2 \\Delta x }  \n-\n\\frac{ \\Delta x }{6}  \\left[  \\frac{\\partial ^3\\phi}{\\partial x^3}  \\right]_{i}\n\\] wird umgestellt zu \\[\n\\frac{{\\phi}_{i+1}-{\\phi}_{i-1}}{2 \\Delta x }  \n\\approx\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}  \n+\n\\frac{ \\Delta x }{6}  \\left[  \\frac{\\partial ^3\\phi}{\\partial x^3}  \\right]_{i}\n\\] und in die Differentialgleichung eingesetzt. Es ergibt sich die effektiv zu lösende Gleichung als: \\[\n\\left[  \\frac{\\partial \\phi}{\\partial t}  \\right]_{t_i}\n+\n\\alpha \\left(\n   \\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}  \n  +\n  \\frac{ \\Delta x }{6}  \\left[  \\frac{\\partial ^3\\phi}{\\partial x^3}  \\right]_{i}\n\\right) \\approx 0\n\\]\nDer Fehlerterm hat dispersiven Charakter."
   },
   {
-    "objectID": "einfuehrung.html#anwendung-4",
-    "href": "einfuehrung.html#anwendung-4",
-    "title": "Einführung",
-    "section": "",
-    "text": "Original\n\n\n\n\n\nModifikation\n\n\n\n\n\n\nDer Einbau von Blechen in der Trifurkation reduziert das instationäre Verhalten des Wirbels @Kirschner_2019"
+    "objectID": "index.html#finite-differenzen-methode-19",
+    "href": "index.html#finite-differenzen-methode-19",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\nVerhalten des Diskretisierungsfehlers\n\n\nDiffusiver Fehler\n\\[\n\\frac{\\partial \\phi}{\\partial t}\n+\n\\alpha  \\frac{\\partial \\phi}{\\partial x}\n-\n\\underbrace{\\alpha \\frac{ \\Delta x }{2}  \\frac{\\partial^2 \\phi}{\\partial x^2} }_{\\text{Gerade Ableitung}}\n\\approx 0\n\\]\n\n\n\n\n\n\nGradienten werden geglättet\nBeschränkt\n\n\nDispersiver Fehler\n\\[\n\\frac{\\partial \\phi}{\\partial t}\n+\n\\alpha  \\frac{\\partial \\phi}{\\partial x}\n+\n\\underbrace{\\alpha \\frac{ \\Delta x }{6}  \\frac{\\partial ^3\\phi}{\\partial x^3} }_{\\text{Ungerade Ableitung}}\n\\approx 0\n\\]\n\n\n\n\n\n\nNumerische Oszillationen in der Lösung möglich\nUnbeschränkt\n\n\n\n\n\n\n\n\nNote\n\n\nSofern die ursprüngliche Gleichung schon eine zweite Ableitung und damit Diffusion enthält, kann durch einen diffusiven Fehler diese erhöht werden. Das wird als zusätzliche numerische Diffusion bezeichnet."
   },
   {
-    "objectID": "einfuehrung.html#anwendung-5",
-    "href": "einfuehrung.html#anwendung-5",
-    "title": "Einführung",
-    "section": "",
-    "text": "Geometriedaten aus geometrischem Informationssystem (GIS)\nKopplung von TPXO für Randbedingungen"
+    "objectID": "index.html#finite-differenzen-methode-20",
+    "href": "index.html#finite-differenzen-methode-20",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAppproximation der Differentialquotienten durch Differenzenquotienten (2/4)\n\nEs gibt eine Vielzahl möglicher Schemas für die Diskretisierung des Konvektionsterms, die für unterschiedliche Anwendungen entwickelt wurden.\nGängige Diskretisierungsschemas für praktische Anwendungen (z.B. Turbinensimulationen) sind:\n\nHigh Resolution:\n\nMischung aus Verfahren 1. und 2. Ordnung\nVerfahren 2. Ordnung, wo möglich\nVerfahren 1. Ordnung in Bereichen hoher Gradienten\n\nLinear Upwind (Aufwind-Diskretisierung 2.Ordnung) \\[\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}  \\approx \\frac{\\phi_{i+2}-4\\phi_{i+1}+3\\phi_i}{2 \\Delta x }\n\\;\n\\text{bzw.}\n\\;\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i}  \\approx \\frac{\\phi_{i-2}-4\\phi_{i-1}+3\\phi_i}{2 \\Delta x }\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#anwendung-6",
-    "href": "einfuehrung.html#anwendung-6",
-    "title": "Einführung",
-    "section": "",
-    "text": "Theoretisches Potential\n\n\n\n\n\n\nKanalverblockung\n\n\nTechnisches Potential\n\n\n\n\n\n\nVerblockung nutzbare Fläche\n\n\nRealistisches Potential\n\n\n\n\n\n\nPlatzierung einzelner Turbinen\nBerücksichtigung der Hauptströmungsrichtungen\nFernfeldeinfluss mit Nachlaufschatten"
+    "objectID": "index.html#finite-differenzen-methode-21",
+    "href": "index.html#finite-differenzen-methode-21",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAufstellen des linearen Gleichungssystems (3/4)\nDurch Einsetzen der Differenzenquotienten erhält man die diskretisierte Gleichung zur Berechnung der inneren Knoten.\nBeispiel:\nDie Gleichung \\[\nu  \\frac{\\partial \\phi}{\\partial x}  - \\beta  \\frac{\\partial^2 \\phi}{\\partial x^2}  = 0\n\\] mit der unbekannten Größe \\(\\phi\\) lautet nach einer möglichen Diskretisierung für den Knoten \\(i\\): \\[\nu_i  \\frac{{\\phi}_{i+1}-{\\phi}_{i-1}}{2 \\Delta x }  - \\beta_i  \\frac{{\\phi}_{i+1}-{2\\phi}_{i}+{\\phi}_{i-1}}{ \\Delta x ^2}  = 0\n\\] Umgestellt lautet die Gleichung: \\[\n\\left(\n\\frac{u_i}{2 \\Delta x }\n-\n\\frac{\\beta}{ \\Delta x ^2}\n\\right)\n\\phi_{i+1}\n+\n\\left(\n\\frac{2\\beta}{ \\Delta x ^2}\n\\right)\n\\phi_{i}\n+\n\\left(\n-\n\\frac{u_i}{2 \\Delta x }\n-\n\\frac{\\beta}{ \\Delta x ^2}\n\\right)\n\\phi_{i-1}\n=\n0\n\\] Diese Gleichung wird für jeden anderen inneren Knoten ebenfalls aufgestellt."
   },
   {
-    "objectID": "einfuehrung.html#anwendung-7",
-    "href": "einfuehrung.html#anwendung-7",
-    "title": "Einführung",
-    "section": "",
-    "text": "Zeitlicher Verlauf der Strömungsrichtung und zwei Strömungsfelder in unterschiedlichen Zeitschritten"
+    "objectID": "index.html#finite-differenzen-methode-22",
+    "href": "index.html#finite-differenzen-methode-22",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAufstellen des linearen Gleichungssystems (3/4)\nEs ergibt sich das lineare Gleichungssystem \\( \\boldsymbol{A}   \\underline{\\phi}  =  \\underline{b} \\). Die Matrix hat für die gewählte Diskretisierung auf dem Gitter drei Bänder.\n\n\n\n\n\n\n\n\n\nFür das Beispiel ergibt sich das lineare Gleichungssystem zu: \\[\n\\underbrace{\n\\begin{bmatrix}\n\\blacksquare & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots                                                  &\n  0                                                     &\n  \\left( \\frac{u_i}{2 \\Delta x } - \\frac{\\beta}{ \\Delta x ^2} \\right) &\n  \\left( \\frac{2\\beta}{ \\Delta x ^2}                   \\right) &\n  \\left( \\frac{u_i}{2 \\Delta x } - \\frac{\\beta}{ \\Delta x ^2} \\right) &\n  0                                                     &\n  \\vdots\n\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 & \\dots & \\dots  & \\dots & 0 & \\blacksquare & \\blacksquare\\\\\n\\end{bmatrix}\n}_{\\text{Systemmatrix}\\; \\boldsymbol{A} }\n\\underbrace{\n  \\begin{bmatrix}\n  \\phi_1 \\\\\n  \\vdots \\\\\n  \\phi_{i-1} \\\\\n  \\phi_{i} \\\\\n  \\phi_{i+1} \\\\\n  \\vdots \\\\\n  \\phi_N \\\\\n  \\end{bmatrix}\n}_{\\text{Lösungsvektor} \\;  \\underline{\\phi} }\n=\n\\underbrace{\n  \\begin{bmatrix}\n  0 \\\\\n  \\vdots \\\\\n  0 \\\\\n  \\vdots \\\\\n  0 \\\\\n  \\end{bmatrix}\n}_{\\text{Rechte Seite} \\;  \\underline{b} }\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n\\]"
   },
   {
-    "objectID": "einfuehrung.html#anwendung-8",
-    "href": "einfuehrung.html#anwendung-8",
-    "title": "Einführung",
-    "section": "",
-    "text": "Beispiel des Verlaufs der Anströmbedingungen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStarke Variation der lokalen Anströmrichtungen\nTurbinenverbund verblockt maßgeblich Kernströmung im Kanal"
+    "objectID": "index.html#finite-differenzen-methode-23",
+    "href": "index.html#finite-differenzen-methode-23",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAufstellen des linearen Gleichungssystems (3/4)\nSystemmatrix\n\nDie Form der Systemmatrix hängt vom verwendeten Differenzenstern und Gitter ab.\nBei strukturieren Gittern ergibt sich meist eine Bandmatrix.\nJe nachdem in welcher Reihenfolge ein struturiertes mehrdimensionales Gitter nummeriert wird, liegen die Bänder näher oder weiter entfernt von der Hauptdiagonalen.\nDie Struktur der Matrix ist meist symmetrisch.\nDie Werte müssen jdedoch nicht symmetrisch sein. Dies hängt von der diskretisierten Gleichung ab.\nJe größer der verwendete Diskretisierungsstern in, desto mehr Einträge ungleich Null sind in einer Zeile vorhanden.\nFast alle Diskretisierungsverfahren für partielle Differentialgleichungen liefern schwachbesetzte Matrizen.\nDie Dimension der Matrix ist quadratisch und entspricht der Größe des Gitters. Beim Finite-Differenzen-Verfahren ist die Dimension die Anzahl der Knotenpunkte; beim Finite-Volumen-Verfahren entspricht sie der Anzahl der Zellen.\n\nLösungsvektor\n\nDer Lösungsvektor enthält die gesuchte Größe für jeden Gitterpunkt.\n\nRechte Seite\n\nDer Vektor enthält Terme, die nicht die gesuchte Größe enthalten, z.B. Quellterme. Zusätzlich stehen in ihm die Randbedingungen."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-24",
+    "href": "index.html#finite-differenzen-methode-24",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nRandbedingung (3/4)\n\nWährend die inneren Knoten alle einheitlich behandelt werden, müssen die äußeren Knoten (Randknoten) separat über Randbedingungen behandelt werden.\nEs gibt verschiedene Typen von Randbedingungen:\n\nDirichlet-Randbedingung\nNeumann-Randbedingung\nPeriodische Randbedingung\n\nRandbedingungen sollten in Regionen gelegt werden, in denen sie keinen Einfluss auf die Lösung haben. Tendenziell gilt: je weiter entfernt die Randbedingung liegt, desto weniger wird das Ergebnis beeinflusst.\n\nBeispiel: Position der Randbedingung für eine Stufenströmung (Backward-Facing-Step) von schlecht (rot) über besser (gelb) nach gut (grün)"
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-25",
+    "href": "index.html#finite-differenzen-methode-25",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nDirichlet-Randbedingung (3/4)\nEine Dirichlet-Randbedingung gibt direkt den Wert eines Randknotens vor, z.B. Unbekannte \\(\\phi=1\\).\n\n\n\n\n\n\n\n\n\nDie Vorgabe der Unbekannten für den ersten Knoten lautet z.B.\n\\[\n\\phi_{1} = 1\n\\]\nEine Dirichlet-Randbedingung “eliminiert” damit eine Zeile aus der Systemmatrix. An einem Dirichlet-Randknoten muss also keine Gleichungs mehr gelöst werden. Theoretisch kann diese dann um eine Dimension durch Einsetzen des bekannten Werts reduziert werden.\nBeispiele:\n\nGeschwindigeit bzw. Massenstrom am Eintritt ist bekannt.\nWandtemperatur oder Eintrittstemperatur ist bekannt.\nGeschwindigkeit an reibungsbehafteten Wänden ist bekannt (Haftbedingung).\nDruck am Austritt wird vorgegeben."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-26",
+    "href": "index.html#finite-differenzen-methode-26",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nNeumann-Randbedingung (3/4)\nEine Neumann-Randbedingung gibt den Gradient der Unbekannten an einem Randknoten vor, z.B. \\( \\frac{\\partial \\phi}{\\partial  \\underline{n} }  = 0\\). Typischerweise wird der Gradient in Normalenrichtung \\( \\underline{n} \\) des Randes vorgegeben.\n\n\n\n\n\n\n\n\n\nBeispiel: Vorgabe des Gradienten \\( \\frac{\\partial \\phi}{\\partial x} =0\\) am rechten Rand für die Gleichung \\(u  \\frac{\\partial \\phi}{\\partial x}  - \\beta  \\frac{\\partial^2 \\phi}{\\partial x^2}  = 0\\)\nDie diskretisierte Gleichung für den Knoten \\(N\\) lautet: \\[\nu_N  \\frac{{\\phi}_{N+1}-{\\phi}_{N-1}}{2 \\Delta x }  \n-\n\\beta_i  \\frac{{\\phi}_{N+1}-{2\\phi}_{N}+{\\phi}_{N-1}}{ \\Delta x ^2}\n=\n0\n\\] Der Knoten an der Stelle \\(N+1\\) gehört nicht zum Rechengitter. Aus der Vorgabe des Gradienten, z.B. mit einer zentralen Differenz \\[\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{N}  =  \\frac{{\\phi}_{N+1}-{\\phi}_{N-1}}{2 \\Delta x }  +  \\mathcal{O}((\\Delta x)^{2})  = 0\n\\] wird die Bedingung unter Vernachlässigung des Abbruchfehlers \\(\\phi_{N+1} = \\phi_{N-1}\\) abgeleitet. Es wird in der diskretisierten Gleichung für den Knoten \\(N\\) der Werte \\(\\phi_{N+1}\\) durch \\(\\phi_{N-1}\\) ersetzt."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-27",
+    "href": "index.html#finite-differenzen-methode-27",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nAufstellen des linearen Gleichungssystems (3/4)\nDas Einsetzen der Dirichlet- und Neumann-Randbedingung jeweils am linken und rechten Rand verändert die Systemmatrix und die rechte Seite zu: \\[\n\\begin{bmatrix}\n1 & \\blacksquare & 0  & \\dots & \\dots & \\dots & 0\\\\\n\\blacksquare & \\ddots & \\ddots & 0 & & & \\vdots\\\\\n0 & \\ddots & \\ddots  & \\ddots & 0 &  & \\vdots\\\\\n\\vdots                                                  &\n  0                                                     &\n  \\left( \\frac{u_i}{2 \\Delta x } - \\frac{\\beta}{ \\Delta x ^2} \\right) &\n  \\left( \\frac{2\\beta}{ \\Delta x ^2}                   \\right) &\n  \\left( \\frac{u_i}{2 \\Delta x } - \\frac{\\beta}{ \\Delta x ^2} \\right) &\n  0                                                     &\n  \\vdots\n\\\\\n\\vdots & & 0 & \\ddots & \\ddots& \\ddots & 0\\\\\n\\vdots & & & 0 & \\ddots& \\ddots & \\blacksquare\\\\\n0 &\n\\dots &\n\\dots  &\n\\dots &\n0 &\n-\\frac{2\\beta}{ (\\Delta x)^{2} } &\n\\frac{2\\beta}{ (\\Delta x)^{2} }\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n  \\phi_1 \\\\\n  \\vdots \\\\\n  \\phi_{i-1} \\\\\n  \\phi_{i} \\\\\n  \\phi_{i+1} \\\\\n  \\vdots \\\\\n  \\phi_N \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n  1 \\\\\n  \\vdots \\\\\n  0 \\\\\n  0 \\\\\n  0 \\\\\n  \\vdots \\\\\n  0 \\\\\n\\end{bmatrix}\n\\mathrm{mit} \\; \\blacksquare \\; \\mathrm{für\\ Einträge} \\neq 0\n\\]\nBeim Einsetzen der Randbedingungen verändern sich meist die Koeffizienten der Matrix in den Randknoten und die rechte Seite."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-28",
+    "href": "index.html#finite-differenzen-methode-28",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nTypische Randbedingungen (3/4)\nBei der Berechnung von inkompressiblen Strömungsproblemen gibt es mehrere Möglichkeiten. Eine typische Randbedingungsvorgabe erfolgt durch:\n\n\n\n\n\n\n\nDirichlet-Randbedingung\n\nGeschwindigkeit am Eintritt\nDruck am Austritt\n\n\nNeumann-Randbedingung\n\nGeschwindigkeit am Austritt\nDruck am Eintritt\n\n\nAchtung: Bei kompressiblen Überschallströmungen müssen Geschwindigkeit und Druck am Eintritt vorgegeben werden, da sich Störungen nur stromab ausbreiten."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-29",
+    "href": "index.html#finite-differenzen-methode-29",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nLösung (4/4)\nDie Lösung des linearen Gleichungssystems \\[\n\\boldsymbol{A}   \\underline{\\phi}  =  \\underline{b}\n\\] erfolgt fast immer bei numerischer Strömungssimulation indirekt. Es wird also nicht die Inverse \\( \\boldsymbol{A} ^{-1}\\) berechnet, da dies in der Regel zu aufwändig ist.\nFür indirekte Gleichungslöser gilt:\n\nDie Lösung wird iterativ berechnet, d.h. es wird eine Iterationsvorschrift \\( \\underline{\\phi} ^{(n+1)} = f( \\underline{\\phi} ^{(n)})\\) abgearbeitet. Je nach verwendetem Löser enthält die Iterationsvorschrift \\(f( \\underline{\\phi} ^{(n)})\\) meist mehrere Matrix-Vektor- und Skalarprodukte.\nTypische iterative Verfahren sind z.B. Gradientenverfahren, bikonjugierte Gradientenverfahren, …\nMeist muss zusätzlich eine Vorkonditionierung verwendet werden.\n\nDie Gesamtdauer (Rechenzeit) einer numerischen Strömungssimulation hängt sehr stark vom verwendeten indirekten Gleichungslöser ab. Die Iterationsvorschrift wird in jedem Iterations- und Zeitschritt mehrmals durchlaufen."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-30",
+    "href": "index.html#finite-differenzen-methode-30",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDie eindimensionale Helmholtz-Gleichung lautet: \\[\n\\frac{\\partial^2 \\phi}{\\partial x^2}  - \\lambda^2 \\phi = 0 \\; \\text{mit} \\; \\lambda = \\frac{1}{2}\n\\] Die exakte Lösung lautet: \\[\n\\phi(x) = \\frac{1}{2} e^{-\\lambda x} + \\frac{1}{2} e^{\\lambda x}\n\\]\nDas verwendete Netz enthält 5 Knoten und hat eine Gitterweite von \\( \\Delta x = \\frac{1}{2}\\).\n\n\n\n\n\n\n\n\n\nAls Randbedingungen wird am linken und rechten Rand eine Dirichlet-Randbedingung \\( \\left[ \\phi \\right]_{x=0.0} =\\phi_1=1.0\\) und \\( \\left[ \\phi \\right]_{x=2.0} =\\phi_5=1.54308\\) vorgegeben."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-31",
+    "href": "index.html#finite-differenzen-methode-31",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDie diskretisierte Helmholtz-Gleichung ergibt sich nach Approximation der Differentialquotienten durch Differenzenquotienten zu: \\[\n\\underbrace{\n   \\frac{{\\phi}_{i+1}-{2\\phi}_{i}+{\\phi}_{i-1}}{ (\\Delta x)^{2} }\n}_{\n\\left[  \\frac{\\partial^2 \\phi}{\\partial x^2}  \\right]_{i}\n}\n-\n\\underbrace{\n  \\lambda^2 \\phi_i\n}_{ \\left[ \\lambda^2 \\phi \\right]_{i} }\n= 0\n\\]\nDurch Umstellung ergeben sich die Vorfaktoren: \\[\n\\left(\n  \\frac{1}{ (\\Delta x)^{2} }\n\\right) \\phi_{i+1}\n+\n\\left(\n-\\frac{2}{ (\\Delta x)^{2} } - \\lambda^2\n\\right) \\phi_i\n+\n\\left(\n  \\frac{1}{ (\\Delta x)^{2} }\n\\right) \\phi_{i-1}\n\\]\nDas Einsetzen von \\(\\lambda=\\frac{1}{2}\\) und \\( \\Delta x =\\frac{1}{2}\\) in die diskretisierte Gleichung ergibt: \\[\n4 \\phi_{i+1} - 8.25 \\phi_i + 4 \\phi_{i-1} = 0\n\\]\nDer erste und letzte Knoten ist entsprechend der Randbedingungen durch \\[\n\\phi_1 = 1.0\n\\] und \\[\n\\phi_5 = 1.54308\n\\] gegeben."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-32",
+    "href": "index.html#finite-differenzen-methode-32",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nBeispiel: Eindimensionale Helmholtz-Gleichung\nEs ergibt sich das lineare Gleichungssystem \\[\n\\begin{bmatrix}\n1 & 0 & 0  & 0 & 0 \\\\\n4 & -8.25 & 4  & 0 & 0 \\\\\n0 & 4 & -8.25  & 4 & 0 \\\\\n0 & 0 & 4  & 8.25 & 4 \\\\\n0 & 0 & 0  & 0 & 1 \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n  \\phi_1 \\\\\n  \\phi_2 \\\\\n  \\phi_3 \\\\\n  \\phi_4 \\\\\n  \\phi_5 \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n  1 \\\\\n  0 \\\\\n  0 \\\\\n  0 \\\\\n  1.54308 \\\\\n\\end{bmatrix}\n\\] bzw. nach Umformung und Reduktion der Dimension: \\[\n\\begin{bmatrix}\n-8.25 & 4  & 0 \\\\\n4 & -8.25  & 4 \\\\\n0 & 4  & -8.25 \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n  \\phi_2 \\\\\n  \\phi_3 \\\\\n  \\phi_4 \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n  -4 \\\\\n  0 \\\\\n  -6.17232 \\\\\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-33",
+    "href": "index.html#finite-differenzen-methode-33",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDer Vergleich zwischen den diskreten berechneten Punkten (siehe \\(\\square\\) in der Abbildung) und der exakten Lösung ist für dieses Beispiel vernachlässigbar klein. Die Zahlen an den Symbolen ist die Abweichung zwischen exakter und numerischer Lösung in Prozent."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-34",
+    "href": "index.html#finite-differenzen-methode-34",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDie Gleichung wird erneut gelöst mit der gleichen Diskretisierung. Allerdings wird nun am linken Rand anstatt einer Dirichlet-Randbedingung eine Neumann-Randbedingung von \\[\n\\left[  \\frac{\\partial \\phi}{\\partial x}  \\right]_{i=1}  = 0\n\\] vorgegeben. Die Diskretisierung der inneren Knoten für \\(i=2,3,4\\) \\[\n\\left(\n  \\frac{1}{ (\\Delta x)^{2} }\n\\right) \\phi_{i+1}\n+\n\\left(\n-\\frac{2}{ (\\Delta x)^{2} } - \\lambda^2\n\\right) \\phi_i\n+\n\\left(\n  \\frac{1}{ (\\Delta x)^{2} }\n\\right) \\phi_{i-1}\n\\] und des rechten Randes \\[\n\\phi_5 = 1.54308\n\\] ist unverändert."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-35",
+    "href": "index.html#finite-differenzen-methode-35",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nBeispiel: Eindimensionale Helmholtz-Gleichung\nEinarbeiten der Neumann-Randbedingung\nDie diskrete Gleichung am Knoten 1 ergibt sich mit eingesetzen Werten zu: \\[\n4\\phi_2-8.25\\phi_1+4\\phi_0 = 0\n\\] Da der Knoten 0 im Netz nicht enthalten ist, wird dieser durch Einarbeiten der Neumann-Randbedingung \\[\n\\frac{\\phi_2 - \\phi_0}{2 \\Delta x } = 0 \\; \\rightarrow \\; \\phi_0 = \\phi_2\n\\] ersetzt. Es ergibt sich: \\[\n8\\phi_2 - 8.25\\phi_1 = 0\n\\]\nDas lineare Gleichungssystem lautet mit der neuen Randbedingung: \\[\n\\begin{bmatrix}\n-8.25 & 8  & 0 & 0\\\\\n4 & -8.25  & 4 & 0\\\\\n0 & 4  & -8.25 & 4\\\\\n0 & 0 & 4  & -8.25\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n  \\phi_1 \\\\\n  \\phi_2 \\\\\n  \\phi_3 \\\\\n  \\phi_4 \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n  0 \\\\\n  0 \\\\\n  0 \\\\\n  -6.17232 \\\\\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-36",
+    "href": "index.html#finite-differenzen-methode-36",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nBeispiel: Eindimensionale Helmholtz-Gleichung\nDer erneute Vergleich zur exakten Lösung liefert wieder eine sehr gute Näherungslösung.\n\n\n\n\n\n\n\n\n\nWird hingegen zur Einarbeitung der Neumann-Randbedingung am Knoten 1 die Gleichung \\[\n\\frac{\\phi_1 - \\phi_0}{ \\Delta x } = 0 \\; \\rightarrow \\; \\phi_0 = \\phi_1\n\\] und somit eine Diskretisierung 1. Ordnung verwendet, werden die Abweichungen größer (siehe \\(\\color{red}{\\times}\\) in der Abbildung)."
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-37",
+    "href": "index.html#finite-differenzen-methode-37",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nGenauigkeit von numerischen Lösung\n\nDie numerischen Lösungen von Strömungsproblemen sind nur Näherungslösungen.\nDie numerischen Lösungen beinhalten drei Arten von systematischen Fehlern:\n\nDiskretisierungsfehler: Differenz zwischen der genauen Lösung des mathematischen Modells und der genauen Lösung der durch Diskretisierung dieser Gleichungen entstandenen algebraischen Gleichungssysteme\n\nFührender Fehlerterm\n\nModellfehler: Differenz zwischen sich tatsächlich einstellender Strömung und der genauen Lösung des mathematischen Modells\n\nVereinfachungen der Grundgleichungen\n\nIterationsfehler: Differenz zwischen der genauen und der iterativen Lösung der algebraischen Gleichungssysteme\n\nUngenauigkeiten bei der indirekten Lösung des linearen Gleichungssystems"
+  },
+  {
+    "objectID": "index.html#finite-differenzen-methode-38",
+    "href": "index.html#finite-differenzen-methode-38",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Finite-Differenzen-Methode",
+    "text": "Finite-Differenzen-Methode\nNichtkartesische Gitter\n\nDie bisherige Vorgehensweise wurde auf kartesische Gitter angewendet.\nReale (komplexe) Geometrien können aber in der Regel nicht rechtwinklig vernetzt werden.\n\nDie Anwendung der Finite-Differenzen-Methode erfordert dann eine Koordinatentransformation zwischen physikalischem Raum und Berechnungsraum.\n\n\n\n\n\n\n\n\n\nPhysikalischer Raum\n\n\n\n\n\n\nBerechnungsraum\n\nDie Transformation zwischem den beiden Räumen ist durch die Jacob-Matrix gegeben und definiert die Transformation der Ableitungen z.B. durch: \\[\n\\begin{align}\n\\frac{\\partial \\phi}{\\partial x}  &=  \\frac{\\partial \\phi}{\\partial \\zeta}   \\frac{\\partial \\zeta}{\\partial x}  +  \\frac{\\partial \\phi}{\\partial \\eta}   \\frac{\\partial \\eta}{\\partial x} \\\\\n\\frac{\\partial \\phi}{\\partial y}  &=  \\frac{\\partial \\phi}{\\partial \\zeta}   \\frac{\\partial \\zeta}{\\partial y}  +  \\frac{\\partial \\phi}{\\partial \\eta}   \\frac{\\partial \\eta}{\\partial y}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "index.html#kontrollfragen-12",
+    "href": "index.html#kontrollfragen-12",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Kontrollfragen (1/2)",
+    "text": "Kontrollfragen (1/2)\n\nWelche drei gängigen Diskretisierungsmethoden gibt es?\nBeschreiben Sie die Vorgehensweise bei der Finite Differenzen Methode.\nWelche Anforderungen bestehen für das Rechengitter bei der Finite-Differenzen-Methode?\nInwiefern ist die Fehlerordnung des Diskretisierungsschemas wichtig?\nWarum benötigt man bei der Diskretisierung einer Konvektion-Diffusions-Gleichung bei sinkender Diffusion eine Upwind-Diskretisierung?\nBeschreiben Sie wie sich ein diffusiver Fehler auf die Lösung auswirkt.\nWie wirkt sich ein dispersiver Fehler aus?\nWas ist bei der Wahl der Randbedingungen zu beachten?\nWelche drei Arten von systematischen Fehlern gibt es in numerischen Lösungen?"
+  },
+  {
+    "objectID": "index.html#kontrollfragen-12-1",
+    "href": "index.html#kontrollfragen-12-1",
+    "title": "Numerische Strömungsmechanik mit Optimierungsanwendung",
+    "section": "Kontrollfragen (1/2)",
+    "text": "Kontrollfragen (1/2)\n\nWie sieht die Matrixstruktur bei verschiedenen Differenzensternen aus?\n\n\n\n\n\n\n\nDiskretisieren Sie folgende Gleichungen mit der Finite-Differenzen-Methode: \\[\nu  \\frac{\\partial \\phi}{\\partial x}  - \\beta  \\frac{\\partial^2 \\phi}{\\partial x^2}  = 0\n\\; \\text{mit} \\; u=const. \\; \\text{und} \\; \\beta=const.\n\\] und \\[\n\\frac{\\partial^2 \\phi}{\\partial x^2}  +  \\frac{\\partial^2 \\phi}{\\partial y^2}  = 0\n\\]"
   }
 ]

@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2d5effa1089c490eac5c05282fa1a5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -137,7 +137,7 @@ window.Quarto = {
 </video>
 </center>
 <p><strong>Ziel</strong></p>
-<p>Aufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden konstant.</p>
+<p>Aufstellen eines linearen Gleichungssystems, dass mit numerischen Algorithmen gelöst werden kann.</p>
 <p><strong>Zunächst</strong></p>
 <p>Stationäres Problem <span class="math inline">\(\rightarrow \pp{}{t} = 0\)</span></p>
 </section>
@@ -241,13 +241,13 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="vorgehensweise">Vorgehensweise</h3>
 <div class="columns">
 <div class="column">
-<p><strong>Erstellen des Rechengitters</strong></p>
+<p><strong>1. Erstellen des Rechengitters</strong></p>
 <ul>
 <li>Orthogonales Netz</li>
 <li>Nicht äquidistant</li>
 </ul>
 </div><div class="column">
-<div id="fea75d21" class="cell" data-message="false" data-execution_count="1">
+<div id="7a64369d" class="cell" data-message="false" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -260,19 +260,19 @@ window.Quarto = {
 </div>
 <div class="columns">
 <div class="column">
-<p><strong>Appproximation der Differentialquotienten durch Differenzenquotienten</strong></p>
+<p><strong>2. Appproximation der Differentialquotienten durch Differenzenquotienten</strong></p>
 <ul>
 <li>Genauigkeit der Approximation</li>
 </ul>
 </div><div class="column">
 <p><span class="math display">\[
-\pp{u}{x} = \dd{u}{x} + \text{Abbruchfehler} \approx \dd{u}{x}
+\pp{\phi}{x} = \dd{\phi}{x} + \text{Abbruchfehler} \approx \dd{\phi}{x}
 \]</span></p>
 </div>
 </div>
 <div class="columns">
 <div class="column">
-<p><strong>Aufstellen des Linearen Gleichungssystems</strong></p>
+<p><strong>3. Aufstellen des Linearen Gleichungssystems</strong></p>
 <ul>
 <li>Berücksichtigung von Randbedingungen</li>
 </ul>
@@ -309,10 +309,10 @@ window.Quarto = {
 </div>
 <div class="columns">
 <div class="column">
-<p><strong>Lösung</strong></p>
+<p><strong>4. Lösung</strong></p>
 </div><div class="column">
 <p><span class="math display">\[
-\vec{\phi}^{(n+1)} = f(\phi^{(n)})
+\vec{\phi}^{(n+1)} = f(\vec{\phi}^{(n)})
 \]</span></p>
 </div>
 </div>
@@ -323,7 +323,7 @@ window.Quarto = {
 <section id="erstellen-des-rechengitters-14" class="level3">
 <h3 class="anchored" data-anchor-id="erstellen-des-rechengitters-14">Erstellen des Rechengitters (1/4)</h3>
 <p><strong>Beispiel:</strong> Betrachtung eines ein- und zweidimensionalen Berechnungsgebiets mit <span class="math inline">\(N\)</span> und <span class="math inline">\(N \times M\)</span> Knoten</p>
-<div id="710ce742" class="cell" data-message="false" data-execution_count="2">
+<div id="1f86dbcc" class="cell" data-message="false" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -352,11 +352,21 @@ Note
 <section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24" class="level3">
 <h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
 <ul>
-<li>Je nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte <span class="math inline">\(\phi\)</span> die Ableitungen <span class="math inline">\(\pp{\phi}{x}\)</span>, <span class="math inline">\(\pp{^2 \phi}{x^2}\)</span> und <span class="math inline">\(\pp{\phi}{t}\)</span> benötigt.</li>
+<li>Je nachdem welche Differentialgleichung gelöst wird, werden meist für eine Unbekannte <span class="math inline">\(\phi\)</span> die Ableitungen <span class="math inline">\(\pp{\phi}{x}\)</span>, <span class="math inline">\(\pp{^2 \phi}{x^2}\)</span> und <span class="math inline">\(\pp{\phi}{t}\)</span> benötigt. Diese kommen z.B. in den folgenden Gleichungen vor:
+<ul>
+<li><span class="math inline">\(\pp{\phi}{t} - \beta \pp{^2\phi}{x^2} = 0\)</span></li>
+<li><span class="math inline">\(\pp{\phi}{t} + \alpha \pp{\phi}{x} = 0\)</span></li>
+<li><span class="math inline">\(\pp{\phi}{t} + \phi \pp{\phi}{x} = 0\)</span></li>
+</ul></li>
 <li>Orts- und Zeitableitung werden prinzipiell durch das gleiche Schema abgeleitet</li>
 </ul>
-<p><strong>Beispiel:</strong> Graphische Approximation für <span class="math inline">\(\pp{\phi}{x}\)</span> an der Stelle <span class="math inline">\(x=x_i\)</span></p>
-<div id="1d1903dd" class="cell" data-message="false" data-execution_count="3">
+</section>
+</section>
+<section id="finite-differenzen-methode-3" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-3">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-graphisch-24" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-graphisch-24">Appproximation der Differentialquotienten durch Differenzenquotienten (graphisch) (2/4)</h3>
+<div id="ecebf1b6" class="cell" data-message="false" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -365,62 +375,1349 @@ Note
 </div>
 </div>
 </div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><span class="math inline">\(\pp{\phi}{x}\)</span> (Vorwärtsdifferenz)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><span class="math inline">\(\pp{\phi}{x}\)</span> (Rückwärtsdifferenz)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href=""><span class="math inline">\(\pp{\phi}{x}\)</span> (Zentrale Differenz)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href=""><span class="math inline">\(\ppnd{\phi}{x}\)</span></a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p><span class="math inline">\(\ppb{\phi(x_i)}{x} = \at{\pp{\phi}{x}}{x=x_i}
+<p>Das Differential für <span class="math inline">\(\pp{\phi}{x}\)</span> an der Stelle <span class="math inline">\(x=x_i\)</span>, also <span class="math inline">\(\ppb{\phi(x_i)}{x}
+  = \at{\pp{\phi}{x}}{x=x_i}
+  = \at{\pp{\phi}{x}}{i}
+  \approx
+  \at{\dd{\phi}{x}}{i}\)</span>, wird durch unterschiedliche Differenzen approximiert:</p>
+<ul>
+<li><p><span class="math inline">\(\frac{\phi(x_i + \Delta x) - \phi(x_i)}{(x_i + \Delta x) - (x_i)}
 =
-\at{\pp{\phi}{x}}{i}
-\approx
-\at{\dd{\phi}{x}}{i}
+\fd{\phi}{i+1}{i}{\Delta x}\)</span> (Vorwärtsdifferenz)</p></li>
+<li><p><span class="math inline">\(\frac{\phi(x_i) - \phi(x_i - \Delta x)}{(x_i) - (x_i - \Delta x)}
 =
-\frac{\phi(x_i + \Delta x) - \phi(x_i)}{(x_i + \Delta x) - (x_i)}
+\fd{\phi}{i}{i-1}{\Delta x}\)</span> (Rückwärtsdifferenz)</p></li>
+<li><p><span class="math inline">\(\frac{\phi(x_i + \Delta x) - \phi(x_i - \Delta x)}{(x_i + \Delta x) - (x_i - \Delta x)}
 =
-\fd{\phi}{i+1}{i}{\Delta x}\)</span></p>
+\fd{\phi}{i+1}{i-1}{2\Delta x}\)</span> (Zentrale Differenz)</p></li>
+</ul>
+<p>Die Differenz wird jeweils über unterschiedliche Intervalle gebildet. Bei der Vorwärts- und Rückwärtsdifferenz hat das Interval eine Länge von <span class="math inline">\(\Delta x\)</span>; bei der zentralen Differenz entspricht das Interval der doppelten Länge <span class="math inline">\(2 \Delta x\)</span>.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-4" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-4">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-graphisch-24-1" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-graphisch-24-1">Appproximation der Differentialquotienten durch Differenzenquotienten (graphisch) (2/4)</h3>
+<div id="1c9c1ee1" class="cell" data-message="false" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-5-output-1.png" width="1233" height="307" class="figure-img"></p>
+</figure>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p><span class="math inline">\(\ppb{\phi(x_i)}{x} = \at{\pp{\phi}{x}}{x=x_i}
-=
-\at{\pp{\phi}{x}}{i}
-\approx
-\at{\dd{\phi}{x}}{i}
-=
-\frac{\phi(x_i) - \phi(x_i - \Delta x)}{(x_i) - (x_i - \Delta x)}
-=
-\fd{\phi}{i}{i-1}{\Delta x}\)</span></p>
 </div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p><span class="math inline">\(\ppb{\phi(x_i)}{x} = \at{\pp{\phi}{x}}{x=x_i}
-=
-\at{\pp{\phi}{x}}{i}
-\approx
-\at{\dd{\phi}{x}}{i}
-=
-\frac{\phi(x_i + \Delta x) - \phi(x_i - \Delta x)}{(x_i + \Delta x) - (x_i - \Delta x)}
-=
-\fd{\phi}{i+1}{i-1}{2\Delta x}\)</span></p>
 </div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<p><span class="math inline">\(\ppndb{\phi(x_i)}{x} = \at{\ppnd{\phi}{x}}{x=x_i}
-=
-\at{\ppnd{\phi}{x}}{i}
-=
-\at{\pp{}{x} \left( \pp{\phi}{x} \right)}{i}
-\approx
-\at{\ddb{\pp{\phi}{x}}{x}}{i}
-=
+<p>Das Differential für <span class="math inline">\(\ppnd{\phi}{x}\)</span> an der Stelle <span class="math inline">\(x=x_i\)</span>, also <span class="math inline">\(\ppndb{\phi(x_i)}{x}
+  = \at{\ppnd{\phi}{x}}{x=x_i}
+  = \at{\ppnd{\phi}{x}}{i}
+  = \at{\pp{}{x} \left( \pp{\phi}{x} \right)}{i}
+  \approx
+  \at{\dd{}{x} \left( \dd{\phi}{x} \right)}{i}\)</span>, lässt sich in zwei Differenzen “unterteilen”: die Differenz aus Vorwärts- und Rückwärtsdifferenz von <span class="math inline">\(\phi\)</span>. Es ergibt sich damit die Approximation von <span class="math inline">\(\at{\ppnd{\phi}{x}}{i}\)</span> zu:</p>
+<p><span class="math display">\[
 \frac{1}{\Delta x}\left(
 \fd{\phi}{i+1}{i}{\Delta x}
 -
 \fd{\phi}{i}{i-1}{\Delta x}
-\right)\)</span></p>
-</div>
-</div>
-</div>
-
-
+\right)
+=
+\frac{\phi_{i+1}-2\phi_i+\phi_{i-1}}{\bdx{2}}
+\]</span></p>
 </section>
+</section>
+<section id="finite-differenzen-methode-5" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-5">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-1" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-1">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<p>Die systematische Herleitung von Approximationen erfolgt über die Taylorreihe. Allgemein wird eine eindimensionale Funktion <span class="math inline">\(f(x)\)</span> über den Entwicklungspunkt <span class="math inline">\(a\)</span> durch <span class="math display">\[
+T_m f(x;a) = \sum_{n=0}^{(m-1)} \frac{(x-a)^n}{n!} \at{\pp{^n f(x)}{x^n}}{x=a}
+\]</span> angenährt. Mit steigendem <span class="math inline">\(m\)</span> wird die Näherung genauer; entsprechend konvergiert sie für <span class="math inline">\(m \rightarrow \infty\)</span> für viele Funktionen gegen diese.</p>
+<p><strong>Taylorreihe bis zur Ableitung 3. Ordnung:</strong></p>
+<p><span class="math display">\[
+\begin{align}
+T_4 f(x;a)
+&amp;=
+\sum_{n=0}^{3} \frac{(x-a)^n}{n!} \at{\pp{^n f}{x^n}}{a} \\
+&amp;=
+\frac{(x-a)^0}{0!} \at{\pp{^0 f}{x^0}}{a}
++
+\frac{(x-a)^1}{1!} \at{\pp{^1 f}{x^1}}{a}
++
+\frac{(x-a)^2}{2!} \at{\pp{^2 f}{x^2}}{a}
++
+\frac{(x-a)^3}{3!} \at{\pp{^3 f}{x^3}}{a} \\
+&amp;=
+\at{f}{a}
++
+(x-a) \at{\pp{f}{x}}{a}
++
+\frac{(x-a)^2}{2} \at{\pp{^2 f}{x^2}}{a}
++
+\frac{(x-a)^3}{6} \at{\pp{^3 f}{x^3}}{a}
+\end{align}
+\]</span></p>
+</section>
+</section>
+<section id="finite-differenzen-methode-6" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-6">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-2" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-2">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<div id="5a06ba7c" class="cell" data-message="false" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-6-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="1238" height="307"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Vergleich unterschiedlicher Annäherungen mit dem Entwicklungspunkt <span class="math inline">\(x_i\)</span>:</strong></p>
+<p><span class="math display">\[
+\begin{align}
+T_2 f(x;x_i)
+&amp;=
+\at{f}{x_i}
++
+(x-x_i) \at{\pp{f}{x}}{x_i} \\
+T_3 f(x;x_i)
+&amp;=
+\at{f}{x_i}
++
+(x-x_i) \at{\pp{f}{x}}{x_i}
++
+\frac{(x-x_i)^2}{2} \at{\pp{^2 f}{x^2}}{x_i} \\
+T_4 f(x;x_i)
+&amp;=
+\at{f}{x_i}
++
+(x-x_i) \at{\pp{f}{x}}{x_i}
++
+\frac{(x-x_i)^2}{2} \at{\pp{^2 f}{x^2}}{x_i}
++
+\frac{(x-x_i)^3}{6} \at{\pp{^3 f}{x^3}}{x_i} \\
+\end{align}
+\]</span></p>
+</section>
+</section>
+<section id="finite-differenzen-methode-7" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-7">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-3" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-3">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<p>Auswertung des Taylorpolynoms <span class="math inline">\(T_4\)</span> um den Entwicklungspunkt <span class="math inline">\(x_i\)</span> an der Stelle <span class="math inline">\(x_i + \Delta x\)</span> liefert:</p>
+<p><span class="math display">\[
+\begin{align}
+T_4 f(\underbrace{x_i + \Delta x}_{x};x_i)
+&amp;=
+\at{f}{x_i}
++
+(\underbrace{x_i + \Delta x}_{x} - x_i) \at{\pp{f}{x}}{x_i}
++
+\frac{(\overbrace{x_i + \Delta x}^{x} - x_i)^2}{2} \at{\pp{^2 f}{x^2}}{x_i}
++
+\frac{(\overbrace{x_i + \Delta x}^{x} - x_i)^3}{6} \at{\pp{^3 f}{x^3}}{x_i} \\
+&amp;=
+\at{f}{x_i}
++
+(\Delta x) \at{\pp{f}{x}}{x_i}
++
+\frac{(\Delta x)^2}{2} \at{\pp{^2 f}{x^2}}{x_i}
++
+\frac{(\Delta x)^3}{6} \at{\pp{^3 f}{x^3}}{x_i}
+\end{align}
+\]</span></p>
+<p>Die vollständige Taylorreihe an der Stelle <span class="math inline">\(x_i + \Delta x\)</span> konvergiert also gegen den Funktionswert:</p>
+<p><span class="math display">\[
+\begin{align}
+f(x_i + \Delta x)
+=
+\at{f}{x_i}
++
+(\Delta x) \at{\pp{f}{x}}{x_i}
++
+\frac{(\Delta x)^2}{2} \at{\pp{^2 f}{x^2}}{x_i}
++
+\frac{(\Delta x)^3}{6} \at{\pp{^3 f}{x^3}}{x_i}
++
+...
+\end{align}
+\]</span></p>
+<p>Entsprechendes gilt für die Taylorreihe an der Stelle <span class="math inline">\(x_i - \Delta x\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+f(x_i - \Delta x)
+=
+\at{f}{x_i}
+-
+(\Delta x) \at{\pp{f}{x}}{x_i}
++
+\frac{(\Delta x)^2}{2} \at{\pp{^2 f}{x^2}}{x_i}
+-
+\frac{(\Delta x)^3}{6} \at{\pp{^3 f}{x^3}}{x_i}
++
+...
+\end{align}
+\]</span></p>
+</section>
+</section>
+<section id="finite-differenzen-methode-8" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-8">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-4" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-4">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<p>Zur Herleitung der Vorwärtsdifferenz wird die Taylorreihe</p>
+<p><span class="math display">\[
+\begin{align}
+\underbrace{f(x_i + \Delta x)}_{=\at{f}{x_{i+1}}}
+=
+\at{f}{x_i}
++
+(\Delta x) \at{\pp{f}{x}}{x_i}
++
+\frac{(\Delta x)^2}{2} \at{\pp{^2 f}{x^2}}{x_i}
++
+\frac{(\Delta x)^3}{6} \at{\pp{^3 f}{x^3}}{x_i}
++
+\underbrace{...}_{=\Odx{4})}
+\end{align}
+\]</span></p>
+<p>mit dem Abbruchfehler (Fehlerterm) <span class="math inline">\(\Odx{4})\)</span> nach der ersten Ableitung <span class="math inline">\(\at{\pp{f}{x}}{x_i}\)</span> umgestellt:</p>
+<p><span class="math display">\[
+\begin{align}
+\underbrace{\at{\pp{f}{x}}{x_i}}_{=\at{\pp{f}{x}}{i}}
+&amp;=
+\underbrace{
+  \frac{\at{f}{x_{i+1}} - \at{f}{x_i}}{\Delta x}
+}_{
+  \frac{f_{i+1}-f_i}{\Delta x}
+}
+-
+\underbrace{
+  \frac{(\Delta x)^2}{2 \Delta x} \at{\pp{^2 f}{x^2}}{x_i}
+  -
+  \frac{(\Delta x)^3}{6 \Delta x} \at{\pp{^3 f}{x^3}}{x_i}
+  -
+  \frac{\Odx{4})}{\Delta x}
+}_{\Odx{1}}
+\\
+\at{\pp{f}{x}}{i}
+&amp;=
+\frac{f_{i+1}-f_i}{\Delta x}
++
+\underbrace{
+  \Odx{1}
+}_{
+  \text{Führender Fehlerterm}
+}
+\approx \frac{f_{i+1}-f_i}{\Delta x}
+\end{align}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Der <strong>Führende Fehlerterm</strong> gibt die Fehlerordnung des Diskretisierungsschemas vor.</li>
+<li>Es ist der erste Term, der nicht für die Approximation verwendet wird.</li>
+<li>Die folgenden Fehlerterme mit einer höheren Ordnung haben in der Regel einen geringeren Einfluss.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="finite-differenzen-methode-9" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-9">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-5" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-5">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<p>Zur Herleitung der Rückwärtsdifferenz wird die Taylorreihe</p>
+<p><span class="math display">\[
+\begin{align}
+\at{f}{i-1}
+=
+\at{f}{i}
+-
+\dx \at{\pp{f}{x}}{i}
++
+\frac{\bdx{2}}{2} \at{\pp{^2 f}{x^2}}{i}
+-
+\frac{\bdx{3}}{6} \at{\pp{^3 f}{x^3}}{i}
++
+\underbrace{...}_{=\Odx{4})}
+\end{align}
+\]</span></p>
+<p>wieder nach der ersten Ableitung <span class="math inline">\(\at{\pp{f}{x}}{i}\)</span> umgestellt:</p>
+<p><span class="math display">\[
+\begin{align}
+\at{\pp{f}{x}}{i}
+&amp;=
+\fd{f}{i}{i-1}{\Delta x}
++
+\Odx{1}
+\end{align}
+\]</span></p>
+</section>
+</section>
+<section id="finite-differenzen-methode-10" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-10">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-6" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-6">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<p>Zur Herleitung weiterer Diskretisierungsschemata werden die beiden Gleichungen <span class="math display">\[
+\begin{align}
+\at{f}{i+1}
+=
+\at{f}{i}
++
+\dx \at{\pp{f}{x}}{i}
++
+\frac{\bdx{2}}{2} \at{\pp{^2 f}{x^2}}{i}
++
+\frac{\bdx{3}}{6} \at{\pp{^3 f}{x^3}}{i}
++
+\Odx{4}
+\end{align}
+\]</span> und <span class="math display">\[
+\begin{align}
+\at{f}{i-1}
+=
+\at{f}{i}
+-
+\dx \at{\pp{f}{x}}{i}
++
+\frac{\bdx{2}}{2} \at{\pp{^2 f}{x^2}}{i}
+-
+\frac{\bdx{3}}{6} \at{\pp{^3 f}{x^3}}{i}
++
+\Odx{4}
+\end{align}
+\]</span> zu <span class="math display">\[
+\begin{align}
+a \at{f}{i+1}
++
+b \at{f}{i-1}
+=
+(a+b) \at{f}{i}
++
+(a-b) \dx \at{\pp{f}{x}}{i}
++
+(a+b) \frac{\bdx{2}}{2} \at{\pp{^2 f}{x^2}}{i}
++
+(a-b) \frac{\bdx{3}}{6} \at{\pp{^3 f}{x^3}}{i}
++
+(a+b) \Odx{4}
+\end{align}
+\]</span> kombiniert.</p>
+<p>Eine geschickte Wahl von <span class="math inline">\(a\)</span> und <span class="math inline">\(b\)</span> liefert dann Diskretisierungsschemata für gewünschte Ableitungen und Fehlerordnungen.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-11" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-11">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-7" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-7">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<p>Zur Herleitung der Zentralen Differenz müssen folgende Bedingungen gelten: <span class="math display">\[
+\begin{align}
+a \at{f}{i+1}
++
+b \at{f}{i-1}
+=
+(a+b) \at{f}{i}
++
+\underbrace{(a-b)}_{=1} \dx \at{\pp{f}{x}}{i}
++
+\underbrace{(a+b)}_{=0} \frac{\bdx{2}}{2} \at{\pp{^2 f}{x^2}}{i}
++
+(a-b) \frac{\bdx{3}}{6} \at{\pp{^3 f}{x^3}}{i}
++
+(a+b) \Odx{4}
+\end{align}
+\]</span></p>
+<p>Es ergibt sich <span class="math inline">\(a=\frac{1}{2}\)</span> und <span class="math inline">\(b=-\frac{1}{2}\)</span>. Damit ergibt sich folgendes Diskretisierungsschema:</p>
+<p><span class="math display">\[
+\at{\pp{f}{x}}{i} = \fd{f}{i+1}{i-1}{2\dx} + \Odx{2}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Im Vergleich zu den bisherigen Schemata hat die Zentrale Differenz einen führenden Fehlerterm mit der Ordnung 2 für die Appoximation der ersten Ableitung.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="finite-differenzen-methode-12" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-12">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-8" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-8">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<p>Zur Herleitung einer Appoximation für die zweite Ableitung müssen folgende Bedingungen gelten: <span class="math display">\[
+\begin{align}
+a \at{f}{i+1}
++
+b \at{f}{i-1}
+=
+(a+b) \at{f}{i}
++
+\underbrace{(a-b)}_{=0} \dx \at{\pp{f}{x}}{i}
++
+\underbrace{(a+b)}_{=1} \frac{\bdx{2}}{2} \at{\pp{^2 f}{x^2}}{i}
++
+(a-b) \frac{\bdx{3}}{6} \at{\pp{^3 f}{x^3}}{i}
++
+(a+b) \Odx{4}
+\end{align}
+\]</span></p>
+<p>Es ergibt sich <span class="math inline">\(a=\frac{1}{2}\)</span> und <span class="math inline">\(b=\frac{1}{2}\)</span>. Damit ergibt sich folgendes Diskretisierungsschema:</p>
+<p><span class="math display">\[
+\at{\ppnd{f}{x}}{i} = \ffd{f}{i+1}{i}{i-1}{\dx^2} + \Odx{2}
+\]</span></p>
+</section>
+</section>
+<section id="finite-differenzen-methode-13" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-13">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-9" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-9">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<p>Die Approximationen für eindimensionale Probleme können einfach auf zwei- oder dreidimensionale Probleme angewendet werden.</p>
+<section id="beispiele-in-zwei-dimensionen" class="level4">
+<h4 class="anchored" data-anchor-id="beispiele-in-zwei-dimensionen">Beispiele in zwei Dimensionen</h4>
+<div class="columns">
+<div class="column">
+<p>Vorwärtsdifferenz</p>
+<p><span class="math display">\[
+\begin{align}
+\at{\pp{f}{x}}{i,j} \approx \fd{f}{i+1,j}{i,j}{\dx}
+\; \text{und} \;
+\at{\pp{f}{y}}{i,j} \approx \fd{f}{i,j+1}{i,j}{\dy}
+\end{align}
+\]</span></p>
+<p>Rückwärtsdifferenz</p>
+<p><span class="math display">\[
+\begin{align}
+\at{\pp{f}{x}}{i,j} \approx \fd{f}{i,j}{i-1,j}{\dx}
+\; \text{und} \;
+\at{\pp{f}{y}}{i,j} \approx \fd{f}{i,j}{i,j-1}{\dy}
+\end{align}
+\]</span></p>
+<p>Zentrale Differenz</p>
+<p><span class="math display">\[
+\begin{align}
+\at{\pp{f}{x}}{i,j} \approx \fd{f}{i+1,j}{i-1,j}{2 \dx}
+\; \text{und} \;
+\at{\pp{f}{y}}{i,j} \approx \fd{f}{i,j+1}{i,j-1}{2 \dy}
+\end{align}
+\]</span></p>
+</div><div class="column">
+<p><span class="math display">\[
+\begin{align}
+\at{\ppnd{f}{x}}{i,j} &amp;\approx \ffd{f}{i+1,j}{i,j}{i-1,j}{\dx^2}\\
+\at{\ppnd{f}{y}}{i,j} &amp;\approx \ffd{f}{i,j+1}{i,j}{i,j-1}{\dy^2}
+\end{align}
+\]</span></p>
+<div id="713de182" class="cell" data-message="false" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-7-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="373" height="338"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-14" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-14">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-10" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-10">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<section id="anmerkungen-zum-diskretisierungsfehler" class="level4">
+<h4 class="anchored" data-anchor-id="anmerkungen-zum-diskretisierungsfehler">Anmerkungen zum Diskretisierungsfehler</h4>
+<p>Die Fehlerordnung bezieht sich auf die Konvergenzrate bei Gitterverfeinerung.</p>
+<div id="4e891fbd" class="cell" data-message="false" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-8-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="941" height="456"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Ein Verfahren mit hoher Fehlerordnung bedeutet nicht unbedingt auch einen kleineren Fehler.</li>
+<li>Für die 1. Ordung halbiert sich theoretisch der Fehler bei Verdopplung der Knotenanzahl; entsprechend viertelt sich der Fehler bei der 2. Ordnung</li>
+<li>Es kann gezeigt werden, dass die Fehlerordnung auf nichtäquidistanten gleich der auf äquidistanten Gittern ist.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-15" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-15">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-11" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-11">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<section id="anmerkungen-zum-diskretisierungsfehler-1" class="level4">
+<h4 class="anchored" data-anchor-id="anmerkungen-zum-diskretisierungsfehler-1">Anmerkungen zum Diskretisierungsfehler</h4>
+<ul>
+<li>Die Idee hinter der Verwendung von nichtäquidistanten Gittern ist, dass der Diskretisierungsfehler nicht nur von der Gitterweite <span class="math inline">\(\dx\)</span>, sondern auch von den Ableitungen der Variablen (z.B. <span class="math inline">\(\frac{\dx}{2!} \at{\ppnd{f}{x}}{i}\)</span>) abhängt.</li>
+</ul>
+<div id="26976209" class="cell" data-message="false" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-9-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="1233" height="172"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Der Diskretisierungsfehler hängt von der gewählten Approximation sowie der Gitterweite ab.</li>
+<li>Approximationen höherer Ordnung lassen sich ebenfalls herleiten. Diese resultieren in einem größeren Differenzenstern und somit erhöhtem Berechnungsaufwand, z. B. eine Rückwärtsdifferenz für die erste Ableitung aus den Knoten <span class="math inline">\(i\)</span>, <span class="math inline">\(i-1\)</span> und <span class="math inline">\(i-2\)</span>.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div id="74a33172" class="cell" data-message="false" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-10-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="317" height="81"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p><span class="math inline">\(\leftarrow\)</span> Verfahren 1. Ordnung <span class="math inline">\(\leftrightarrow\)</span> Verfahren 2. Ordnung <span class="math inline">\(\rightarrow\)</span></p>
+</div><div class="column" style="width:30%;">
+<div id="a4004bb5" class="cell" data-message="false" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-11-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="317" height="81"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Im Idealfall sollten alle Terme (inklusive Randbedingungen) mit Approximationen gleicher Ordnung diskretisiert werden.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-16" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-16">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-12" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-12">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<section id="aufwind-upwind-diskretisierung-vs.-zentrale-differenz" class="level4">
+<h4 class="anchored" data-anchor-id="aufwind-upwind-diskretisierung-vs.-zentrale-differenz">Aufwind (Upwind) Diskretisierung vs.&nbsp;Zentrale Differenz</h4>
+<ul>
+<li>Bei Transportgleichungen mit dominanter Konvektion liegt eine Richtungsabhängigkeit vor. Diese wird mit einer Zentralen Differenz nicht berücksichtigt.</li>
+<li>Physikalisch gesehen hat dann der stromauf gelegene Knoten mehr Einfluss als der stromab gelegene.</li>
+<li>Das einfachste Diskretisierungsschema, das die Richtungsabhängigkeit berücksichtigt, ist ein Aufwind-Verfahren, das je nach Strömungsrichtung eine Vorwärts- oder Rückwärtsdifferenz verwendet.</li>
+</ul>
+<p><strong>Beispiel:</strong></p>
+<p>Je nach Vorzeichen der Geschwindigeit <span class="math inline">\(\alpha\)</span> in der Gleichung <span class="math inline">\(\pp{\phi}{t} + \alpha \pp{\phi}{x} = 0\)</span> wird das Diskretisierungsschema für den Konvektionsterm angepasst:</p>
+<p><span class="math display">\[
+\pp{\phi}{x}
+=
+\begin{cases}
+\fd{\phi}{i}{i-1}{\dx} \, \text{wenn} \, \alpha&gt;0 \\
+\fd{\phi}{i+1}{i}{\dx} \, \text{sonst}
+\end{cases}
+\]</span></p>
+<div id="1b43bd4f" class="cell" data-message="false" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-12-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="1135" height="196"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-17" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-17">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-13" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-13">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<section id="aufwind-upwind-diskretisierung-vs.-zentrale-differenz-1" class="level4">
+<h4 class="anchored" data-anchor-id="aufwind-upwind-diskretisierung-vs.-zentrale-differenz-1">Aufwind (Upwind) Diskretisierung vs.&nbsp;Zentrale Differenz</h4>
+<ul>
+<li><p>Für Strömungsvorgänge definiert die <span class="math inline">\(Re\)</span>-Zahl das Verhältnis aus Trägheits- und Reibkräften, also genau das Verhältnis aus Konvektion und Diffusion; entsprechend muss bei hohen <span class="math inline">\(Re\)</span>-Zahlen eine Aufwind-Diskretisierung angewendet werden.</p></li>
+<li><p>In der Energiegleichung definiert die <span class="math inline">\(Pe\)</span>-Zahl (Peclet-Zahl) das Verhältnis aus Konvektion und Diffusion</p></li>
+<li><p>Bei dominierender Konvektion kann es bei Verwendung einer zentralen Differenz für die Diskretisierung des Konvektionsterms zu unphysikalischen Oszillationen in der Lösung kommen.</p></li>
+<li><p>Der Grund für die unphysikalischen Oszillationen ist, dass die Matrix im linearen Gleichungssystem bei Verwendung einer Diskretisierung mit zentralen Differenzen nicht mehr diagonaldominant ist.</p>
+<ul>
+<li>Das bedeutet, dass die Koeffizienten der Hauptdiagonale nicht mehr größer sind als die Summe der weiteren Einträge in dieser Zeile.</li>
+</ul></li>
+<li><p>Es kann gezeigt werden, dass eine Zentrale Differenz nur stabil ist, sofern folgende Bedingung für die Geschwindigkeit <span class="math inline">\(v\)</span>, die Gitterweite <span class="math inline">\(\dx\)</span> und der Diffusionskonstanten <span class="math inline">\(\alpha\)</span> bzw. <span class="math inline">\(\nu\)</span> in einem jeweiligen Element gilt:</p>
+<p><span class="math display">\[
+Pe_{\text{Element}} = \frac{v \dx}{\alpha} &lt; 2
+\;
+\text{bzw.}
+\;
+Re_{\text{Element}} = \frac{v \dx}{\nu} &lt; 2
+\]</span></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-18" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-18">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-14" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-14">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<section id="verhalten-des-diskretisierungsfehlers" class="level4">
+<h4 class="anchored" data-anchor-id="verhalten-des-diskretisierungsfehlers">Verhalten des Diskretisierungsfehlers</h4>
+<p>Zur Untersuchung wird in die Gleichung <span class="math inline">\(\pp{\phi}{t}+\alpha \pp{\phi}{x} = 0\)</span> statt dem Diskretisierungsschema die Ableitung und der führende Fehlerterm eingesetzt:</p>
+<div class="columns">
+<div class="column">
+<p>Die Rückwärtsdifferenz <span class="math display">\[\at{\pp{\phi}{x}}{i}
+\approx
+\fd{\phi}{i}{i-1}{\dx}
++
+\frac{\dx}{2} \at{\ppnd{\phi}{x}}{i}
+\]</span> wird umgestellt zu <span class="math display">\[\fd{\phi}{i}{i-1}{\dx}
+\approx
+\at{\pp{\phi}{x}}{i}
+-
+\frac{\dx}{2} \at{\ppnd{\phi}{x}}{i}
+\]</span> und in die Differentialgleichung eingesetzt. Es ergibt sich die effektiv zu lösende Gleichung als: <span class="math display">\[
+\at{\pp{\phi}{t}}{t_i}
++
+\alpha \left(
+  \at{\pp{\phi}{x}}{i}
+  -
+  \frac{\dx}{2} \at{\ppnd{\phi}{x}}{i}
+\right) \approx 0
+\]</span></p>
+<p>Der Fehlerterm hat diffusiven Charakter.</p>
+</div><div class="column">
+<p>Die Zentrale Differenz <span class="math display">\[
+\at{\pp{\phi}{x}}{i}
+\approx
+\fd{\phi}{i+1}{i-1}{2\dx}
+-
+\frac{\dx}{6} \at{\pp{^3\phi}{x^3}}{i}
+\]</span> wird umgestellt zu <span class="math display">\[
+\fd{\phi}{i+1}{i-1}{2\dx}
+\approx
+\at{\pp{\phi}{x}}{i}
++
+\frac{\dx}{6} \at{\pp{^3\phi}{x^3}}{i}
+\]</span> und in die Differentialgleichung eingesetzt. Es ergibt sich die effektiv zu lösende Gleichung als: <span class="math display">\[
+\at{\pp{\phi}{t}}{t_i}
++
+\alpha \left(
+  \at{\pp{\phi}{x}}{i}
+  +
+  \frac{\dx}{6} \at{\pp{^3\phi}{x^3}}{i}
+\right) \approx 0
+\]</span></p>
+<p>Der Fehlerterm hat dispersiven Charakter.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-19" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-19">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-15" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-15">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<section id="verhalten-des-diskretisierungsfehlers-1" class="level4">
+<h4 class="anchored" data-anchor-id="verhalten-des-diskretisierungsfehlers-1">Verhalten des Diskretisierungsfehlers</h4>
+<div class="columns">
+<div class="column">
+<p><strong>Diffusiver Fehler</strong></p>
+<p><span class="math display">\[
+\pp{\phi}{t}
++
+\alpha \pp{\phi}{x}
+-
+\underbrace{\alpha \frac{\dx}{2} \ppnd{\phi}{x}}_{\text{Gerade Ableitung}}
+\approx 0
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/fdm_diffError.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Gradienten werden geglättet</li>
+<li>Beschränkt</li>
+</ul>
+</div><div class="column">
+<p><strong>Dispersiver Fehler</strong></p>
+<p><span class="math display">\[
+\pp{\phi}{t}
++
+\alpha \pp{\phi}{x}
++
+\underbrace{\alpha \frac{\dx}{6} \pp{^3\phi}{x^3}}_{\text{Ungerade Ableitung}}
+\approx 0
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/fdm_dispError.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Numerische Oszillationen in der Lösung möglich</li>
+<li>Unbeschränkt</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sofern die ursprüngliche Gleichung schon eine zweite Ableitung und damit Diffusion enthält, kann durch einen diffusiven Fehler diese erhöht werden. Das wird als zusätzliche numerische Diffusion bezeichnet.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-20" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-20">Finite-Differenzen-Methode</h2>
+<section id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-16" class="level3">
+<h3 class="anchored" data-anchor-id="appproximation-der-differentialquotienten-durch-differenzenquotienten-24-16">Appproximation der Differentialquotienten durch Differenzenquotienten (2/4)</h3>
+<ul>
+<li><p>Es gibt eine Vielzahl möglicher Schemas für die Diskretisierung des Konvektionsterms, die für unterschiedliche Anwendungen entwickelt wurden.</p></li>
+<li><p>Gängige Diskretisierungsschemas für praktische Anwendungen (z.B. Turbinensimulationen) sind:</p>
+<ul>
+<li>High Resolution:
+<ul>
+<li>Mischung aus Verfahren 1. und 2. Ordnung</li>
+<li>Verfahren 2. Ordnung, wo möglich</li>
+<li>Verfahren 1. Ordnung in Bereichen hoher Gradienten</li>
+</ul></li>
+<li>Linear Upwind (Aufwind-Diskretisierung 2.Ordnung) <span class="math display">\[
+\at{\pp{\phi}{x}}{i} \approx \frac{\phi_{i+2}-4\phi_{i+1}+3\phi_i}{2\dx}
+\;
+\text{bzw.}
+\;
+\at{\pp{\phi}{x}}{i} \approx \frac{\phi_{i-2}-4\phi_{i-1}+3\phi_i}{2\dx}
+\]</span></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="finite-differenzen-methode-21" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-21">Finite-Differenzen-Methode</h2>
+<section id="aufstellen-des-linearen-gleichungssystems-34" class="level3">
+<h3 class="anchored" data-anchor-id="aufstellen-des-linearen-gleichungssystems-34">Aufstellen des linearen Gleichungssystems (3/4)</h3>
+<p>Durch Einsetzen der Differenzenquotienten erhält man die diskretisierte Gleichung zur Berechnung der inneren Knoten.</p>
+<p><strong>Beispiel:</strong></p>
+<p>Die Gleichung <span class="math display">\[
+u \pp{\phi}{x} - \beta \ppnd{\phi}{x} = 0
+\]</span> mit der unbekannten Größe <span class="math inline">\(\phi\)</span> lautet nach einer möglichen Diskretisierung für den Knoten <span class="math inline">\(i\)</span>: <span class="math display">\[
+u_i \fd{\phi}{i+1}{i-1}{2\dx} - \beta_i \ffd{\phi}{i+1}{i}{i-1}{\dx^2} = 0
+\]</span> Umgestellt lautet die Gleichung: <span class="math display">\[
+\left(
+\frac{u_i}{2\dx}
+-
+\frac{\beta}{\dx^2}
+\right)
+\phi_{i+1}
++
+\left(
+\frac{2\beta}{\dx^2}
+\right)
+\phi_{i}
++
+\left(
+-
+\frac{u_i}{2\dx}
+-
+\frac{\beta}{\dx^2}
+\right)
+\phi_{i-1}
+=
+0
+\]</span> Diese Gleichung wird für jeden anderen inneren Knoten ebenfalls aufgestellt.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-22" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-22">Finite-Differenzen-Methode</h2>
+<section id="aufstellen-des-linearen-gleichungssystems-34-1" class="level3">
+<h3 class="anchored" data-anchor-id="aufstellen-des-linearen-gleichungssystems-34-1">Aufstellen des linearen Gleichungssystems (3/4)</h3>
+<p>Es ergibt sich das lineare Gleichungssystem <span class="math inline">\(\mat{A} \vec{\phi} = \vec{b}\)</span>. Die Matrix hat für die gewählte Diskretisierung auf dem Gitter drei Bänder.</p>
+<div id="a2c4463a" class="cell" data-message="false" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-13-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="1135" height="110"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Für das Beispiel ergibt sich das lineare Gleichungssystem zu: <span class="math display">\[
+\underbrace{
+\begin{bmatrix}
+\blacksquare &amp; \blacksquare &amp; 0  &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+\blacksquare &amp; \ddots &amp; \ddots &amp; 0 &amp; &amp; &amp; \vdots\\
+0 &amp; \ddots &amp; \ddots  &amp; \ddots &amp; 0 &amp;  &amp; \vdots\\
+\vdots                                                  &amp;
+  0                                                     &amp;
+  \left( \frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) &amp;
+  \left( \frac{2\beta}{\dx^2}                   \right) &amp;
+  \left( \frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) &amp;
+  0                                                     &amp;
+  \vdots
+\\
+\vdots &amp; &amp; 0 &amp; \ddots &amp; \ddots&amp; \ddots &amp; 0\\
+\vdots &amp; &amp; &amp; 0 &amp; \ddots&amp; \ddots &amp; \blacksquare\\
+0 &amp; \dots &amp; \dots  &amp; \dots &amp; 0 &amp; \blacksquare &amp; \blacksquare\\
+\end{bmatrix}
+}_{\text{Systemmatrix}\;\mat{A}}
+\underbrace{
+  \begin{bmatrix}
+  \phi_1 \\
+  \vdots \\
+  \phi_{i-1} \\
+  \phi_{i} \\
+  \phi_{i+1} \\
+  \vdots \\
+  \phi_N \\
+  \end{bmatrix}
+}_{\text{Lösungsvektor} \; \vec{\phi}}
+=
+\underbrace{
+  \begin{bmatrix}
+  0 \\
+  \vdots \\
+  0 \\
+  \vdots \\
+  0 \\
+  \end{bmatrix}
+}_{\text{Rechte Seite} \; \vec{b}}
+\mathrm{mit} \; \blacksquare \; \mathrm{für\ Einträge} \neq 0
+\]</span></p>
+</section>
+</section>
+<section id="finite-differenzen-methode-23" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-23">Finite-Differenzen-Methode</h2>
+<section id="aufstellen-des-linearen-gleichungssystems-34-2" class="level3">
+<h3 class="anchored" data-anchor-id="aufstellen-des-linearen-gleichungssystems-34-2">Aufstellen des linearen Gleichungssystems (3/4)</h3>
+<section id="systemmatrix" class="level4">
+<h4 class="anchored" data-anchor-id="systemmatrix">Systemmatrix</h4>
+<ul>
+<li>Die Form der Systemmatrix hängt vom verwendeten Differenzenstern und Gitter ab.</li>
+<li>Bei strukturieren Gittern ergibt sich meist eine Bandmatrix.</li>
+<li>Je nachdem in welcher Reihenfolge ein struturiertes mehrdimensionales Gitter nummeriert wird, liegen die Bänder näher oder weiter entfernt von der Hauptdiagonalen.</li>
+<li>Die Struktur der Matrix ist meist symmetrisch.</li>
+<li>Die Werte müssen jdedoch nicht symmetrisch sein. Dies hängt von der diskretisierten Gleichung ab.</li>
+<li>Je größer der verwendete Diskretisierungsstern in, desto mehr Einträge ungleich Null sind in einer Zeile vorhanden.</li>
+<li>Fast alle Diskretisierungsverfahren für partielle Differentialgleichungen liefern schwachbesetzte Matrizen.</li>
+<li>Die Dimension der Matrix ist quadratisch und entspricht der Größe des Gitters. Beim Finite-Differenzen-Verfahren ist die Dimension die Anzahl der Knotenpunkte; beim Finite-Volumen-Verfahren entspricht sie der Anzahl der Zellen.</li>
+</ul>
+</section>
+<section id="lösungsvektor" class="level4">
+<h4 class="anchored" data-anchor-id="lösungsvektor">Lösungsvektor</h4>
+<ul>
+<li>Der Lösungsvektor enthält die gesuchte Größe für jeden Gitterpunkt.</li>
+</ul>
+</section>
+<section id="rechte-seite" class="level4">
+<h4 class="anchored" data-anchor-id="rechte-seite">Rechte Seite</h4>
+<ul>
+<li>Der Vektor enthält Terme, die nicht die gesuchte Größe enthalten, z.B. Quellterme. Zusätzlich stehen in ihm die Randbedingungen.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-24" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-24">Finite-Differenzen-Methode</h2>
+<section id="randbedingung-34" class="level3">
+<h3 class="anchored" data-anchor-id="randbedingung-34">Randbedingung (3/4)</h3>
+<ul>
+<li>Während die inneren Knoten alle einheitlich behandelt werden, müssen die äußeren Knoten (Randknoten) separat über Randbedingungen behandelt werden.</li>
+<li>Es gibt verschiedene Typen von Randbedingungen:
+<ul>
+<li>Dirichlet-Randbedingung</li>
+<li>Neumann-Randbedingung</li>
+<li>Periodische Randbedingung</li>
+</ul></li>
+<li>Randbedingungen sollten in Regionen gelegt werden, in denen sie keinen Einfluss auf die Lösung haben. Tendenziell gilt: je weiter entfernt die Randbedingung liegt, desto weniger wird das Ergebnis beeinflusst.</li>
+</ul>
+<p><strong>Beispiel</strong>: Position der Randbedingung für eine Stufenströmung (Backward-Facing-Step) von schlecht (rot) über besser (gelb) nach gut (grün)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/fdm_rb-backflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="finite-differenzen-methode-25" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-25">Finite-Differenzen-Methode</h2>
+<section id="dirichlet-randbedingung-34" class="level3">
+<h3 class="anchored" data-anchor-id="dirichlet-randbedingung-34">Dirichlet-Randbedingung (3/4)</h3>
+<p>Eine Dirichlet-Randbedingung gibt direkt den Wert eines Randknotens vor, z.B. Unbekannte <span class="math inline">\(\phi=1\)</span>.</p>
+<div id="6abb9c2c" class="cell" data-message="false" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-14-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="1135" height="110"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Die Vorgabe der Unbekannten für den ersten Knoten lautet z.B.</p>
+<p><span class="math display">\[
+\phi_{1} = 1
+\]</span></p>
+<p>Eine Dirichlet-Randbedingung “eliminiert” damit eine Zeile aus der Systemmatrix. An einem Dirichlet-Randknoten muss also keine Gleichungs mehr gelöst werden. Theoretisch kann diese dann um eine Dimension durch Einsetzen des bekannten Werts reduziert werden.</p>
+<p><strong>Beispiele:</strong></p>
+<ul>
+<li>Geschwindigeit bzw. Massenstrom am Eintritt ist bekannt.</li>
+<li>Wandtemperatur oder Eintrittstemperatur ist bekannt.</li>
+<li>Geschwindigkeit an reibungsbehafteten Wänden ist bekannt (Haftbedingung).</li>
+<li>Druck am Austritt wird vorgegeben.</li>
+</ul>
+</section>
+</section>
+<section id="finite-differenzen-methode-26" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-26">Finite-Differenzen-Methode</h2>
+<section id="neumann-randbedingung-34" class="level3">
+<h3 class="anchored" data-anchor-id="neumann-randbedingung-34">Neumann-Randbedingung (3/4)</h3>
+<p>Eine Neumann-Randbedingung gibt den Gradient der Unbekannten an einem Randknoten vor, z.B. <span class="math inline">\(\pp{\phi}{\vec{n}} = 0\)</span>. Typischerweise wird der Gradient in Normalenrichtung <span class="math inline">\(\vec{n}\)</span> des Randes vorgegeben.</p>
+<div id="1c02f836" class="cell" data-message="false" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-15-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="1135" height="110"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Beispiel:</strong> Vorgabe des Gradienten <span class="math inline">\(\pp{\phi}{x}=0\)</span> am rechten Rand für die Gleichung <span class="math inline">\(u \pp{\phi}{x} - \beta \ppnd{\phi}{x} = 0\)</span></p>
+<p>Die diskretisierte Gleichung für den Knoten <span class="math inline">\(N\)</span> lautet: <span class="math display">\[
+u_N \fd{\phi}{N+1}{N-1}{2\dx}
+-
+\beta_i \ffd{\phi}{N+1}{N}{N-1}{\dx^2}
+=
+0
+\]</span> Der Knoten an der Stelle <span class="math inline">\(N+1\)</span> gehört nicht zum Rechengitter. Aus der Vorgabe des Gradienten, z.B. mit einer zentralen Differenz <span class="math display">\[
+\at{\pp{\phi}{x}}{N} = \fd{\phi}{N+1}{N-1}{2\dx} + \Odx{2} = 0
+\]</span> wird die Bedingung unter Vernachlässigung des Abbruchfehlers <span class="math inline">\(\phi_{N+1} = \phi_{N-1}\)</span> abgeleitet. Es wird in der diskretisierten Gleichung für den Knoten <span class="math inline">\(N\)</span> der Werte <span class="math inline">\(\phi_{N+1}\)</span> durch <span class="math inline">\(\phi_{N-1}\)</span> ersetzt.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-27" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-27">Finite-Differenzen-Methode</h2>
+<section id="aufstellen-des-linearen-gleichungssystems-34-3" class="level3">
+<h3 class="anchored" data-anchor-id="aufstellen-des-linearen-gleichungssystems-34-3">Aufstellen des linearen Gleichungssystems (3/4)</h3>
+<p>Das Einsetzen der Dirichlet- und Neumann-Randbedingung jeweils am linken und rechten Rand verändert die Systemmatrix und die rechte Seite zu: <span class="math display">\[
+\begin{bmatrix}
+1 &amp; \blacksquare &amp; 0  &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+\blacksquare &amp; \ddots &amp; \ddots &amp; 0 &amp; &amp; &amp; \vdots\\
+0 &amp; \ddots &amp; \ddots  &amp; \ddots &amp; 0 &amp;  &amp; \vdots\\
+\vdots                                                  &amp;
+  0                                                     &amp;
+  \left( \frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) &amp;
+  \left( \frac{2\beta}{\dx^2}                   \right) &amp;
+  \left( \frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) &amp;
+  0                                                     &amp;
+  \vdots
+\\
+\vdots &amp; &amp; 0 &amp; \ddots &amp; \ddots&amp; \ddots &amp; 0\\
+\vdots &amp; &amp; &amp; 0 &amp; \ddots&amp; \ddots &amp; \blacksquare\\
+0 &amp;
+\dots &amp;
+\dots  &amp;
+\dots &amp;
+0 &amp;
+-\frac{2\beta}{\bdx{2}} &amp;
+\frac{2\beta}{\bdx{2}}\\
+\end{bmatrix}
+\begin{bmatrix}
+  \phi_1 \\
+  \vdots \\
+  \phi_{i-1} \\
+  \phi_{i} \\
+  \phi_{i+1} \\
+  \vdots \\
+  \phi_N \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+  1 \\
+  \vdots \\
+  0 \\
+  0 \\
+  0 \\
+  \vdots \\
+  0 \\
+\end{bmatrix}
+\mathrm{mit} \; \blacksquare \; \mathrm{für\ Einträge} \neq 0
+\]</span></p>
+<p>Beim Einsetzen der Randbedingungen verändern sich meist die Koeffizienten der Matrix in den Randknoten und die rechte Seite.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-28" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-28">Finite-Differenzen-Methode</h2>
+<section id="typische-randbedingungen-34" class="level3">
+<h3 class="anchored" data-anchor-id="typische-randbedingungen-34">Typische Randbedingungen (3/4)</h3>
+<p>Bei der Berechnung von inkompressiblen Strömungsproblemen gibt es mehrere Möglichkeiten. Eine typische Randbedingungsvorgabe erfolgt durch:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/fdm_typrb-backflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<div class="columns">
+<div class="column">
+<p><strong>Dirichlet-Randbedingung</strong></p>
+<ul>
+<li>Geschwindigkeit am Eintritt</li>
+<li>Druck am Austritt</li>
+</ul>
+</div><div class="column">
+<p><strong>Neumann-Randbedingung</strong></p>
+<ul>
+<li>Geschwindigkeit am Austritt</li>
+<li>Druck am Eintritt</li>
+</ul>
+</div>
+</div>
+<p><strong>Achtung</strong>: Bei kompressiblen Überschallströmungen müssen Geschwindigkeit und Druck am Eintritt vorgegeben werden, da sich Störungen nur stromab ausbreiten.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-29" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-29">Finite-Differenzen-Methode</h2>
+<section id="lösung-44" class="level3">
+<h3 class="anchored" data-anchor-id="lösung-44">Lösung (4/4)</h3>
+<p>Die Lösung des linearen Gleichungssystems <span class="math display">\[
+\mat{A} \vec{\phi} = \vec{b}
+\]</span> erfolgt fast immer bei numerischer Strömungssimulation indirekt. Es wird also nicht die Inverse <span class="math inline">\(\mat{A}^{-1}\)</span> berechnet, da dies in der Regel zu aufwändig ist.</p>
+<p>Für indirekte Gleichungslöser gilt:</p>
+<ul>
+<li>Die Lösung wird iterativ berechnet, d.h. es wird eine Iterationsvorschrift <span class="math inline">\(\vec{\phi}^{(n+1)} = f(\vec{\phi}^{(n)})\)</span> abgearbeitet. Je nach verwendetem Löser enthält die Iterationsvorschrift <span class="math inline">\(f(\vec{\phi}^{(n)})\)</span> meist mehrere Matrix-Vektor- und Skalarprodukte.</li>
+<li>Typische iterative Verfahren sind z.B. Gradientenverfahren, bikonjugierte Gradientenverfahren, …</li>
+<li>Meist muss zusätzlich eine Vorkonditionierung verwendet werden.</li>
+</ul>
+<p>Die Gesamtdauer (Rechenzeit) einer numerischen Strömungssimulation hängt sehr stark vom verwendeten indirekten Gleichungslöser ab. Die Iterationsvorschrift wird in jedem Iterations- und Zeitschritt mehrmals durchlaufen.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-30" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-30">Finite-Differenzen-Methode</h2>
+<section id="beispiel-eindimensionale-helmholtz-gleichung" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-eindimensionale-helmholtz-gleichung">Beispiel: Eindimensionale Helmholtz-Gleichung</h3>
+<p>Die eindimensionale Helmholtz-Gleichung lautet: <span class="math display">\[
+\ppnd{\phi}{x} - \lambda^2 \phi = 0 \; \text{mit} \; \lambda = \frac{1}{2}
+\]</span> Die exakte Lösung lautet: <span class="math display">\[
+\phi(x) = \frac{1}{2} e^{-\lambda x} + \frac{1}{2} e^{\lambda x}
+\]</span></p>
+<p>Das verwendete Netz enthält 5 Knoten und hat eine Gitterweite von <span class="math inline">\(\dx = \frac{1}{2}\)</span>.</p>
+<div id="de44c495" class="cell" data-message="false" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-16-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="869" height="233"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Als Randbedingungen wird am linken und rechten Rand eine Dirichlet-Randbedingung <span class="math inline">\(\at{\phi}{x=0.0}=\phi_1=1.0\)</span> und <span class="math inline">\(\at{\phi}{x=2.0}=\phi_5=1.54308\)</span> vorgegeben.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-31" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-31">Finite-Differenzen-Methode</h2>
+<section id="beispiel-eindimensionale-helmholtz-gleichung-1" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-eindimensionale-helmholtz-gleichung-1">Beispiel: Eindimensionale Helmholtz-Gleichung</h3>
+<p>Die diskretisierte Helmholtz-Gleichung ergibt sich nach Approximation der Differentialquotienten durch Differenzenquotienten zu: <span class="math display">\[
+\underbrace{
+  \ffd{\phi}{i+1}{i}{i-1}{\bdx{2}}
+}_{
+\at{\ppnd{\phi}{x}}{i}
+}
+-
+\underbrace{
+  \lambda^2 \phi_i
+}_{\at{\lambda^2 \phi}{i}}
+= 0
+\]</span></p>
+<p>Durch Umstellung ergeben sich die Vorfaktoren: <span class="math display">\[
+\left(
+  \frac{1}{\bdx{2}}
+\right) \phi_{i+1}
++
+\left(
+-\frac{2}{\bdx{2}} - \lambda^2
+\right) \phi_i
++
+\left(
+  \frac{1}{\bdx{2}}
+\right) \phi_{i-1}
+\]</span></p>
+<p>Das Einsetzen von <span class="math inline">\(\lambda=\frac{1}{2}\)</span> und <span class="math inline">\(\dx=\frac{1}{2}\)</span> in die diskretisierte Gleichung ergibt: <span class="math display">\[
+4 \phi_{i+1} - 8.25 \phi_i + 4 \phi_{i-1} = 0
+\]</span></p>
+<p>Der erste und letzte Knoten ist entsprechend der Randbedingungen durch <span class="math display">\[
+\phi_1 = 1.0
+\]</span> und <span class="math display">\[
+\phi_5 = 1.54308
+\]</span> gegeben.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-32" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-32">Finite-Differenzen-Methode</h2>
+<section id="beispiel-eindimensionale-helmholtz-gleichung-2" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-eindimensionale-helmholtz-gleichung-2">Beispiel: Eindimensionale Helmholtz-Gleichung</h3>
+<p>Es ergibt sich das lineare Gleichungssystem <span class="math display">\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 \\
+4 &amp; -8.25 &amp; 4  &amp; 0 &amp; 0 \\
+0 &amp; 4 &amp; -8.25  &amp; 4 &amp; 0 \\
+0 &amp; 0 &amp; 4  &amp; 8.25 &amp; 4 \\
+0 &amp; 0 &amp; 0  &amp; 0 &amp; 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+  \phi_1 \\
+  \phi_2 \\
+  \phi_3 \\
+  \phi_4 \\
+  \phi_5 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+  1 \\
+  0 \\
+  0 \\
+  0 \\
+  1.54308 \\
+\end{bmatrix}
+\]</span> bzw. nach Umformung und Reduktion der Dimension: <span class="math display">\[
+\begin{bmatrix}
+-8.25 &amp; 4  &amp; 0 \\
+4 &amp; -8.25  &amp; 4 \\
+0 &amp; 4  &amp; -8.25 \\
+\end{bmatrix}
+\begin{bmatrix}
+  \phi_2 \\
+  \phi_3 \\
+  \phi_4 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+  -4 \\
+  0 \\
+  -6.17232 \\
+\end{bmatrix}
+\]</span></p>
+</section>
+</section>
+<section id="finite-differenzen-methode-33" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-33">Finite-Differenzen-Methode</h2>
+<section id="beispiel-eindimensionale-helmholtz-gleichung-3" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-eindimensionale-helmholtz-gleichung-3">Beispiel: Eindimensionale Helmholtz-Gleichung</h3>
+<p>Der Vergleich zwischen den diskreten berechneten Punkten (siehe <span class="math inline">\(\square\)</span> in der Abbildung) und der exakten Lösung ist für dieses Beispiel vernachlässigbar klein. Die Zahlen an den Symbolen ist die Abweichung zwischen exakter und numerischer Lösung in Prozent.</p>
+<div id="a946d810" class="cell" data-message="false" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-17-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="869" height="455"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="finite-differenzen-methode-34" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-34">Finite-Differenzen-Methode</h2>
+<section id="beispiel-eindimensionale-helmholtz-gleichung-4" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-eindimensionale-helmholtz-gleichung-4">Beispiel: Eindimensionale Helmholtz-Gleichung</h3>
+<p>Die Gleichung wird erneut gelöst mit der gleichen Diskretisierung. Allerdings wird nun am linken Rand anstatt einer Dirichlet-Randbedingung eine Neumann-Randbedingung von <span class="math display">\[
+\at{\pp{\phi}{x}}{i=1} = 0
+\]</span> vorgegeben. Die Diskretisierung der inneren Knoten für <span class="math inline">\(i=2,3,4\)</span> <span class="math display">\[
+\left(
+  \frac{1}{\bdx{2}}
+\right) \phi_{i+1}
++
+\left(
+-\frac{2}{\bdx{2}} - \lambda^2
+\right) \phi_i
++
+\left(
+  \frac{1}{\bdx{2}}
+\right) \phi_{i-1}
+\]</span> und des rechten Randes <span class="math display">\[
+\phi_5 = 1.54308
+\]</span> ist unverändert.</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-35" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-35">Finite-Differenzen-Methode</h2>
+<section id="beispiel-eindimensionale-helmholtz-gleichung-5" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-eindimensionale-helmholtz-gleichung-5">Beispiel: Eindimensionale Helmholtz-Gleichung</h3>
+<section id="einarbeiten-der-neumann-randbedingung" class="level4">
+<h4 class="anchored" data-anchor-id="einarbeiten-der-neumann-randbedingung">Einarbeiten der Neumann-Randbedingung</h4>
+<p>Die diskrete Gleichung am Knoten 1 ergibt sich mit eingesetzen Werten zu: <span class="math display">\[
+4\phi_2-8.25\phi_1+4\phi_0 = 0
+\]</span> Da der Knoten 0 im Netz nicht enthalten ist, wird dieser durch Einarbeiten der Neumann-Randbedingung <span class="math display">\[
+\frac{\phi_2 - \phi_0}{2\dx} = 0 \; \rightarrow \; \phi_0 = \phi_2
+\]</span> ersetzt. Es ergibt sich: <span class="math display">\[
+8\phi_2 - 8.25\phi_1 = 0
+\]</span></p>
+<p>Das lineare Gleichungssystem lautet mit der neuen Randbedingung: <span class="math display">\[
+\begin{bmatrix}
+-8.25 &amp; 8  &amp; 0 &amp; 0\\
+4 &amp; -8.25  &amp; 4 &amp; 0\\
+0 &amp; 4  &amp; -8.25 &amp; 4\\
+0 &amp; 0 &amp; 4  &amp; -8.25\\
+\end{bmatrix}
+\begin{bmatrix}
+  \phi_1 \\
+  \phi_2 \\
+  \phi_3 \\
+  \phi_4 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+  0 \\
+  0 \\
+  0 \\
+  -6.17232 \\
+\end{bmatrix}
+\]</span></p>
+</section>
+</section>
+</section>
+<section id="finite-differenzen-methode-36" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-36">Finite-Differenzen-Methode</h2>
+<section id="beispiel-eindimensionale-helmholtz-gleichung-6" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-eindimensionale-helmholtz-gleichung-6">Beispiel: Eindimensionale Helmholtz-Gleichung</h3>
+<p>Der erneute Vergleich zur exakten Lösung liefert wieder eine sehr gute Näherungslösung.</p>
+<div id="ce44c959" class="cell" data-message="false" data-execution_count="17">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fdm_files/figure-html/cell-18-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="869" height="455"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Wird hingegen zur Einarbeitung der Neumann-Randbedingung am Knoten 1 die Gleichung <span class="math display">\[
+\frac{\phi_1 - \phi_0}{\dx} = 0 \; \rightarrow \; \phi_0 = \phi_1
+\]</span> und somit eine Diskretisierung 1. Ordnung verwendet, werden die Abweichungen größer (siehe <span class="math inline">\(\color{red}{\times}\)</span> in der Abbildung).</p>
+</section>
+</section>
+<section id="finite-differenzen-methode-37" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-37">Finite-Differenzen-Methode</h2>
+<section id="genauigkeit-von-numerischen-lösung" class="level3">
+<h3 class="anchored" data-anchor-id="genauigkeit-von-numerischen-lösung">Genauigkeit von numerischen Lösung</h3>
+<ul>
+<li>Die numerischen Lösungen von Strömungsproblemen sind nur Näherungslösungen.</li>
+<li>Die numerischen Lösungen beinhalten drei Arten von systematischen Fehlern:
+<ul>
+<li>Diskretisierungsfehler: Differenz zwischen der genauen Lösung des mathematischen Modells und der genauen Lösung der durch Diskretisierung dieser Gleichungen entstandenen algebraischen Gleichungssysteme
+<ul>
+<li><em>Führender Fehlerterm</em></li>
+</ul></li>
+<li>Modellfehler: Differenz zwischen sich tatsächlich einstellender Strömung und der genauen Lösung des mathematischen Modells
+<ul>
+<li><em>Vereinfachungen der Grundgleichungen</em></li>
+</ul></li>
+<li>Iterationsfehler: Differenz zwischen der genauen und der iterativen Lösung der algebraischen Gleichungssysteme
+<ul>
+<li><em>Ungenauigkeiten bei der indirekten Lösung des linearen Gleichungssystems</em></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="finite-differenzen-methode-38" class="level2">
+<h2 class="anchored" data-anchor-id="finite-differenzen-methode-38">Finite-Differenzen-Methode</h2>
+<section id="nichtkartesische-gitter" class="level3">
+<h3 class="anchored" data-anchor-id="nichtkartesische-gitter">Nichtkartesische Gitter</h3>
+<ul>
+<li>Die bisherige Vorgehensweise wurde auf kartesische Gitter angewendet.</li>
+<li>Reale (komplexe) Geometrien können aber in der Regel nicht rechtwinklig vernetzt werden.
+<ul>
+<li>Die Anwendung der Finite-Differenzen-Methode erfordert dann eine Koordinatentransformation zwischen physikalischem Raum und Berechnungsraum.</li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/fdm_krummKOS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+</figure>
+</div>
+<p>Physikalischer Raum</p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/fdm_retchwKOS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+</figure>
+</div>
+<p>Berechnungsraum</p>
+</div>
+</div>
+<p>Die Transformation zwischem den beiden Räumen ist durch die Jacob-Matrix gegeben und definiert die Transformation der Ableitungen z.B. durch: <span class="math display">\[
+\begin{align}
+\pp{\phi}{x} &amp;= \pp{\phi}{\zeta} \pp{\zeta}{x} + \pp{\phi}{\eta} \pp{\eta}{x}\\
+\pp{\phi}{y} &amp;= \pp{\phi}{\zeta} \pp{\zeta}{y} + \pp{\phi}{\eta} \pp{\eta}{y}
+\end{align}
+\]</span></p>
+</section>
+</section>
+<section id="kontrollfragen-12" class="level2">
+<h2 class="anchored" data-anchor-id="kontrollfragen-12">Kontrollfragen (1/2)</h2>
+<ul>
+<li>Welche drei gängigen Diskretisierungsmethoden gibt es?</li>
+<li>Beschreiben Sie die Vorgehensweise bei der Finite Differenzen Methode.</li>
+<li>Welche Anforderungen bestehen für das Rechengitter bei der Finite-Differenzen-Methode?</li>
+<li>Inwiefern ist die Fehlerordnung des Diskretisierungsschemas wichtig?</li>
+<li>Warum benötigt man bei der Diskretisierung einer Konvektion-Diffusions-Gleichung bei sinkender Diffusion eine Upwind-Diskretisierung?</li>
+<li>Beschreiben Sie wie sich ein diffusiver Fehler auf die Lösung auswirkt.</li>
+<li>Wie wirkt sich ein dispersiver Fehler aus?</li>
+<li>Was ist bei der Wahl der Randbedingungen zu beachten?</li>
+<li>Welche drei Arten von systematischen Fehlern gibt es in numerischen Lösungen?</li>
+</ul>
+</section>
+<section id="kontrollfragen-12-1" class="level2">
+<h2 class="anchored" data-anchor-id="kontrollfragen-12-1">Kontrollfragen (1/2)</h2>
+<ul>
+<li>Wie sieht die Matrixstruktur bei verschiedenen Differenzensternen aus?</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/fdm_kfragen-diskstern.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Diskretisieren Sie folgende Gleichungen mit der Finite-Differenzen-Methode: <span class="math display">\[
+u \pp{\phi}{x} - \beta \ppnd{\phi}{x} = 0
+\; \text{mit} \; u=const. \; \text{und} \; \beta=const.
+\]</span> und <span class="math display">\[
+\ppnd{\phi}{x} + \ppnd{\phi}{y} = 0
+\]</span></li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
