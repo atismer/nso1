@@ -65,8 +65,13 @@ jupyter: python3
 \newcommand{\uv}[0]{ \vec{u} }
 \newcommand{\av}[0]{ \vec{a} }
 \newcommand{\Fv}[0]{ \vec{F} }
+\newcommand{\mat}[1]{ \boldsymbol{#1} }
 \newcommand{\hl}[1]{ \color{magenta}{#1} }
 \newcommand{\hla}[1]{ \color{teal}{#1} }
+\newcommand{\Odx}[1]{ \mathcal{O}((\Delta x)^{#1}) }
+\newcommand{\dx}[0]{ \Delta x }
+\newcommand{\dy}[0]{ \Delta y }
+\newcommand{\bdx}[1]{ (\Delta x)^{#1} }
 
 {{< include einfuehrung.qmd >}} 
 {{< include grundgleichungen.qmd >}} 
