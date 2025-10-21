@@ -60,7 +60,7 @@ Randbedingung bei $x=0$ und $x=1$ verwendet.
 :::{.column width="33%"}
 **Lineare Diffusion**
 $$
-\pp{\phi}{t} = \beta \pp{^2\phi}{x^2} = 0 \; \text{mit} \; \beta = 1
+\pp{\phi}{t} - \beta \pp{^2\phi}{x^2} = 0 \; \text{mit} \; \beta = 1
 $$
 ```{python}
 #| echo: false

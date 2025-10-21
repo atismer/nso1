@@ -1618,7 +1618,7 @@ $$
   0                                                     & 
   \left( \frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) & 
   \left( \frac{2\beta}{\dx^2}                   \right) &
-  \left( \frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) & 
+  \left( -\frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) & 
   0                                                     & 
   \vdots
 \\
@@ -1659,20 +1659,20 @@ $$
 - Die Form der Systemmatrix hängt vom verwendeten Differenzenstern und 
   Gitter ab.
 - Bei strukturieren Gittern ergibt sich meist eine Bandmatrix.
-- Je nachdem in welcher Reihenfolge ein struturiertes mehrdimensionales Gitter 
+- Je nachdem in welcher Reihenfolge ein strukturiertes mehrdimensionales Gitter 
   nummeriert wird, liegen die Bänder näher oder weiter entfernt von der
   Hauptdiagonalen.
 - Die Struktur der Matrix ist meist symmetrisch. 
-- Die Werte müssen jdedoch nicht symmetrisch sein. Dies hängt von der 
+- Die Werte müssen jedoch nicht symmetrisch sein. Dies hängt von der 
   diskretisierten Gleichung ab.
-- Je größer der verwendete Diskretisierungsstern in, desto mehr Einträge 
+- Je größer der verwendete Diskretisierungsstern ist, desto mehr Einträge 
   ungleich Null sind in einer Zeile vorhanden.
 - Fast alle Diskretisierungsverfahren für partielle Differentialgleichungen 
   liefern schwachbesetzte Matrizen.
 - Die Dimension der Matrix ist quadratisch und entspricht der Größe des 
-  Gitters. Beim Finite-Differenzen-Verfahren ist die Dimension die Anzahl der
-  Knotenpunkte; beim Finite-Volumen-Verfahren entspricht sie der Anzahl der 
-  Zellen.
+  Gitters. Beim Finite-Differenzen-Verfahren entspricht die Dimension der 
+  Anzahl der Knotenpunkte; beim Finite-Volumen-Verfahren entspricht sie der 
+  Anzahl der Zellen.
 
 #### Lösungsvektor
 
@@ -1853,7 +1853,7 @@ $$
 wird die Bedingung unter Vernachlässigung des Abbruchfehlers 
 $\phi_{N+1} = \phi_{N-1}$
 abgeleitet. Es wird in der diskretisierten Gleichung für den Knoten $N$
-der Werte $\phi_{N+1}$ durch $\phi_{N-1}$ ersetzt.
+der Wert $\phi_{N+1}$ durch $\phi_{N-1}$ ersetzt.
 
 ## Finite-Differenzen-Methode
 ### Aufstellen des linearen Gleichungssystems (3/4)
@@ -1862,14 +1862,14 @@ Das Einsetzen der Dirichlet- und Neumann-Randbedingung jeweils am linken und
 rechten Rand verändert die Systemmatrix und die rechte Seite zu:
 $$
 \begin{bmatrix}
-1 & \blacksquare & 0  & \dots & \dots & \dots & 0\\
+1 & 0 & 0  & \dots & \dots & \dots & 0\\
 \blacksquare & \ddots & \ddots & 0 & & & \vdots\\
 0 & \ddots & \ddots  & \ddots & 0 &  & \vdots\\
 \vdots                                                  & 
   0                                                     & 
   \left( \frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) & 
   \left( \frac{2\beta}{\dx^2}                   \right) &
-  \left( \frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) & 
+  \left( -\frac{u_i}{2\dx} - \frac{\beta}{\dx^2} \right) & 
   0                                                     & 
   \vdots
 \\
@@ -2072,11 +2072,7 @@ $$
 
 Der erste und letzte Knoten ist entsprechend der Randbedingungen durch
 $$
-\phi_1 = 1.0
-$$
-und
-$$
-\phi_5 = 1.54308
+\phi_1 = 1.0 \; \text{und} \; \phi_5 = 1.54308
 $$
 gegeben.
 
@@ -2089,7 +2085,7 @@ $$
 1 & 0 & 0  & 0 & 0 \\
 4 & -8.25 & 4  & 0 & 0 \\
 0 & 4 & -8.25  & 4 & 0 \\
-0 & 0 & 4  & 8.25 & 4 \\
+0 & 0 & 4  & -8.25 & 4 \\
 0 & 0 & 0  & 0 & 1 \\
 \end{bmatrix}
 \begin{bmatrix}
@@ -2133,7 +2129,7 @@ $$
 
 Der Vergleich zwischen den diskreten berechneten Punkten (siehe $\square$ in
 der Abbildung) und der exakten Lösung ist für dieses Beispiel vernachlässigbar 
-klein. Die Zahlen an den Symbolen ist die Abweichung zwischen exakter und
+klein. Die Zahl an den Symbolen ist die Abweichung zwischen exakter und
 numerischer Lösung in Prozent.
 
 ```{python}
@@ -2368,19 +2364,19 @@ größer (siehe $\color{red}{\times}$ in der Abbildung).
 
 ![](assets/fdm_krummKOS.png){width="30%" fig-align="center"}
 
-Physikalischer Raum
+Physikalischer Raum in $(x,y)$
 
 :::
 :::{.column}
 
 ![](assets/fdm_retchwKOS.png){width="30%" fig-align="center"}
 
-Berechnungsraum
+Berechnungsraum in $(\zeta, \eta)$
 
 :::
 :::
 
-Die Transformation zwischem den beiden Räumen ist durch die Jacob-Matrix
+Die Transformation zwischem den beiden Räumen ist durch die Jacobi-Matrix
 gegeben und definiert die Transformation der Ableitungen z.B. durch:
 $$
 \begin{align}
@@ -2392,7 +2388,7 @@ $$
 ## Kontrollfragen (1/2)
 
 - Welche drei gängigen Diskretisierungsmethoden gibt es?
-- Beschreiben Sie die Vorgehensweise bei der Finite Differenzen Methode.
+- Beschreiben Sie die Vorgehensweise bei der Finite-Differenzen-Methode.
 - Welche Anforderungen bestehen für das Rechengitter bei der 
   Finite-Differenzen-Methode?
 - Inwiefern ist die Fehlerordnung des Diskretisierungsschemas wichtig?
@@ -2404,8 +2400,9 @@ $$
 - Was ist bei der Wahl der Randbedingungen zu beachten?
 - Welche drei Arten von systematischen Fehlern gibt es in numerischen
   Lösungen?
+- Für was benötigen Sie die Taylor-Reihe bei der Finite-Differenzen-Methode?
 
-## Kontrollfragen (1/2)
+## Kontrollfragen (2/2)
 
 - Wie sieht die Matrixstruktur bei verschiedenen Differenzensternen aus?
 
