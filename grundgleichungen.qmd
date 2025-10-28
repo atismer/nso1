@@ -29,15 +29,15 @@ Herleitung der Grundgleichungen
 
     *Modellierung*
 
-1. Mathematische Beschreibung
-    
-    *Diskretisierung*
-
     - Index-Schreibweise
     - Herleitung Kontinuitätsgleichung
     - Herleitung Impulsgleichung
     - Kompressibel vs. inkompressibel
     - Grundprinzipien bei der Modellbildung
+
+1. Mathematische Beschreibung
+    
+    *Diskretisierung*
 
 1. Numerische Lösung
 
